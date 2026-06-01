@@ -1,24 +1,32 @@
 name: Generate and deploy SEO dashboards
+
 on:
   schedule:
     - cron: '0 2 * * 1'
   workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - run: pip install gspread google-auth google-auth-oauthlib
+
       - name: Write Google token
         run: echo "${{ secrets.GOOGLE_TOKEN_B64 }}" | base64 -d > token.pickle
+
       - name: Generate dashboards
         run: python3 generate_dashboard.py
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dashboards
-          publish_branch: gh-pages
+
+      - name: Commit and push dashboards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dashboards/
+          git diff --staged --quiet || git commit -m "Update dashboards $(date +'%Y-%m-%d')"
+          git push origin main
