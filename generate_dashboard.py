@@ -29,7 +29,7 @@ def get_sheet_client():
             pickle.dump(creds, f)
     return gspread.authorize(creds)
 
-def build_rank_rows(rank_data):
+def build_rank_rows(rank_data):  # v2 - str fix
     ranking = [r for r in rank_data if r.get('This Month Rank','NR') not in ('NR','')]
     not_ranking = [r for r in rank_data if r.get('This Month Rank','NR') in ('NR','')]
     rows = []
