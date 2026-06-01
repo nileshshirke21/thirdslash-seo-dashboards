@@ -156,11 +156,11 @@ def main():
     gc    = get_sheet_client()
     sheet = gc.open_by_key(SHEET_ID)
 
-    clients   = sheet.worksheet('01_Client Profile').get_all_records(head=3)
-    tasks     = sheet.worksheet('02_Monthly Task Tracker').get_all_records()
-    delivery  = sheet.worksheet('03_Delivery Log').get_all_records()
-    ranks     = sheet.worksheet('04_Rank Tracking Log').get_all_records()
-    backlinks = sheet.worksheet('05_Backlink Log').get_all_records()
+    clients   = sheet.worksheet('01_Client Profile').get_all_records(head=3, expected_headers=[])
+    tasks     = sheet.worksheet('02_Monthly Task Tracker').get_all_records(expected_headers=[])
+    delivery  = sheet.worksheet('03_Delivery Log').get_all_records(expected_headers=[])
+    ranks     = sheet.worksheet('04_Rank Tracking Log').get_all_records(expected_headers=[])
+    backlinks = sheet.worksheet('05_Backlink Log').get_all_records(expected_headers=[])
 
     active = [c for c in clients if c.get('Active','').strip()=='Yes']
     if args.client:
