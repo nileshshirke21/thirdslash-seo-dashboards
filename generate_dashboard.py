@@ -40,9 +40,9 @@ def build_rank_rows(rank_data):
         chg  = r.get('Movement','-')
         url  = r.get('Target URL','')
         url_short = url.replace('https://','').replace('http://','')[:45]
-        if chg.startswith('+'): move = f'<span class="move-up">↑ {chg}</span>'
-        elif chg.startswith('-') and chg != '-': move = f'<span class="move-down">↓ {chg}</span>'
-        elif chg == 'NEW': move = '<span class="move-new">NEW</span>'
+        if str(chg).startswith('+'): move = f'<span class="move-up">↑ {chg}</span>'
+        elif str(chg).startswith('-') and chg != '-': move = f'<span class="move-down">↓ {chg}</span>'
+        elif str(chg) == 'NEW': move = '<span class="move-new">NEW</span>'
         else: move = '<span class="move-flat">—</span>'
         rows.append(f'<tr><td>{kw}</td><td><span class="rank-num">{cur}</span></td><td><span class="rank-num" style="color:var(--text2)">{prev if prev != "NR" else "—"}</span></td><td>{move}</td><td><span class="kw-url">{url_short}</span></td></tr>')
     if not_ranking:
