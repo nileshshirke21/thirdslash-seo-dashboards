@@ -1,13 +1,30 @@
 import gspread,pickle,os,re,argparse
-from datetime import datetime
+from datetime import datetime,timedelta
+import calendar
 from google.auth.transport.requests import Request
 
 SHEET_ID="1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
 TOKEN_FILE=os.path.join(os.path.dirname(__file__),"token.pickle")
 TEMPLATE_FILE=os.path.join(os.path.dirname(__file__),"dashboard_template.html")
 OUTPUT_DIR=os.path.join(os.path.dirname(__file__),"dashboards")
-REPORT_MONTH=datetime.now().strftime("%B %Y")
 TODAY=datetime.now().strftime("%d %b %Y")
+
+def get_report_month():
+    t=datetime.now(); fc=t.replace(day=1); lp=fc-timedelta(days=1)
+    return lp.strftime("%B %Y"), lp.strftime("%b-%Y")
+
+REPORT_MONTH, MONTH_KEY = get_report_month()
+
+def get_16_months():
+    t=datetime.now(); fc=t.replace(day=1); lm=fc-timedelta(days=1); ls=lm.replace(day=1)
+    months=[]
+    for i in range(15,-1,-1):
+        m=ls
+        for _ in range(i): m=(m.replace(day=1)-timedelta(days=1)).replace(day=1)
+        months.append(m.strftime("%b-%Y"))
+    return months
+
+MONTHS_16 = get_16_months()
 
 def slugify(n): return re.sub(r'[^a-z0-9]+','-',n.lower()).strip('-')
 
@@ -19,8 +36,8 @@ def get_sheet_client():
     return gspread.authorize(creds)
 
 def fmt(n):
-    try: return f"{int(str(n).replace(',','')):,}"
-    except: return str(n) if n else "—"
+    try: return f"{int(str(n).replace(',','')):,}" if str(n) not in ('','—') else '—'
+    except: return str(n) if n else '—'
 
 def delta_cls(v):
     try:
@@ -34,6 +51,19 @@ def delta_icon(v,lower_better=False):
         if lower_better: return "↓" if x<0 else ("↑" if x>0 else "—")
         return "↑" if x>0 else ("↓" if x<0 else "—")
     except: return "—"
+
+def build_history_rows(name, ga4_all, gsc_all):
+    ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
+    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
+    rows=[]
+    for month in reversed(MONTHS_16):
+        g=ga4m.get(month,{}); s=gscm.get(month,{})
+        cls=' class="current-month"' if month==MONTH_KEY else ''
+        def n(v):
+            try: return f"{int(str(v).replace(',','')):,}" if str(v) not in ('','—',None) else '—'
+            except: return str(v) if v else '—'
+        rows.append(f'<tr{cls}><td>{month}</td><td>{n(g.get("Sessions (Current)",""))}</td><td>{n(s.get("Clicks (Current)",""))}</td><td>{n(s.get("Impressions (Current)",""))}</td><td>{s.get("Avg Position (Current)","—")}</td><td>{n(g.get("Organic Sessions",""))}</td><td>{n(g.get("ChatGPT Sessions",""))}</td><td>{n(g.get("Claude Sessions",""))}</td><td>{n(g.get("Perplexity Sessions",""))}</td><td>{n(g.get("Gemini Sessions",""))}</td></tr>')
+    return '\n'.join(rows) if rows else '<tr><td colspan="10" style="color:var(--text3);padding:20px 12px;">No historical data yet.</td></tr>'
 
 def build_rank_rows(rank_data):
     ranking=[r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')]
@@ -72,7 +102,8 @@ def build_task_cards(task_data):
 def build_backlink_rows(bl_data):
     rows=[]
     for r in bl_data:
-        lt=r.get('Link Type',''); src=r.get('Source URL','')[:40]; tgt=r.get('Target URL (Client Page)','').replace('https://','')[:30]
+        lt=r.get('Link Type',''); src=r.get('Source URL','')[:40]
+        tgt=r.get('Target URL (Client Page)','').replace('https://','')[:30]
         anchor=r.get('Anchor Text',''); status=r.get('Link Status',''); date=r.get('Date Built','')
         tc={'Citation':'bl-citation','Reddit':'bl-reddit','Guest Post':'bl-guest','Blog Comment':'bl-comment'}.get(lt,'bl-citation')
         sc='bl-live' if status=='Live' else 'bl-pending'
@@ -89,11 +120,10 @@ def build_delivery_rows(dl_data):
         rows.append(f'<tr><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td><td>{lh}</td><td style="font-size:12px;color:var(--text2)">{sent}</td><td style="font-size:12px">{resp}</td><td>{fu_html}</td></tr>')
     return '\n'.join(rows) if rows else '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr>'
 
-def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_data,template):
+def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all,template):
     name=client.get('Client Name','').strip()
     domain=client.get('Website URL','').replace('https://','').replace('http://','').rstrip('/')
-    niche=''
-    notes=client.get('Notes','')
+    niche=''; notes=client.get('Notes','')
     if 'Niche:' in notes: niche=notes.split('Niche:')[-1].strip().split('|')[0].strip()
     team=client.get('Assigned Team Member','').strip()
     gmb_city=client.get('GMB City','-').strip()
@@ -103,22 +133,21 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_da
     bl_data  =[r for r in all_bl   if r.get('Client Name','').strip()==name]
     dl_data  =[r for r in all_dl   if r.get('Client Name','').strip()==name]
 
-    # GA4 data
-    ga4=ga4_data.get(name,{})
+    # Get current month data
+    ga4={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}.get(MONTH_KEY,{})
+    gsc={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}.get(MONTH_KEY,{})
+
     sessions    = fmt(ga4.get('Sessions (Current)','—'))
     sessions_p  = ga4.get('Sessions Change','')
     users       = fmt(ga4.get('Users (Current)','—'))
     users_p     = ga4.get('Users Change','')
     bounce      = str(ga4.get('Bounce Rate %','—'))
-    duration    = str(ga4.get('Avg Session Duration (sec)','—'))
     organic_s   = fmt(ga4.get('Organic Sessions','—'))
     chatgpt_s   = fmt(ga4.get('ChatGPT Sessions','0'))
     claude_s    = fmt(ga4.get('Claude Sessions','0'))
     perplexity_s= fmt(ga4.get('Perplexity Sessions','0'))
     gemini_s    = fmt(ga4.get('Gemini Sessions','0'))
 
-    # GSC data
-    gsc=gsc_data.get(name,{})
     clicks      = fmt(gsc.get('Clicks (Current)','—'))
     clicks_p    = gsc.get('Clicks Change','')
     impressions = fmt(gsc.get('Impressions (Current)','—'))
@@ -139,6 +168,7 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_da
         '{{SESSIONS}}':sessions,'{{USERS}}':users,
         '{{ORGANIC_CLICKS}}':clicks,'{{IMPRESSIONS}}':impressions,
         '{{AVG_POSITION}}':avg_pos,'{{CTR}}':ctr,
+        '{{BOUNCE_RATE}}':bounce,'{{ORGANIC_SESSIONS}}':organic_s,
         '{{SESSIONS_DELTA}}':str(sessions_p),'{{USERS_DELTA}}':str(users_p),
         '{{CLICKS_DELTA}}':str(clicks_p),'{{IMPR_DELTA}}':str(impr_p),
         '{{POS_DELTA}}':str(pos_p),
@@ -152,6 +182,9 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_da
         '{{CLICKS_DELTA_ICON}}':delta_icon(clicks_p),
         '{{IMPR_DELTA_ICON}}':delta_icon(impr_p),
         '{{POS_DELTA_ICON}}':delta_icon(pos_p,lower_better=True),
+        '{{CHATGPT_SESSIONS}}':chatgpt_s,'{{CLAUDE_SESSIONS}}':claude_s,
+        '{{PERPLEXITY_SESSIONS}}':perplexity_s,'{{GEMINI_SESSIONS}}':gemini_s,
+        '{{TOP_KEYWORD}}':top_kw,
         '{{RANK_DATE}}':TODAY,'{{RANK_LOCATION}}':gmb_city,
         '{{RANK_ROWS}}':build_rank_rows(rank_data),
         '{{RANKING_COUNT}}':str(ranking_count),
@@ -159,11 +192,7 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_da
         '{{TASK_CARDS}}':build_task_cards(task_data),
         '{{BACKLINK_ROWS}}':build_backlink_rows(bl_data),
         '{{DELIVERY_ROWS}}':build_delivery_rows(dl_data),
-        '{{BOUNCE_RATE}}':bounce,'{{AVG_DURATION}}':duration,
-        '{{ORGANIC_SESSIONS}}':organic_s,
-        '{{CHATGPT_SESSIONS}}':chatgpt_s,'{{CLAUDE_SESSIONS}}':claude_s,
-        '{{PERPLEXITY_SESSIONS}}':perplexity_s,'{{GEMINI_SESSIONS}}':gemini_s,
-        '{{TOP_KEYWORD}}':top_kw,
+        '{{HISTORY_ROWS}}':build_history_rows(name,ga4_all,gsc_all),
     }.items():
         html=html.replace(k,str(v))
     return html
@@ -172,7 +201,8 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--client',default=None)
     args=parser.parse_args()
-    print("ThirdSlash — Dashboard Generator\n"+"="*40)
+    print(f"ThirdSlash — Dashboard Generator\n{'='*40}")
+    print(f"Report month: {REPORT_MONTH} ({MONTH_KEY})")
     with open(TEMPLATE_FILE,'r') as f: template=f.read()
     print("Connecting to Google Sheet...")
     gc=get_sheet_client()
@@ -183,20 +213,15 @@ def main():
     ranks    =sheet.worksheet('04_Rank Tracking Log').get_all_records(expected_headers=[])
     backlinks=sheet.worksheet('05_Backlink Log').get_all_records(expected_headers=[])
 
-    # Read GA4 and GSC data
-    ga4_data={}; gsc_data={}
+    ga4_all=[]; gsc_all=[]
     try:
-        for r in sheet.worksheet('All_GA4').get_all_records(expected_headers=[]):
-            n=r.get('Client Name','').strip()
-            if n: ga4_data[n]=r
-        print(f"  GA4 data loaded: {len(ga4_data)} clients")
-    except: print("  ⚠ All_GA4 tab not found")
+        ga4_all=sheet.worksheet('All_GA4').get_all_records(expected_headers=[])
+        print(f"  GA4: {len(ga4_all)} rows loaded")
+    except: print("  ⚠ All_GA4 not found")
     try:
-        for r in sheet.worksheet('All_GSC').get_all_records(expected_headers=[]):
-            n=r.get('Client Name','').strip()
-            if n: gsc_data[n]=r
-        print(f"  GSC data loaded: {len(gsc_data)} clients")
-    except: print("  ⚠ All_GSC tab not found")
+        gsc_all=sheet.worksheet('All_GSC').get_all_records(expected_headers=[])
+        print(f"  GSC: {len(gsc_all)} rows loaded")
+    except: print("  ⚠ All_GSC not found")
 
     active=[c for c in clients if c.get('Active','').strip()=='Yes']
     if args.client:
@@ -210,15 +235,12 @@ def main():
         slug=slugify(name)
         client_dir=os.path.join(OUTPUT_DIR,slug)
         os.makedirs(client_dir,exist_ok=True)
-        html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_data,gsc_data,template)
+        html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_all,gsc_all,template)
         with open(os.path.join(client_dir,'index.html'),'w',encoding='utf-8') as f: f.write(html)
-        has_ga4='✓' if name in ga4_data else '✗'
-        has_gsc='✓' if name in gsc_data else '✗'
-        print(f"  {name:30} GA4:{has_ga4} GSC:{has_gsc} → dashboards/{slug}/")
+        ga4_months=len([r for r in ga4_all if r.get('Client Name','').strip()==name])
+        gsc_months=len([r for r in gsc_all if r.get('Client Name','').strip()==name])
+        print(f"  {name:30} GA4:{ga4_months}mo GSC:{gsc_months}mo → {slug}/")
         generated.append((name,slug))
     print(f"\nGenerated {len(generated)} dashboards")
-    print("\nURLs:")
-    for name,slug in generated:
-        print(f"  https://nileshshirke21.github.io/thirdslash-seo-dashboards/dashboards/{slug}/")
 
 if __name__=="__main__": main()

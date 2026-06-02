@@ -28,12 +28,26 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .hero-meta-item span{color:var(--text2)}
 .section{padding:32px;border-bottom:1px solid var(--border)}
 .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px}
-.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .metric-card{background:var(--bg2);padding:20px 22px}
 .metric-label{font-size:11px;color:var(--text2);margin-bottom:8px}
-.metric-value{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
+.metric-value{font-family:'DM Mono',monospace;font-size:24px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
 .metric-delta{font-family:'DM Mono',monospace;font-size:11px}
 .delta-up{color:var(--up)}.delta-down{color:var(--down)}.delta-neutral{color:var(--text3)}
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:16px}
+.ai-card{background:var(--bg2);padding:16px 20px}
+.ai-label{font-size:10px;color:var(--text2);margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
+.ai-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--neutral)}
+.ai-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px}
+.history-table{width:100%;border-collapse:collapse}
+.history-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
+.history-table th:first-child{text-align:left}
+.history-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;text-align:right;vertical-align:middle;font-family:'DM Mono',monospace;color:var(--text)}
+.history-table td:first-child{text-align:left;color:var(--text2);font-size:11px}
+.history-table tr:last-child td{border-bottom:none}
+.history-table tr:hover td{background:var(--bg3)}
+.history-table tr.current-month td{background:rgba(212,240,96,0.04)}
+.history-table tr.current-month td:first-child{color:var(--accent);font-weight:500}
 .rank-table{width:100%;border-collapse:collapse}
 .rank-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:400}
 .rank-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
@@ -61,74 +75,83 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .footer-brand strong{color:var(--accent)}
 .footer-links{display:flex;gap:20px}
 .footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);text-decoration:none}
-.footer-links a:hover{color:var(--text2)}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div class="topbar-left">
-    <div class="logo">ThirdSlash</div>
-    <div class="sep"></div>
-    <div class="client-name-top">Potential Engineering</div>
-  </div>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div class="report-date">June 2026</div>
-    <div class="status-pill"><div class="status-dot"></div>live data</div>
-  </div>
+  <div class="topbar-left"><div class="logo">ThirdSlash</div><div class="sep"></div><div class="client-name-top">Potential Engineering</div></div>
+  <div style="display:flex;align-items:center;gap:16px"><div class="report-date">May 2026</div><div class="status-pill"><div class="status-dot"></div>live data</div></div>
 </div>
 <div class="hero">
   <div class="hero-eyebrow">SEO Performance Dashboard</div>
-  <h1 class="hero-title"><strong>Potential Engineering</strong> — June 2026</h1>
+  <h1 class="hero-title"><strong>Potential Engineering</strong> — May 2026</h1>
   <div class="hero-sub">Water Pollutant Removal · potentialengineering.com</div>
   <div class="hero-meta">
     <div class="hero-meta-item">Manager <span>Nilesh Shirke</span></div>
     <div class="hero-meta-item">Team <span>Himanshu Pawar</span></div>
-    <div class="hero-meta-item">Updated <span>02 Jun 2026</span></div>
+    <div class="hero-meta-item">Updated <span>03 Jun 2026</span></div>
     <div class="hero-meta-item">Location <span>Mumbai, India</span></div>
   </div>
 </div>
 <div class="section">
-  <div class="section-label">Traffic — last 30 days</div>
+  <div class="section-label">Traffic — May 2026</div>
   <div class="metric-grid">
-    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">4,321</div><div class="metric-delta delta-up">↑ 616</div></div>
-    <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">3,302</div><div class="metric-delta delta-up">↑ 525</div></div>
-    <div class="metric-card"><div class="metric-label">Organic clicks</div><div class="metric-value">320</div><div class="metric-delta delta-up">↑ 40</div></div>
-    <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">26,107</div><div class="metric-delta delta-down">↓ -1027</div></div>
-    <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">4.7</div><div class="metric-delta delta-down">↓ -0.3</div></div>
+    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">4,321</div><div class="metric-delta delta-up">↑ 616 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">3,302</div><div class="metric-delta delta-up">↑ 525 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Organic clicks</div><div class="metric-value">320</div><div class="metric-delta delta-up">↑ 40 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">26,107</div><div class="metric-delta delta-down">↓ -1027 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">4.7</div><div class="metric-delta delta-down">↓ -0.3 vs prev</div></div>
     <div class="metric-card"><div class="metric-label">CTR</div><div class="metric-value">1.23%</div><div class="metric-delta delta-neutral">Search Console</div></div>
+    <div class="metric-card"><div class="metric-label">Bounce rate</div><div class="metric-value">63.62%</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Organic sessions</div><div class="metric-value">2,531</div><div class="metric-delta delta-neutral">GA4</div></div>
+  </div>
+  <div style="margin-top:24px">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">AI Traffic — May 2026</div>
+    <div class="ai-grid">
+      <div class="ai-card"><div class="ai-label">ChatGPT</div><div class="ai-value">42</div><div class="ai-sub">sessions via chatgpt.com</div></div>
+      <div class="ai-card"><div class="ai-label">Claude</div><div class="ai-value">4</div><div class="ai-sub">sessions via claude.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Perplexity</div><div class="ai-value">5</div><div class="ai-sub">sessions via perplexity.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Gemini</div><div class="ai-value">14</div><div class="ai-sub">sessions via gemini.google.com</div></div>
+    </div>
   </div>
 </div>
 <div class="section">
-  <div class="section-label">Keyword rankings — 02 Jun 2026 · Mumbai, India</div>
+  <div class="section-label">Traffic history — 16 months</div>
   <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead>
-      <tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data yet.</td></tr></tbody>
+    <table class="history-table">
+      <thead><tr><th>Month</th><th>Sessions</th><th>Organic Clicks</th><th>Impressions</th><th>Avg Position</th><th>Organic Sessions</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th></tr></thead>
+      <tbody><tr class="current-month"><td>May-2026</td><td>4,321</td><td>320</td><td>26,107</td><td>4.7</td><td>2,531</td><td>42</td><td>4</td><td>5</td><td>14</td></tr>
+<tr><td>Apr-2026</td><td>3,973</td><td>280</td><td>27,134</td><td>4.4</td><td>2,613</td><td>38</td><td>0</td><td>9</td><td>19</td></tr>
+<tr><td>Mar-2026</td><td>4,286</td><td>302</td><td>26,326</td><td>4.4</td><td>2,721</td><td>40</td><td>1</td><td>3</td><td>30</td></tr>
+<tr><td>Feb-2026</td><td>4,286</td><td>381</td><td>30,136</td><td>5.5</td><td>2,897</td><td>35</td><td>1</td><td>6</td><td>11</td></tr>
+<tr><td>Jan-2026</td><td>3,853</td><td>338</td><td>29,444</td><td>4.7</td><td>2,507</td><td>46</td><td>0</td><td>15</td><td>28</td></tr>
+<tr><td>Dec-2025</td><td>3,853</td><td>276</td><td>27,916</td><td>4.8</td><td>2,431</td><td>78</td><td>0</td><td>5</td><td>13</td></tr>
+<tr><td>Nov-2025</td><td>3,798</td><td>267</td><td>28,061</td><td>4.5</td><td>2,497</td><td>52</td><td>0</td><td>13</td><td>8</td></tr>
+<tr><td>Oct-2025</td><td>3,794</td><td>304</td><td>23,461</td><td>5.4</td><td>2,666</td><td>43</td><td>0</td><td>20</td><td>8</td></tr>
+<tr><td>Sep-2025</td><td>3,794</td><td>364</td><td>24,636</td><td>5.6</td><td>2,866</td><td>27</td><td>0</td><td>10</td><td>1</td></tr>
+<tr><td>Aug-2025</td><td>3,606</td><td>268</td><td>24,523</td><td>6.1</td><td>2,486</td><td>49</td><td>1</td><td>5</td><td>8</td></tr>
+<tr><td>Jul-2025</td><td>3,803</td><td>274</td><td>17,223</td><td>7.6</td><td>2,598</td><td>58</td><td>1</td><td>5</td><td>5</td></tr>
+<tr><td>Jun-2025</td><td>4,386</td><td>362</td><td>32,227</td><td>4.8</td><td>3,117</td><td>44</td><td>0</td><td>11</td><td>6</td></tr>
+<tr><td>May-2025</td><td>4,715</td><td>427</td><td>32,845</td><td>4.5</td><td>3,613</td><td>43</td><td>0</td><td>7</td><td>11</td></tr>
+<tr><td>Apr-2025</td><td>4,715</td><td>457</td><td>31,850</td><td>4</td><td>3,583</td><td>30</td><td>0</td><td>10</td><td>9</td></tr>
+<tr><td>Mar-2025</td><td>4,212</td><td>403</td><td>32,838</td><td>4</td><td>3,553</td><td>45</td><td>0</td><td>4</td><td>2</td></tr>
+<tr><td>Feb-2025</td><td>4,116</td><td>384</td><td>33,740</td><td>3.7</td><td>3,511</td><td>31</td><td>0</td><td>11</td><td>7</td></tr></tbody>
     </table>
   </div>
+</div>
+<div class="section">
+  <div class="section-label">Keyword rankings — 03 Jun 2026 · Mumbai, India</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data yet.</td></tr></tbody></table></div>
   <div style="margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">0 ranking · 0 not in top 100 · Ubersuggest</div>
 </div>
+<div class="section"><div class="section-label">Tasks — May 2026</div><div class="task-grid"><div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div></div></div>
 <div class="section">
-  <div class="section-label">Tasks — June 2026</div>
-  <div class="task-grid"><div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div></div>
+  <div class="section-label">Links built — May 2026</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr></tbody></table></div>
 </div>
 <div class="section">
-  <div class="section-label">Links built — June 2026</div>
-  <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead>
-      <tbody><tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr></tbody>
-    </table>
-  </div>
-</div>
-<div class="section">
-  <div class="section-label">Deliverables — June 2026</div>
-  <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead>
-      <tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr></tbody>
-    </table>
-  </div>
+  <div class="section-label">Deliverables — May 2026</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr></tbody></table></div>
 </div>
 <div class="footer">
   <div class="footer-brand">Powered by <strong>ThirdSlash</strong> · Digital Marketing Agency · Mumbai, India</div>

@@ -28,12 +28,26 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .hero-meta-item span{color:var(--text2)}
 .section{padding:32px;border-bottom:1px solid var(--border)}
 .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px}
-.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .metric-card{background:var(--bg2);padding:20px 22px}
 .metric-label{font-size:11px;color:var(--text2);margin-bottom:8px}
-.metric-value{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
+.metric-value{font-family:'DM Mono',monospace;font-size:24px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
 .metric-delta{font-family:'DM Mono',monospace;font-size:11px}
 .delta-up{color:var(--up)}.delta-down{color:var(--down)}.delta-neutral{color:var(--text3)}
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:16px}
+.ai-card{background:var(--bg2);padding:16px 20px}
+.ai-label{font-size:10px;color:var(--text2);margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
+.ai-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--neutral)}
+.ai-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px}
+.history-table{width:100%;border-collapse:collapse}
+.history-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
+.history-table th:first-child{text-align:left}
+.history-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;text-align:right;vertical-align:middle;font-family:'DM Mono',monospace;color:var(--text)}
+.history-table td:first-child{text-align:left;color:var(--text2);font-size:11px}
+.history-table tr:last-child td{border-bottom:none}
+.history-table tr:hover td{background:var(--bg3)}
+.history-table tr.current-month td{background:rgba(212,240,96,0.04)}
+.history-table tr.current-month td:first-child{color:var(--accent);font-weight:500}
 .rank-table{width:100%;border-collapse:collapse}
 .rank-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:400}
 .rank-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
@@ -61,20 +75,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .footer-brand strong{color:var(--accent)}
 .footer-links{display:flex;gap:20px}
 .footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);text-decoration:none}
-.footer-links a:hover{color:var(--text2)}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div class="topbar-left">
-    <div class="logo">ThirdSlash</div>
-    <div class="sep"></div>
-    <div class="client-name-top">{{CLIENT_NAME}}</div>
-  </div>
-  <div style="display:flex;align-items:center;gap:16px">
-    <div class="report-date">{{REPORT_MONTH}}</div>
-    <div class="status-pill"><div class="status-dot"></div>live data</div>
-  </div>
+  <div class="topbar-left"><div class="logo">ThirdSlash</div><div class="sep"></div><div class="client-name-top">{{CLIENT_NAME}}</div></div>
+  <div style="display:flex;align-items:center;gap:16px"><div class="report-date">{{REPORT_MONTH}}</div><div class="status-pill"><div class="status-dot"></div>live data</div></div>
 </div>
 <div class="hero">
   <div class="hero-eyebrow">SEO Performance Dashboard</div>
@@ -88,47 +94,49 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
   </div>
 </div>
 <div class="section">
-  <div class="section-label">Traffic — last 30 days</div>
+  <div class="section-label">Traffic — {{REPORT_MONTH}}</div>
   <div class="metric-grid">
-    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">{{SESSIONS}}</div><div class="metric-delta {{SESSIONS_DELTA_CLASS}}">{{SESSIONS_DELTA_ICON}} {{SESSIONS_DELTA}}</div></div>
-    <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">{{USERS}}</div><div class="metric-delta {{USERS_DELTA_CLASS}}">{{USERS_DELTA_ICON}} {{USERS_DELTA}}</div></div>
-    <div class="metric-card"><div class="metric-label">Organic clicks</div><div class="metric-value">{{ORGANIC_CLICKS}}</div><div class="metric-delta {{CLICKS_DELTA_CLASS}}">{{CLICKS_DELTA_ICON}} {{CLICKS_DELTA}}</div></div>
-    <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">{{IMPRESSIONS}}</div><div class="metric-delta {{IMPR_DELTA_CLASS}}">{{IMPR_DELTA_ICON}} {{IMPR_DELTA}}</div></div>
-    <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">{{AVG_POSITION}}</div><div class="metric-delta {{POS_DELTA_CLASS}}">{{POS_DELTA_ICON}} {{POS_DELTA}}</div></div>
+    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">{{SESSIONS}}</div><div class="metric-delta {{SESSIONS_DELTA_CLASS}}">{{SESSIONS_DELTA_ICON}} {{SESSIONS_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">{{USERS}}</div><div class="metric-delta {{USERS_DELTA_CLASS}}">{{USERS_DELTA_ICON}} {{USERS_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Organic clicks</div><div class="metric-value">{{ORGANIC_CLICKS}}</div><div class="metric-delta {{CLICKS_DELTA_CLASS}}">{{CLICKS_DELTA_ICON}} {{CLICKS_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">{{IMPRESSIONS}}</div><div class="metric-delta {{IMPR_DELTA_CLASS}}">{{IMPR_DELTA_ICON}} {{IMPR_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">{{AVG_POSITION}}</div><div class="metric-delta {{POS_DELTA_CLASS}}">{{POS_DELTA_ICON}} {{POS_DELTA}} vs prev</div></div>
     <div class="metric-card"><div class="metric-label">CTR</div><div class="metric-value">{{CTR}}%</div><div class="metric-delta delta-neutral">Search Console</div></div>
+    <div class="metric-card"><div class="metric-label">Bounce rate</div><div class="metric-value">{{BOUNCE_RATE}}%</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Organic sessions</div><div class="metric-value">{{ORGANIC_SESSIONS}}</div><div class="metric-delta delta-neutral">GA4</div></div>
+  </div>
+  <div style="margin-top:24px">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">AI Traffic — {{REPORT_MONTH}}</div>
+    <div class="ai-grid">
+      <div class="ai-card"><div class="ai-label">ChatGPT</div><div class="ai-value">{{CHATGPT_SESSIONS}}</div><div class="ai-sub">sessions via chatgpt.com</div></div>
+      <div class="ai-card"><div class="ai-label">Claude</div><div class="ai-value">{{CLAUDE_SESSIONS}}</div><div class="ai-sub">sessions via claude.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Perplexity</div><div class="ai-value">{{PERPLEXITY_SESSIONS}}</div><div class="ai-sub">sessions via perplexity.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Gemini</div><div class="ai-value">{{GEMINI_SESSIONS}}</div><div class="ai-sub">sessions via gemini.google.com</div></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-label">Traffic history — 16 months</div>
+  <div style="overflow-x:auto">
+    <table class="history-table">
+      <thead><tr><th>Month</th><th>Sessions</th><th>Organic Clicks</th><th>Impressions</th><th>Avg Position</th><th>Organic Sessions</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th></tr></thead>
+      <tbody>{{HISTORY_ROWS}}</tbody>
+    </table>
   </div>
 </div>
 <div class="section">
   <div class="section-label">Keyword rankings — {{RANK_DATE}} · {{RANK_LOCATION}}</div>
-  <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead>
-      <tbody>{{RANK_ROWS}}</tbody>
-    </table>
-  </div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead><tbody>{{RANK_ROWS}}</tbody></table></div>
   <div style="margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">{{RANKING_COUNT}} ranking · {{NOT_RANKING_COUNT}} not in top 100 · Ubersuggest</div>
 </div>
-<div class="section">
-  <div class="section-label">Tasks — {{REPORT_MONTH}}</div>
-  <div class="task-grid">{{TASK_CARDS}}</div>
-</div>
+<div class="section"><div class="section-label">Tasks — {{REPORT_MONTH}}</div><div class="task-grid">{{TASK_CARDS}}</div></div>
 <div class="section">
   <div class="section-label">Links built — {{REPORT_MONTH}}</div>
-  <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead>
-      <tbody>{{BACKLINK_ROWS}}</tbody>
-    </table>
-  </div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead><tbody>{{BACKLINK_ROWS}}</tbody></table></div>
 </div>
 <div class="section">
   <div class="section-label">Deliverables — {{REPORT_MONTH}}</div>
-  <div style="overflow-x:auto">
-    <table class="rank-table">
-      <thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead>
-      <tbody>{{DELIVERY_ROWS}}</tbody>
-    </table>
-  </div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead><tbody>{{DELIVERY_ROWS}}</tbody></table></div>
 </div>
 <div class="footer">
   <div class="footer-brand">Powered by <strong>ThirdSlash</strong> · Digital Marketing Agency · Mumbai, India</div>
