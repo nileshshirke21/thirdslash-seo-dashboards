@@ -1,190 +1,224 @@
-"""
-ThirdSlash SEO Automation
-Script: generate_dashboard.py
-Purpose: Read Google Sheet data and generate one HTML dashboard per client
-Run: python3 generate_dashboard.py
-     python3 generate_dashboard.py --client "Public69"
-"""
-
-import gspread, pickle, os, re, argparse
+import gspread,pickle,os,re,argparse
 from datetime import datetime
 from google.auth.transport.requests import Request
 
-SHEET_ID      = "1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
-TOKEN_FILE    = os.path.join(os.path.dirname(__file__), "token.pickle")
-TEMPLATE_FILE = os.path.join(os.path.dirname(__file__), "dashboard_template.html")
-OUTPUT_DIR    = os.path.join(os.path.dirname(__file__), "dashboards")
-REPORT_MONTH  = datetime.now().strftime("%B %Y")
-TODAY         = datetime.now().strftime("%d %b %Y")
+SHEET_ID="1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
+TOKEN_FILE=os.path.join(os.path.dirname(__file__),"token.pickle")
+TEMPLATE_FILE=os.path.join(os.path.dirname(__file__),"dashboard_template.html")
+OUTPUT_DIR=os.path.join(os.path.dirname(__file__),"dashboards")
+REPORT_MONTH=datetime.now().strftime("%B %Y")
+TODAY=datetime.now().strftime("%d %b %Y")
 
-def slugify(name):
-    return re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+def slugify(n): return re.sub(r'[^a-z0-9]+','-',n.lower()).strip('-')
 
 def get_sheet_client():
-    with open(TOKEN_FILE, "rb") as f:
-        creds = pickle.load(f)
+    with open(TOKEN_FILE,"rb") as f: creds=pickle.load(f)
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
-        with open(TOKEN_FILE, "wb") as f:
-            pickle.dump(creds, f)
+        with open(TOKEN_FILE,"wb") as f: pickle.dump(creds,f)
     return gspread.authorize(creds)
 
-def build_rank_rows(rank_data):  # v2 - str fix
-    ranking = [r for r in rank_data if r.get('This Month Rank','NR') not in ('NR','')]
-    not_ranking = [r for r in rank_data if r.get('This Month Rank','NR') in ('NR','')]
-    rows = []
+def fmt(n):
+    try: return f"{int(str(n).replace(',','')):,}"
+    except: return str(n) if n else "—"
+
+def delta_cls(v):
+    try:
+        x=float(str(v).replace(',',''))
+        return "delta-up" if x>0 else ("delta-down" if x<0 else "delta-neutral")
+    except: return "delta-neutral"
+
+def delta_icon(v,lower_better=False):
+    try:
+        x=float(str(v).replace(',',''))
+        if lower_better: return "↓" if x<0 else ("↑" if x>0 else "—")
+        return "↑" if x>0 else ("↓" if x<0 else "—")
+    except: return "—"
+
+def build_rank_rows(rank_data):
+    ranking=[r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')]
+    not_ranking=[r for r in rank_data if str(r.get('This Month Rank','NR')) in ('NR','')]
+    rows=[]
     for r in ranking:
-        kw   = r.get('Keyword','')
-        cur  = r.get('This Month Rank','NR')
-        prev = r.get('Last Month Rank','NR')
-        chg  = r.get('Movement','-')
-        url  = r.get('Target URL','')
-        url_short = url.replace('https://','').replace('http://','')[:45]
-        if str(chg).startswith('+'): move = f'<span class="move-up">↑ {chg}</span>'
-        elif str(chg).startswith('-') and str(chg) != '-': move = f'<span class="move-down">↓ {chg}</span>'
-        elif str(chg) == 'NEW': move = '<span class="move-new">NEW</span>'
-        else: move = '<span class="move-flat">—</span>'
-        rows.append(f'<tr><td>{kw}</td><td><span class="rank-num">{cur}</span></td><td><span class="rank-num" style="color:var(--text2)">{prev if prev != "NR" else "—"}</span></td><td>{move}</td><td><span class="kw-url">{url_short}</span></td></tr>')
+        kw=r.get('Keyword',''); cur=r.get('This Month Rank','NR'); prev=r.get('Last Month Rank','NR')
+        chg=str(r.get('Movement','-')); url=r.get('Target URL','')
+        url_short=url.replace('https://','').replace('http://','')[:45]
+        if chg.startswith('+'): move=f'<span class="move-up">↑ {chg}</span>'
+        elif chg.startswith('-') and chg!='-': move=f'<span class="move-down">↓ {chg}</span>'
+        elif chg=='NEW': move='<span class="move-new">NEW</span>'
+        else: move='<span class="move-flat">—</span>'
+        rows.append(f'<tr><td>{kw}</td><td><span class="rank-num">{cur}</span></td><td><span class="rank-num" style="color:var(--text2)">{prev if prev!="NR" else "—"}</span></td><td>{move}</td><td><span class="kw-url">{url_short}</span></td></tr>')
     if not_ranking:
         rows.append(f'<tr><td colspan="5" style="color:var(--text3);font-family:\'DM Mono\',monospace;font-size:11px;padding:14px 12px;">+ {len(not_ranking)} keywords not yet ranking in top 100</td></tr>')
-    return '\n'.join(rows) if rows else '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data for this month yet.</td></tr>'
+    return '\n'.join(rows) if rows else '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data yet.</td></tr>'
 
 def build_task_cards(task_data):
-    task_types = {}
+    tt={}
     for row in task_data:
-        t = row.get('Task Type','')
-        s = row.get('Status','Not Started')
+        t=row.get('Task Type',''); s=row.get('Status','')
         if t:
-            if t not in task_types: task_types[t] = {'total':0,'done':0,'blocked':0,'waiting':0}
-            task_types[t]['total'] += 1
-            if 'Done' in s or 'done' in s.lower(): task_types[t]['done'] += 1
-            elif 'Blocked' in s: task_types[t]['blocked'] += 1
-            elif 'Waiting' in s: task_types[t]['waiting'] += 1
-    cards = []
-    for task_name, counts in task_types.items():
-        total = counts['total']
-        done  = counts['done']
-        pct   = int((done/total*100)) if total else 0
-        status = 'done' if pct==100 else ('blocked' if counts['blocked']>0 else ('waiting' if counts['waiting']>0 else ''))
-        cards.append(f'<div class="task-card"><div class="task-name">{task_name}</div><div class="task-bar-bg"><div class="task-bar-fill {status}" data-width="{pct}" style="width:0%"></div></div><div class="task-meta">{done}/{total} steps <span>· {pct}%</span></div></div>')
+            if t not in tt: tt[t]={'total':0,'done':0,'blocked':0,'waiting':0}
+            tt[t]['total']+=1
+            if 'Done' in s or 'done' in s.lower(): tt[t]['done']+=1
+            elif 'Blocked' in s: tt[t]['blocked']+=1
+            elif 'Waiting' in s: tt[t]['waiting']+=1
+    cards=[]
+    for tn,c in tt.items():
+        total=c['total']; done=c['done']; pct=int(done/total*100) if total else 0
+        st='done' if pct==100 else ('blocked' if c['blocked']>0 else ('waiting' if c['waiting']>0 else ''))
+        cards.append(f'<div class="task-card"><div class="task-name">{tn}</div><div class="task-bar-bg"><div class="task-bar-fill {st}" data-width="{pct}" style="width:0%"></div></div><div class="task-meta">{done}/{total} steps <span>· {pct}%</span></div></div>')
     return '\n'.join(cards) if cards else '<div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div>'
 
-def generate_for_client(client_row, all_ranks, all_tasks, all_backlinks, all_delivery, template):
-    name   = client_row.get('Client Name','').strip()
-    domain = client_row.get('Website URL','').replace('https://','').replace('http://','').rstrip('/')
-    niche  = ''
-    notes  = client_row.get('Notes','')
-    if 'Niche:' in notes: niche = notes.split('Niche:')[-1].strip().split('|')[0].strip()
-    team   = client_row.get('Assigned Team Member','').strip()
-    gmb_city = client_row.get('GMB City','-').strip()
+def build_backlink_rows(bl_data):
+    rows=[]
+    for r in bl_data:
+        lt=r.get('Link Type',''); src=r.get('Source URL','')[:40]; tgt=r.get('Target URL (Client Page)','').replace('https://','')[:30]
+        anchor=r.get('Anchor Text',''); status=r.get('Link Status',''); date=r.get('Date Built','')
+        tc={'Citation':'bl-citation','Reddit':'bl-reddit','Guest Post':'bl-guest','Blog Comment':'bl-comment'}.get(lt,'bl-citation')
+        sc='bl-live' if status=='Live' else 'bl-pending'
+        rows.append(f'<tr><td><span class="bl-type {tc}">{lt}</span></td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text2)">{src}</td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text2)">{tgt}</td><td style="font-size:12px">{anchor}</td><td><span class="{sc}">{status}</span></td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td></tr>')
+    return '\n'.join(rows) if rows else '<tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr>'
 
-    rank_data    = [r for r in all_ranks    if r.get('Client Name','').strip()==name]
-    task_data    = [r for r in all_tasks    if r.get('Client Name','').strip()==name]
-    backlink_data= [r for r in all_backlinks if r.get('Client Name','').strip()==name]
-    delivery_data= [r for r in all_delivery  if r.get('Client Name','').strip()==name]
+def build_delivery_rows(dl_data):
+    rows=[]
+    for r in dl_data:
+        date=r.get('Date Sent',''); dtype=r.get('Deliverable Type',''); link=r.get('Document / Link','')
+        sent=r.get('Sent By',''); resp=r.get('Client Response','—'); fu=r.get('Follow-Up Required','No')
+        fu_html='<span style="color:var(--warn);font-size:11px">needed</span>' if fu=='Yes' else '<span style="color:var(--text3);font-size:11px">—</span>'
+        lh=f'<a href="{link}" target="_blank" style="color:var(--neutral);font-size:11px;text-decoration:none">{dtype}</a>' if link and link.startswith('http') else dtype
+        rows.append(f'<tr><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td><td>{lh}</td><td style="font-size:12px;color:var(--text2)">{sent}</td><td style="font-size:12px">{resp}</td><td>{fu_html}</td></tr>')
+    return '\n'.join(rows) if rows else '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr>'
 
-    ranking_count     = len([r for r in rank_data if r.get('This Month Rank','NR') not in ('NR','')])
-    not_ranking_count = len([r for r in rank_data if r.get('This Month Rank','NR') in ('NR','')])
+def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_data,gsc_data,template):
+    name=client.get('Client Name','').strip()
+    domain=client.get('Website URL','').replace('https://','').replace('http://','').rstrip('/')
+    niche=''
+    notes=client.get('Notes','')
+    if 'Niche:' in notes: niche=notes.split('Niche:')[-1].strip().split('|')[0].strip()
+    team=client.get('Assigned Team Member','').strip()
+    gmb_city=client.get('GMB City','-').strip()
 
-    backlink_rows = ''
-    for r in backlink_data:
-        ltype  = r.get('Link Type','')
-        source = r.get('Source URL','')[:40]
-        target = r.get('Target URL (Client Page)','').replace('https://','')[:30]
-        anchor = r.get('Anchor Text','')
-        status = r.get('Link Status','')
-        date   = r.get('Date Built','')
-        tc = {'Citation':'bl-citation','Reddit':'bl-reddit','Guest Post':'bl-guest','Blog Comment':'bl-comment'}.get(ltype,'bl-citation')
-        sc = 'bl-live' if status=='Live' else 'bl-pending'
-        backlink_rows += f'<tr><td><span class="bl-type {tc}">{ltype}</span></td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text2)">{source}</td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text2)">{target}</td><td style="font-size:12px">{anchor}</td><td><span class="{sc}">{status}</span></td><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td></tr>'
-    if not backlink_rows: backlink_rows = '<tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr>'
+    rank_data=[r for r in all_ranks if r.get('Client Name','').strip()==name]
+    task_data=[r for r in all_tasks if r.get('Client Name','').strip()==name]
+    bl_data  =[r for r in all_bl   if r.get('Client Name','').strip()==name]
+    dl_data  =[r for r in all_dl   if r.get('Client Name','').strip()==name]
 
-    delivery_rows = ''
-    for r in delivery_data:
-        date    = r.get('Date Sent','')
-        dtype   = r.get('Deliverable Type','')
-        link    = r.get('Document / Link','')
-        sent_by = r.get('Sent By','')
-        resp    = r.get('Client Response','—')
-        fu      = r.get('Follow-Up Required','No')
-        fu_html = '<span style="color:var(--warn);font-size:11px">needed</span>' if fu=='Yes' else '<span style="color:var(--text3);font-size:11px">—</span>'
-        link_html = f'<a href="{link}" target="_blank" style="color:var(--neutral);font-size:11px;text-decoration:none">{dtype}</a>' if link and link.startswith('http') else dtype
-        delivery_rows += f'<tr><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td><td>{link_html}</td><td style="font-size:12px;color:var(--text2)">{sent_by}</td><td style="font-size:12px">{resp}</td><td>{fu_html}</td></tr>'
-    if not delivery_rows: delivery_rows = '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr>'
+    # GA4 data
+    ga4=ga4_data.get(name,{})
+    sessions    = fmt(ga4.get('Sessions (Current)','—'))
+    sessions_p  = ga4.get('Sessions Change','')
+    users       = fmt(ga4.get('Users (Current)','—'))
+    users_p     = ga4.get('Users Change','')
+    bounce      = str(ga4.get('Bounce Rate %','—'))
+    duration    = str(ga4.get('Avg Session Duration (sec)','—'))
+    organic_s   = fmt(ga4.get('Organic Sessions','—'))
+    chatgpt_s   = fmt(ga4.get('ChatGPT Sessions','0'))
+    claude_s    = fmt(ga4.get('Claude Sessions','0'))
+    perplexity_s= fmt(ga4.get('Perplexity Sessions','0'))
+    gemini_s    = fmt(ga4.get('Gemini Sessions','0'))
 
-    html = template
-    for key, val in {
-        '{{CLIENT_NAME}}': name, '{{CLIENT_DOMAIN}}': domain,
-        '{{CLIENT_NICHE}}': niche, '{{REPORT_MONTH}}': REPORT_MONTH,
-        '{{ACCOUNT_MANAGER}}': 'Nilesh Shirke', '{{TEAM_MEMBER}}': team,
-        '{{LAST_UPDATED}}': TODAY, '{{TARGET_LOCATION}}': gmb_city,
-        '{{SESSIONS}}': '—', '{{USERS}}': '—', '{{ORGANIC_CLICKS}}': '—',
-        '{{IMPRESSIONS}}': '—', '{{AVG_POSITION}}': '—', '{{CTR}}': '—',
-        '{{SESSIONS_DELTA}}': '—', '{{USERS_DELTA}}': '—', '{{CLICKS_DELTA}}': '—',
-        '{{IMPR_DELTA}}': '—', '{{POS_DELTA}}': '—',
-        '{{SESSIONS_DELTA_CLASS}}': 'delta-neutral', '{{USERS_DELTA_CLASS}}': 'delta-neutral',
-        '{{CLICKS_DELTA_CLASS}}': 'delta-neutral', '{{IMPR_DELTA_CLASS}}': 'delta-neutral',
-        '{{POS_DELTA_CLASS}}': 'delta-neutral', '{{SESSIONS_DELTA_ICON}}': '—',
-        '{{USERS_DELTA_ICON}}': '—', '{{CLICKS_DELTA_ICON}}': '—',
-        '{{IMPR_DELTA_ICON}}': '—', '{{POS_DELTA_ICON}}': '—',
-        '{{RANK_DATE}}': TODAY, '{{RANK_LOCATION}}': gmb_city,
-        '{{RANK_ROWS}}': build_rank_rows(rank_data),
-        '{{RANKING_COUNT}}': str(ranking_count),
-        '{{NOT_RANKING_COUNT}}': str(not_ranking_count),
-        '{{TASK_CARDS}}': build_task_cards(task_data),
-        '{{BACKLINK_ROWS}}': backlink_rows,
-        '{{DELIVERY_ROWS}}': delivery_rows,
+    # GSC data
+    gsc=gsc_data.get(name,{})
+    clicks      = fmt(gsc.get('Clicks (Current)','—'))
+    clicks_p    = gsc.get('Clicks Change','')
+    impressions = fmt(gsc.get('Impressions (Current)','—'))
+    impr_p      = gsc.get('Impressions Change','')
+    avg_pos     = str(gsc.get('Avg Position (Current)','—'))
+    pos_p       = gsc.get('Position Change','')
+    ctr         = str(gsc.get('CTR % (Current)','—'))
+    top_kw      = str(gsc.get('Top Keyword','—'))
+
+    ranking_count    =len([r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')])
+    not_ranking_count=len([r for r in rank_data if str(r.get('This Month Rank','NR')) in ('NR','')])
+
+    html=template
+    for k,v in {
+        '{{CLIENT_NAME}}':name,'{{CLIENT_DOMAIN}}':domain,'{{CLIENT_NICHE}}':niche,
+        '{{REPORT_MONTH}}':REPORT_MONTH,'{{ACCOUNT_MANAGER}}':'Nilesh Shirke',
+        '{{TEAM_MEMBER}}':team,'{{LAST_UPDATED}}':TODAY,'{{TARGET_LOCATION}}':gmb_city,
+        '{{SESSIONS}}':sessions,'{{USERS}}':users,
+        '{{ORGANIC_CLICKS}}':clicks,'{{IMPRESSIONS}}':impressions,
+        '{{AVG_POSITION}}':avg_pos,'{{CTR}}':ctr,
+        '{{SESSIONS_DELTA}}':str(sessions_p),'{{USERS_DELTA}}':str(users_p),
+        '{{CLICKS_DELTA}}':str(clicks_p),'{{IMPR_DELTA}}':str(impr_p),
+        '{{POS_DELTA}}':str(pos_p),
+        '{{SESSIONS_DELTA_CLASS}}':delta_cls(sessions_p),
+        '{{USERS_DELTA_CLASS}}':delta_cls(users_p),
+        '{{CLICKS_DELTA_CLASS}}':delta_cls(clicks_p),
+        '{{IMPR_DELTA_CLASS}}':delta_cls(impr_p),
+        '{{POS_DELTA_CLASS}}':delta_cls(pos_p),
+        '{{SESSIONS_DELTA_ICON}}':delta_icon(sessions_p),
+        '{{USERS_DELTA_ICON}}':delta_icon(users_p),
+        '{{CLICKS_DELTA_ICON}}':delta_icon(clicks_p),
+        '{{IMPR_DELTA_ICON}}':delta_icon(impr_p),
+        '{{POS_DELTA_ICON}}':delta_icon(pos_p,lower_better=True),
+        '{{RANK_DATE}}':TODAY,'{{RANK_LOCATION}}':gmb_city,
+        '{{RANK_ROWS}}':build_rank_rows(rank_data),
+        '{{RANKING_COUNT}}':str(ranking_count),
+        '{{NOT_RANKING_COUNT}}':str(not_ranking_count),
+        '{{TASK_CARDS}}':build_task_cards(task_data),
+        '{{BACKLINK_ROWS}}':build_backlink_rows(bl_data),
+        '{{DELIVERY_ROWS}}':build_delivery_rows(dl_data),
+        '{{BOUNCE_RATE}}':bounce,'{{AVG_DURATION}}':duration,
+        '{{ORGANIC_SESSIONS}}':organic_s,
+        '{{CHATGPT_SESSIONS}}':chatgpt_s,'{{CLAUDE_SESSIONS}}':claude_s,
+        '{{PERPLEXITY_SESSIONS}}':perplexity_s,'{{GEMINI_SESSIONS}}':gemini_s,
+        '{{TOP_KEYWORD}}':top_kw,
     }.items():
-        html = html.replace(key, str(val))
+        html=html.replace(k,str(v))
     return html
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--client', default=None)
-    args = parser.parse_args()
-
-    print("ThirdSlash — Dashboard Generator")
-    print("=" * 40)
-
-    if not os.path.exists(TEMPLATE_FILE):
-        print(f"ERROR: dashboard_template.html not found at {TEMPLATE_FILE}")
-        return
-
-    with open(TEMPLATE_FILE,'r') as f: template = f.read()
-
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--client',default=None)
+    args=parser.parse_args()
+    print("ThirdSlash — Dashboard Generator\n"+"="*40)
+    with open(TEMPLATE_FILE,'r') as f: template=f.read()
     print("Connecting to Google Sheet...")
-    gc    = get_sheet_client()
-    sheet = gc.open_by_key(SHEET_ID)
+    gc=get_sheet_client()
+    sheet=gc.open_by_key(SHEET_ID)
+    clients  =sheet.worksheet('01_Client Profile').get_all_records(head=3,expected_headers=[])
+    tasks    =sheet.worksheet('02_Monthly Task Tracker').get_all_records(expected_headers=[])
+    delivery =sheet.worksheet('03_Delivery Log').get_all_records(expected_headers=[])
+    ranks    =sheet.worksheet('04_Rank Tracking Log').get_all_records(expected_headers=[])
+    backlinks=sheet.worksheet('05_Backlink Log').get_all_records(expected_headers=[])
 
-    clients   = sheet.worksheet('01_Client Profile').get_all_records(head=3, expected_headers=[])
-    tasks     = sheet.worksheet('02_Monthly Task Tracker').get_all_records(expected_headers=[])
-    delivery  = sheet.worksheet('03_Delivery Log').get_all_records(expected_headers=[])
-    ranks     = sheet.worksheet('04_Rank Tracking Log').get_all_records(expected_headers=[])
-    backlinks = sheet.worksheet('05_Backlink Log').get_all_records(expected_headers=[])
+    # Read GA4 and GSC data
+    ga4_data={}; gsc_data={}
+    try:
+        for r in sheet.worksheet('All_GA4').get_all_records(expected_headers=[]):
+            n=r.get('Client Name','').strip()
+            if n: ga4_data[n]=r
+        print(f"  GA4 data loaded: {len(ga4_data)} clients")
+    except: print("  ⚠ All_GA4 tab not found")
+    try:
+        for r in sheet.worksheet('All_GSC').get_all_records(expected_headers=[]):
+            n=r.get('Client Name','').strip()
+            if n: gsc_data[n]=r
+        print(f"  GSC data loaded: {len(gsc_data)} clients")
+    except: print("  ⚠ All_GSC tab not found")
 
-    active = [c for c in clients if c.get('Active','').strip()=='Yes']
+    active=[c for c in clients if c.get('Active','').strip()=='Yes']
     if args.client:
-        active = [c for c in active if c.get('Client Name','').strip().lower()==args.client.lower()]
+        active=[c for c in active if c.get('Client Name','').strip().lower()==args.client.lower()]
         if not active: print(f"Client '{args.client}' not found."); return
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    generated = []
-
+    os.makedirs(OUTPUT_DIR,exist_ok=True)
+    generated=[]
     for client in active:
-        name = client.get('Client Name','').strip()
-        slug = slugify(name)
-        client_dir = os.path.join(OUTPUT_DIR, slug)
-        os.makedirs(client_dir, exist_ok=True)
-        html = generate_for_client(client, ranks, tasks, backlinks, delivery, template)
-        out_path = os.path.join(client_dir, 'index.html')
-        with open(out_path,'w',encoding='utf-8') as f: f.write(html)
-        print(f"  ✓ {name:30} → dashboards/{slug}/index.html")
-        generated.append((name, slug))
-
+        name=client.get('Client Name','').strip()
+        slug=slugify(name)
+        client_dir=os.path.join(OUTPUT_DIR,slug)
+        os.makedirs(client_dir,exist_ok=True)
+        html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_data,gsc_data,template)
+        with open(os.path.join(client_dir,'index.html'),'w',encoding='utf-8') as f: f.write(html)
+        has_ga4='✓' if name in ga4_data else '✗'
+        has_gsc='✓' if name in gsc_data else '✗'
+        print(f"  {name:30} GA4:{has_ga4} GSC:{has_gsc} → dashboards/{slug}/")
+        generated.append((name,slug))
     print(f"\nGenerated {len(generated)} dashboards")
-    print("\nGitHub Pages URLs (after push):")
-    for name, slug in generated:
-        print(f"  {name:30} https://nileshshirke21.github.io/thirdslash-seo-dashboards/{slug}/")
+    print("\nURLs:")
+    for name,slug in generated:
+        print(f"  https://nileshshirke21.github.io/thirdslash-seo-dashboards/dashboards/{slug}/")
 
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": main()
