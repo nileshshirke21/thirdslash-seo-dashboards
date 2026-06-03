@@ -1,1 +1,14 @@
-token.pickle
+# Secrets & auth tokens
+client_secret.json
+*.pickle
+
+# Mac
+.DS_Store
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Archives
+*.zip
