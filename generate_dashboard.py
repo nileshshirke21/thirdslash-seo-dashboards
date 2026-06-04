@@ -1,4 +1,4 @@
-import gspread,pickle,os,re,argparse
+import gspread,pickle,os,re,argparse,json
 from datetime import datetime,timedelta
 import calendar
 from google.auth.transport.requests import Request
@@ -11,9 +11,9 @@ TODAY=datetime.now().strftime("%d %b %Y")
 
 def get_report_month():
     t=datetime.now(); fc=t.replace(day=1); lp=fc-timedelta(days=1)
-    return lp.strftime("%B %Y"), lp.strftime("%b-%Y")
+    return lp.strftime("%B %Y"),lp.strftime("%b-%Y")
 
-REPORT_MONTH, MONTH_KEY = get_report_month()
+REPORT_MONTH,MONTH_KEY=get_report_month()
 
 def get_16_months():
     t=datetime.now(); fc=t.replace(day=1); lm=fc-timedelta(days=1); ls=lm.replace(day=1)
@@ -24,7 +24,7 @@ def get_16_months():
         months.append(m.strftime("%b-%Y"))
     return months
 
-MONTHS_16 = get_16_months()
+MONTHS_16=get_16_months()
 
 def slugify(n): return re.sub(r'[^a-z0-9]+','-',n.lower()).strip('-')
 
@@ -48,21 +48,48 @@ def delta_cls(v):
 def delta_icon(v,lower_better=False):
     try:
         x=float(str(v).replace(',',''))
-        if lower_better: return "↓" if x<0 else ("↑" if x>0 else "—")
-        return "↑" if x>0 else ("↓" if x<0 else "—")
+        if lower_better: return "↓" if x<0 else("↑" if x>0 else "—")
+        return "↑" if x>0 else("↓" if x<0 else "—")
     except: return "—"
+
+def safe_int(v):
+    try: return int(str(v).replace(',','')) if str(v) not in ('','—',None) else 0
+    except: return 0
+
+def safe_float(v):
+    try: return float(str(v).replace(',','')) if str(v) not in ('','—',None) else None
+    except: return None
+
+def build_chart_data(name, ga4_all, gsc_all):
+    ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
+    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
+    months=[]; sessions=[]; organic_sessions=[]; avg_position=[]
+    chatgpt=[]; claude=[]; perplexity=[]; gemini=[]; forms=[]
+    for month in MONTHS_16:
+        g=ga4m.get(month,{}); s=gscm.get(month,{})
+        months.append(month)
+        sessions.append(safe_int(g.get('Sessions (Current)',0)))
+        organic_sessions.append(safe_int(g.get('Organic Sessions',0)))
+        pos=safe_float(s.get('Avg Position (Current)',''))
+        avg_position.append(pos)
+        chatgpt.append(safe_int(g.get('ChatGPT Sessions',0)))
+        claude.append(safe_int(g.get('Claude Sessions',0)))
+        perplexity.append(safe_int(g.get('Perplexity Sessions',0)))
+        gemini.append(safe_int(g.get('Gemini Sessions',0)))
+        forms.append(safe_int(g.get('Form Submissions',0)))
+    return json.dumps({"months":months,"sessions":sessions,"organic_sessions":organic_sessions,"avg_position":avg_position,"chatgpt":chatgpt,"claude":claude,"perplexity":perplexity,"gemini":gemini,"forms":forms})
 
 def build_history_rows(name, ga4_all, gsc_all):
     ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
     gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
     rows=[]
+    def n(v):
+        try: return f"{int(str(v).replace(',','')):,}" if str(v) not in ('','—',None) else '—'
+        except: return str(v) if v else '—'
     for month in reversed(MONTHS_16):
         g=ga4m.get(month,{}); s=gscm.get(month,{})
         cls=' class="current-month"' if month==MONTH_KEY else ''
-        def n(v):
-            try: return f"{int(str(v).replace(',','')):,}" if str(v) not in ('','—',None) else '—'
-            except: return str(v) if v else '—'
-        rows.append(f'<tr{cls}><td>{month}</td><td>{n(g.get("Sessions (Current)",""))}</td><td>{n(s.get("Clicks (Current)",""))}</td><td>{n(s.get("Impressions (Current)",""))}</td><td>{s.get("Avg Position (Current)","—")}</td><td>{n(g.get("Organic Sessions",""))}</td><td>{n(g.get("ChatGPT Sessions",""))}</td><td>{n(g.get("Claude Sessions",""))}</td><td>{n(g.get("Perplexity Sessions",""))}</td><td>{n(g.get("Gemini Sessions",""))}</td></tr>')
+        rows.append(f'<tr{cls}><td>{month}</td><td>{n(g.get("Sessions (Current)",""))}</td><td>{n(g.get("Organic Sessions",""))}</td><td>{n(s.get("Clicks (Current)",""))}</td><td>{s.get("Avg Position (Current)","—")}</td><td>{n(g.get("ChatGPT Sessions",""))}</td><td>{n(g.get("Claude Sessions",""))}</td><td>{n(g.get("Perplexity Sessions",""))}</td><td>{n(g.get("Gemini Sessions",""))}</td><td>{n(g.get("Form Submissions",""))}</td></tr>')
     return '\n'.join(rows) if rows else '<tr><td colspan="10" style="color:var(--text3);padding:20px 12px;">No historical data yet.</td></tr>'
 
 def build_rank_rows(rank_data):
@@ -95,7 +122,7 @@ def build_task_cards(task_data):
     cards=[]
     for tn,c in tt.items():
         total=c['total']; done=c['done']; pct=int(done/total*100) if total else 0
-        st='done' if pct==100 else ('blocked' if c['blocked']>0 else ('waiting' if c['waiting']>0 else ''))
+        st='done' if pct==100 else('blocked' if c['blocked']>0 else('waiting' if c['waiting']>0 else ''))
         cards.append(f'<div class="task-card"><div class="task-name">{tn}</div><div class="task-bar-bg"><div class="task-bar-fill {st}" data-width="{pct}" style="width:0%"></div></div><div class="task-meta">{done}/{total} steps <span>· {pct}%</span></div></div>')
     return '\n'.join(cards) if cards else '<div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div>'
 
@@ -133,21 +160,20 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
     bl_data  =[r for r in all_bl   if r.get('Client Name','').strip()==name]
     dl_data  =[r for r in all_dl   if r.get('Client Name','').strip()==name]
 
-    # Get current month data
-    ga4={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}.get(MONTH_KEY,{})
-    gsc={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}.get(MONTH_KEY,{})
+    ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
+    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
+    ga4=ga4m.get(MONTH_KEY,{}); gsc=gscm.get(MONTH_KEY,{})
 
     sessions    = fmt(ga4.get('Sessions (Current)','—'))
     sessions_p  = ga4.get('Sessions Change','')
     users       = fmt(ga4.get('Users (Current)','—'))
     users_p     = ga4.get('Users Change','')
-    bounce      = str(ga4.get('Bounce Rate %','—'))
     organic_s   = fmt(ga4.get('Organic Sessions','—'))
     chatgpt_s   = fmt(ga4.get('ChatGPT Sessions','0'))
     claude_s    = fmt(ga4.get('Claude Sessions','0'))
     perplexity_s= fmt(ga4.get('Perplexity Sessions','0'))
     gemini_s    = fmt(ga4.get('Gemini Sessions','0'))
-
+    forms_s     = fmt(ga4.get('Form Submissions','0'))
     clicks      = fmt(gsc.get('Clicks (Current)','—'))
     clicks_p    = gsc.get('Clicks Change','')
     impressions = fmt(gsc.get('Impressions (Current)','—'))
@@ -155,7 +181,6 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
     avg_pos     = str(gsc.get('Avg Position (Current)','—'))
     pos_p       = gsc.get('Position Change','')
     ctr         = str(gsc.get('CTR % (Current)','—'))
-    top_kw      = str(gsc.get('Top Keyword','—'))
 
     ranking_count    =len([r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')])
     not_ranking_count=len([r for r in rank_data if str(r.get('This Month Rank','NR')) in ('NR','')])
@@ -168,7 +193,7 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
         '{{SESSIONS}}':sessions,'{{USERS}}':users,
         '{{ORGANIC_CLICKS}}':clicks,'{{IMPRESSIONS}}':impressions,
         '{{AVG_POSITION}}':avg_pos,'{{CTR}}':ctr,
-        '{{BOUNCE_RATE}}':bounce,'{{ORGANIC_SESSIONS}}':organic_s,
+        '{{ORGANIC_SESSIONS}}':organic_s,'{{FORM_SUBMISSIONS}}':forms_s,
         '{{SESSIONS_DELTA}}':str(sessions_p),'{{USERS_DELTA}}':str(users_p),
         '{{CLICKS_DELTA}}':str(clicks_p),'{{IMPR_DELTA}}':str(impr_p),
         '{{POS_DELTA}}':str(pos_p),
@@ -184,7 +209,6 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
         '{{POS_DELTA_ICON}}':delta_icon(pos_p,lower_better=True),
         '{{CHATGPT_SESSIONS}}':chatgpt_s,'{{CLAUDE_SESSIONS}}':claude_s,
         '{{PERPLEXITY_SESSIONS}}':perplexity_s,'{{GEMINI_SESSIONS}}':gemini_s,
-        '{{TOP_KEYWORD}}':top_kw,
         '{{RANK_DATE}}':TODAY,'{{RANK_LOCATION}}':gmb_city,
         '{{RANK_ROWS}}':build_rank_rows(rank_data),
         '{{RANKING_COUNT}}':str(ranking_count),
@@ -193,6 +217,7 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
         '{{BACKLINK_ROWS}}':build_backlink_rows(bl_data),
         '{{DELIVERY_ROWS}}':build_delivery_rows(dl_data),
         '{{HISTORY_ROWS}}':build_history_rows(name,ga4_all,gsc_all),
+        '{{CHART_DATA_JSON}}':build_chart_data(name,ga4_all,gsc_all),
     }.items():
         html=html.replace(k,str(v))
     return html
@@ -204,30 +229,27 @@ def main():
     print(f"ThirdSlash — Dashboard Generator\n{'='*40}")
     print(f"Report month: {REPORT_MONTH} ({MONTH_KEY})")
     with open(TEMPLATE_FILE,'r') as f: template=f.read()
-    print("Connecting to Google Sheet...")
     gc=get_sheet_client()
     sheet=gc.open_by_key(SHEET_ID)
+    print("Loading sheet data...")
     clients  =sheet.worksheet('01_Client Profile').get_all_records(head=3,expected_headers=[])
     tasks    =sheet.worksheet('02_Monthly Task Tracker').get_all_records(expected_headers=[])
     delivery =sheet.worksheet('03_Delivery Log').get_all_records(expected_headers=[])
     ranks    =sheet.worksheet('04_Rank Tracking Log').get_all_records(expected_headers=[])
     backlinks=sheet.worksheet('05_Backlink Log').get_all_records(expected_headers=[])
-
     ga4_all=[]; gsc_all=[]
     try:
         ga4_all=sheet.worksheet('All_GA4').get_all_records(expected_headers=[])
-        print(f"  GA4: {len(ga4_all)} rows loaded")
+        print(f"  GA4: {len(ga4_all)} rows")
     except: print("  ⚠ All_GA4 not found")
     try:
         gsc_all=sheet.worksheet('All_GSC').get_all_records(expected_headers=[])
-        print(f"  GSC: {len(gsc_all)} rows loaded")
+        print(f"  GSC: {len(gsc_all)} rows")
     except: print("  ⚠ All_GSC not found")
-
     active=[c for c in clients if c.get('Active','').strip()=='Yes']
     if args.client:
         active=[c for c in active if c.get('Client Name','').strip().lower()==args.client.lower()]
         if not active: print(f"Client '{args.client}' not found."); return
-
     os.makedirs(OUTPUT_DIR,exist_ok=True)
     generated=[]
     for client in active:
@@ -237,9 +259,9 @@ def main():
         os.makedirs(client_dir,exist_ok=True)
         html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_all,gsc_all,template)
         with open(os.path.join(client_dir,'index.html'),'w',encoding='utf-8') as f: f.write(html)
-        ga4_months=len([r for r in ga4_all if r.get('Client Name','').strip()==name])
-        gsc_months=len([r for r in gsc_all if r.get('Client Name','').strip()==name])
-        print(f"  {name:30} GA4:{ga4_months}mo GSC:{gsc_months}mo → {slug}/")
+        ga4_mo=len([r for r in ga4_all if r.get('Client Name','').strip()==name])
+        gsc_mo=len([r for r in gsc_all if r.get('Client Name','').strip()==name])
+        print(f"  {name:30} GA4:{ga4_mo}mo GSC:{gsc_mo}mo → {slug}/")
         generated.append((name,slug))
     print(f"\nGenerated {len(generated)} dashboards")
 

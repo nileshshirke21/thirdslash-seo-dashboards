@@ -89,7 +89,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
   <div class="hero-meta">
     <div class="hero-meta-item">Manager <span>Nilesh Shirke</span></div>
     <div class="hero-meta-item">Team <span>Himanshu Pawar</span></div>
-    <div class="hero-meta-item">Updated <span>03 Jun 2026</span></div>
+    <div class="hero-meta-item">Updated <span>04 Jun 2026</span></div>
     <div class="hero-meta-item">Location <span>Bangalore, India</span></div>
   </div>
 </div>
@@ -102,7 +102,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
     <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">4,568</div><div class="metric-delta delta-up">↑ 1281 vs prev</div></div>
     <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">7.4</div><div class="metric-delta delta-down">↓ -0.7 vs prev</div></div>
     <div class="metric-card"><div class="metric-label">CTR</div><div class="metric-value">2.36%</div><div class="metric-delta delta-neutral">Search Console</div></div>
-    <div class="metric-card"><div class="metric-label">Bounce rate</div><div class="metric-value">75.02%</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Bounce rate</div><div class="metric-value">{{BOUNCE_RATE}}%</div><div class="metric-delta delta-neutral">GA4</div></div>
     <div class="metric-card"><div class="metric-label">Organic sessions</div><div class="metric-value">864</div><div class="metric-delta delta-neutral">GA4</div></div>
   </div>
   <div style="margin-top:24px">
@@ -120,27 +120,27 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
   <div style="overflow-x:auto">
     <table class="history-table">
       <thead><tr><th>Month</th><th>Sessions</th><th>Organic Clicks</th><th>Impressions</th><th>Avg Position</th><th>Organic Sessions</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th></tr></thead>
-      <tbody><tr class="current-month"><td>May-2026</td><td>2,746</td><td>108</td><td>4,568</td><td>7.4</td><td>864</td><td>61</td><td>2</td><td>1</td><td>1</td></tr>
-<tr><td>Apr-2026</td><td>2,151</td><td>106</td><td>3,287</td><td>6.7</td><td>659</td><td>52</td><td>14</td><td>0</td><td>4</td></tr>
-<tr><td>Mar-2026</td><td>2,151</td><td>132</td><td>4,631</td><td>5.6</td><td>1,101</td><td>63</td><td>10</td><td>0</td><td>8</td></tr>
-<tr><td>Feb-2026</td><td>1,454</td><td>100</td><td>4,823</td><td>7.6</td><td>649</td><td>46</td><td>0</td><td>1</td><td>0</td></tr>
-<tr><td>Jan-2026</td><td>1,511</td><td>143</td><td>5,672</td><td>7.4</td><td>709</td><td>48</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><td>Dec-2025</td><td>2,400</td><td>153</td><td>7,191</td><td>6.8</td><td>713</td><td>18</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><td>Nov-2025</td><td>6,958</td><td>157</td><td>20,481</td><td>6</td><td>1,307</td><td>35</td><td>0</td><td>0</td><td>4</td></tr>
-<tr><td>Oct-2025</td><td>6,958</td><td>228</td><td>14,035</td><td>7.1</td><td>1,620</td><td>27</td><td>0</td><td>0</td><td>2</td></tr>
-<tr><td>Sep-2025</td><td>6,084</td><td>207</td><td>20,036</td><td>6.7</td><td>1,667</td><td>21</td><td>0</td><td>1</td><td>5</td></tr>
-<tr><td>Aug-2025</td><td>7,370</td><td>200</td><td>14,227</td><td>7.5</td><td>1,564</td><td>22</td><td>0</td><td>2</td><td>2</td></tr>
-<tr><td>Jul-2025</td><td>7,370</td><td>224</td><td>11,020</td><td>7.4</td><td>1,828</td><td>28</td><td>0</td><td>1</td><td>1</td></tr>
-<tr><td>Jun-2025</td><td>6,192</td><td>259</td><td>13,553</td><td>6</td><td>2,156</td><td>17</td><td>0</td><td>3</td><td>1</td></tr>
-<tr><td>May-2025</td><td>6,192</td><td>273</td><td>14,647</td><td>6</td><td>2,285</td><td>28</td><td>0</td><td>0</td><td>0</td></tr>
-<tr><td>Apr-2025</td><td>4,079</td><td>285</td><td>25,399</td><td>8.3</td><td>2,249</td><td>18</td><td>0</td><td>2</td><td>0</td></tr>
-<tr><td>Mar-2025</td><td>4,102</td><td>238</td><td>24,867</td><td>7.4</td><td>2,303</td><td>16</td><td>0</td><td>1</td><td>5</td></tr>
-<tr><td>Feb-2025</td><td>4,102</td><td>249</td><td>16,138</td><td>5.4</td><td>2,350</td><td>14</td><td>0</td><td>1</td><td>2</td></tr></tbody>
+      <tbody><tr class="current-month"><td>May-2026</td><td>2,746</td><td>864</td><td>108</td><td>7.4</td><td>61</td><td>2</td><td>1</td><td>1</td><td>90</td></tr>
+<tr><td>Apr-2026</td><td>2,151</td><td>659</td><td>106</td><td>6.7</td><td>52</td><td>14</td><td>0</td><td>4</td><td>—</td></tr>
+<tr><td>Mar-2026</td><td>2,151</td><td>1,101</td><td>132</td><td>5.6</td><td>63</td><td>10</td><td>0</td><td>8</td><td>—</td></tr>
+<tr><td>Feb-2026</td><td>1,454</td><td>649</td><td>100</td><td>7.6</td><td>46</td><td>0</td><td>1</td><td>0</td><td>—</td></tr>
+<tr><td>Jan-2026</td><td>1,511</td><td>709</td><td>143</td><td>7.4</td><td>48</td><td>0</td><td>0</td><td>2</td><td>—</td></tr>
+<tr><td>Dec-2025</td><td>2,400</td><td>713</td><td>153</td><td>6.8</td><td>18</td><td>0</td><td>0</td><td>2</td><td>—</td></tr>
+<tr><td>Nov-2025</td><td>6,958</td><td>1,307</td><td>157</td><td>6</td><td>35</td><td>0</td><td>0</td><td>4</td><td>—</td></tr>
+<tr><td>Oct-2025</td><td>6,958</td><td>1,620</td><td>228</td><td>7.1</td><td>27</td><td>0</td><td>0</td><td>2</td><td>—</td></tr>
+<tr><td>Sep-2025</td><td>6,084</td><td>1,667</td><td>207</td><td>6.7</td><td>21</td><td>0</td><td>1</td><td>5</td><td>—</td></tr>
+<tr><td>Aug-2025</td><td>7,370</td><td>1,564</td><td>200</td><td>7.5</td><td>22</td><td>0</td><td>2</td><td>2</td><td>—</td></tr>
+<tr><td>Jul-2025</td><td>7,370</td><td>1,828</td><td>224</td><td>7.4</td><td>28</td><td>0</td><td>1</td><td>1</td><td>—</td></tr>
+<tr><td>Jun-2025</td><td>6,192</td><td>2,156</td><td>259</td><td>6</td><td>17</td><td>0</td><td>3</td><td>1</td><td>—</td></tr>
+<tr><td>May-2025</td><td>6,192</td><td>2,285</td><td>273</td><td>6</td><td>28</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+<tr><td>Apr-2025</td><td>4,079</td><td>2,249</td><td>285</td><td>8.3</td><td>18</td><td>0</td><td>2</td><td>0</td><td>—</td></tr>
+<tr><td>Mar-2025</td><td>4,102</td><td>2,303</td><td>238</td><td>7.4</td><td>16</td><td>0</td><td>1</td><td>5</td><td>—</td></tr>
+<tr><td>Feb-2025</td><td>4,102</td><td>2,350</td><td>249</td><td>5.4</td><td>14</td><td>0</td><td>1</td><td>2</td><td>—</td></tr></tbody>
     </table>
   </div>
 </div>
 <div class="section">
-  <div class="section-label">Keyword rankings — 03 Jun 2026 · Bangalore, India</div>
+  <div class="section-label">Keyword rankings — 04 Jun 2026 · Bangalore, India</div>
   <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data yet.</td></tr></tbody></table></div>
   <div style="margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">0 ranking · 0 not in top 100 · Ubersuggest</div>
 </div>
