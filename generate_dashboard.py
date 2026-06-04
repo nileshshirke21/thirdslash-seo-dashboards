@@ -60,17 +60,16 @@ def safe_float(v):
     try: return float(str(v).replace(',','')) if str(v) not in ('','—',None) else None
     except: return None
 
-def build_chart_data(name, ga4_all, gsc_all):
+def build_chart_data(name, ga4_all):
     ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
-    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
     months=[]; sessions=[]; organic_sessions=[]; avg_position=[]
     chatgpt=[]; claude=[]; perplexity=[]; gemini=[]; forms=[]
     for month in MONTHS_16:
-        g=ga4m.get(month,{}); s=gscm.get(month,{})
+        g=ga4m.get(month,{})
         months.append(month)
         sessions.append(safe_int(g.get('Sessions (Current)',0)))
         organic_sessions.append(safe_int(g.get('Organic Sessions',0)))
-        pos=safe_float(s.get('Avg Position (Current)',''))
+        pos=safe_float(None)
         avg_position.append(pos)
         chatgpt.append(safe_int(g.get('ChatGPT Sessions',0)))
         claude.append(safe_int(g.get('Claude Sessions',0)))
@@ -79,17 +78,16 @@ def build_chart_data(name, ga4_all, gsc_all):
         forms.append(safe_int(g.get('Form Submissions',0)))
     return json.dumps({"months":months,"sessions":sessions,"organic_sessions":organic_sessions,"avg_position":avg_position,"chatgpt":chatgpt,"claude":claude,"perplexity":perplexity,"gemini":gemini,"forms":forms})
 
-def build_history_rows(name, ga4_all, gsc_all):
+def build_history_rows(name, ga4_all):
     ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
-    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
     rows=[]
     def n(v):
         try: return f"{int(str(v).replace(',','')):,}" if str(v) not in ('','—',None) else '—'
         except: return str(v) if v else '—'
     for month in reversed(MONTHS_16):
-        g=ga4m.get(month,{}); s=gscm.get(month,{})
+        g=ga4m.get(month,{})
         cls=' class="current-month"' if month==MONTH_KEY else ''
-        rows.append(f'<tr{cls}><td>{month}</td><td>{n(g.get("Sessions (Current)",""))}</td><td>{n(g.get("Organic Sessions",""))}</td><td>{n(s.get("Clicks (Current)",""))}</td><td>{s.get("Avg Position (Current)","—")}</td><td>{n(g.get("ChatGPT Sessions",""))}</td><td>{n(g.get("Claude Sessions",""))}</td><td>{n(g.get("Perplexity Sessions",""))}</td><td>{n(g.get("Gemini Sessions",""))}</td><td>{n(g.get("Form Submissions",""))}</td></tr>')
+        rows.append(f'<tr{cls}><td>{month}</td><td>{n(g.get("Sessions (Current)",""))}</td><td>{n(g.get("Organic Sessions",""))}</td><td>{n(g.get("Direct Sessions",""))}</td><td>{g.get("Bounce Rate %","—")}</td><td>{n(g.get("ChatGPT Sessions",""))}</td><td>{n(g.get("Claude Sessions",""))}</td><td>{n(g.get("Perplexity Sessions",""))}</td><td>{n(g.get("Gemini Sessions",""))}</td><td>{n(g.get("Form Submissions",""))}</td></tr>')
     return '\n'.join(rows) if rows else '<tr><td colspan="10" style="color:var(--text3);padding:20px 12px;">No historical data yet.</td></tr>'
 
 def build_rank_rows(rank_data):
@@ -147,7 +145,7 @@ def build_delivery_rows(dl_data):
         rows.append(f'<tr><td style="font-family:\'DM Mono\',monospace;font-size:11px;color:var(--text3)">{date}</td><td>{lh}</td><td style="font-size:12px;color:var(--text2)">{sent}</td><td style="font-size:12px">{resp}</td><td>{fu_html}</td></tr>')
     return '\n'.join(rows) if rows else '<tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr>'
 
-def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all,template):
+def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,template):
     name=client.get('Client Name','').strip()
     domain=client.get('Website URL','').replace('https://','').replace('http://','').rstrip('/')
     niche=''; notes=client.get('Notes','')
@@ -161,8 +159,7 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
     dl_data  =[r for r in all_dl   if r.get('Client Name','').strip()==name]
 
     ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
-    gscm={r.get('Month',''):r for r in gsc_all if r.get('Client Name','').strip()==name}
-    ga4=ga4m.get(MONTH_KEY,{}); gsc=gscm.get(MONTH_KEY,{})
+    ga4=ga4m.get(MONTH_KEY,{})
 
     sessions    = fmt(ga4.get('Sessions (Current)','—'))
     sessions_p  = ga4.get('Sessions Change','')
@@ -174,13 +171,13 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
     perplexity_s= fmt(ga4.get('Perplexity Sessions','0'))
     gemini_s    = fmt(ga4.get('Gemini Sessions','0'))
     forms_s     = fmt(ga4.get('Form Submissions','0'))
-    clicks      = fmt(gsc.get('Clicks (Current)','—'))
-    clicks_p    = gsc.get('Clicks Change','')
-    impressions = fmt(gsc.get('Impressions (Current)','—'))
-    impr_p      = gsc.get('Impressions Change','')
-    avg_pos     = str(gsc.get('Avg Position (Current)','—'))
-    pos_p       = gsc.get('Position Change','')
-    ctr         = str(gsc.get('CTR % (Current)','—'))
+    clicks      = fmt('—')
+    clicks_p    = ''
+    impressions = fmt('—')
+    impr_p      = ''
+    avg_pos     = str('—')
+    pos_p       = ''
+    ctr         = str('—')
 
     ranking_count    =len([r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')])
     not_ranking_count=len([r for r in rank_data if str(r.get('This Month Rank','NR')) in ('NR','')])
@@ -216,8 +213,8 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,gsc_all
         '{{TASK_CARDS}}':build_task_cards(task_data),
         '{{BACKLINK_ROWS}}':build_backlink_rows(bl_data),
         '{{DELIVERY_ROWS}}':build_delivery_rows(dl_data),
-        '{{HISTORY_ROWS}}':build_history_rows(name,ga4_all,gsc_all),
-        '{{CHART_DATA_JSON}}':build_chart_data(name,ga4_all,gsc_all),
+        '{{HISTORY_ROWS}}':build_history_rows(name,ga4_all),
+        '{{CHART_DATA_JSON}}':build_chart_data(name,ga4_all),
     }.items():
         html=html.replace(k,str(v))
     return html
@@ -257,11 +254,10 @@ def main():
         slug=slugify(name)
         client_dir=os.path.join(OUTPUT_DIR,slug)
         os.makedirs(client_dir,exist_ok=True)
-        html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_all,gsc_all,template)
+        html=generate_for_client(client,ranks,tasks,backlinks,delivery,ga4_all,template)
         with open(os.path.join(client_dir,'index.html'),'w',encoding='utf-8') as f: f.write(html)
         ga4_mo=len([r for r in ga4_all if r.get('Client Name','').strip()==name])
-        gsc_mo=len([r for r in gsc_all if r.get('Client Name','').strip()==name])
-        print(f"  {name:30} GA4:{ga4_mo}mo GSC:{gsc_mo}mo → {slug}/")
+        print(f"  {name:30} GA4:{ga4_mo}mo → {slug}/")
         generated.append((name,slug))
     print(f"\nGenerated {len(generated)} dashboards")
 

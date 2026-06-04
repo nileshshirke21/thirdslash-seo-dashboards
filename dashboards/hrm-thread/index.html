@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HRM Thread — SEO Dashboard | ThirdSlash</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{--bg:#0a0a0b;--bg2:#111113;--bg3:#18181b;--border:rgba(255,255,255,0.07);--border-accent:rgba(255,255,255,0.14);--text:#e8e8e6;--text2:#8a8a85;--text3:#55554f;--accent:#d4f060;--accent2:#a8c844;--up:#4ade80;--down:#f87171;--neutral:#60a5fa;--warn:#fbbf24}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -39,6 +40,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .ai-label{font-size:10px;color:var(--text2);margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
 .ai-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--neutral)}
 .ai-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:900px){.charts-grid{grid-template-columns:1fr}}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px}
+.chart-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
+.chart-wrap{position:relative;height:200px}
 .history-table{width:100%;border-collapse:collapse}
 .history-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
 .history-table th:first-child{text-align:left}
@@ -93,70 +99,125 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
     <div class="hero-meta-item">Location <span>Mumbai, India</span></div>
   </div>
 </div>
+
+<!-- METRICS — GA4 ONLY -->
 <div class="section">
-  <div class="section-label">Traffic — May 2026</div>
+  <div class="section-label">Traffic — May 2026 · Google Analytics</div>
   <div class="metric-grid">
     <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">14,773</div><div class="metric-delta delta-up">↑ 3631 vs prev</div></div>
     <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">12,732</div><div class="metric-delta delta-up">↑ 3449 vs prev</div></div>
-    <div class="metric-card"><div class="metric-label">Organic clicks</div><div class="metric-value">1,537</div><div class="metric-delta delta-down">↓ -152 vs prev</div></div>
-    <div class="metric-card"><div class="metric-label">Impressions</div><div class="metric-value">12,085</div><div class="metric-delta delta-down">↓ -130 vs prev</div></div>
-    <div class="metric-card"><div class="metric-label">Avg position</div><div class="metric-value">4.8</div><div class="metric-delta delta-down">↓ -2.2 vs prev</div></div>
-    <div class="metric-card"><div class="metric-label">CTR</div><div class="metric-value">12.72%</div><div class="metric-delta delta-neutral">Search Console</div></div>
-    <div class="metric-card"><div class="metric-label">Bounce rate</div><div class="metric-value">{{BOUNCE_RATE}}%</div><div class="metric-delta delta-neutral">GA4</div></div>
-    <div class="metric-card"><div class="metric-label">Organic sessions</div><div class="metric-value">4,745</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Organic Sessions</div><div class="metric-value">4,745</div><div class="metric-delta {{ORGANIC_DELTA_CLASS}}">{{ORGANIC_DELTA_ICON}} {{ORGANIC_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Pageviews</div><div class="metric-value">{{PAGEVIEWS}}</div><div class="metric-delta {{PAGEVIEWS_DELTA_CLASS}}">{{PAGEVIEWS_DELTA_ICON}} {{PAGEVIEWS_DELTA}} vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Bounce Rate</div><div class="metric-value">{{BOUNCE_RATE}}%</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Avg Session Duration</div><div class="metric-value">{{AVG_DURATION}}s</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Direct Sessions</div><div class="metric-value">{{DIRECT_SESSIONS}}</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Form Submissions</div><div class="metric-value">607</div><div class="metric-delta delta-neutral">conversions</div></div>
   </div>
+  <!-- AI TRAFFIC -->
   <div style="margin-top:24px">
     <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">AI Traffic — May 2026</div>
     <div class="ai-grid">
-      <div class="ai-card"><div class="ai-label">ChatGPT</div><div class="ai-value">33</div><div class="ai-sub">sessions via chatgpt.com</div></div>
-      <div class="ai-card"><div class="ai-label">Claude</div><div class="ai-value">3</div><div class="ai-sub">sessions via claude.ai</div></div>
-      <div class="ai-card"><div class="ai-label">Perplexity</div><div class="ai-value">10</div><div class="ai-sub">sessions via perplexity.ai</div></div>
-      <div class="ai-card"><div class="ai-label">Gemini</div><div class="ai-value">23</div><div class="ai-sub">sessions via gemini.google.com</div></div>
+      <div class="ai-card"><div class="ai-label">ChatGPT</div><div class="ai-value">33</div><div class="ai-sub">via chatgpt.com</div></div>
+      <div class="ai-card"><div class="ai-label">Claude</div><div class="ai-value">3</div><div class="ai-sub">via claude.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Perplexity</div><div class="ai-value">10</div><div class="ai-sub">via perplexity.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Gemini</div><div class="ai-value">23</div><div class="ai-sub">via gemini.google.com</div></div>
     </div>
   </div>
 </div>
+
+<!-- CHARTS -->
 <div class="section">
-  <div class="section-label">Traffic history — 16 months</div>
+  <div class="section-label">16-month trend · Google Analytics</div>
+  <div class="charts-grid">
+    <div class="chart-card"><div class="chart-title">Sessions &amp; Organic Sessions</div><div class="chart-wrap"><canvas id="sessionsChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Form Submissions</div><div class="chart-wrap"><canvas id="formsChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">AI Traffic trend</div><div class="chart-wrap"><canvas id="aiChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Traffic channels</div><div class="chart-wrap"><canvas id="channelsChart"></canvas></div></div>
+  </div>
+</div>
+
+<!-- HISTORY TABLE — GA4 ONLY -->
+<div class="section">
+  <div class="section-label">Traffic history — 16 months · Google Analytics</div>
   <div style="overflow-x:auto">
     <table class="history-table">
-      <thead><tr><th>Month</th><th>Sessions</th><th>Organic Clicks</th><th>Impressions</th><th>Avg Position</th><th>Organic Sessions</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th></tr></thead>
-      <tbody><tr class="current-month"><td>May-2026</td><td>14,773</td><td>4,745</td><td>1,537</td><td>4.8</td><td>33</td><td>3</td><td>10</td><td>23</td><td>607</td></tr>
-<tr><td>Apr-2026</td><td>14,773</td><td>6,178</td><td>1,689</td><td>2.6</td><td>34</td><td>0</td><td>5</td><td>7</td><td>—</td></tr>
-<tr><td>Mar-2026</td><td>14,570</td><td>4,627</td><td>1,810</td><td>2.2</td><td>32</td><td>2</td><td>13</td><td>1</td><td>—</td></tr>
-<tr><td>Feb-2026</td><td>15,451</td><td>5,604</td><td>1,667</td><td>4.5</td><td>32</td><td>1</td><td>15</td><td>2</td><td>—</td></tr>
-<tr><td>Jan-2026</td><td>15,451</td><td>5,413</td><td>1,650</td><td>2.3</td><td>30</td><td>1</td><td>11</td><td>6</td><td>—</td></tr>
-<tr><td>Dec-2025</td><td>14,958</td><td>4,954</td><td>1,773</td><td>4.1</td><td>37</td><td>0</td><td>21</td><td>9</td><td>—</td></tr>
-<tr><td>Nov-2025</td><td>12,465</td><td>3,931</td><td>1,366</td><td>3.9</td><td>20</td><td>0</td><td>7</td><td>3</td><td>—</td></tr>
-<tr><td>Oct-2025</td><td>7,071</td><td>2,878</td><td>1,190</td><td>2.9</td><td>16</td><td>0</td><td>10</td><td>1</td><td>—</td></tr>
-<tr><td>Sep-2025</td><td>11,412</td><td>2,845</td><td>1,467</td><td>9.5</td><td>13</td><td>1</td><td>17</td><td>1</td><td>—</td></tr>
-<tr><td>Aug-2025</td><td>15,260</td><td>3,536</td><td>1,522</td><td>4.9</td><td>37</td><td>0</td><td>11</td><td>3</td><td>—</td></tr>
-<tr><td>Jul-2025</td><td>18,831</td><td>4,010</td><td>1,687</td><td>3</td><td>17</td><td>0</td><td>16</td><td>4</td><td>—</td></tr>
-<tr><td>Jun-2025</td><td>18,831</td><td>3,787</td><td>1,571</td><td>2.7</td><td>21</td><td>0</td><td>9</td><td>5</td><td>—</td></tr>
-<tr><td>May-2025</td><td>18,692</td><td>4,372</td><td>1,835</td><td>2.2</td><td>39</td><td>0</td><td>14</td><td>3</td><td>—</td></tr>
-<tr><td>Apr-2025</td><td>18,692</td><td>4,856</td><td>1,922</td><td>2.3</td><td>18</td><td>0</td><td>4</td><td>3</td><td>—</td></tr>
-<tr><td>Mar-2025</td><td>17,504</td><td>3,803</td><td>1,793</td><td>2.8</td><td>19</td><td>0</td><td>0</td><td>3</td><td>—</td></tr>
-<tr><td>Feb-2025</td><td>11,118</td><td>3,257</td><td>1,744</td><td>3.6</td><td>8</td><td>0</td><td>3</td><td>2</td><td>—</td></tr></tbody>
+      <thead><tr><th>Month</th><th>Sessions</th><th>Organic Sessions</th><th>Direct Sessions</th><th>Bounce Rate %</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th><th>Forms</th></tr></thead>
+      <tbody><tr class="current-month"><td>May-2026</td><td>14,773</td><td>4,745</td><td>3,099</td><td>60.59</td><td>33</td><td>3</td><td>10</td><td>23</td><td>607</td></tr>
+<tr><td>Apr-2026</td><td>14,773</td><td>6,178</td><td>4,011</td><td>60.59</td><td>34</td><td>0</td><td>5</td><td>7</td><td>—</td></tr>
+<tr><td>Mar-2026</td><td>14,570</td><td>4,627</td><td>3,927</td><td>57.42</td><td>32</td><td>2</td><td>13</td><td>1</td><td>—</td></tr>
+<tr><td>Feb-2026</td><td>15,451</td><td>5,604</td><td>5,468</td><td>54.28</td><td>32</td><td>1</td><td>15</td><td>2</td><td>—</td></tr>
+<tr><td>Jan-2026</td><td>15,451</td><td>5,413</td><td>5,020</td><td>54.28</td><td>30</td><td>1</td><td>11</td><td>6</td><td>—</td></tr>
+<tr><td>Dec-2025</td><td>14,958</td><td>4,954</td><td>4,994</td><td>53.76</td><td>37</td><td>0</td><td>21</td><td>9</td><td>—</td></tr>
+<tr><td>Nov-2025</td><td>12,465</td><td>3,931</td><td>3,387</td><td>50.85</td><td>20</td><td>0</td><td>7</td><td>3</td><td>—</td></tr>
+<tr><td>Oct-2025</td><td>7,071</td><td>2,878</td><td>2,487</td><td>54.52</td><td>16</td><td>0</td><td>10</td><td>1</td><td>—</td></tr>
+<tr><td>Sep-2025</td><td>11,412</td><td>2,845</td><td>2,040</td><td>47.63</td><td>13</td><td>1</td><td>17</td><td>1</td><td>—</td></tr>
+<tr><td>Aug-2025</td><td>15,260</td><td>3,536</td><td>1,365</td><td>48.23</td><td>37</td><td>0</td><td>11</td><td>3</td><td>—</td></tr>
+<tr><td>Jul-2025</td><td>18,831</td><td>4,010</td><td>1,566</td><td>52.12</td><td>17</td><td>0</td><td>16</td><td>4</td><td>—</td></tr>
+<tr><td>Jun-2025</td><td>18,831</td><td>3,787</td><td>1,840</td><td>52.12</td><td>21</td><td>0</td><td>9</td><td>5</td><td>—</td></tr>
+<tr><td>May-2025</td><td>18,692</td><td>4,372</td><td>1,323</td><td>49.44</td><td>39</td><td>0</td><td>14</td><td>3</td><td>—</td></tr>
+<tr><td>Apr-2025</td><td>18,692</td><td>4,856</td><td>1,192</td><td>49.44</td><td>18</td><td>0</td><td>4</td><td>3</td><td>—</td></tr>
+<tr><td>Mar-2025</td><td>17,504</td><td>3,803</td><td>1,648</td><td>46.29</td><td>19</td><td>0</td><td>0</td><td>3</td><td>—</td></tr>
+<tr><td>Feb-2025</td><td>11,118</td><td>3,257</td><td>1,070</td><td>48.72</td><td>8</td><td>0</td><td>3</td><td>2</td><td>—</td></tr></tbody>
     </table>
   </div>
 </div>
+
+<!-- RANKINGS -->
 <div class="section">
   <div class="section-label">Keyword rankings — 04 Jun 2026 · Mumbai, India</div>
   <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No ranking data yet.</td></tr></tbody></table></div>
   <div style="margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">0 ranking · 0 not in top 100 · Ubersuggest</div>
 </div>
+
+<!-- TASKS -->
 <div class="section"><div class="section-label">Tasks — May 2026</div><div class="task-grid"><div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div></div></div>
+
+<!-- BACKLINKS -->
 <div class="section">
   <div class="section-label">Links built — May 2026</div>
   <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr></tbody></table></div>
 </div>
+
+<!-- DELIVERABLES -->
 <div class="section">
   <div class="section-label">Deliverables — May 2026</div>
   <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr></tbody></table></div>
 </div>
+
 <div class="footer">
   <div class="footer-brand">Powered by <strong>ThirdSlash</strong> · Digital Marketing Agency · Mumbai, India</div>
   <div class="footer-links"><a href="mailto:nilesh@thirdslash.com">Contact</a><a href="https://thirdslash.com" target="_blank">thirdslash.com</a></div>
 </div>
-<script>document.querySelectorAll('.task-bar-fill').forEach(b=>{const w=b.dataset.width||'0';b.style.width='0%';setTimeout(()=>{b.style.width=w+'%'},300)})</script>
+
+<script>
+const D = {"months": ["Feb-2025", "Mar-2025", "Apr-2025", "May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], "sessions": [11118, 17504, 18692, 18692, 18831, 18831, 15260, 11412, 7071, 12465, 14958, 15451, 15451, 14570, 14773, 14773], "organic_sessions": [3257, 3803, 4856, 4372, 3787, 4010, 3536, 2845, 2878, 3931, 4954, 5413, 5604, 4627, 6178, 4745], "avg_position": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], "chatgpt": [8, 19, 18, 39, 21, 17, 37, 13, 16, 20, 37, 30, 32, 32, 34, 33], "claude": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0, 3], "perplexity": [3, 0, 4, 14, 9, 16, 11, 17, 10, 7, 21, 11, 15, 13, 5, 10], "gemini": [2, 3, 3, 3, 5, 4, 3, 1, 1, 3, 9, 6, 2, 1, 7, 23], "forms": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 607]};
+const base = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{labels:{color:'#8a8a85',font:{family:'DM Mono, monospace',size:10},boxWidth:10,padding:12}}},
+  scales:{
+    x:{ticks:{color:'#55554f',font:{family:'DM Mono, monospace',size:9},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
+    y:{ticks:{color:'#55554f',font:{family:'DM Mono, monospace',size:9}},grid:{color:'rgba(255,255,255,0.04)'}}
+  }
+};
+new Chart(document.getElementById('sessionsChart'),{type:'line',data:{labels:D.months,datasets:[
+  {label:'Sessions',data:D.sessions,borderColor:'#d4f060',backgroundColor:'rgba(212,240,96,0.08)',tension:0.4,fill:true,pointRadius:3,pointBackgroundColor:'#d4f060'},
+  {label:'Organic',data:D.organic_sessions,borderColor:'#4ade80',backgroundColor:'rgba(74,222,128,0.06)',tension:0.4,fill:true,pointRadius:3,pointBackgroundColor:'#4ade80'}
+]},options:{...base}});
+new Chart(document.getElementById('formsChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'Form Submissions',data:D.forms,backgroundColor:'rgba(74,222,128,0.7)',borderRadius:3}
+]},options:{...base}});
+new Chart(document.getElementById('aiChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'ChatGPT',data:D.chatgpt,backgroundColor:'rgba(212,240,96,0.8)',stack:'ai'},
+  {label:'Claude',data:D.claude,backgroundColor:'rgba(251,146,60,0.8)',stack:'ai'},
+  {label:'Perplexity',data:D.perplexity,backgroundColor:'rgba(167,139,250,0.8)',stack:'ai'},
+  {label:'Gemini',data:D.gemini,backgroundColor:'rgba(96,165,250,0.8)',stack:'ai'}
+]},options:{...base}});
+new Chart(document.getElementById('channelsChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'Organic',data:D.organic_sessions,backgroundColor:'rgba(212,240,96,0.7)',stack:'ch'},
+  {label:'Direct',data:D.direct,backgroundColor:'rgba(96,165,250,0.7)',stack:'ch'},
+  {label:'Referral',data:D.referral,backgroundColor:'rgba(251,146,60,0.7)',stack:'ch'}
+]},options:{...base}});
+document.querySelectorAll('.task-bar-fill').forEach(b=>{const w=b.dataset.width||'0';b.style.width='0%';setTimeout(()=>{b.style.width=w+'%'},300)});
+</script>
 </body>
 </html>
