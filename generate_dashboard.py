@@ -158,26 +158,32 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,templat
     bl_data  =[r for r in all_bl   if r.get('Client Name','').strip()==name]
     dl_data  =[r for r in all_dl   if r.get('Client Name','').strip()==name]
 
+    # All data from GA4 only
     ga4m={r.get('Month',''):r for r in ga4_all if r.get('Client Name','').strip()==name}
-    ga4=ga4m.get(MONTH_KEY,{})
+    g=ga4m.get(MONTH_KEY,{})
 
-    sessions    = fmt(ga4.get('Sessions (Current)','—'))
-    sessions_p  = ga4.get('Sessions Change','')
-    users       = fmt(ga4.get('Users (Current)','—'))
-    users_p     = ga4.get('Users Change','')
-    organic_s   = fmt(ga4.get('Organic Sessions','—'))
-    chatgpt_s   = fmt(ga4.get('ChatGPT Sessions','0'))
-    claude_s    = fmt(ga4.get('Claude Sessions','0'))
-    perplexity_s= fmt(ga4.get('Perplexity Sessions','0'))
-    gemini_s    = fmt(ga4.get('Gemini Sessions','0'))
-    forms_s     = fmt(ga4.get('Form Submissions','0'))
-    clicks      = fmt('—')
-    clicks_p    = ''
-    impressions = fmt('—')
-    impr_p      = ''
-    avg_pos     = str('—')
-    pos_p       = ''
-    ctr         = str('—')
+    sessions    = fmt(g.get('Sessions (Current)','—'))
+    sessions_p  = g.get('Sessions Change','0')
+    users       = fmt(g.get('Users (Current)','—'))
+    users_p     = g.get('Users Change','0')
+    pageviews   = fmt(g.get('Pageviews (Current)','—'))
+    pageviews_p = g.get('Pageviews Change','0')
+    organic_s   = fmt(g.get('Organic Sessions','—'))
+    direct_s    = fmt(g.get('Direct Sessions','—'))
+    bounce      = str(g.get('Bounce Rate %','—'))
+    duration    = str(g.get('Avg Session Duration (sec)','—'))
+    chatgpt_s   = fmt(g.get('ChatGPT Sessions','0'))
+    claude_s    = fmt(g.get('Claude Sessions','0'))
+    perplexity_s= fmt(g.get('Perplexity Sessions','0'))
+    gemini_s    = fmt(g.get('Gemini Sessions','0'))
+    forms_s     = fmt(g.get('Form Submissions','0'))
+
+    # Organic delta: current organic vs prev month organic
+    prev_month  = MONTHS_16[-2] if len(MONTHS_16)>1 else MONTH_KEY
+    g_prev      = ga4m.get(prev_month,{})
+    organic_cur = safe_int(g.get('Organic Sessions',0))
+    organic_prv = safe_int(g_prev.get('Organic Sessions',0))
+    organic_delta = organic_cur - organic_prv
 
     ranking_count    =len([r for r in rank_data if str(r.get('This Month Rank','NR')) not in ('NR','')])
     not_ranking_count=len([r for r in rank_data if str(r.get('This Month Rank','NR')) in ('NR','')])
@@ -188,24 +194,23 @@ def generate_for_client(client,all_ranks,all_tasks,all_bl,all_dl,ga4_all,templat
         '{{REPORT_MONTH}}':REPORT_MONTH,'{{ACCOUNT_MANAGER}}':'Nilesh Shirke',
         '{{TEAM_MEMBER}}':team,'{{LAST_UPDATED}}':TODAY,'{{TARGET_LOCATION}}':gmb_city,
         '{{SESSIONS}}':sessions,'{{USERS}}':users,
-        '{{ORGANIC_CLICKS}}':clicks,'{{IMPRESSIONS}}':impressions,
-        '{{AVG_POSITION}}':avg_pos,'{{CTR}}':ctr,
-        '{{ORGANIC_SESSIONS}}':organic_s,'{{FORM_SUBMISSIONS}}':forms_s,
-        '{{SESSIONS_DELTA}}':str(sessions_p),'{{USERS_DELTA}}':str(users_p),
-        '{{CLICKS_DELTA}}':str(clicks_p),'{{IMPR_DELTA}}':str(impr_p),
-        '{{POS_DELTA}}':str(pos_p),
-        '{{SESSIONS_DELTA_CLASS}}':delta_cls(sessions_p),
-        '{{USERS_DELTA_CLASS}}':delta_cls(users_p),
-        '{{CLICKS_DELTA_CLASS}}':delta_cls(clicks_p),
-        '{{IMPR_DELTA_CLASS}}':delta_cls(impr_p),
-        '{{POS_DELTA_CLASS}}':delta_cls(pos_p),
-        '{{SESSIONS_DELTA_ICON}}':delta_icon(sessions_p),
-        '{{USERS_DELTA_ICON}}':delta_icon(users_p),
-        '{{CLICKS_DELTA_ICON}}':delta_icon(clicks_p),
-        '{{IMPR_DELTA_ICON}}':delta_icon(impr_p),
-        '{{POS_DELTA_ICON}}':delta_icon(pos_p,lower_better=True),
+        '{{PAGEVIEWS}}':pageviews,'{{ORGANIC_SESSIONS}}':organic_s,
+        '{{DIRECT_SESSIONS}}':direct_s,'{{BOUNCE_RATE}}':bounce,
+        '{{AVG_DURATION}}':duration,'{{FORM_SUBMISSIONS}}':forms_s,
         '{{CHATGPT_SESSIONS}}':chatgpt_s,'{{CLAUDE_SESSIONS}}':claude_s,
         '{{PERPLEXITY_SESSIONS}}':perplexity_s,'{{GEMINI_SESSIONS}}':gemini_s,
+        '{{SESSIONS_DELTA}}':str(sessions_p),
+        '{{USERS_DELTA}}':str(users_p),
+        '{{PAGEVIEWS_DELTA}}':str(pageviews_p),
+        '{{ORGANIC_DELTA}}':str(organic_delta),
+        '{{SESSIONS_DELTA_CLASS}}':delta_cls(sessions_p),
+        '{{USERS_DELTA_CLASS}}':delta_cls(users_p),
+        '{{PAGEVIEWS_DELTA_CLASS}}':delta_cls(pageviews_p),
+        '{{ORGANIC_DELTA_CLASS}}':delta_cls(organic_delta),
+        '{{SESSIONS_DELTA_ICON}}':delta_icon(sessions_p),
+        '{{USERS_DELTA_ICON}}':delta_icon(users_p),
+        '{{PAGEVIEWS_DELTA_ICON}}':delta_icon(pageviews_p),
+        '{{ORGANIC_DELTA_ICON}}':delta_icon(organic_delta),
         '{{RANK_DATE}}':TODAY,'{{RANK_LOCATION}}':gmb_city,
         '{{RANK_ROWS}}':build_rank_rows(rank_data),
         '{{RANKING_COUNT}}':str(ranking_count),
