@@ -142,49 +142,49 @@
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="metric-label">Sessions</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">319</div>
-      <span class="delta pos">▲ 0.3%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">318</div>
+      <span class="delta neg">▼ 22.6%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Users</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">295</div>
-      <span class="delta pos">▲ 0.3%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">294</div>
+      <span class="delta neg">▼ 24.2%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Organic Sessions</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">30</div>
-      <span class="delta neg">▼ 9.1%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">33</div>
+      <span class="delta pos">▲ 50.0%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Pageviews</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">451</div>
-      <span class="delta pos">▲ 3.7%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">435</div>
+      <span class="delta neg">▼ 14.5%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Bounce Rate</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">83.4%</div>
-      <span class="delta neg">▼ 0.7%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">84.0%</div>
+      <span class="delta neg">▼ 0.8%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Avg Duration (sec)</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">50</div>
-      <span class="delta pos">▲ 38.9%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">36</div>
+      <span class="delta pos">▲ 2.9%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Direct Sessions</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">261</div>
-      <span class="delta pos">▲ 3.2%</span>
+      <div class="period-label">May-2026 vs Apr-2026</div>
+      <div class="metric-value">253</div>
+      <span class="delta neg">▼ 1.9%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Form Submissions</div>
-      <div class="period-label">Jun-2026 vs May-2026</div>
+      <div class="period-label">May-2026 vs Apr-2026</div>
       <div class="metric-value">0</div>
       <span class="delta pos">▲ 0%</span>
     </div>
@@ -214,7 +214,7 @@
       <div class="ai-icon">🤖</div>
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">0</div>
-      <div class="ai-delta pos delta">▲ 0</div>
+      <div class="ai-delta neg delta">▼ 1</div>
     </div><div class="ai-card">
       <div class="ai-icon">🟣</div>
       <div class="ai-label">Claude</div>
@@ -581,14 +581,14 @@ function showTab(name) {
   event.target.classList.add('active');
 }
 
-const months = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [116, 116, 109, 154, 410, 514, 514, 416, 416, 411, 318, 319];
-const orgData  = [34, 21, 21, 22, 32, 32, 19, 31, 20, 22, 33, 30];
+const months = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
+const sessData = [109, 116, 116, 109, 154, 410, 514, 514, 416, 416, 411, 318];
+const orgData  = [36, 34, 21, 21, 22, 32, 32, 19, 31, 20, 22, 33];
 const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [30, 261, 24, 0, 0, 0];
+const chVals   = [33, 253, 26, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 3, 3, 1, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 1, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Claude", "Perplexity", "Gemini"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 
