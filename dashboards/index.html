@@ -3,525 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mPokket SEO Audit — May 2026 | ThirdSlash</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>ThirdSlash | SEO Client Dashboards</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#1B2A4A;--orange:#F4812A;--orange-light:#FEF0E6;--bg:#F5F6F8;--card:#fff;--border:#E4E7ED;--text:#1A1D23;--text-muted:#6B7280;--text-light:#9CA3AF;--red:#DC2626;--red-bg:#FEF2F2;--red-border:#FECACA;--amber:#D97706;--amber-bg:#FFFBEB;--amber-border:#FDE68A;--green:#16A34A;--green-bg:#F0FDF4;--green-border:#BBF7D0;--blue:#2563EB;--blue-bg:#EFF6FF;--blue-border:#BFDBFE;--purple:#7C3AED;--purple-bg:#F5F3FF;--purple-border:#DDD6FE;--radius:10px;--shadow:0 1px 3px rgba(0,0,0,0.08);}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
-.topbar{background:var(--navy);color:#fff;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-.topbar-brand{display:flex;align-items:center;gap:12px;}
-.topbar-logo{width:32px;height:32px;background:var(--orange);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;}
-.topbar-name{font-weight:600;font-size:15px;}
-.topbar-sep{width:1px;height:20px;background:rgba(255,255,255,0.2);}
-.topbar-client{font-size:13px;color:rgba(255,255,255,0.7);}
-.topbar-right{display:flex;align-items:center;gap:12px;}
-.topbar-date{font-size:12px;color:rgba(255,255,255,0.55);font-family:'IBM Plex Mono',monospace;}
-.btn-print{padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.25);background:transparent;color:#fff;font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;}
-.btn-print:hover{background:rgba(255,255,255,0.1);}
-.wrapper{max-width:1280px;margin:0 auto;padding:28px 32px 60px;}
-.page-header{margin-bottom:28px;}
-.page-header-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:6px;}
-.page-title{font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-0.5px;}
-.page-subtitle{font-size:13px;color:var(--text-muted);margin-top:4px;}
-.orange-line{height:3px;background:linear-gradient(90deg,var(--orange),#FBBF24);border-radius:2px;margin-top:16px;}
-.source-legend{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:12px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex-wrap:wrap;}
-.source-legend-title{font-size:12px;font-weight:600;color:var(--text-muted);margin-right:4px;}
-.src-tag{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:0.03em;}
-.src-sf{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;}
-.src-gsc{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
-.src-both{background:#FFF7ED;color:#C2410C;border:1px solid #FDBA74;}
-.src-legend-desc{font-size:11px;color:var(--text-muted);}
-.health-banner{background:var(--navy);border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
-.health-score-wrap{display:flex;align-items:center;gap:16px;}
-.health-circle{width:80px;height:80px;position:relative;flex-shrink:0;}
-.health-circle svg{transform:rotate(-90deg);}
-.health-circle-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.health-num{font-size:22px;font-weight:700;color:#fff;line-height:1;}
-.health-lbl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
-.health-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:4px;}
-.health-desc{font-size:12px;color:rgba(255,255,255,0.6);max-width:360px;line-height:1.6;}
-.health-divider{width:1px;height:60px;background:rgba(255,255,255,0.12);}
-.health-stats{display:flex;gap:24px;flex-wrap:wrap;}
-.health-stat{text-align:center;}
-.health-stat-num{font-size:22px;font-weight:700;color:#fff;line-height:1;}
-.health-stat-num.bad{color:#FCA5A5;}.health-stat-num.warn{color:#FCD34D;}.health-stat-num.good{color:#6EE7B7;}
-.health-stat-lbl{font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px;}
-.metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:24px;}
-.metric-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px 16px;box-shadow:var(--shadow);}
-.metric-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
-.metric-value{font-size:26px;font-weight:700;line-height:1;color:var(--text);}
-.metric-value.red{color:var(--red);}.metric-value.amber{color:var(--amber);}.metric-value.green{color:var(--green);}
-.metric-sub{font-size:10px;color:var(--text-light);margin-top:4px;}
-.summary-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px;}
-.summary-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:16px 18px;box-shadow:var(--shadow);}
-.summary-card-title{font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:10px;}
-.bar-set{display:flex;flex-direction:column;gap:7px;}
-.bar-item{display:flex;align-items:center;gap:8px;}
-.bar-name{font-size:11px;color:var(--text-muted);width:90px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.bar-track{flex:1;background:var(--bg);border-radius:3px;height:8px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:3px;}
-.bar-num{font-size:11px;font-weight:600;color:var(--text);width:28px;text-align:right;}
-.notice-bar{background:var(--orange-light);border:1px solid #FDBA74;border-radius:var(--radius);padding:12px 18px;margin-bottom:20px;font-size:13px;color:#92400E;display:flex;align-items:center;gap:10px;}
-.filters-bar{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:var(--shadow);}
-.filter-label{font-size:12px;font-weight:500;color:var(--text-muted);white-space:nowrap;}
-.filter-chip{padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:all 0.15s;}
-.filter-chip:hover{border-color:var(--orange);color:var(--orange);}
-.filter-chip.active{background:var(--navy);border-color:var(--navy);color:#fff;}
-.filter-sep{width:1px;height:20px;background:var(--border);}
-.filter-select{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;outline:none;}
-.filter-count{margin-left:auto;font-size:12px;color:var(--text-muted);white-space:nowrap;}
-.section{margin-bottom:28px;}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.section-title{font-size:16px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px;}
-.sbadge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px;}
-.sbadge-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
-.table-wrap{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);}
-table{width:100%;border-collapse:collapse;}
-thead tr{background:var(--navy);}
-thead th{padding:10px 13px;text-align:left;font-size:11px;font-weight:600;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:0.07em;white-space:nowrap;}
-tbody tr{border-bottom:1px solid var(--border);transition:background 0.1s;}
-tbody tr:last-child{border-bottom:none;}
-tbody tr:hover{background:#FAFBFC;}
-tbody tr.row-hidden{display:none;}
-td{padding:12px 13px;vertical-align:top;}
-.td-issue strong{font-size:13px;font-weight:600;color:var(--navy);display:block;margin-bottom:3px;}
-.issue-src{display:inline-flex;gap:4px;margin-top:4px;flex-wrap:wrap;}
-.expand-btn{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:4px 10px;border-radius:6px;border:1px solid;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;background:transparent;}
-.expand-btn.red{color:var(--red);border-color:var(--red-border);background:var(--red-bg);}
-.expand-btn.amber{color:var(--amber);border-color:var(--amber-border);background:var(--amber-bg);}
-.expand-btn.blue{color:var(--blue);border-color:var(--blue-border);background:var(--blue-bg);}
-.expand-btn.purple{color:var(--purple);border-color:var(--purple-border);background:var(--purple-bg);}
-.url-panel-row{display:none;}
-.url-panel-row.open{display:table-row;}
-.url-panel-row td{padding:0;}
-.url-panel{padding:14px 18px;}
-.url-panel-title{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-.copy-all-btn{padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text-muted);font-size:11px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;}
-.copy-all-btn:hover{border-color:var(--navy);color:var(--navy);}
-.url-table{width:100%;border-collapse:collapse;table-layout:fixed;}
-.url-table thead tr{background:rgba(0,0,0,0.04);}
-.url-table thead th{padding:6px 11px;font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;text-align:left;}
-.url-table thead th:first-child{width:40px;}
-.url-table thead th:nth-child(3){width:80px;}
-.url-table tbody tr{border-top:1px solid var(--border);cursor:pointer;transition:background 0.1s;}
-.url-table tbody tr:hover{background:rgba(37,99,235,0.04);}
-.url-table td{padding:7px 11px;vertical-align:middle;}
-.url-sr{font-size:11px;font-weight:600;color:var(--text-muted);font-family:'IBM Plex Mono',monospace;}
-.url-text{font-size:12px;font-family:'IBM Plex Mono',monospace;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
-.url-src-tag{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;display:inline-block;}
-.count-pill{display:inline-block;min-width:36px;text-align:center;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
-.pill-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);}
-.pill-amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
-.pill-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);}
-.pill-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
-.pill-purple{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border);}
-.priority-badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap;}
-.prio-high{background:var(--red-bg);color:var(--red);}
-.prio-med{background:var(--amber-bg);color:var(--amber);}
-.prio-low{background:var(--blue-bg);color:var(--blue);}
-.td-dropdown{min-width:120px;}
-.row-select{width:100%;padding:5px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:12px;font-family:'Inter',sans-serif;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236B7280'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;padding-right:24px;}
-.owner-thirdslash{border-color:#BFDBFE;background:#EFF6FF;color:#1D4ED8;}
-.owner-client{border-color:#DDD6FE;background:#F5F3FF;color:#6D28D9;}
-.owner-developer{border-color:#BBF7D0;background:#F0FDF4;color:#15803D;}
-.status-under-review{border-color:#FDE68A;background:#FFFBEB;color:#B45309;}
-.status-completed{border-color:#BBF7D0;background:#F0FDF4;color:#15803D;}
-.status-not-completed{border-color:#FECACA;background:#FEF2F2;color:#DC2626;}
-.status-blocked{border-color:#FECDD3;background:#FFF1F2;color:#BE123C;}
-.status-waiting{border-color:#BAE6FD;background:#F0F9FF;color:#0369A1;}
-.status-rejected{border-color:#E9D5FF;background:#FAF5FF;color:#7E22CE;}
-.fix-guide{font-size:12px;color:var(--text-muted);line-height:1.6;}
-.dev-note{margin-top:5px;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:6px;}
-.dev-note.dev{background:var(--green-bg);color:var(--green);}
-.dev-note.seo{background:var(--blue-bg);color:var(--blue);}
-.dev-note.both{background:var(--amber-bg);color:var(--amber);}
-.action-table td:first-child{font-weight:600;color:var(--orange);font-size:15px;}
-.footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-brand{font-size:13px;color:var(--text-muted);}
-.footer-brand strong{color:var(--navy);}
-.save-indicator{font-size:11px;color:var(--green);display:none;}
-.save-indicator.visible{display:inline;}
-.copied-toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:500;z-index:9999;opacity:0;transition:opacity 0.2s;pointer-events:none;}
-.copied-toast.show{opacity:1;}
-@media print{display:none;}
+body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;}
+header{background:#161b22;border-bottom:1px solid #30363d;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:18px;font-weight:700;letter-spacing:2px;color:#58a6ff;}
+.meta{font-size:12px;color:#8b949e;}
+.hero{padding:48px 40px 32px;}
+h1{font-size:32px;font-weight:700;margin-bottom:8px;}
+h1 span{color:#58a6ff;}
+.subtitle{color:#8b949e;font-size:14px;margin-bottom:40px;}
+.stats{display:flex;gap:24px;margin-bottom:48px;flex-wrap:wrap;}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px 28px;min-width:140px;}
+.stat-num{font-size:28px;font-weight:700;color:#58a6ff;}
+.stat-label{font-size:12px;color:#8b949e;margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:0 40px 60px;}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:24px;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;display:block;}
+.card:hover{border-color:#58a6ff;transform:translateY(-2px);}
+.card-name{font-size:16px;font-weight:600;margin-bottom:6px;color:#e6edf3;}
+.card-slug{font-size:12px;color:#8b949e;}
+footer{text-align:center;padding:24px;color:#484f58;font-size:12px;border-top:1px solid #21262d;}
 </style>
 </head>
 <body>
-<div class="topbar">
-  <div class="topbar-brand">
-    <div class="topbar-logo">TS</div>
-    <span class="topbar-name">ThirdSlash</span>
-    <div class="topbar-sep"></div>
-    <span class="topbar-client">mPokket.in SEO Audit</span>
-  </div>
-  <div class="topbar-right">
-    <span class="topbar-date">May 2026</span>
-    
-  </div>
+<header>
+<div class="logo">THIRDSLASH</div>
+<div class="meta">Updated: Jun 2026 &nbsp;|&nbsp; 14 Active Clients</div>
+</header>
+<div class="hero">
+<h1>SEO Client <span>Dashboards</span></h1>
+<p class="subtitle">Agency Command Center — all client dashboards in one place</p>
+<div class="stats">
+<div class="stat"><div class="stat-num">14</div><div class="stat-label">Active Clients</div></div>
 </div>
-<div class="wrapper">
-
-  <div class="page-header">
-    <div class="page-header-top">
-      <div>
-        <div class="page-title">SEO Technical Audit Report</div>
-        <div class="page-subtitle">mpokket.in &bull; May 2026 &bull; 708 HTML pages (Screaming Frog Pro) + Google Search Console data combined</div>
-      </div>
-      <span class="save-indicator" id="save-indicator">&#10003; Saved</span>
-    </div>
-    <div class="orange-line"></div>
-  </div>
-
-  <div class="source-legend">
-    <span class="source-legend-title">Data sources:</span>
-    <span class="src-tag src-sf">SF</span><span class="src-legend-desc">Screaming Frog Pro crawl</span>
-    <span class="src-tag src-gsc">GSC</span><span class="src-legend-desc">Google Search Console</span>
-    <span class="src-tag src-both">SF+GSC</span><span class="src-legend-desc">Confirmed by both — fix these first</span>
-  </div>
-
-  <div class="health-banner">
-    <div class="health-score-wrap">
-      <div class="health-circle">
-        <svg width="80" height="80" viewBox="0 0 80 80">
-          <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8"/>
-          <circle cx="40" cy="40" r="34" fill="none" stroke="#F4812A" stroke-width="8" stroke-dasharray="213.6" stroke-dashoffset="149" stroke-linecap="round"/>
-        </svg>
-        <div class="health-circle-text"><div class="health-num">30</div><div class="health-lbl">/ 100</div></div>
-      </div>
-      <div>
-        <div class="health-title">Needs Urgent Attention</div>
-        <div class="health-desc">Combined SF + GSC data reveals 129 broken pages, 50 server errors, 58 pages Google crawled but did not index, and 102 pages with oversized titles. This is a full picture of what Google actually sees.</div>
-      </div>
-    </div>
-    <div class="health-divider"></div>
-    <div class="health-stats">
-      <div class="health-stat"><div class="health-stat-num bad">129</div><div class="health-stat-lbl">Broken (404)</div></div>
-      <div class="health-stat"><div class="health-stat-num bad">50</div><div class="health-stat-lbl">Server Errors</div></div>
-      <div class="health-stat"><div class="health-stat-num warn">58</div><div class="health-stat-lbl">Not Indexed</div></div>
-      <div class="health-stat"><div class="health-stat-num warn">185</div><div class="health-stat-lbl">On-Page Issues</div></div>
-      <div class="health-stat"><div class="health-stat-num good">610</div><div class="health-stat-lbl">Indexable</div></div>
-    </div>
-  </div>
-
-  <div class="metrics-row">
-    <div class="metric-card"><div class="metric-label">Total HTML</div><div class="metric-value">708</div><div class="metric-sub">SF full crawl</div></div>
-    <div class="metric-card"><div class="metric-label">200 OK</div><div class="metric-value green">637</div><div class="metric-sub">Live pages</div></div>
-    <div class="metric-card"><div class="metric-label">Indexable</div><div class="metric-value green">610</div><div class="metric-sub">Google can rank</div></div>
-    <div class="metric-card"><div class="metric-label">404 Errors</div><div class="metric-value red">129</div><div class="metric-sub">SF:71 + GSC:58 new</div></div>
-    <div class="metric-card"><div class="metric-label">Server Errors</div><div class="metric-value red">50</div><div class="metric-sub">SF:37 + GSC:13 new</div></div>
-    <div class="metric-card"><div class="metric-label">Not Indexed</div><div class="metric-value amber">68</div><div class="metric-sub">GSC only</div></div>
-    <div class="metric-card"><div class="metric-label">Title Issues</div><div class="metric-value red">119</div><div class="metric-sub">Long/short/missing</div></div>
-    <div class="metric-card"><div class="metric-label">Redirects</div><div class="metric-value amber">26</div><div class="metric-sub">SF:8 + GSC:18</div></div>
-  </div>
-
-  <div class="summary-row">
-    <div class="summary-card">
-      <div class="summary-card-title">404 Errors by Source</div>
-      <div class="bar-set">
-        <div class="bar-item"><div class="bar-name">SF + GSC both</div><div class="bar-track"><div class="bar-fill" style="width:37%;background:#C2410C;"></div></div><div class="bar-num">48</div></div>
-        <div class="bar-item"><div class="bar-name">SF only</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#2563EB;"></div></div><div class="bar-num">23</div></div>
-        <div class="bar-item"><div class="bar-name">GSC only</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:#16A34A;"></div></div><div class="bar-num">58</div></div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-card-title">GSC-Only Findings</div>
-      <div class="bar-set">
-        <div class="bar-item"><div class="bar-name">Not indexed</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:#D97706;"></div></div><div class="bar-num">68</div></div>
-        <div class="bar-item"><div class="bar-name">Dup canonical</div><div class="bar-track"><div class="bar-fill" style="width:48%;background:#7C3AED;"></div></div><div class="bar-num">33</div></div>
-        <div class="bar-item"><div class="bar-name">Redirects</div><div class="bar-track"><div class="bar-fill" style="width:26%;background:#2563EB;"></div></div><div class="bar-num">18</div></div>
-        <div class="bar-item"><div class="bar-name">Noindex</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:#6B7280;"></div></div><div class="bar-num">26</div></div>
-        <div class="bar-item"><div class="bar-name">403 Blocked</div><div class="bar-track"><div class="bar-fill" style="width:9%;background:#DC2626;"></div></div><div class="bar-num">6</div></div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-card-title">On-Page Issues (SF)</div>
-      <div class="bar-set">
-        <div class="bar-item"><div class="bar-name">Title Long</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:#DC2626;"></div></div><div class="bar-num">102</div></div>
-        <div class="bar-item"><div class="bar-name">Title Short</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:#DC2626;"></div></div><div class="bar-num">15</div></div>
-        <div class="bar-item"><div class="bar-name">Meta Too Long</div><div class="bar-track"><div class="bar-fill" style="width:36%;background:#D97706;"></div></div><div class="bar-num">46</div></div>
-        <div class="bar-item"><div class="bar-name">Meta Missing</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:#D97706;"></div></div><div class="bar-num">7</div></div>
-        <div class="bar-item"><div class="bar-name">Thin Content</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:#D97706;"></div></div><div class="bar-num">13</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="notice-bar">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    Owner and Status changes save automatically in your browser. Click any URL row to copy it.
-  </div>
-
-  <div class="filters-bar">
-    <span class="filter-label">Filter:</span>
-    <button class="filter-chip active" onclick="filterCat('all',this)">All Issues</button>
-    <button class="filter-chip" onclick="filterCat('errors',this)">Errors</button>
-    <button class="filter-chip" onclick="filterCat('onpage',this)">On-Page</button>
-    <button class="filter-chip" onclick="filterCat('content',this)">Content</button>
-    <button class="filter-chip" onclick="filterCat('technical',this)">Technical</button>
-    <button class="filter-chip" onclick="filterCat('gsc',this)">GSC Only</button>
-    <div class="filter-sep"></div>
-    <select class="filter-select" onchange="filterPrio(this.value)">
-      <option value="all">All Priorities</option>
-      <option value="high">High</option>
-      <option value="medium">Medium</option>
-      <option value="low">Low</option>
-    </select>
-    <select class="filter-select" onchange="filterStat(this.value)">
-      <option value="all">All Statuses</option>
-      <option value="Not Completed">Not Completed</option>
-      <option value="Under Review">Under Review</option>
-      <option value="Completed">Completed</option>
-      <option value="Blocked">Blocked</option>
-      <option value="Waiting for Approval">Waiting for Approval</option>
-      <option value="Rejected">Rejected</option>
-    </select>
-    <span class="filter-count" id="filter-count"></span>
-  </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">Full Issue Log <span class="sbadge sbadge-red" id="issue-badge"></span></div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr>
-          <th style="width:21%">Issue</th>
-          <th style="width:7%">Count</th>
-          <th style="width:7%">Priority</th>
-          <th style="width:20%">What this means</th>
-          <th style="width:21%">How to fix it</th>
-          <th style="width:11%">Owner</th>
-          <th style="width:13%">Status</th>
-        </tr></thead>
-        <tbody id="issues-body"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-header"><div class="section-title">Prioritised Action Plan</div></div>
-    <div class="table-wrap">
-      <table class="action-table">
-        <thead><tr><th style="width:4%">#</th><th style="width:22%">Action</th><th style="width:28%">What to do</th><th style="width:9%">Impact</th><th style="width:9%">Effort</th><th style="width:9%">Pages</th><th style="width:9%">Source</th><th style="width:10%">Who</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td><strong>Fix SSL on mpokket.in (non-www)</strong></td><td>Fix SSL certificate in Cloudflare. Add 301 from non-www to www.</td><td><span class="count-pill pill-red">High</span></td><td><span class="count-pill pill-green">Low</span></td><td>50</td><td><span class="src-tag src-both">SF+GSC</span></td><td><span class="priority-badge" style="background:#F0FDF4;color:#15803D;">Developer</span></td></tr>
-          <tr><td>2</td><td><strong>Fix or redirect all 404 pages</strong></td><td>Map 129 broken URLs to nearest working pages. Set up 301 redirects.</td><td><span class="count-pill pill-red">High</span></td><td><span class="count-pill pill-amber">Medium</span></td><td>129</td><td><span class="src-tag src-both">SF+GSC</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>3</td><td><strong>Rewrite 102 oversized title tags</strong></td><td>102 pages have titles over 60 characters. Google cuts them off in search results.</td><td><span class="count-pill pill-red">High</span></td><td><span class="count-pill pill-red">High</span></td><td>102</td><td><span class="src-tag src-sf">SF</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>4</td><td><strong>Fix blog template placeholder titles</strong></td><td>3 pages show "Blog Inner" or "blog mains" as title. Developer needs to fix the CMS template.</td><td><span class="count-pill pill-red">High</span></td><td><span class="count-pill pill-green">Low</span></td><td>3</td><td><span class="src-tag src-sf">SF</span></td><td><span class="priority-badge" style="background:#F0FDF4;color:#15803D;">Developer</span></td></tr>
-          <tr><td>5</td><td><strong>Investigate 58 crawled-not-indexed pages</strong></td><td>Google crawled these pages but chose not to index them. Likely thin content or low quality signals.</td><td><span class="count-pill pill-red">High</span></td><td><span class="count-pill pill-amber">Medium</span></td><td>58</td><td><span class="src-tag src-gsc">GSC</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>6</td><td><strong>Fix duplicate canonical (pagination)</strong></td><td>33 blog pagination URLs have no canonical. Google is confused which page to index.</td><td><span class="count-pill pill-amber">Medium</span></td><td><span class="count-pill pill-green">Low</span></td><td>33</td><td><span class="src-tag src-gsc">GSC</span></td><td><span class="priority-badge" style="background:#F0FDF4;color:#15803D;">Developer</span></td></tr>
-          <tr><td>7</td><td><strong>Fix 46 meta descriptions too long</strong></td><td>46 pages have meta descriptions over 160 characters. Google cuts them off in results.</td><td><span class="count-pill pill-amber">Medium</span></td><td><span class="count-pill pill-amber">Medium</span></td><td>46</td><td><span class="src-tag src-sf">SF</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>8</td><td><strong>Redirect 18 old URLs still in GSC</strong></td><td>18 old URLs are still in Google's index but now redirect. Update these to remove redirect hops.</td><td><span class="count-pill pill-amber">Medium</span></td><td><span class="count-pill pill-green">Low</span></td><td>18</td><td><span class="src-tag src-gsc">GSC</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>9</td><td><strong>Expand 13 thin content pages</strong></td><td>13 pages have under 300 words. Google rarely ranks pages without enough useful content.</td><td><span class="count-pill pill-amber">Medium</span></td><td><span class="count-pill pill-red">High</span></td><td>13</td><td><span class="src-tag src-sf">SF</span></td><td><span class="priority-badge" style="background:#EFF6FF;color:#1D4ED8;">ThirdSlash</span></td></tr>
-          <tr><td>10</td><td><strong>Fix 106 slow response pages</strong></td><td>106 pages respond over 200ms. One page takes 2 seconds. Slow pages rank lower.</td><td><span class="count-pill pill-amber">Medium</span></td><td><span class="count-pill pill-amber">Medium</span></td><td>106</td><td><span class="src-tag src-sf">SF</span></td><td><span class="priority-badge" style="background:#F0FDF4;color:#15803D;">Developer</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-brand"><strong>ThirdSlash Digital Marketing Agency</strong> &bull; nilesh@thirdslash.com &bull; thirdslash.com</div>
-    <div style="font-size:11px;color:var(--text-light);">Screaming Frog Pro (708 pages) + Google Search Console &bull; May 2026 &bull; Confidential</div>
-  </div>
 </div>
-<div class="copied-toast" id="toast">Copied</div>
-<script>
-var SK='mpokket_v6_may2026';
-var state={};
-var ALL_URLS={"i01":[{"url":"https://www.mpokket.in/explore/instant-personal-loan-mumbai","src":"SF+GSC"},{"url":"https://www.mpokket.in/lsp","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-delhi-ncr","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-bangalore","src":"SF+GSC"},{"url":"https://www.mpokket.in/services/instant-loans-for-freshers","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-chennai","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-coimbatore","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-jodhpur","src":"SF+GSC"},{"url":"https://www.mpokket.in/services/instant-personal-loan-womenices","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-hyderabad","src":"SF+GSC"},{"url":"https://www.mpokket.in/short-term-loan","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-pondicherry","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-trivandrum","src":"SF+GSC"},{"url":"https://www.mpokket.in/loans-for-emergency","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-nagpur","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-surat","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-madurai","src":"SF+GSC"},{"url":"https://www.mpokket.in/cash-loans","src":"SF+GSC"},{"url":"https://www.mpokket.in/ticket-size/25000-instant-personal-loan","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-rajkot","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-kochi","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loans-for-working-students","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-kerala","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loan-app-for-students","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-agra","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-coimbatore","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-guwahati","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-jaipur","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-indore","src":"SF+GSC"},{"url":"https://www.mpokket.in/explore/instant-personal-loan-ahmedabad","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loans-for/business","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-pune","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loan-app-for-low-salaried","src":"SF+GSC"},{"url":"https://www.mpokket.in/easy-loans","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loan-app-for-salaried","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-ahmedabad","src":"SF+GSC"},{"url":"https://www.mpokket.in/quick-loans","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loans-for/self-employed","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-kochi","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-gurgaon","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-surat","src":"SF+GSC"},{"url":"https://www.mpokket.in/loans-for-shopping","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/self-employed","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/working-salaried","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-kerala","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/business","src":"SF+GSC"},{"url":"https://www.mpokket.in/instant-loans-for/wedding","src":"SF+GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-indore","src":"SF+GSC"},{"url":"https://www.mpokket.in/sitemap","src":"GSC"},{"url":"https://www.mpokket.in/blog/where-can-you-get-a-25-000-personal-loan-instantly-online","src":"GSC"},{"url":"https://www.mpokket.in/location/*","src":"GSC"},{"url":"https://www.mpokket.in/instant-loans-for-self-employed","src":"GSC"},{"url":"https://www.mpokket.in/blog/personal-loan-agreements-know-the-terms-and-conditions","src":"GSC"},{"url":"https://www.mpokket.in/personal-loan-for-mobile","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/loan-without-cibil","src":"GSC"},{"url":"https://www.mpokket.in/blog/20-common-questions-college-students-ask-when-dealing-with-instant-loans","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-guwahati","src":"GSC"},{"url":"https://www.mpokket.in/blog/15-common-financial-mistakes-that-freshers-interns-make","src":"GSC"},{"url":"https://www.mpokket.in/instant-loans-for/mobile","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-bangalore","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-chennai","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-jaipur","src":"GSC"},{"url":"https://www.mpokket.in/services/*","src":"GSC"},{"url":"https://www.mpokket.in/blog/20-common-questions-freshers-interns-ask-when-dealing-with-instant-loans","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-delhi-ncr","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/aadhar-card","src":"GSC"},{"url":"https://www.mpokket.in/first50-terms-conditions","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/housewife","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-noida","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-pune","src":"GSC"},{"url":"https://www.mpokket.in/emi-calculator","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-assam","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-mumbai","src":"GSC"},{"url":"https://www.mpokket.in/instant-loans-for-working-salaried","src":"GSC"},{"url":"https://www.mpokket.in/blog/20-common-questions-freshers-ask-when-dealing-with-instant-loans","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/laptop","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loans-in-hyderabad","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-bhubaneswar","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-mysore","src":"GSC"},{"url":"https://www.mpokket.in/lucky50-terms-conditions","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/quick-pay","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-patna","src":"GSC"},{"url":"https://www.mpokket.in/instant-personal-loan/loan-without-documents","src":"GSC"},{"url":"https://www.mpokket.in/interest","src":"GSC"},{"url":"https://www.mpokket.in/blog/securing-a-personal-loan-with-a-low-salary-income-a-guide","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-dehradun","src":"GSC"},{"url":"https://www.mpokket.in/instant-loans-for/laptop","src":"GSC"},{"url":"https://www.mpokket.in/blog/ipl-finances-explained-how-money-works-during-the-biggest-cricket-fest-of-india","src":"GSC"},{"url":"https://www.mpokket.in/blog/what-are-the-funding-solutions-for-salaried-employees","src":"GSC"},{"url":"https://www.mpokket.in/blog/things-you-need-to-know-before-you-apply-for-a-personal-loan-in-hyderabad","src":"GSC"},{"url":"https://www.mpokket.in/blog/15-common-financial-mistakes-that-college-students-make","src":"GSC"},{"url":"https://www.mpokket.in/location/instant-personal-loan-odisha","src":"GSC"},{"url":"https://www.mpokket.in/grievance-","src":"GSC"},{"url":"https://www.mpokket.in/ombudsman","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-to-get-easy-instant-loans-for-salaried-professionals-and-working-students","src":"GSC"},{"url":"https://www.mpokket.in/blog/when-to-consider-urgent-cash-loans-signs-you-need-immediate-financial-assistance","src":"GSC"},{"url":"https://www.mpokket.in/blog/essential-back-to-college-shopping-tips-for-students","src":"GSC"},{"url":"https://www.mpokket.in/blog/financing-gym-memberships-and-wellness-programs-for-students-using-instant-loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/smart-strategies-for-managing-your-monthly-budget-effectively","src":"GSC"},{"url":"https://www.mpokket.in/lsp-","src":"GSC"},{"url":"https://www.mpokket.in/best-investment-plans-epf-vs-ppf","src":"GSC"},{"url":"https://www.mpokket.in/best-investment-plans-epf-vs-ppf","src":"GSC"},{"url":"https://www.mpokket.in/,","src":"GSC"},{"url":"https://www.mpokket.in/convincing-tips-for-students-to-manage-studies-and-personal-finance-simultaneously","src":"GSC"},{"url":"https://www.mpokket.in/blog/places-to-visit-india-monsoon","src":"GSC"},{"url":"https://www.mpokket.in/blog/saving-or-investing-which-is-right-for-you","src":"GSC"}],"i02":[{"url":"https://mpokket.in/instant-loan/","src":"SF"},{"url":"https://mpokket.in/how-to-survive-the-month-end-crunch-as-a-working-professional/","src":"SF"},{"url":"https://mpokket.in/ipl-finances-explained-how-money-works-during-the-biggest-cricket-fest-of-india/","src":"SF"},{"url":"https://mpokket.in/improve-your-financial-literacy-this-lockdown-15-finance-terms-you-must-know/","src":"SF"},{"url":"https://mpokket.in/instant-loans-types/","src":"SF"},{"url":"https://mpokket.in/how-mpokket-ensures-data-security-against-identity-theft/","src":"SF"},{"url":"https://mpokket.in/best-instant-loan-apps-in-india-2020/","src":"SF"},{"url":"https://mpokket.in/services/instant-personal-loan-business","src":"SF"},{"url":"https://mpokket.in/loans-for-emergency/","src":"SF"},{"url":"https://mpokket.in/how-to-get-quick-short-term-personal-loan/","src":"SF"},{"url":"https://mpokket.in/7-smart-ways-to-save-money-as-a-college-student-mpokket/","src":"SF"},{"url":"https://mpokket.in/how-is-the-crif-score-calculated-practices-that-negatively-affect-the-crif-score/","src":"SF"},{"url":"https://mpokket.in/cash-loans/","src":"SF"},{"url":"https://mpokket.in/instant-loan-app-for-salaried/","src":"SF"},{"url":"https://mpokket.in/tips-to-achieve-financial-freedom/","src":"SF"},{"url":"https://mpokket.in/instant-loan-app-for-low-salaried/","src":"SF"},{"url":"https://mpokket.in/what-is-cibil-score-all-you-need-to-know-about-cibil-score-and-how-to-check-it-using-your-pan/","src":"SF"},{"url":"https://mpokket.in/blog-no-cost-emi-merits-demerits/","src":"SF"},{"url":"https://mpokket.in/things-to-consider-for-financial-plan/","src":"SF"},{"url":"https://mpokket.in/how-to-earn-money-during-the-ipl/","src":"SF"},{"url":"https://mpokket.in/benefits-of-topup-loan/","src":"SF"},{"url":"https://mpokket.in/speed-up-loan-approval-process/","src":"SF"},{"url":"https://mpokket.in/avoid-common-credit-card-mistakes/","src":"SF"},{"url":"https://mpokket.in/saving-or-investing/","src":"SF"},{"url":"https://mpokket.in/20-common-questions-college-students-ask-when-dealing-with-instant-loans/","src":"SF"},{"url":"https://mpokket.in/instant-loan-app-for-students/","src":"SF"},{"url":"https://mpokket.in/no-cost-emis-merits-demerits/","src":"SF"},{"url":"https://mpokket.in/short-term-loan/","src":"SF"},{"url":"https://mpokket.in/10-important-money-management-tips/","src":"SF"},{"url":"https://mpokket.in/where-can-i-get-quick-pocket-money-being-a-student/","src":"SF"},{"url":"https://mpokket.in/legal/service-charges","src":"SF"},{"url":"https://mpokket.in/overcome-self-doubt-at-work/","src":"SF"},{"url":"https://mpokket.in/instant-loan","src":"SF"},{"url":"https://mpokket.in/loans-in-mumbai/","src":"SF"},{"url":"https://mpokket.in/how-has-the-pandemic-impacted-the-lives-of-students-young-working-professionals/","src":"SF"},{"url":"https://mpokket.in/ways-ensuring-safe-online-transaction/","src":"SF"},{"url":"https://mpokket.in/different-credit-score-bureaus/","src":"SF"},{"url":"https://mpokket.in/blog/efficient-ways-to-secure-funding-for-educational-expenses","src":"GSC"},{"url":"https://mpokket.in/tips-to-achieve-financial-","src":"GSC"},{"url":"https://mpokket.in/blog/how-can-you-improve-your-chances-of-getting-approved-for-a-loan","src":"GSC"},{"url":"https://mpokket.in/blog/the-future-of-instant-loans-trends-and-innovations-to-watch","src":"GSC"},{"url":"https://mpokket.in/blog/how-to-handle-sudden-job-loss-financial-strategies-for-stability","src":"GSC"},{"url":"https://mpokket.in/blog/what-are-the-best-options-for-instant-financial-assistance","src":"GSC"},{"url":"https://mpokket.in/blog/step-by-step-guide-how-to-apply-for-mpokket-personal-loan","src":"GSC"},{"url":"https://mpokket.in/blog/how-to-integrate-instant-loans-into-your-business-financial-strategy","src":"GSC"},{"url":"https://mpokket.in/blog/how-to-get-a-personal-loan-with-a-low-cibil-score","src":"GSC"},{"url":"https://mpokket.in/blog/smart-strategies-for-managing-finances-with-a-loan","src":"GSC"},{"url":"https://mpokket.in/blog/quick-borrowing-solutions-when-to-consider-and-how-to-use-them","src":"GSC"},{"url":"https://mpokket.in/blog/strategies-for-handling-large-expenses-wisely","src":"GSC"},{"url":"https://mpokket.in/faq_section/can-i-get-a-loan-in-paytm-4","src":"GSC"}],"i03":[{"url":"https://www.mpokket.in/services/instant-personal-loan-business","src":"SF"}],"i04":[{"url":"https://www.mpokket.in/location/instant-personal-loan-hyderabad","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-best-ways-for-kerala-students-to-use-2-lakh-loan-for-education-needs","extra":"70 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-is-the-crif-score-calculated-practices-that-negatively-affect-the-crif-score","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/instant-small-cash-loan-on-aadhaar-card","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-jodhpur-residents-manage-utility-and-bill-payments-with-a-2-lakh-loan","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-mumbai-entrepreneurs-use-2-lakh-loan-for-business","extra":"67 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loan-risks-and-benefits-in-shopping","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-credit-loan-apps-help-students-access-skill-personal-loans","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/services/instant-loans-for-business","extra":"98 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-bangalore","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-pondicherry","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/5-things-you-should-know-about-how-personal-loans-apps-work","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/15-common-financial-mistakes-that-students-make","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-improve-your-credit-score-with-a-personal-loan","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/20-common-questions-student-ask-when-dealing-with-instant-loans","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-plan-your-personal-loan-emi-repayment-better","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-setting-financial-goals-help-you-achieve-your-dreams","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-strategies-for-managing-finances-with-a-loan","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/improve-credit-score","extra":"66 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/quick-borrowing-solutions-when-to-consider-and-how-to-use-them","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/things-to-consider-for-financial-plan","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/things-to-consider-before-applying-for-a-short-term-loan","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/a-comprehensive-guide-to-applying-for-student-loans","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/accessing-quick-financial-solutions-when-you-need-them","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-do-hyderabad-borrowers-prefer-fast-and-hassle-free-personal-loan-options","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-coimbatore-residents-benefit-from-emergency-cash-loans-quickly","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-safety-tips-should-you-follow-when-using-instant-loan-apps","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-pros-and-cons-of-student-loans","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/where-can-bangalore-professionals-apply-for-reliable-and-quick-personal-loans","extra":"93 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/understanding-the-differences-between-short-term-and-long-term-loans","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loans-in-india-why-is-there-an-increase-in-demand","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-mumbai-entrepreneurs-use-instant-loans-for-business-agility","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/best-ways-to-be-aware-and-avoid-scams-in-online-finance","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-skill-development-loans-help-boost-your-career","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-a-personal-loan-in-delhi-for-shopping-with-low-salary","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-loans-can-play-a-part-in-building-your-credit-score","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-loan-apps-support-financial-independence-for-students","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/effective-financial-solutions-for-low-income-earners","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-ahmedabad-borrowers-benefit-from-modern-personal-loan-solutions","extra":"83 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-long-term-returns-can-come-from-investing-in-your-skills","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/common-myths-about-using-loan-apps-for-personal-loans","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/building-your-expertise-how-to-finance-your-career-growth","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-trivandrum","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-raise-a-cibil-dispute","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/budget-2021-all-that-we-can-learn","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/importance-of-sharing-mobile-numbers-and-email-ids-with-credit-institutions","extra":"90 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/digital-banking-features","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-you-finance-your-last-minute-vacation-without-a-credit-card","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-you-need-to-know-before-taking-quick-loans-online","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/the-secret-to-early-financial-planning","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-guwahati","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-you-spot-personal-loan-scams-and-fraud","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-important-are-user-reviews-and-ratings-when-selecting-an-instant-loan-app","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-choose-the-right-online-education-loan-for-you","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/secured-vs-unsecured-loans","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loan-options-for-self-employed-individuals-in-bangalore","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-are-instant-loans-in-nashik-becoming-popular-among-working-youth","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-should-you-look-for-in-a-trusted-instant-emergency-loan-provider","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/ways-for-income-tax-exempt","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-common-mistakes-to-avoid-when-taking-easy-online-loans","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-instant-travel-loans-compare-to-credit-card-travel-rewards","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-do-you-need-to-know-about-getting-a-short-term-loan-online","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-someone-with-a-low-income-can-get-a-personal-loan","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/definitive-guide-to-save-your-vacation-fund-in-times-of-a-pandemic","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/improve-your-financial-literacy-this-lockdown-15-finance-terms-you-must-know","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-stay-secure-from-instant-personal-loan-scams","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-ahmedabad","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/online-vs-offline-where-can-you-apply-for-a-personal-loan-in-bangalore","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/best-instant-loan-apps-in-india-2020","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-choose-a-personal-loan-over-a-salary-advance-loan","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-find-fast-financial-solutions-when-you-need-them-most","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-survive-the-month-end-crunch-as-a-working-professional","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-makes-instant-loan-in-noida-ideal-for-young-professionals","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-loans-can-make-your-shopping-experience-hassle-free","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-pondicherry-families-use-a-2-lakh-loan-for-major-financial-needs","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/when-should-working-professionals-in-pune-consider-instant-travel-loans","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loans-vs-gold-loans-understanding-the-best-option","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-should-you-know-before-taking-an-emergency-loan-online","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-kochi-residents-use-2-lakh-loan-to-start-side-business","extra":"69 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-role-do-quick-online-loans-play-in-financial-flexibility","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-a-quick-personal-loan-in-mumbai-a-step-by-step-guide","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/myths-and-facts-about-instant-loans-you-should-know","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-for-medical-emergency-in-chennai","extra":"81 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-makes-a-quick-cash-loan-app-apart-from-a-traditional-loan","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-for-wedding-in-delhi","extra":"73 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/should-you-get-a-personal-loan-essential-dos-and-donts-to-consider","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-scams-and-fraud-be-avoided-when-applying-for-instant-online-loans","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loan-in-jodhpur-smart-borrowing-tips-for-salaried-professionals","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-coimbatore-borrowers-use-2-lakh-loans-for-smart-planning","extra":"67 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-a-personal-loan-if-you-have-low-salary-income","extra":"64 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-strategies-to-pay-off-your-personal-loan-early","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/factors-to-consider-when-applying-for-a-travel-loan","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/tips-for-loan-approval-with-low-income","extra":"65 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-ways-to-handle-large-medical-bills-without-stress","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-quickly-can-salaried-individuals-get-approved-for-an-instant-loan","extra":"61 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/which-loan-app-approves-instantly-without-salary-slip","extra":"70 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-are-personal-loans-in-jaipur-increasingly-popular-among-salaried-borrowers","extra":"79 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-integrate-instant-loans-into-your-business-financial-strategy","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-has-the-pandemic-impacted-the-lives-of-students-young-working-professionals","extra":"62 chars","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-coimbatore","extra":"63 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-noida-residents-benefit-from-easy-loan-options","extra":"64 chars","src":"SF"}],"i05":[{"url":"https://www.mpokket.in/legal/disclaimer","extra":"Legal (5 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/service-charges","extra":"Service Charges (15 chars)","src":"SF"},{"url":"https://www.mpokket.in/contact","extra":"Contact Us Now - mPokket (24 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/terms-conditions","extra":"Terms & Conditions - mPokket (28 chars)","src":"SF"},{"url":"https://www.mpokket.in/about","extra":"About us (8 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/ombudsman-scheme","extra":"Ombudsman Scheme - mPokket (26 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/code-of-conduct","extra":"Code of Conduct- mPokket (24 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/data-deletion-policy","extra":"Data Deletion Policy (20 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/csr-policy","extra":"CSR Policy - mPokket (20 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/policies","extra":"Other Policies (14 chars)","src":"SF"},{"url":"https://www.mpokket.in/legal/fair-practice-code","extra":"Legal (5 chars)","src":"SF"},{"url":"https://www.mpokket.in/blog","extra":"blog mains (10 chars)","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-individuals-in-indore-avail-instant-loans-for-furniture-purchases","extra":"Blog Inner (10 chars)","src":"SF"},{"url":"https://www.mpokket.in/blog/top-learning-courses-under-10000","extra":"Blog Inner (10 chars)","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-a-personal-loan-in-jaipur-help-residents-plan-short-term-finances","extra":"Blog Inner (10 chars)","src":"SF"}],"i06":[{"url":"https://www.mpokket.in/blog/loan-app-gives-money-without-a-cibil-score","src":"SF"},{"url":"https://www.mpokket.in/blog/fastest-personal-loan-app-in-india","src":"SF"}],"i_blogtpl":[{"url":"https://www.mpokket.in/blog","extra":"blog mains","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-individuals-in-indore-avail-instant-loans-for-furniture-purchases","extra":"Blog Inner","src":"SF"},{"url":"https://www.mpokket.in/blog/top-learning-courses-under-10000","extra":"Blog Inner","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-a-personal-loan-in-jaipur-help-residents-plan-short-term-finances","extra":"Blog Inner","src":"SF"}],"i07":[{"url":"https://www.mpokket.in/blog/where-can-bangalore-salaried-professionals-apply-for-instant-loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/the-advantages-of-travel-loans-in-india-that-you-should-be-aware-of","src":"GSC"},{"url":"https://www.mpokket.in/blog/why-are-instant-loans-in-nashik-becoming-popular-among-working-youth","src":"GSC"},{"url":"https://www.mpokket.in/blog/what-makes-instant-loan-in-noida-ideal-for-young-professionals","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-surat-residents-fund-life-events-with-a-2-lakh-loan","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-self-employed-professionals-in-jaipur-access-instant-business-loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/where-can-bangalore-professionals-apply-for-reliable-and-quick-personal-loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-trivandrum-students-use-loan-for-rent-deposit-to-avoid-housing-hassles","src":"GSC"},{"url":"https://www.mpokket.in/blog/why-are-instant-loans-helpful-for-self-employed-professionals-in-bangalore","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-mumbai-entrepreneurs-use-2-lakh-loan-for-business","src":"GSC"},{"url":"https://www.mpokket.in/blog/why-dehradun-residents-are-opting-for-instant-loan-facilities-online","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-to-manage-financial-emergencies-while-traveling","src":"GSC"},{"url":"https://www.mpokket.in/blog/what-are-the-top-ways-to-stay-financially-stable-during-economic-downturns","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-surat-borrowers-benefit-from-easy-personal-loan-options","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-an-instant-travel-loan-provide-flexibility-in-your-travel-budget","src":"GSC"},{"url":"https://www.mpokket.in/blog/what-makes-instant-personal-loans-in-ahmedabad-a-smart-financial-choice","src":"GSC"},{"url":"https://www.mpokket.in/blog/why-opt-for-home-renovation-loan-in-agra","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-students-and-freelancers-in-agra-get-instant-loans-without-cibil","src":"GSC"},{"url":"https://www.mpokket.in/favicon.ico","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=25","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=22","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=karix&utm_medium=sms_2","src":"GSC"},{"url":"https://www.mpokket.in/policy-on-appointment-of-statutory-auditors","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=3&9aa56272_page=8","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-has-the-pandemic-impacted-the-lives-of-students-young-working-professionals","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=sharechat","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=karix&utm_medium=4510","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=web&utm_medium","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=9","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=6&9aa56272_page=5","src":"GSC"},{"url":"https://www.mpokket.in/nomination-remuneration-policy","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=15&9aa56272_page=3","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=7&9aa56272_page=24","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=24","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=karix&utm_medium=sms","src":"GSC"},{"url":"https://www.mpokket.in/blog/loan-for-wedding-in-Delhi","src":"GSC"},{"url":"https://www.mpokket.in/blog/Instant-loan-in-Trivandrum-for-home-renovation","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=16","src":"GSC"},{"url":"https://www.mpokket.in/blog/How-Can-Kochi-Residents-Use-2-Lakh-Loan-to-Start-Side-Business","src":"GSC"},{"url":"https://www.mpokket.in/blog/Why-Do-Hyderabad-Borrowers-Prefer-Fast-and-Hassle-Free-Personal-Loan-Options","src":"GSC"},{"url":"https://www.mpokket.in/blog/How-Can-Mumbai-Entrepreneurs-Use-2-Lakh-Loan-for-Business","src":"GSC"},{"url":"https://www.mpokket.in/blog/Why-Are-Personal-Loans-in-Jaipur-Increasingly-Popular-Among-Salaried-Borrowers","src":"GSC"},{"url":"https://www.mpokket.in/blog/How-Can-Ahmedabad-Borrowers-Benefit-from-Modern-Personal-Loan-Solutions","src":"GSC"},{"url":"https://www.mpokket.in/blog/Where-Can-Bangalore-Professionals-Apply-for-Reliable-and-Quick-Personal-Loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/loan-for-medical-emergency-in-Chennai","src":"GSC"},{"url":"https://www.mpokket.in/blog/What-Are-the-Best-Ways-for-Kerala-Students-to-Use-2-Lakh-Loan-for-Education-Needs","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=19","src":"GSC"},{"url":"https://www.mpokket.in/related-party-transaction-policy","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=8&9aa56272_page=4","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=3","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=8","src":"GSC"},{"url":"https://web.mpokket.in/?utm_source=webgetloan&utm_medium=mp_web","src":"GSC"},{"url":"https://preprod-mf-web.mpokket.in/","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=13&9aa56272_page=17","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=17&9aa56272_page=3","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=22&9aa56272_page=9","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=26&9aa56272_page=30","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=4&9aa56272_page=3","src":"GSC"}],"i08":[{"url":"https://www.mpokket.in/blog?32b3e91b_page=8","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=9&9aa56272_page=9","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=8&9aa56272_page=3","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=6&9aa56272_page=16","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=5&9aa56272_page=15","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=7&9aa56272_page=3","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=18","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=11","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=13&9aa56272_page=18","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=14&9aa56272_page=11","src":"GSC"},{"url":"https://www.mpokket.in/blog?9aa56272_page=6","src":"GSC"},{"url":"https://cdn.mpokket.in/APPOINTMENT_LETTER_ANIRUDH_CH_3e3bc33c5d.pdf","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=6","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=5&9aa56272_page=6","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=14","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=9&9aa56272_page=6","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=5","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=7","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=16","src":"GSC"},{"url":"https://cdn.mpokket.in/english_21acf3ac52.pdf","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=11","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=2&9aa56272_page=11","src":"GSC"},{"url":"https://cdn.mpokket.in/b_9d2345ca28.pdf","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=12","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=3&9aa56272_page=5","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=5&9aa56272_page=5","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=20&9aa56272_page=25","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=2","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=2&9aa56272_page=1","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=4&9aa56272_page=10","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=5&9aa56272_page=14","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=11&9aa56272_page=5","src":"GSC"},{"url":"https://www.mpokket.in/blog?32b3e91b_page=18&9aa56272_page=18","src":"GSC"}],"i09":[{"url":"https://www.mpokket.in/blog/from-everything-that-changed-to-impact-budget-2021","src":"GSC"},{"url":"https://www.mpokket.in/blog/guide-to-instant-loans-for-salaried-individuals","src":"GSC"},{"url":"https://www.mpokket.in/blog/how-can-chennai-residents-benefit-from-instant-short-term-loans","src":"GSC"},{"url":"https://www.mpokket.in/blog/instant-loan-in-trivandrum-for-home-renovation","src":"GSC"},{"url":"https://www.mpokket.in/blog/instant-loan-vs-salary-advance-which-is-the-better-option-for-salaried-workers","src":"GSC"},{"url":"https://www.mpokket.in/blog/international-women-s-day-women-are-investing-for-a-brighter-future","src":"GSC"},{"url":"https://www.mpokket.in/blog/personal-loan-in-bangalore-how-does-it-help-residents-to-manage-urban-financial-pressure","src":"GSC"},{"url":"https://www.mpokket.in/blog/top-10-smartphones-under-20000","src":"GSC"},{"url":"https://www.mpokket.in/blog/top-5-tips-for-salaried-employees-to-secure-a-personal-loan-in-india","src":"GSC"},{"url":"https://www.mpokket.in/blog/why-do-hyderabad-borrowers-prefer-fast-and-hassle-free-personal-loan-options","src":"GSC"}],"i10":[{"url":"https://www.mpokket.in/privacy-and-data-storage-policy","src":"GSC"},{"url":"https://www.mpokket.in/digital-lending","src":"GSC"},{"url":"https://www.mpokket.in/grievance-redressal-policy","src":"GSC"},{"url":"https://www.mpokket.in/policies","src":"GSC"},{"url":"https://www.mpokket.in/ombudsman-scheme","src":"GSC"},{"url":"https://www.mpokket.in/terms-conditions","src":"GSC"},{"url":"https://www.mpokket.in/interest-rate-policy","src":"GSC"},{"url":"https://www.mpokket.in/services/instant-personal-loan-business","src":"GSC"},{"url":"http://www.mpokket.in/","src":"GSC"},{"url":"https://www.mpokket.in/penal-charge-policy","src":"GSC"},{"url":"https://www.mpokket.in/services/instant-loans-for-working-students","src":"GSC"},{"url":"https://www.mpokket.in/data-deletion-policy","src":"GSC"},{"url":"https://www.mpokket.in/disclosures","src":"GSC"},{"url":"https://mpokket.in/","src":"GSC"},{"url":"https://www.mpokket.in/code-of-conduct","src":"GSC"},{"url":"https://www.mpokket.in/fair-practice-code","src":"GSC"},{"url":"https://www.mpokket.in/corporate-governance-policy","src":"GSC"},{"url":"https://www.mpokket.in/csr-policy","src":"GSC"}],"i11":[{"url":"https://www.mpokket.in/blog/7-key-factors-to-consider-before-applying-for-an-instant-personal-loan","extra":"165 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/top-5-tips-for-salaried-employees-to-secure-a-personal-loan-in-india","extra":"165 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-best-ways-for-kerala-students-to-use-2-lakh-loan-for-education-needs","extra":"187 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/ipl-finances-explained-how-money-works-during-the-biggest-cricket-fest-of-india","extra":"164 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-loan-apps-can-help-you-in-financial-emergencies","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-mumbai-entrepreneurs-use-2-lakh-loan-for-business","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loan-risks-and-benefits-in-shopping","extra":"165 chars","src":"SF"},{"url":"https://www.mpokket.in/legal/terms-conditions","extra":"167 chars","src":"SF"},{"url":"https://www.mpokket.in/legal/grievance-redressal-policy","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/legal/disclosures","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/step-by-step-guide-how-to-apply-for-mpokket-personal-loan","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-improve-your-credit-score-with-a-personal-loan","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-are-instant-loans-in-pondicherry-ideal-for-self-employed-professionals","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/things-to-consider-before-applying-for-a-short-term-loan","extra":"173 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-do-hyderabad-borrowers-prefer-fast-and-hassle-free-personal-loan-options","extra":"178 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/where-can-bangalore-professionals-apply-for-reliable-and-quick-personal-loans","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/essential-back-to-college-shopping-tips-for-students","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/small-instant-loans-benefits-easy-access-and-key-considerations","extra":"172 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-dehradun-residents-are-opting-for-instant-loan-facilities-online","extra":"178 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-nagpur-families-manage-shopping-needs-using-a-2-lakh-loan","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-key-factors-lenders-consider-when-making-low-salary-instant-loans","extra":"164 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-ahmedabad-borrowers-benefit-from-modern-personal-loan-solutions","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-personal-loans-in-pune-help-manage-unexpected-expenses","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-handle-sudden-job-loss-financial-strategies-for-stability","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/emergency-loans-vs-credit-cards-which-is-the-more-cost-effective-option","extra":"190 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-does-credit-score-impact-your-instant-2000-loan-approval","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/managing-high-cost-of-living-in-delhi-financial-tips-and-resources","extra":"172 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/why-are-instant-loans-in-nashik-becoming-popular-among-working-youth","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/short-term-loans-vs-long-term-loans-your-ultimate-guide","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/best-wedding-gifts-under-20000","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-pondicherry-residents-benefit-from-instant-loan-services-online","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/a-comprehensive-guide-to-digital-personal-loans-in-india","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-makes-instant-loan-in-noida-ideal-for-young-professionals","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-kochi-residents-use-2-lakh-loan-to-start-side-business","extra":"186 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/what-documents-are-needed-for-online-instant-personal-loans-in-mumbai","extra":"165 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/affordable-travel-tips-for-low-income-earners","extra":"163 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/are-online-loans-better","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-easy-instant-loans-for-salaried-professionals-and-working-students","extra":"164 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-freelancers-benefit-from-instant-cash-loans-to-handle-income-gaps","extra":"162 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/convincing-tips-for-students-to-manage-studies-and-personal-finance-simultaneously","extra":"165 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-scams-and-fraud-be-avoided-when-applying-for-instant-online-loans","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-strategies-to-pay-off-your-personal-loan-early","extra":"161 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/which-loan-app-approves-instantly-without-salary-slip","extra":"194 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-self-employed-professionals-in-jaipur-access-instant-business-loans","extra":"166 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/travel-loan-vs-credit-cards-which-is-the-better-option-for-vacations","extra":"168 chars","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-noida-residents-benefit-from-easy-loan-options","extra":"166 chars","src":"SF"}],"i12":[{"url":"https://www.mpokket.in/legal/disclaimer","src":"SF"},{"url":"https://www.mpokket.in/legal/fair-practice-code","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-individuals-in-indore-avail-instant-loans-for-furniture-purchases","src":"SF"},{"url":"https://www.mpokket.in/blog/top-learning-courses-under-10000","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-app-gives-money-without-a-cibil-score","src":"SF"},{"url":"https://www.mpokket.in/blog/fastest-personal-loan-app-in-india","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-a-personal-loan-in-jaipur-help-residents-plan-short-term-finances","src":"SF"}],"i13":[{"url":"https://www.mpokket.in/legal/disclaimer","extra":"Legal","src":"SF"},{"url":"https://www.mpokket.in/legal/fair-practice-code","extra":"Legal","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-individuals-in-indore-avail-instant-loans-for-furniture-purchases","extra":"Blog Inner","src":"SF"},{"url":"https://www.mpokket.in/blog/top-learning-courses-under-10000","extra":"Blog Inner","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-a-personal-loan-in-jaipur-help-residents-plan-short-term-finances","extra":"Blog Inner","src":"SF"}],"i14":[{"url":"https://www.mpokket.in/contact","src":"SF"},{"url":"https://www.mpokket.in/legal/lodge-a-complaint","src":"SF"}],"i15":[{"url":"https://www.mpokket.in/legal/disclaimer","extra":"129 words","src":"SF"},{"url":"https://www.mpokket.in/legal/service-charges","extra":"83 words","src":"SF"},{"url":"https://www.mpokket.in/career","extra":"290 words","src":"SF"},{"url":"https://www.mpokket.in/legal/ombudsman-scheme","extra":"115 words","src":"SF"},{"url":"https://www.mpokket.in/legal/policies","extra":"86 words","src":"SF"},{"url":"https://www.mpokket.in/legal/fair-practice-code","extra":"112 words","src":"SF"},{"url":"https://www.mpokket.in/loan-type","extra":"52 words","src":"SF"},{"url":"https://www.mpokket.in/legal/interest-rate-policy","extra":"163 words","src":"SF"},{"url":"https://www.mpokket.in/legal/disclosures","extra":"154 words","src":"SF"},{"url":"https://www.mpokket.in/loan-type/home-renovation","extra":"215 words","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-rajkot","extra":"292 words","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-app-gives-money-without-a-cibil-score","extra":"0 words","src":"SF"},{"url":"https://www.mpokket.in/blog/fastest-personal-loan-app-in-india","extra":"0 words","src":"SF"}],"i16":[{"url":"https://www.mpokket.in/blog/how-secure-are-easy-online-loans-and-how-is-your-data-protected","extra":"2036ms","src":"SF"},{"url":"https://www.mpokket.in/services/instant-personal-loan-flexi","extra":"1297ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-choose-the-best-app-for-an-instant-personal-loan-in-pondicherry","extra":"1288ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-options-for-instant-travel-loans-in-hyderabad","extra":"1265ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-makes-personal-loans-in-noida-ideal-for-working-salaried-professionals","extra":"1261ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-an-emergency-loan-for-rent-when-youre-short-on-cash","extra":"1259ms","src":"SF"},{"url":"https://www.mpokket.in/legal/grievance-redressal-policy","extra":"1258ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-secure-quick-cash-instant-loan-options-explained","extra":"1257ms","src":"SF"},{"url":"https://www.mpokket.in/blog/best-ways-to-be-aware-and-avoid-scams-in-online-finance","extra":"1254ms","src":"SF"},{"url":"https://www.mpokket.in/legal/digital-lending","extra":"1247ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-self-employed-professionals-in-pune-access-instant-loans","extra":"1243ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-common-mistakes-to-avoid-when-taking-easy-online-loans","extra":"1243ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-pros-and-cons-of-student-loans","extra":"1242ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-makes-a-quick-cash-loan-app-apart-from-a-traditional-loan","extra":"1242ms","src":"SF"},{"url":"https://www.mpokket.in/blog/20-common-questions-student-ask-when-dealing-with-instant-loans","extra":"1241ms","src":"SF"},{"url":"https://www.mpokket.in/blog/ways-for-income-tax-exempt","extra":"1235ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-role-do-quick-online-loans-play-in-financial-flexibility","extra":"1233ms","src":"SF"},{"url":"https://www.mpokket.in/blog/convincing-tips-for-students-to-manage-studies-and-personal-finance-simultaneously","extra":"1233ms","src":"SF"},{"url":"https://www.mpokket.in/blog/from-everything-that-changed-to-impact-budget-2021","extra":"1230ms","src":"SF"},{"url":"https://www.mpokket.in/blog/improve-your-financial-literacy-this-lockdown-15-finance-terms-you-must-know","extra":"1227ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-rbi-regulations-affect-instant-loan-apps-in-india","extra":"1226ms","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-guwahati","extra":"1225ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-surat-residents-get-instant-loans-with-aadhar","extra":"1223ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-a-personal-loan-in-jaipur-help-residents-plan-short-term-finances","extra":"1223ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-jodhpur-residents-cover-medical-expenses-using-a-2-lakh-loan","extra":"1221ms","src":"SF"},{"url":"https://www.mpokket.in/blog/instant-loan-vs-salary-advance-which-is-the-better-option-for-salaried-workers","extra":"1220ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-you-get-a-personal-loan-in-noida-without-hassle","extra":"1219ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-manage-financial-emergencies-while-traveling","extra":"1216ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-benefits-of-quick-short-term-and-travel-loans","extra":"1214ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-travel-loans-empower-budget-travelers-to-plan-ahead","extra":"1212ms","src":"SF"},{"url":"https://www.mpokket.in/blog/understanding-interest-rates-and-fees-on-instant-loan-apps","extra":"1197ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-guwahati-startups-access-instant-loans-for-business-expansion","extra":"1183ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-self-employed-individuals-manage-cash-flow-gaps","extra":"1179ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-improve-your-credit-score-with-a-personal-loan","extra":"597ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-an-instant-loan-app-provide-personal-and-emergency-loans-in-hyderabad","extra":"595ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-budget-when-using-a-loan-for-shopping-to-ensure-you-dont-overspend","extra":"595ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-do-you-need-to-know-about-getting-a-short-term-loan-online","extra":"594ms","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-for-medical-emergency-in-chennai","extra":"593ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-documents-are-actually-needed-for-digital-loans","extra":"590ms","src":"SF"},{"url":"https://www.mpokket.in/blog/5-things-you-should-know-about-how-personal-loans-apps-work","extra":"587ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-eligibility-criteria-for-a-personal-loan-in-pondicherry","extra":"586ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-kochi-businesses-get-instant-business-loan-online-during-cash-crunches","extra":"583ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-should-you-look-for-in-a-trusted-instant-emergency-loan-provider","extra":"582ms","src":"SF"},{"url":"https://www.mpokket.in/blog/quick-tips-to-identify-secure-instant-loan-apps","extra":"578ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-benefits-of-using-a-personal-loan-for-furniture-purchases","extra":"577ms","src":"SF"},{"url":"https://www.mpokket.in/blog/debt-consolidation-loans-pros-cons-and-is-it-the-best-choice-for-you","extra":"577ms","src":"SF"},{"url":"https://www.mpokket.in/blog/are-online-loans-better","extra":"575ms","src":"SF"},{"url":"https://www.mpokket.in/blog/secured-vs-unsecured-loans","extra":"572ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-quick-loans-online-support-freelancers","extra":"570ms","src":"SF"},{"url":"https://www.mpokket.in/blog/co-borrower-vs-co-signer-understanding-the-key-differences","extra":"567ms","src":"SF"},{"url":"https://www.mpokket.in/blog/should-you-get-a-personal-loan-essential-dos-and-donts-to-consider","extra":"564ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-long-term-returns-can-come-from-investing-in-your-skills","extra":"562ms","src":"SF"},{"url":"https://www.mpokket.in/blog/things-you-need-to-know-before-you-apply-for-a-personal-loan-in-hyderabad","extra":"562ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-delhi-residents-use-a-2-lakh-loan-for-home-setup","extra":"562ms","src":"SF"},{"url":"https://www.mpokket.in/blog/instant-loans-for-low-income-individuals-what-you-need-to-know","extra":"562ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-best-instant-loan-options-for-low-salaried-earners-in-chennai","extra":"561ms","src":"SF"},{"url":"https://www.mpokket.in/blog/exploring-the-benefits-of-small-personal-loans","extra":"561ms","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-jaipur","extra":"558ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-hyderabad-residents-use-a-2-lakh-loan-for-financial-stability","extra":"558ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-stay-secure-from-instant-personal-loan-scams","extra":"558ms","src":"SF"},{"url":"https://www.mpokket.in/blog/why-is-an-instant-loan-better-than-other-types-of-loans","extra":"558ms","src":"SF"},{"url":"https://www.mpokket.in/blog/guide-to-instant-loans-for-salaried-individuals","extra":"558ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-advantages-of-using-travel-loans","extra":"557ms","src":"SF"},{"url":"https://www.mpokket.in/blog/ways-to-change-mode-of-repayment","extra":"557ms","src":"SF"},{"url":"https://www.mpokket.in/blog/tips-for-getting-financial-help-without-complicated-procedures","extra":"557ms","src":"SF"},{"url":"https://www.mpokket.in/blog/5-best-instant-loan-apps-for-freshers-in-2026","extra":"556ms","src":"SF"},{"url":"https://www.mpokket.in/ticket-size/30000-instant-personal-loan","extra":"556ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-delhi-residents-manage-high-living-costs-with-a-2-lakh-loan","extra":"555ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-secure-are-easy-small-loans-from-online-lenders","extra":"554ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-you-revamp-your-retail-therapy-with-financial-freedom","extra":"554ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-salaried-professionals-leverage-personal-loan-in-chennai-for-debt-management","extra":"554ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-kochi-residents-apply-for-instant-loans-for-immediate-financial-support","extra":"554ms","src":"SF"},{"url":"https://www.mpokket.in/blog/emergency-fund-guide-for-freshers","extra":"553ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-instant-travel-loan-in-delhi","extra":"553ms","src":"SF"},{"url":"https://www.mpokket.in/blog/boost-credit-score-as-student","extra":"553ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-pondicherry-residents-fund-vehicle-purchases-using-a-2-lakh-loan","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-bangalore-students-cover-course-costs-with-a-2-lakh-loan","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/personal-loan-in-jodhpur-smart-borrowing-tips-for-salaried-professionals","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-instant-loan-apps-are-making-travel-more-accessible","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-impact-do-online-shopping-loans-have-on-a-consumers-credit-score","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/managing-small-debts-a-guide-to-short-term-borrowing","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/international-women-s-day-women-are-investing-for-a-brighter-future","extra":"552ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-jodhpur-residents-handle-urgent-expenses-with-a-2-lakh-loan","extra":"551ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-do-you-get-your-car-repaired-serviced-using-emergency-loans","extra":"551ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-you-get-an-urgent-1000-loan-on-aadhaar-card-for-shopping","extra":"550ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-digital-lending-helps-students-in-india","extra":"550ms","src":"SF"},{"url":"https://www.mpokket.in/location/instant-personal-loan-ahmedabad","extra":"550ms","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-easiest-ways-to-get-easy-loans-in-surat","extra":"549ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-guwahati-residents-fund-medical-expenses-with-a-2-lakh-loan","extra":"549ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-you-speed-up-the-loan-application-process-with-the-right-documentation","extra":"547ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-jodhpur-businesses-use-instant-loans-for-working-capital","extra":"546ms","src":"SF"},{"url":"https://www.mpokket.in/blog/why-are-salaried-employees-more-likely-to-qualify-for-instant-personal-loans","extra":"546ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-nagpur-entrepreneurs-apply-for-instant-loans-for-business-growth","extra":"545ms","src":"SF"},{"url":"https://www.mpokket.in/blog/financial-inclusion-india-access-to-credit","extra":"545ms","src":"SF"},{"url":"https://www.mpokket.in/blog/best-wedding-gifts-under-20000","extra":"544ms","src":"SF"},{"url":"https://www.mpokket.in/blog/guide-to-travel-loans-everything-you-need-to-know","extra":"543ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-hyderabad-residents-use-a-2-lakh-loan-for-emergency-expenses","extra":"541ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-freelancers-benefit-from-instant-cash-loans-to-handle-income-gaps","extra":"540ms","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-ways-to-use-online-loans","extra":"539ms","src":"SF"},{"url":"https://www.mpokket.in/blog/when-should-you-consider-getting-an-emergency-loan","extra":"538ms","src":"SF"},{"url":"https://www.mpokket.in/blog/annual-percentage-rate-explained","extra":"537ms","src":"SF"},{"url":"https://www.mpokket.in/blog/things-young-professionals-must-know-before-taking-a-loan","extra":"537ms","src":"SF"},{"url":"https://www.mpokket.in/blog/mistakes-debt-consolidation-loan","extra":"537ms","src":"SF"},{"url":"https://www.mpokket.in/blog/effective-budgeting-tips-for-single-parents","extra":"536ms","src":"SF"},{"url":"https://www.mpokket.in/blog/how-can-scams-and-fraud-be-avoided-when-applying-for-instant-online-loans","extra":"533ms","src":"SF"},{"url":"https://www.mpokket.in/blog/digital-banking-features-and-e-wallets","extra":"269ms","src":"SF"}],"i17":[{"url":"https://www.mpokket.in/blog/10-important-money-management-tips","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-pros-and-cons-of-personal-loans","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-an-instant-2000-loan-for-emergency-expenses","src":"SF"},{"url":"https://www.mpokket.in/blog/loan-payment-management-strategies-and-tips-for-success","src":"SF"},{"url":"https://www.mpokket.in/blog/detailed-debt-consolidation","src":"SF"},{"url":"https://www.mpokket.in/blog/what-is-cibil-score-all-you-need-to-know-about-cibil-score-and-how-to-check-it-using-your-pan","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-approved-for-a-quick-cash-loan-online-in-minutes","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-get-an-emergency-loan-with-terms-you-can-manage","src":"SF"},{"url":"https://www.mpokket.in/blog/quick-borrowing-solutions-when-to-consider-and-how-to-use-them","src":"SF"},{"url":"https://www.mpokket.in/blog/things-to-consider-for-financial-plan","src":"SF"},{"url":"https://www.mpokket.in/blog/things-to-consider-before-applying-for-a-short-term-loan","src":"SF"},{"url":"https://www.mpokket.in/blog/how-to-maximize-your-financial-potential-with-quick-access-to-funds","src":"SF"},{"url":"https://www.mpokket.in/blog/what-you-should-know-about-instant-emergency-loans-for-medical-expenses","src":"SF"},{"url":"https://www.mpokket.in/blog/a-comprehensive-guide-to-applying-for-student-loans","src":"SF"},{"url":"https://www.mpokket.in/blog/saving-or-investing","src":"SF"},{"url":"https://www.mpokket.in/blog/5-ways-your-employment-status-impacts-personal-loan-approval","src":"SF"},{"url":"https://www.mpokket.in/blog/debt-consolidation-loans-pros-cons-and-is-it-the-best-choice-for-you","src":"SF"},{"url":"https://www.mpokket.in/blog/smart-strategies-for-easy-student-loan-repayment","src":"SF"},{"url":"https://www.mpokket.in/blog/accessing-quick-financial-solutions-when-you-need-them","src":"SF"},{"url":"https://www.mpokket.in/blog/what-are-the-pros-and-cons-of-student-loans","src":"SF"}],"i18":[{"url":"https://web-api.mpokket.in/*","src":"GSC"},{"url":"https://disbursement-vendor-icici.mpokket.in/","src":"GSC"},{"url":"https://app.mpokket.in/dd","src":"GSC"},{"url":"https://uat-disbursement-vendor-yes.mpokket.in/","src":"GSC"},{"url":"https://insurance-web-bff.mpokket.in/","src":"GSC"},{"url":"https://uat-disbursement-vendor-icici.mpokket.in/","src":"GSC"}]};
-
-var ISSUES=[
-{id:'i01',cat:'errors',prio:'high',title:'404 Not Found — 129 pages',count:129,pill:'pill-red',src:['SF+GSC','GSC'],btn:'red',plain:'129 pages lead to a dead end. 48 confirmed broken by both Screaming Frog and Google. 58 additional found only by Google Search Console.',fix:'Map each URL to the nearest working page and set up 301 redirects. ThirdSlash will create the full redirect mapping.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i02',cat:'errors',prio:'high',title:'Server Error (525/5xx) — 50 pages',count:50,pill:'pill-red',src:['SF','GSC'],btn:'red',plain:'50 pages fail with server errors. The non-www version of mpokket.in has a broken SSL certificate. SF found 37, GSC found 13 more.',fix:'Fix SSL in Cloudflare. Set to Full (Strict). Add 301 from all non-www to www.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i03',cat:'errors',prio:'medium',title:'302 Temporary Redirect — 1 page',count:1,pill:'pill-amber',src:['SF'],btn:'amber',plain:'One page uses a temporary redirect. Google does not pass full ranking credit through a 302.',fix:'Change to 301 in the Next.js redirects config. One-line change.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i04',cat:'onpage',prio:'high',title:'Title tag too long — 102 pages',count:102,pill:'pill-red',src:['SF'],btn:'red',plain:'102 pages have titles over 60 characters. Google cuts them off in search results, reducing click-through rates.',fix:'Rewrite each to 50-60 characters with the main keyword near the beginning.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i05',cat:'onpage',prio:'high',title:'Title tag too short — 15 pages',count:15,pill:'pill-red',src:['SF'],btn:'red',plain:'15 pages have vague short titles like "Legal" (5 chars) or "About us" (8 chars). These hurt rankings.',fix:'Expand each to include the primary keyword and brand name.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i06',cat:'onpage',prio:'high',title:'Missing title tag — 2 pages',count:2,pill:'pill-red',src:['SF'],btn:'red',plain:'Two blog pages have no title tag at all. Google will generate a random title or skip ranking these pages.',fix:'Add unique keyword-rich titles to both pages.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i_blogtpl',cat:'onpage',prio:'high',title:'Blog template placeholder titles — 4 pages',count:4,pill:'pill-red',src:['SF'],btn:'red',plain:'4 pages show "Blog Inner" or "blog mains" as their title. Developer placeholder values showing live. These pages are invisible in Google search.',fix:'Developer fixes the Next.js blog template so each page pulls its title dynamically from the CMS.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i07',cat:'gsc',prio:'high',title:'Crawled — currently not indexed — 58 pages',count:58,pill:'pill-amber',src:['GSC'],btn:'amber',plain:'Google crawled these 58 pages but chose not to include them in search results. Usually means thin content or duplicate content.',fix:'Review each page for content quality. Add more unique, useful content. Internal linking also helps.',devNote:'seo',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i08',cat:'gsc',prio:'medium',title:'Duplicate without canonical — 33 pages',count:33,pill:'pill-amber',src:['GSC'],btn:'amber',plain:'33 blog pagination URLs have no canonical tag. Google is confused about which version to index.',fix:'Add canonical tags pointing to the main /blog URL on all paginated pages.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i09',cat:'gsc',prio:'medium',title:'Discovered — currently not indexed — 10 pages',count:10,pill:'pill-blue',src:['GSC'],btn:'blue',plain:'Google found these 10 pages via links but has not crawled them yet. Not seen as important enough.',fix:'Add internal links from high-authority pages. Submit via Search Console URL inspection.',devNote:'seo',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i10',cat:'gsc',prio:'medium',title:'Pages with redirect in GSC — 18 pages',count:18,pill:'pill-amber',src:['GSC'],btn:'amber',plain:'18 old URLs still in Google index but now redirect. Old legal and service page URLs Google still remembers.',fix:'Update all internal links and backlinks to point directly to the new destination URL.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i11',cat:'onpage',prio:'medium',title:'Meta description too long — 46 pages',count:46,pill:'pill-amber',src:['SF'],btn:'amber',plain:'46 pages have meta descriptions over 160 characters. Google cuts them off mid-sentence in results.',fix:'Trim to under 155 characters. Keep the most important benefit and call to action first.',devNote:'seo',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i12',cat:'onpage',prio:'medium',title:'Missing meta description — 7 pages',count:7,pill:'pill-amber',src:['SF'],btn:'amber',plain:'7 pages have no meta description. Google picks random text which often looks unprofessional.',fix:'Write a 120-155 character description for each page with a clear benefit and call to action.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i13',cat:'onpage',prio:'medium',title:'Duplicate title tags — 5 pages',count:5,pill:'pill-amber',src:['SF'],btn:'amber',plain:'5 pages share the same title. Google gets confused about which page to show in results.',fix:'Give each page a unique descriptive title.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i14',cat:'onpage',prio:'medium',title:'Multiple H1 headings — 2 pages',count:2,pill:'pill-amber',src:['SF'],btn:'amber',plain:'Two pages have more than one main heading. Two chapter titles on the same page confuses Google about the topic.',fix:'Keep exactly one H1 per page. Change extra H1s to H2.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i15',cat:'content',prio:'high',title:'Thin content — 13 pages under 300 words',count:13,pill:'pill-red',src:['SF'],btn:'red',plain:'13 pages have very little text. Google rarely ranks pages without enough useful information.',fix:'Add at least 400-600 words of useful content to each page.',devNote:'seo',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i16',cat:'technical',prio:'high',title:'Slow response — 106 pages over 200ms',count:106,pill:'pill-amber',src:['SF'],btn:'amber',plain:'106 pages respond in over 200ms. One page takes 2 full seconds. Slow pages rank lower and users leave.',fix:'Investigate server response time, image optimisation, and caching.',devNote:'dev',own:'Developer',stat:'Not Completed'},
-{id:'i17',cat:'technical',prio:'medium',title:'Pages at crawl depth 4+ — 20 pages',count:20,pill:'pill-amber',src:['SF'],btn:'amber',plain:'20 pages require 4+ clicks from the homepage. Google crawlers deprioritise deeply buried pages.',fix:'Add links to these pages from higher-level pages or add to main navigation.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'},
-{id:'i18',cat:'gsc',prio:'low',title:'Blocked (403) — internal subdomains — 6 pages',count:6,pill:'pill-blue',src:['GSC'],btn:'blue',plain:'Google tried to crawl 6 internal API subdomains and was blocked. These are likely intentional.',fix:'If intentional: add to robots.txt so Google stops trying. If not: check server access rules.',devNote:'both',own:'ThirdSlash',stat:'Not Completed'}
-];
-
-function loadState(){try{var s=localStorage.getItem(SK);if(s)state=JSON.parse(s);}catch(e){}ISSUES.forEach(function(i){if(!state[i.id])state[i.id]={owner:i.own,status:i.stat};});}
-function saveState(){try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}var ind=document.getElementById('save-indicator');ind.classList.add('visible');clearTimeout(ind._t);ind._t=setTimeout(function(){ind.classList.remove('visible');},2000);}
-function ownerClass(o){return o==='ThirdSlash'?'owner-thirdslash':o==='Client'?'owner-client':'owner-developer';}
-function statusClass(s){return{'Under Review':'status-under-review','Completed':'status-completed','Not Completed':'status-not-completed','Blocked':'status-blocked','Waiting for Approval':'status-waiting','Rejected':'status-rejected'}[s]||'status-not-completed';}
-
-function buildPanel(issue){
-  var urls=ALL_URLS[issue.id];
-  if(!urls||!urls.length)return '';
-  var hasSrc=urls.some(function(u){return u.src;});
-  var rows=urls.map(function(o,i){
-    var srcCls=o.src==='SF+GSC'?'src-both':o.src==='GSC'?'src-gsc':'src-sf';
-    var srcHtml=o.src?'<span class="url-src-tag src-tag '+srcCls+'">'+o.src+'</span>':'';
-    var extraHtml=o.extra?'<span style="font-size:10px;color:var(--text-light);margin-left:8px;white-space:nowrap;">'+o.extra+'</span>':'';
-    var encoded=encodeURIComponent(o.url);
-    return '<tr class="url-row" data-url="'+encoded+'" style="cursor:pointer;" title="Click to copy"><td class="url-sr">'+(i+1)+'.</td><td style="display:flex;align-items:center;gap:0;"><span class="url-text" style="flex:1;">'+o.url+'</span>'+extraHtml+'</td>'+(hasSrc?'<td>'+srcHtml+'</td>':'')+'</tr>';
-  }).join('');
-  var thSrc=hasSrc?'<th style="width:70px;">Source</th>':'';
-  return '<tr class="url-panel-row" id="panel-'+issue.id+'"><td colspan="7" style="padding:0;background:#FAFBFC;border-top:2px solid var(--border);"><div class="url-panel"><div class="url-panel-title"><span style="color:var(--text-muted);">All '+urls.length+' URLs &#8212; click any row to copy</span><button class="copy-all-btn" data-id="'+issue.id+'">&#128203; Copy all</button></div><div style="overflow-x:auto;"><table class="url-table"><thead><tr><th style="width:40px;">#</th><th>URL</th>'+thSrc+'</tr></thead><tbody>'+rows+'</tbody></table></div></div></td></tr>';
-}
-
-function updateFilterCount(v){if(v===undefined)v=ISSUES.length;document.getElementById('filter-count').textContent='Showing '+v+' of '+ISSUES.length+' issues';document.getElementById('issue-badge').textContent=ISSUES.length+' issues found';}
-
-// panel toggle handled by event delegation
-
-function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2000);}
-
-function copyText(text,label){
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){showToast(label);}).catch(function(){fallbackCopy(text,label);});
-  }else{fallbackCopy(text,label);}
-}
-function fallbackCopy(text,label){try{var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);showToast(label);}catch(e){showToast('Select text to copy');}}
-
-// Event delegation — no inline onclick needed, avoids all escaping issues
-document.addEventListener('click',function(e){
-  var row=e.target.closest('.url-row');
-  if(row){
-    var enc=row.getAttribute('data-url');
-    if(enc){copyText(decodeURIComponent(enc),'Copied!');}
-    return;
-  }
-  var cb=e.target.closest('.copy-all-btn');
-  if(cb){
-    var id=cb.getAttribute('data-id');
-    if(id){
-      var urls=(ALL_URLS[id]||[]).map(function(u){return u.url;}).join('\n');
-      copyText(urls,'Copied '+(ALL_URLS[id]||[]).length+' URLs');
-    }
-    return;
-  }
-  var tb=e.target.closest('.expand-toggle');
-  if(tb){
-    var pid=tb.getAttribute('data-panel-id');
-    if(pid){
-      var p=document.getElementById('panel-'+pid);
-      var isOpen=p&&p.classList.contains('open');
-      if(p)p.classList.toggle('open',!isOpen);
-      tb.textContent=isOpen?'View all '+(ALL_URLS[pid]||[]).length+' URLs ▾':'Hide list ▴';
-    }
-    return;
-  }
-  var sc=e.target.closest('.row-select');
-  if(sc)e.stopPropagation();
-});
-
-// updateOwner handled by event delegation
-// updateStatus handled by event delegation
-
-var aC='all',aP='all',aS='all';
-function filterCat(c,btn){aC=c;document.querySelectorAll('.filter-chip').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');applyFilters();}
-function filterPrio(v){aP=v;applyFilters();}
-function filterStat(v){aS=v;applyFilters();}
-function applyFilters(){
-  var rows=document.querySelectorAll('#issues-body tr[data-issue-id]');
-  var v=0;
-  rows.forEach(function(row){
-    var id=row.dataset.issueId;
-    var s=state[id]||{};
-    var show=(aC==='all'||row.dataset.cat===aC)&&(aP==='all'||row.dataset.prio===aP.toLowerCase())&&(aS==='all'||s.status===aS);
-    row.classList.toggle('row-hidden',!show);
-    var p=document.getElementById('panel-'+id);
-    if(p)p.classList.toggle('row-hidden',!show);
-    if(show)v++;
-  });
-  updateFilterCount(v);
-}
-
-function renderIssues(){
-  var tbody=document.getElementById('issues-body');
-  var html='';
-  ISSUES.forEach(function(issue){
-    var s=state[issue.id]||{owner:issue.own,status:issue.stat};
-    var devIcon={dev:'&#128296;',seo:'&#128203;',both:'&#129309;'}[issue.devNote];
-    var devClass={dev:'dev',seo:'seo',both:'both'}[issue.devNote];
-    var devLabel={dev:'Developer',seo:'ThirdSlash SEO',both:'Both teams'}[issue.devNote];
-    var urls=ALL_URLS[issue.id]||[];
-    var expandBtn=urls.length>0
-      ? '<button class="expand-btn '+issue.btn+' expand-toggle" id="btn-'+issue.id+'" data-panel-id="'+issue.id+'">View all '+urls.length+' URLs &#9660;</button>'
-      : '';
-    var srcTags=issue.src.map(function(x){
-      var cls=x==='SF+GSC'?'src-both':x==='GSC'?'src-gsc':'src-sf';
-      return '<span class="src-tag '+cls+'">'+x+'</span>';
-    }).join('');
-    var oc=ownerClass(s.owner);
-    var sc=statusClass(s.status);
-    html+=''
-      +'<tr data-cat="'+issue.cat+'" data-prio="'+issue.prio+'" data-issue-id="'+issue.id+'">'
-      +'<td class="td-issue"><strong>'+issue.title+'</strong>'
-        +'<div class="issue-src">'+srcTags+'</div>'+expandBtn
-      +'</td>'
-      +'<td style="text-align:center"><span class="count-pill '+issue.pill+'">'+issue.count+'</span></td>'
-      +'<td><span class="priority-badge prio-'+(issue.prio==='high'?'high':issue.prio==='medium'?'med':'low')+'">'+issue.prio.charAt(0).toUpperCase()+issue.prio.slice(1)+'</span></td>'
-      +'<td><div class="fix-guide">'+issue.plain+'</div></td>'
-      +'<td><div class="fix-guide">'+issue.fix+'<div><span class="dev-note '+devClass+'">'+devIcon+' '+devLabel+'</span></div></div></td>'
-      +'<td class="td-dropdown">'
-        +'<select class="row-select '+oc+' owner-sel" data-iid="'+issue.id+'">'
-          +'<option'+(s.owner==='ThirdSlash'?' selected':'')+'>ThirdSlash</option>'
-          +'<option'+(s.owner==='Client'?' selected':'')+'>Client</option>'
-          +'<option'+(s.owner==='Developer'?' selected':'')+'>Developer</option>'
-        +'</select>'
-      +'</td>'
-      +'<td class="td-dropdown">'
-        +'<select class="row-select '+sc+' status-sel" data-iid="'+issue.id+'">'
-          +'<option'+(s.status==='Under Review'?' selected':'')+'>Under Review</option>'
-          +'<option'+(s.status==='Completed'?' selected':'')+'>Completed</option>'
-          +'<option'+(s.status==='Not Completed'?' selected':'')+'>Not Completed</option>'
-          +'<option'+(s.status==='Blocked'?' selected':'')+'>Blocked</option>'
-          +'<option'+(s.status==='Waiting for Approval'?' selected':'')+'>Waiting for Approval</option>'
-          +'<option'+(s.status==='Rejected'?' selected':'')+'>Rejected</option>'
-        +'</select>'
-      +'</td>'
-    +'</tr>';
-    if(urls.length>0)html+=buildPanel(issue);
-  });
-  tbody.innerHTML=html;
-  updateFilterCount();
-}
-// Handle select changes via event delegation
-document.addEventListener('change',function(e){
-  var os=e.target.closest('.owner-sel');
-  if(os){
-    var id=os.getAttribute('data-iid');
-    if(id){state[id].owner=os.value;os.className='row-select owner-sel '+ownerClass(os.value);saveState();applyFilters();}
-    return;
-  }
-  var ss=e.target.closest('.status-sel');
-  if(ss){
-    var id=ss.getAttribute('data-iid');
-    if(id){state[id].status=ss.value;ss.className='row-select status-sel '+statusClass(ss.value);saveState();applyFilters();}
-    return;
-  }
-});
-
-loadState();
-renderIssues();
-</script>
-
-<script>
-// Disable right-click
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
-
-// Block Ctrl+S / Cmd+S and Ctrl+P / Cmd+P
-document.addEventListener('keydown', function(e){
-  var key = e.key.toLowerCase();
-  var ctrl = e.ctrlKey || e.metaKey;
-  if(ctrl && (key === 's' || key === 'p' || key === 'u')){
-    e.preventDefault();
-    return false;
-  }
-});
-</script>
+<div class="grid">
+        <a href="asset-thread/" class="card">
+            <div class="card-name">AssetThread</div>
+            <div class="card-slug">asset-thread</div>
+        </a>
+        <a href="hrm-thread/" class="card">
+            <div class="card-name">HRMThread</div>
+            <div class="card-slug">hrm-thread</div>
+        </a>
+        <a href="lancers-cbse/" class="card">
+            <div class="card-name">Lancers CBSE</div>
+            <div class="card-slug">lancers-cbse</div>
+        </a>
+        <a href="lancers-early-years/" class="card">
+            <div class="card-name">Lancers Early Years</div>
+            <div class="card-slug">lancers-early-years</div>
+        </a>
+        <a href="lancers-army-school/" class="card">
+            <div class="card-name">Lancers Army Schools</div>
+            <div class="card-slug">lancers-army-school</div>
+        </a>
+        <a href="potential-engineering/" class="card">
+            <div class="card-name">Potential Engineering</div>
+            <div class="card-slug">potential-engineering</div>
+        </a>
+        <a href="estrela-hotels/" class="card">
+            <div class="card-name">Estrela Hotels</div>
+            <div class="card-slug">estrela-hotels</div>
+        </a>
+        <a href="kelly-powers/" class="card">
+            <div class="card-name">Kelly Powers</div>
+            <div class="card-slug">kelly-powers</div>
+        </a>
+        <a href="happylyfe/" class="card">
+            <div class="card-name">HappyLyfe</div>
+            <div class="card-slug">happylyfe</div>
+        </a>
+        <a href="public69/" class="card">
+            <div class="card-name">Public69</div>
+            <div class="card-slug">public69</div>
+        </a>
+        <a href="ovation-square/" class="card">
+            <div class="card-name">Ovation Square</div>
+            <div class="card-slug">ovation-square</div>
+        </a>
+        <a href="piovra-group/" class="card">
+            <div class="card-name">Piovra Group</div>
+            <div class="card-slug">piovra-group</div>
+        </a>
+        <a href="brickroom-la/" class="card">
+            <div class="card-name">Brick Room LA</div>
+            <div class="card-slug">brickroom-la</div>
+        </a>
+        <a href="mj-gorgeous/" class="card">
+            <div class="card-name">MJ Gorgeous</div>
+            <div class="card-slug">mj-gorgeous</div>
+        </a>
+</div>
+<footer>ThirdSlash Digital Marketing Agency &mdash; All dashboards auto-update monthly</footer>
 </body>
 </html>
