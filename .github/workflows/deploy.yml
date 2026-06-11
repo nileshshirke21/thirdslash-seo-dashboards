@@ -1,32 +1,56 @@
-name: Generate and deploy SEO dashboards
+name: Monthly SEO Dashboard Update
 
 on:
   schedule:
-    - cron: '0 2 * * 1'
-  workflow_dispatch:
+    - cron: '30 0 6 * *'  # 6th of every month at 6:00am IST (00:30 UTC)
+  workflow_dispatch:        # Manual trigger anytime
 
 jobs:
-  build-and-deploy:
+  update-dashboards:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - run: pip install gspread google-auth google-auth-oauthlib
+      - name: Install dependencies
+        run: pip install gspread google-auth google-auth-oauthlib google-analytics-data google-auth-httplib2
 
-      - name: Write Google token
-        run: echo "${{ secrets.GOOGLE_TOKEN_B64 }}" | base64 -d > token.pickle
+      - name: Write Google tokens
+        run: |
+          echo "${{ secrets.GOOGLE_TOKEN_B64 }}" | base64 -d > token.pickle
+          echo "${{ secrets.GOOGLE_TOKEN_GA4_B64 }}" | base64 -d > token_ga4.pickle
+          echo "${{ secrets.GOOGLE_TOKEN_REPORTING_B64 }}" | base64 -d > token_reporting.pickle
 
-      - name: Generate dashboards
+      - name: Pull GA4 data for all clients
+        run: python3 pull_all_ga4.py
+        continue-on-error: true
+
+      - name: Pull GSC data for all clients
+        run: python3 pull_all_gsc.py
+        continue-on-error: true
+
+      - name: Generate all dashboards
         run: python3 generate_dashboard.py
 
-      - name: Commit and push dashboards
+      - name: Commit and push to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add dashboards/
-          git diff --staged --quiet || git commit -m "Update dashboards $(date +'%Y-%m-%d')"
+          git diff --staged --quiet || git commit -m "Monthly dashboard update $(date +'%Y-%m-%d')"
           git push origin main
+
+      - name: Sync to gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          git merge main --no-edit
+          git push origin gh-pages
+          git checkout main
