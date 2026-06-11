@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">8</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">9</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">9</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">29</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">9</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">20</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">29</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="lancers army school surat">lancers army school surat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="lancer army school">lancer army school</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="lancers school surat">lancers school surat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="lancer army school surat">lancer army school surat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="lancers army school surat gujarat">lancers army school surat gujarat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="lancers army school">lancers army school</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="lancer school surat">lancer school surat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="lancer army school in surat">lancer army school in surat</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="lancers school">lancers school</td>
           <td class="rank-cell rank-down">6</td>
           <td class="rank-cell">4</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://lancersarmyschools.com/" target="_blank" title="https://lancersarmyschools.com/">https://lancersarmyschools.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="school in surat gujarat">school in surat gujarat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="best primary school in surat">best primary school in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="top 10 schools in surat">top 10 schools in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="best schools in surat">best schools in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="school in surat">school in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="best schools in surat gujarat">best schools in surat gujarat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -372,6 +407,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
           <td class="kw-cell" title="best school in gujarat">best school in gujarat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -380,6 +417,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
           <td class="kw-cell" title="schools in surat gujarat">schools in surat gujarat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -388,6 +427,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
           <td class="kw-cell" title="best school in surat gujarat">best school in surat gujarat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -396,6 +437,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
           <td class="kw-cell" title="best school in gujrat">best school in gujrat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -404,6 +447,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
           <td class="kw-cell" title="good schools in surat">good schools in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -412,6 +457,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
           <td class="kw-cell" title="best school in surat">best school in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -420,6 +467,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
           <td class="kw-cell" title="top private school surat">top private school surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -428,6 +477,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
           <td class="kw-cell" title="gujarat top school">gujarat top school</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -436,6 +487,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
           <td class="kw-cell" title="school near me in surat">school near me in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -444,6 +497,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
           <td class="kw-cell" title="top schools in surat">top schools in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -452,6 +507,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
           <td class="kw-cell" title="gujarat higher secondary board">gujarat higher secondary board</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -460,6 +517,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
           <td class="kw-cell" title="english medium school in surat">english medium school in surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -468,6 +527,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
           <td class="kw-cell" title="surat top school">surat top school</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -476,6 +537,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
           <td class="kw-cell" title="top ranked school surat">top ranked school surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>

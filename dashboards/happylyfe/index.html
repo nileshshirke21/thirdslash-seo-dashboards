@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">29</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">56</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">96</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">137</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">56</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">22</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">18</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">2</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">39</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">137</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="healthy eggs in thailand">healthy eggs in thailand</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">6</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-chicken-eggs?srsltid=AfmBOorlt0Zlbzj80m4a3gALoRkNA6FwuQPStAIkLUvLFDKqfL37Pm7k" target="_blank" title="https://happylyfe.in.th/product/free-range-chicken-eggs?srsltid=AfmBOorlt0Zlbzj80m4a3gALoRkNA6FwuQPStAIkLUvLFDKqfL37Pm7k">https://happylyfe.in.th/product/free-range-ch...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="shop salt flower online">shop salt flower online</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">6</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/salt-flower?srsltid=AfmBOooWyaigpVa9vtDiukdCO3PVtvU-PQoKrS50u2hLBhbK0Kd4-Myv" target="_blank" title="https://happylyfe.in.th/product/salt-flower?srsltid=AfmBOooWyaigpVa9vtDiukdCO3PVtvU-PQoKrS50u2hLBhbK0Kd4-Myv">https://happylyfe.in.th/product/salt-flower?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="ลูกฟิกสดออร์แกนิกธรรมชาติ">ลูกฟิกสดออร์แกนิกธรรมชาติ</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/fresh-fig?srsltid=AfmBOoqXDiipJCOoxeK1Vbbqvp_Uar9Qmb_UrjwJvpdYWvut6nn1Z2ry" target="_blank" title="https://happylyfe.in.th/th/product/fresh-fig?srsltid=AfmBOoqXDiipJCOoxeK1Vbbqvp_Uar9Qmb_UrjwJvpdYWvut6nn1Z2ry">https://happylyfe.in.th/th/product/fresh-fig?...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="buy kefir milk thailand">buy kefir milk thailand</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">2</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoq8A_lcv7DsYpXtIVe0YwP0tYrE56-ccdWB2A95YvBXmBTN8H3T" target="_blank" title="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoq8A_lcv7DsYpXtIVe0YwP0tYrE56-ccdWB2A95YvBXmBTN8H3T">https://happylyfe.in.th/th/product/kefir-milk...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="buy turmeric handmade soap in thailand">buy turmeric handmade soap in thailand</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">6</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/turmeric-loofah-soap?srsltid=AfmBOoqyvEusLgdbJ8ekpdwqUIsxoipt4FlpgcTDEzpQJJ0KFsLpngUa" target="_blank" title="https://happylyfe.in.th/product/turmeric-loofah-soap?srsltid=AfmBOoqyvEusLgdbJ8ekpdwqUIsxoipt4FlpgcTDEzpQJJ0KFsLpngUa">https://happylyfe.in.th/product/turmeric-loof...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="vacuum fried banana chips">vacuum fried banana chips</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">3</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/vacuum-fried-banana-chips?srsltid=AfmBOoql_MES9ykQNZJ0vZ8awaG1hsbVrNLShiHlTU8bYbXneIdDqylV" target="_blank" title="https://happylyfe.in.th/product/vacuum-fried-banana-chips?srsltid=AfmBOoql_MES9ykQNZJ0vZ8awaG1hsbVrNLShiHlTU8bYbXneIdDqylV">https://happylyfe.in.th/product/vacuum-fried-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="organic kefir milk">organic kefir milk</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">3</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoqYyzXinaVm9G6NhjEw8GC38OUNYzsGJfv2VthvpsVlz7bEfHOj" target="_blank" title="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoqYyzXinaVm9G6NhjEw8GC38OUNYzsGJfv2VthvpsVlz7bEfHOj">https://happylyfe.in.th/th/product/kefir-milk...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="shop round salt lamp online">shop round salt lamp online</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/round-pink-salt-lamp?srsltid=AfmBOooPq4mujNFNoozVfLJhY04DlZtXMv8plGCB3_5AO6LxMuMZx4cx" target="_blank" title="https://happylyfe.in.th/product/round-pink-salt-lamp?srsltid=AfmBOooPq4mujNFNoozVfLJhY04DlZtXMv8plGCB3_5AO6LxMuMZx4cx">https://happylyfe.in.th/product/round-pink-sa...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="คีเฟอร์ที่ดีที่สุด">คีเฟอร์ที่ดีที่สุด</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/blog/top-10-kefir-drinks-2025?srsltid=AfmBOoq4fkfaBN2zCI9H7GjKCQXfE43JaqC9DF69qSrSEcDvGd-7GF5c" target="_blank" title="https://happylyfe.in.th/th/blog/top-10-kefir-drinks-2025?srsltid=AfmBOoq4fkfaBN2zCI9H7GjKCQXfE43JaqC9DF69qSrSEcDvGd-7GF5c">https://happylyfe.in.th/th/blog/top-10-kefir-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="natural organic fresh figs">natural organic fresh figs</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/fresh-fig?srsltid=AfmBOopa4-icjBU6jwtNCuym4B_H9Hi2JJSXOFqMTvDsyKC3o6tQPENA" target="_blank" title="https://happylyfe.in.th/product/fresh-fig?srsltid=AfmBOopa4-icjBU6jwtNCuym4B_H9Hi2JJSXOFqMTvDsyKC3o6tQPENA">https://happylyfe.in.th/product/fresh-fig?srs...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="dried figs">dried figs</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">9</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/dried-figs?srsltid=AfmBOoohoN0FVYMUzxgdk5lbBnC7OuEVd8aLmqeiIPAO49v9rdOD7WW5" target="_blank" title="https://happylyfe.in.th/product/dried-figs?srsltid=AfmBOoohoN0FVYMUzxgdk5lbBnC7OuEVd8aLmqeiIPAO49v9rdOD7WW5">https://happylyfe.in.th/product/dried-figs?sr...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="buy dried mango thailand">buy dried mango thailand</td>
           <td class="rank-cell rank-flat">2</td>
           <td class="rank-cell">2</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/dried-mango?srsltid=AfmBOophwjIpLYja5_cjiUfdCqv2xIutld84Whhejx8wFyg9GoJN2rFT" target="_blank" title="https://happylyfe.in.th/product/dried-mango?srsltid=AfmBOophwjIpLYja5_cjiUfdCqv2xIutld84Whhejx8wFyg9GoJN2rFT">https://happylyfe.in.th/product/dried-mango?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="buy fresh figs online">buy fresh figs online</td>
           <td class="rank-cell rank-down">2</td>
           <td class="rank-cell">1</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/fresh-fig?srsltid=AfmBOooxo39MrFziCzhltshemS-JNs1OhYYjLsAFj44NpX7CF0Z1wZx9" target="_blank" title="https://happylyfe.in.th/product/fresh-fig?srsltid=AfmBOooxo39MrFziCzhltshemS-JNs1OhYYjLsAFj44NpX7CF0Z1wZx9">https://happylyfe.in.th/product/fresh-fig?srs...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="order cbd">order cbd</td>
           <td class="rank-cell rank-down">2</td>
           <td class="rank-cell">1</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/cbd?srsltid=AfmBOooEzFxVglFuDdIsKUQDS8AOX_rQEnsM56QZ1Jk8vU2V__1eIUmK" target="_blank" title="https://happylyfe.in.th/cbd?srsltid=AfmBOooEzFxVglFuDdIsKUQDS8AOX_rQEnsM56QZ1Jk8vU2V__1eIUmK">https://happylyfe.in.th/cbd?srsltid=AfmBOooEz...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="natural electrolyte">natural electrolyte</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">9</td>
@@ -372,6 +407,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/staying-hydrated-best-natural-electrolyte-options-for-thailand-s-hot-season?srsltid=AfmBOorVTINJtGt0mo1EZEXzxqw3CNiqxdyMLvwOffO03gH00zJgyEPU" target="_blank" title="https://happylyfe.in.th/blog/staying-hydrated-best-natural-electrolyte-options-for-thailand-s-hot-season?srsltid=AfmBOorVTINJtGt0mo1EZEXzxqw3CNiqxdyMLvwOffO03gH00zJgyEPU">https://happylyfe.in.th/blog/staying-hydrated...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
           <td class="kw-cell" title="organic skin care products">organic skin care products</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">3</td>
@@ -380,6 +417,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/skin-care?srsltid=AfmBOoq3-2GfLx3Go8__Wym6prwTR_aj03wTQA52jrZ-l2mFolhI2zDG" target="_blank" title="https://happylyfe.in.th/skin-care?srsltid=AfmBOoq3-2GfLx3Go8__Wym6prwTR_aj03wTQA52jrZ-l2mFolhI2zDG">https://happylyfe.in.th/skin-care?srsltid=Afm...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
           <td class="kw-cell" title="organic duck eggs">organic duck eggs</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">3</td>
@@ -388,6 +427,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-duck-eggs?srsltid=AfmBOoqxJsZpMdvz6SRgRvqh2BeU4uVhVF_6SVwDmcNRLjN76dL2ACnP" target="_blank" title="https://happylyfe.in.th/product/free-range-duck-eggs?srsltid=AfmBOoqxJsZpMdvz6SRgRvqh2BeU4uVhVF_6SVwDmcNRLjN76dL2ACnP">https://happylyfe.in.th/product/free-range-du...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
           <td class="kw-cell" title="buy turmeric soap in thailand">buy turmeric soap in thailand</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">9</td>
@@ -396,6 +437,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/turmeric-loofah-soap?srsltid=AfmBOoo2s_XOpWKZsXEFUHpWbwi7vcKZRuAu6MEeRLgXWXahu6KTuyZy" target="_blank" title="https://happylyfe.in.th/product/turmeric-loofah-soap?srsltid=AfmBOoo2s_XOpWKZsXEFUHpWbwi7vcKZRuAu6MEeRLgXWXahu6KTuyZy">https://happylyfe.in.th/product/turmeric-loof...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
           <td class="kw-cell" title="ซื้อนมคีเฟอร์ในประเทศไทย">ซื้อนมคีเฟอร์ในประเทศไทย</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">6</td>
@@ -404,6 +447,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOooCVIGiXR3cvXCpw2W-RQxvwtsvwFqzfiIjOr5VoDLpdN1bbdLk" target="_blank" title="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOooCVIGiXR3cvXCpw2W-RQxvwtsvwFqzfiIjOr5VoDLpdN1bbdLk">https://happylyfe.in.th/th/product/kefir-milk...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
           <td class="kw-cell" title="duck eggs">duck eggs</td>
           <td class="rank-cell rank-flat">3</td>
           <td class="rank-cell">3</td>
@@ -412,6 +457,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-duck-eggs?srsltid=AfmBOoorqG0Le6nu_SyvRcmJH7IXzEZWWX-351jZx0rBY606Bo6tV0Kc" target="_blank" title="https://happylyfe.in.th/product/free-range-duck-eggs?srsltid=AfmBOoorqG0Le6nu_SyvRcmJH7IXzEZWWX-351jZx0rBY606Bo6tV0Kc">https://happylyfe.in.th/product/free-range-du...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
           <td class="kw-cell" title="organic whole milk">organic whole milk</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">4</td>
@@ -420,6 +467,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/organic-whole-milk?srsltid=AfmBOooY3w00gubPd25LH0Dzy7A-rYDxSgqS0LsFnlMdhO2NunRyBvfb" target="_blank" title="https://happylyfe.in.th/product/organic-whole-milk?srsltid=AfmBOooY3w00gubPd25LH0Dzy7A-rYDxSgqS0LsFnlMdhO2NunRyBvfb">https://happylyfe.in.th/product/organic-whole...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
           <td class="kw-cell" title="kombucha sale">kombucha sale</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">8</td>
@@ -428,6 +477,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/kombucha?srsltid=AfmBOopO6u7ob8eqNXQ2AlQ4hHm13N_tHJKqLfKjeMGldm2pzk1CVPX1" target="_blank" title="https://happylyfe.in.th/kombucha?srsltid=AfmBOopO6u7ob8eqNXQ2AlQ4hHm13N_tHJKqLfKjeMGldm2pzk1CVPX1">https://happylyfe.in.th/kombucha?srsltid=AfmB...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
           <td class="kw-cell" title="free range chicken thailand">free range chicken thailand</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">7</td>
@@ -436,6 +487,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-spring-chicken?srsltid=AfmBOoqSVe2Hsb2vO4YDwM5E2mv3blJweSdDRrpXZt8VqlEcBcPlUJtb" target="_blank" title="https://happylyfe.in.th/product/free-range-spring-chicken?srsltid=AfmBOoqSVe2Hsb2vO4YDwM5E2mv3blJweSdDRrpXZt8VqlEcBcPlUJtb">https://happylyfe.in.th/product/free-range-sp...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
           <td class="kw-cell" title="shop red dragon fruit">shop red dragon fruit</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">7</td>
@@ -444,6 +497,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/red-dragon-fruit?srsltid=AfmBOoqeL35kVZfsA35WH6bpOBnuLM9au2dNAWZVBswighc7q2vtv2of" target="_blank" title="https://happylyfe.in.th/product/red-dragon-fruit?srsltid=AfmBOoqeL35kVZfsA35WH6bpOBnuLM9au2dNAWZVBswighc7q2vtv2of">https://happylyfe.in.th/product/red-dragon-fr...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
           <td class="kw-cell" title="best kefir">best kefir</td>
           <td class="rank-cell rank-down">3</td>
           <td class="rank-cell">1</td>
@@ -452,6 +507,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/top-kefir-drinks-2025?srsltid=AfmBOorjwNiOJqESnSFyXzaWzweMcXPFcPurgtr9W0DZIHCqJo0mggNU" target="_blank" title="https://happylyfe.in.th/blog/top-kefir-drinks-2025?srsltid=AfmBOorjwNiOJqESnSFyXzaWzweMcXPFcPurgtr9W0DZIHCqJo0mggNU">https://happylyfe.in.th/blog/top-kefir-drinks...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
           <td class="kw-cell" title="almond milk thailand">almond milk thailand</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">22</td>
@@ -460,6 +517,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/thai-tea-almond-milk-200-ml?srsltid=AfmBOorarHJRcILLemnI8AnY4xcASysoYoiT7TGnX7WTSgs38rydzVmq" target="_blank" title="https://happylyfe.in.th/product/thai-tea-almond-milk-200-ml?srsltid=AfmBOorarHJRcILLemnI8AnY4xcASysoYoiT7TGnX7WTSgs38rydzVmq">https://happylyfe.in.th/product/thai-tea-almo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
           <td class="kw-cell" title="keto products">keto products</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">5</td>
@@ -468,6 +527,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/thailand-top-keto-products?srsltid=AfmBOoqIKSk4T7kNYi_m8JCjvlPMRvXy-pDb4ntHqGD8KuqDG-Qs7j-b" target="_blank" title="https://happylyfe.in.th/blog/thailand-top-keto-products?srsltid=AfmBOoqIKSk4T7kNYi_m8JCjvlPMRvXy-pDb4ntHqGD8KuqDG-Qs7j-b">https://happylyfe.in.th/blog/thailand-top-ket...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
           <td class="kw-cell" title="seya cbd oil online">seya cbd oil online</td>
           <td class="rank-cell rank-flat">3</td>
           <td class="rank-cell">3</td>
@@ -476,6 +537,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/seya-cbd-oil-thailand?srsltid=AfmBOop3L_42ro7YZXz4KNTAaRWoAWlfu4xaxptZsC25ZQlyp8wLgsAs" target="_blank" title="https://happylyfe.in.th/th/seya-cbd-oil-thailand?srsltid=AfmBOop3L_42ro7YZXz4KNTAaRWoAWlfu4xaxptZsC25ZQlyp8wLgsAs">https://happylyfe.in.th/th/seya-cbd-oil-thail...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
           <td class="kw-cell" title="เซยา ซีบีดี ออนไลน์">เซยา ซีบีดี ออนไลน์</td>
           <td class="rank-cell rank-up">3</td>
           <td class="rank-cell">4</td>
@@ -484,6 +547,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/seya-cbd-oil-thailand?srsltid=AfmBOoqpze2wjmEdO-INplsT3GdyzaC1X1DvIFKR5KiDjscvEikhyP7T" target="_blank" title="https://happylyfe.in.th/th/seya-cbd-oil-thailand?srsltid=AfmBOoqpze2wjmEdO-INplsT3GdyzaC1X1DvIFKR5KiDjscvEikhyP7T">https://happylyfe.in.th/th/seya-cbd-oil-thail...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
           <td class="kw-cell" title="chicken online thailand">chicken online thailand</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">10</td>
@@ -492,6 +557,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-baby-chicken?srsltid=AfmBOopEyZwUYCkW9LDRpfru9hNTnPjt27_FkLs8D68_OJZecBx2tP1D" target="_blank" title="https://happylyfe.in.th/product/free-range-baby-chicken?srsltid=AfmBOopEyZwUYCkW9LDRpfru9hNTnPjt27_FkLs8D68_OJZecBx2tP1D">https://happylyfe.in.th/product/free-range-ba...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
           <td class="kw-cell" title="organic skincare">organic skincare</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">17</td>
@@ -500,6 +567,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/natural-vs-organic-skincare?srsltid=AfmBOopYwAA70l3vaOJ5spIhVEg48T52TqXDqwYal44v09JCsvkUn8bq" target="_blank" title="https://happylyfe.in.th/blog/natural-vs-organic-skincare?srsltid=AfmBOopYwAA70l3vaOJ5spIhVEg48T52TqXDqwYal44v09JCsvkUn8bq">https://happylyfe.in.th/blog/natural-vs-organ...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
           <td class="kw-cell" title="cbd gummies">cbd gummies</td>
           <td class="rank-cell rank-flat">4</td>
           <td class="rank-cell">4</td>
@@ -508,6 +577,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOopFxJQmSGjrjal6vi2Oc0PYovIjpE1YUKfFCreDNAsrQE-q6n1h" target="_blank" title="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOopFxJQmSGjrjal6vi2Oc0PYovIjpE1YUKfFCreDNAsrQE-q6n1h">https://happylyfe.in.th/th/cbd-gummies-thaila...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
           <td class="kw-cell" title="himalayan salt lamp thailand">himalayan salt lamp thailand</td>
           <td class="rank-cell rank-flat">4</td>
           <td class="rank-cell">4</td>
@@ -516,6 +587,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/himalayan-salt-lamps?srsltid=AfmBOooGt_zqXC8a1akRDuQfVFVT6GncHs8C0CbAxFelyZvtFOtNskD2" target="_blank" title="https://happylyfe.in.th/himalayan-salt-lamps?srsltid=AfmBOooGt_zqXC8a1akRDuQfVFVT6GncHs8C0CbAxFelyZvtFOtNskD2">https://happylyfe.in.th/himalayan-salt-lamps?...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
           <td class="kw-cell" title="happy life">happy life</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">5</td>
@@ -524,6 +597,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/" target="_blank" title="https://happylyfe.in.th/th/">https://happylyfe.in.th/th/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
           <td class="kw-cell" title="cbd gummies thailand">cbd gummies thailand</td>
           <td class="rank-cell rank-down">4</td>
           <td class="rank-cell">2</td>
@@ -532,6 +607,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOopcitXWQdzA4t5GOc3XYnokRYGcv72kPklPg_xcDwNu2TIYFlMB" target="_blank" title="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOopcitXWQdzA4t5GOc3XYnokRYGcv72kPklPg_xcDwNu2TIYFlMB">https://happylyfe.in.th/th/cbd-gummies-thaila...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
           <td class="kw-cell" title="organic vegetable">organic vegetable</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">7</td>
@@ -540,6 +617,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOorUiD1axsyO6Ul2VIHlz6apyUv73xcRhY9fUK5eEstTGKP1b4Iq" target="_blank" title="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOorUiD1axsyO6Ul2VIHlz6apyUv73xcRhY9fUK5eEstTGKP1b4Iq">https://happylyfe.in.th/blog/benefit-of-organ...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
           <td class="kw-cell" title="kefir milk thailand">kefir milk thailand</td>
           <td class="rank-cell rank-down">4</td>
           <td class="rank-cell">1</td>
@@ -548,6 +627,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/kefir?srsltid=AfmBOooaFR75vGF8jZXkN6ebklPfcT1Y2Pqn6QmfMAjwFQ7oYBgMvKWu" target="_blank" title="https://happylyfe.in.th/kefir?srsltid=AfmBOooaFR75vGF8jZXkN6ebklPfcT1Y2Pqn6QmfMAjwFQ7oYBgMvKWu">https://happylyfe.in.th/kefir?srsltid=AfmBOoo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
           <td class="kw-cell" title="cbd oil thailand">cbd oil thailand</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">5</td>
@@ -556,6 +637,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/top-cbd-oil-in-thailand?srsltid=AfmBOoqAtcTC4Dcls5Ec4q4stmacKEQZQzRC7M3maoq3dBA5gIkbqi-v" target="_blank" title="https://happylyfe.in.th/blog/top-cbd-oil-in-thailand?srsltid=AfmBOoqAtcTC4Dcls5Ec4q4stmacKEQZQzRC7M3maoq3dBA5gIkbqi-v">https://happylyfe.in.th/blog/top-cbd-oil-in-t...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
           <td class="kw-cell" title="natural sausage">natural sausage</td>
           <td class="rank-cell rank-down">5</td>
           <td class="rank-cell">3</td>
@@ -564,6 +647,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/sausage?srsltid=AfmBOooHyidUb11iE0VIPVDfGtC54gr1Oq8QirnN-Ej-gB45EUiBMKMw" target="_blank" title="https://happylyfe.in.th/sausage?srsltid=AfmBOooHyidUb11iE0VIPVDfGtC54gr1Oq8QirnN-Ej-gB45EUiBMKMw">https://happylyfe.in.th/sausage?srsltid=AfmBO...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
           <td class="kw-cell" title="organic chicken thailand">organic chicken thailand</td>
           <td class="rank-cell rank-flat">5</td>
           <td class="rank-cell">5</td>
@@ -572,6 +657,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/chicken?srsltid=AfmBOopXI93M968WDAn5mS1gYfB56XsYRNuOZzXTeUpq8U6D3iPtk_gm" target="_blank" title="https://happylyfe.in.th/chicken?srsltid=AfmBOopXI93M968WDAn5mS1gYfB56XsYRNuOZzXTeUpq8U6D3iPtk_gm">https://happylyfe.in.th/chicken?srsltid=AfmBO...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">41</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">41</td>
           <td class="kw-cell" title="chicken eggs">chicken eggs</td>
           <td class="rank-cell rank-new">5</td>
           <td class="rank-cell">NR</td>
@@ -580,6 +667,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-chicken-eggs?srsltid=AfmBOor5hmORJ3jVWN-KOGm005RV8MYDK4yGMjYBz5Pqp48bRwjZQXTd" target="_blank" title="https://happylyfe.in.th/product/free-range-chicken-eggs?srsltid=AfmBOor5hmORJ3jVWN-KOGm005RV8MYDK4yGMjYBz5Pqp48bRwjZQXTd">https://happylyfe.in.th/product/free-range-ch...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">42</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">42</td>
           <td class="kw-cell" title="kefir milk">kefir milk</td>
           <td class="rank-cell rank-up">5</td>
           <td class="rank-cell">7</td>
@@ -588,6 +677,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoorqmRlgiUXYPdbCC089hWAoq3xdZZVqpH4_em74xm9bMlWcWAo" target="_blank" title="https://happylyfe.in.th/th/product/kefir-milk?srsltid=AfmBOoorqmRlgiUXYPdbCC089hWAoq3xdZZVqpH4_em74xm9bMlWcWAo">https://happylyfe.in.th/th/product/kefir-milk...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">43</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">43</td>
           <td class="kw-cell" title="kefir milk flavors">kefir milk flavors</td>
           <td class="rank-cell rank-down">6</td>
           <td class="rank-cell">2</td>
@@ -596,6 +687,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/top-kefir-drinks-2025?srsltid=AfmBOoq63iBb-OtEt9EbHwSnRHnmKs9y3ekBLBelxh5Y26ic5quIzpbv" target="_blank" title="https://happylyfe.in.th/blog/top-kefir-drinks-2025?srsltid=AfmBOoq63iBb-OtEt9EbHwSnRHnmKs9y3ekBLBelxh5Y26ic5quIzpbv">https://happylyfe.in.th/blog/top-kefir-drinks...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">44</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">44</td>
           <td class="kw-cell" title="black garlic thailand">black garlic thailand</td>
           <td class="rank-cell rank-down">6</td>
           <td class="rank-cell">5</td>
@@ -604,6 +697,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/natural-black-garlic-box?srsltid=AfmBOopRWqmYH7zrhbdSlipK72VF2VmJOA5l7fTOqWjGO_uPW3r0sR8I" target="_blank" title="https://happylyfe.in.th/product/natural-black-garlic-box?srsltid=AfmBOopRWqmYH7zrhbdSlipK72VF2VmJOA5l7fTOqWjGO_uPW3r0sR8I">https://happylyfe.in.th/product/natural-black...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">45</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">45</td>
           <td class="kw-cell" title="ซื้อโคมไฟเกลือทรงกลมออนไลน์">ซื้อโคมไฟเกลือทรงกลมออนไลน์</td>
           <td class="rank-cell rank-up">6</td>
           <td class="rank-cell">36</td>
@@ -612,6 +707,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/round-pink-salt-lamp?srsltid=AfmBOopJNf9T-q1viloznT2ZhK_kulMDOIY3yhMMvpixw0a1rvJinjtu" target="_blank" title="https://happylyfe.in.th/th/product/round-pink-salt-lamp?srsltid=AfmBOopJNf9T-q1viloznT2ZhK_kulMDOIY3yhMMvpixw0a1rvJinjtu">https://happylyfe.in.th/th/product/round-pink...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">46</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">46</td>
           <td class="kw-cell" title="ซีบีดี กัมมีย์ ประเทศไทย">ซีบีดี กัมมีย์ ประเทศไทย</td>
           <td class="rank-cell rank-down">7</td>
           <td class="rank-cell">1</td>
@@ -620,6 +717,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOop5SKUzdjAHM53FtXnlMklG_iNMKRYlRnIyGv_ZTHd9PPrRxddZ" target="_blank" title="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOop5SKUzdjAHM53FtXnlMklG_iNMKRYlRnIyGv_ZTHd9PPrRxddZ">https://happylyfe.in.th/th/cbd-gummies-thaila...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">47</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">47</td>
           <td class="kw-cell" title="buy chicken thailand">buy chicken thailand</td>
           <td class="rank-cell rank-up">8</td>
           <td class="rank-cell">16</td>
@@ -628,6 +727,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/free-range-baby-chicken?srsltid=AfmBOoor7EPXzJlTx7tcrNO8CApGL6kU14iEE1Lrl3sLn-doa7RL2E_Q" target="_blank" title="https://happylyfe.in.th/product/free-range-baby-chicken?srsltid=AfmBOoor7EPXzJlTx7tcrNO8CApGL6kU14iEE1Lrl3sLn-doa7RL2E_Q">https://happylyfe.in.th/product/free-range-ba...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">48</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">48</td>
           <td class="kw-cell" title="organic vegetable in bangkok">organic vegetable in bangkok</td>
           <td class="rank-cell rank-new">8</td>
           <td class="rank-cell">NR</td>
@@ -636,6 +737,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOorK2WuRjwOvi26fqYrUnZC4zhbwbSwMUkafGCPC3mfA3hRS1E2i" target="_blank" title="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOorK2WuRjwOvi26fqYrUnZC4zhbwbSwMUkafGCPC3mfA3hRS1E2i">https://happylyfe.in.th/blog/benefit-of-organ...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">49</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">49</td>
           <td class="kw-cell" title="organic chicken">organic chicken</td>
           <td class="rank-cell rank-flat">8</td>
           <td class="rank-cell">8</td>
@@ -644,6 +747,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/organic-vs-regular-chicken?srsltid=AfmBOorl8V9Ag-eneJX7uW4VewLcTAfZ3DMBG1vzkHxhssa_6GXrJvzJ" target="_blank" title="https://happylyfe.in.th/blog/organic-vs-regular-chicken?srsltid=AfmBOorl8V9Ag-eneJX7uW4VewLcTAfZ3DMBG1vzkHxhssa_6GXrJvzJ">https://happylyfe.in.th/blog/organic-vs-regul...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">50</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">50</td>
           <td class="kw-cell" title="shop kombucha drink online">shop kombucha drink online</td>
           <td class="rank-cell rank-down">9</td>
           <td class="rank-cell">2</td>
@@ -652,6 +757,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/kombucha?srsltid=AfmBOord66BV0UN7HK5l4zuefJi9iMAPrTgY5SVs8H_n6xu8-9L_kRyp" target="_blank" title="https://happylyfe.in.th/kombucha?srsltid=AfmBOord66BV0UN7HK5l4zuefJi9iMAPrTgY5SVs8H_n6xu8-9L_kRyp">https://happylyfe.in.th/kombucha?srsltid=AfmB...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">51</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">51</td>
           <td class="kw-cell" title="นมออร์แกนิกเข้มข้น">นมออร์แกนิกเข้มข้น</td>
           <td class="rank-cell rank-up">9</td>
           <td class="rank-cell">12</td>
@@ -660,6 +767,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/organic-whole-milk?srsltid=AfmBOooK9aZqYTtBmrAHeYn3_9lajb4jyyddOZFa2LXr-gsdzVy6QviB" target="_blank" title="https://happylyfe.in.th/th/product/organic-whole-milk?srsltid=AfmBOooK9aZqYTtBmrAHeYn3_9lajb4jyyddOZFa2LXr-gsdzVy6QviB">https://happylyfe.in.th/th/product/organic-wh...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">52</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">52</td>
           <td class="kw-cell" title="ซีบีดี กัมมีย์">ซีบีดี กัมมีย์</td>
           <td class="rank-cell rank-down">9</td>
           <td class="rank-cell">6</td>
@@ -668,6 +777,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOoqQa57PIpEP0vCNP0HPUldAm_t3naW7h6vnTeGIfDhqYraNW-M2" target="_blank" title="https://happylyfe.in.th/th/cbd-gummies-thailand?srsltid=AfmBOoqQa57PIpEP0vCNP0HPUldAm_t3naW7h6vnTeGIfDhqYraNW-M2">https://happylyfe.in.th/th/cbd-gummies-thaila...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">53</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">53</td>
           <td class="kw-cell" title="cbd oil">cbd oil</td>
           <td class="rank-cell rank-up">9</td>
           <td class="rank-cell">10</td>
@@ -676,6 +787,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOooG1hsTZxBcOEijkJXpKVzX3yX7uUmuWMkGC4pj6cK6mY48_Us7" target="_blank" title="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOooG1hsTZxBcOEijkJXpKVzX3yX7uUmuWMkGC4pj6cK6mY48_Us7">https://happylyfe.in.th/th/cbd-oil-thailand?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">54</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">54</td>
           <td class="kw-cell" title="organic free range eggs">organic free range eggs</td>
           <td class="rank-cell rank-down">9</td>
           <td class="rank-cell">8</td>
@@ -684,6 +797,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/are-organic-free-range-eggs-better-for-health?srsltid=AfmBOoq5P4rI-Cl1dLH8n0ZFzhFnXADGKJB0zfBbXRg6tryIFGG5cC00" target="_blank" title="https://happylyfe.in.th/blog/are-organic-free-range-eggs-better-for-health?srsltid=AfmBOoq5P4rI-Cl1dLH8n0ZFzhFnXADGKJB0zfBbXRg6tryIFGG5cC00">https://happylyfe.in.th/blog/are-organic-free...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">55</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">55</td>
           <td class="kw-cell" title="organic eggs thailand">organic eggs thailand</td>
           <td class="rank-cell rank-flat">10</td>
           <td class="rank-cell">10</td>
@@ -692,6 +807,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqAZI6CO1gFPD_pfstoTrHjA3jSX7YwEOaLYOlkrjlvGfnE3Qd9" target="_blank" title="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqAZI6CO1gFPD_pfstoTrHjA3jSX7YwEOaLYOlkrjlvGfnE3Qd9">https://happylyfe.in.th/blog/thailand-free-ra...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">56</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">56</td>
           <td class="kw-cell" title="ซื้อดอกเกลือออนไลน์">ซื้อดอกเกลือออนไลน์</td>
           <td class="rank-cell rank-up">10</td>
           <td class="rank-cell">15</td>
@@ -700,6 +817,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/salt-flower?srsltid=AfmBOooYCCt10x8NS9ukq8fqqaNnhi9sKP7PXYo1ondjutiM175xYnqs" target="_blank" title="https://happylyfe.in.th/th/product/salt-flower?srsltid=AfmBOooYCCt10x8NS9ukq8fqqaNnhi9sKP7PXYo1ondjutiM175xYnqs">https://happylyfe.in.th/th/product/salt-flowe...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">57</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">57</td>
           <td class="kw-cell" title="organic eggs">organic eggs</td>
           <td class="rank-cell rank-up">11</td>
           <td class="rank-cell">15</td>
@@ -708,6 +827,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqosjr8yEjJ-ia7w36INUNZZvGj_YarAVYdc47eTwGK4cu_l8L0" target="_blank" title="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqosjr8yEjJ-ia7w36INUNZZvGj_YarAVYdc47eTwGK4cu_l8L0">https://happylyfe.in.th/blog/thailand-free-ra...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">58</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">58</td>
           <td class="kw-cell" title="นมคีเฟอร์ครบรส">นมคีเฟอร์ครบรส</td>
           <td class="rank-cell rank-up">11</td>
           <td class="rank-cell">21</td>
@@ -716,6 +837,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/kefir-milk-flavour?srsltid=AfmBOoqOZm7hfQG9ker1P2jEhmu7FSoJkGLW1DBWk1gkeEu2JAIDa11v" target="_blank" title="https://happylyfe.in.th/th/kefir-milk-flavour?srsltid=AfmBOoqOZm7hfQG9ker1P2jEhmu7FSoJkGLW1DBWk1gkeEu2JAIDa11v">https://happylyfe.in.th/th/kefir-milk-flavour...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">59</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">59</td>
           <td class="kw-cell" title="ลูกฟิกส์อบแห้ง">ลูกฟิกส์อบแห้ง</td>
           <td class="rank-cell rank-up">12</td>
           <td class="rank-cell">23</td>
@@ -724,6 +847,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/dried-figs?srsltid=AfmBOoqy6C_hY4nSjGAehmULpohoerIR6LsSXdKIU8w1dU2mWS3s0hen" target="_blank" title="https://happylyfe.in.th/th/product/dried-figs?srsltid=AfmBOoqy6C_hY4nSjGAehmULpohoerIR6LsSXdKIU8w1dU2mWS3s0hen">https://happylyfe.in.th/th/product/dried-figs...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">60</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">60</td>
           <td class="kw-cell" title="น้ำมัน cbd ประเทศไทย">น้ำมัน cbd ประเทศไทย</td>
           <td class="rank-cell rank-up">12</td>
           <td class="rank-cell">14</td>
@@ -732,6 +857,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOooiQhEeNmIWsDnC8tQF04De6GwdF-OA6InKfUQxUm1XToITqP7V" target="_blank" title="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOooiQhEeNmIWsDnC8tQF04De6GwdF-OA6InKfUQxUm1XToITqP7V">https://happylyfe.in.th/th/cbd-oil-thailand?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">61</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">61</td>
           <td class="kw-cell" title="แฮปปี้ไลฟ์">แฮปปี้ไลฟ์</td>
           <td class="rank-cell rank-down">12</td>
           <td class="rank-cell">2</td>
@@ -740,6 +867,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/" target="_blank" title="https://happylyfe.in.th/th/">https://happylyfe.in.th/th/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">62</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">62</td>
           <td class="kw-cell" title="kombucha for sale">kombucha for sale</td>
           <td class="rank-cell rank-flat">12</td>
           <td class="rank-cell">12</td>
@@ -748,6 +877,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/kombucha?srsltid=AfmBOoogX7lwyBIDHwWdW6L3sbuILn9P8goo_lfLZ5i6Zagq7aRQkc6S" target="_blank" title="https://happylyfe.in.th/kombucha?srsltid=AfmBOoogX7lwyBIDHwWdW6L3sbuILn9P8goo_lfLZ5i6Zagq7aRQkc6S">https://happylyfe.in.th/kombucha?srsltid=AfmB...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">63</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">63</td>
           <td class="kw-cell" title="สั่งซื้อ cbd">สั่งซื้อ cbd</td>
           <td class="rank-cell rank-down">13</td>
           <td class="rank-cell">9</td>
@@ -756,6 +887,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOorQThAdxpvaQa6H-BMFqbf0cA7tedAaK4y9MWjwzP6U_1u5ykXt" target="_blank" title="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOorQThAdxpvaQa6H-BMFqbf0cA7tedAaK4y9MWjwzP6U_1u5ykXt">https://happylyfe.in.th/th/cbd-oil-thailand?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">64</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">64</td>
           <td class="kw-cell" title="buy vegetables online">buy vegetables online</td>
           <td class="rank-cell rank-down">13</td>
           <td class="rank-cell">6</td>
@@ -764,6 +897,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/vegetables?srsltid=AfmBOopWM_Gln6sK_hZ3kEFFtWsb3LCVJqXRRySHVJkezpretWtrprdV" target="_blank" title="https://happylyfe.in.th/vegetables?srsltid=AfmBOopWM_Gln6sK_hZ3kEFFtWsb3LCVJqXRRySHVJkezpretWtrprdV">https://happylyfe.in.th/vegetables?srsltid=Af...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">65</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">65</td>
           <td class="kw-cell" title="electrolyte thailand">electrolyte thailand</td>
           <td class="rank-cell rank-up">13</td>
           <td class="rank-cell">15</td>
@@ -772,6 +907,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/saltmagic-natural-electrolytes?srsltid=AfmBOop08Yrcd6-ygGqDwKFc4qmialDKz_Hh4giVX_2wbp8gTZ6_VK4T" target="_blank" title="https://happylyfe.in.th/product/saltmagic-natural-electrolytes?srsltid=AfmBOop08Yrcd6-ygGqDwKFc4qmialDKz_Hh4giVX_2wbp8gTZ6_VK4T">https://happylyfe.in.th/product/saltmagic-nat...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">66</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">66</td>
           <td class="kw-cell" title="shop vegan products">shop vegan products</td>
           <td class="rank-cell rank-down">13</td>
           <td class="rank-cell">2</td>
@@ -780,6 +917,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/dietary-preference/vegan?srsltid=AfmBOorHOM_L97IoG89m-8h7DWJoxYNCxDSDh4y8ygqcLB9FiAJnjwGj" target="_blank" title="https://happylyfe.in.th/dietary-preference/vegan?srsltid=AfmBOorHOM_L97IoG89m-8h7DWJoxYNCxDSDh4y8ygqcLB9FiAJnjwGj">https://happylyfe.in.th/dietary-preference/ve...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">67</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">67</td>
           <td class="kw-cell" title="grassfed milk">grassfed milk</td>
           <td class="rank-cell rank-up">14</td>
           <td class="rank-cell">33</td>
@@ -788,6 +927,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/grass-fed-milk?srsltid=AfmBOoo6AzhtjnAmK16S8Q4UQCX01MlOcAen1CTJh0fKsaxzvon46TYy" target="_blank" title="https://happylyfe.in.th/product/grass-fed-milk?srsltid=AfmBOoo6AzhtjnAmK16S8Q4UQCX01MlOcAen1CTJh0fKsaxzvon46TYy">https://happylyfe.in.th/product/grass-fed-mil...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">68</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">68</td>
           <td class="kw-cell" title="ซื้อแก้วมังกรเนื้อแดง">ซื้อแก้วมังกรเนื้อแดง</td>
           <td class="rank-cell rank-down">15</td>
           <td class="rank-cell">13</td>
@@ -796,6 +937,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/red-dragon-fruit?srsltid=AfmBOorOjeKq1jSHiwJFDOjsZAvmuAmvsWHxetDBKz9wOieRXnUp2eIx" target="_blank" title="https://happylyfe.in.th/th/product/red-dragon-fruit?srsltid=AfmBOorOjeKq1jSHiwJFDOjsZAvmuAmvsWHxetDBKz9wOieRXnUp2eIx">https://happylyfe.in.th/th/product/red-dragon...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">69</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">69</td>
           <td class="kw-cell" title="free range eggs">free range eggs</td>
           <td class="rank-cell rank-up">15</td>
           <td class="rank-cell">18</td>
@@ -804,6 +947,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOooAFlJ1ZlVk5KPN1DwZ3PovjAjP23HcgHzfUTRd0-fkaxgIE8v2" target="_blank" title="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOooAFlJ1ZlVk5KPN1DwZ3PovjAjP23HcgHzfUTRd0-fkaxgIE8v2">https://happylyfe.in.th/blog/thailand-free-ra...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">70</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">70</td>
           <td class="kw-cell" title="buy thai avocado">buy thai avocado</td>
           <td class="rank-cell rank-up">15</td>
           <td class="rank-cell">19</td>
@@ -812,6 +957,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/avocado?srsltid=AfmBOoqyogok7Qeecs8D5yr62DwlykjBnh412nl4yZDObddIhlvVRb_q" target="_blank" title="https://happylyfe.in.th/product/avocado?srsltid=AfmBOoqyogok7Qeecs8D5yr62DwlykjBnh412nl4yZDObddIhlvVRb_q">https://happylyfe.in.th/product/avocado?srslt...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">71</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">71</td>
           <td class="kw-cell" title="shampoo & conditioner">shampoo & conditioner</td>
           <td class="rank-cell rank-up">16</td>
           <td class="rank-cell">22</td>
@@ -820,6 +967,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/shampoo-conditioner?srsltid=AfmBOooxBq0LzgENB1IjoXRh7Sz8H9GimWFvVneq6gUaOKTzC3UU7fZA" target="_blank" title="https://happylyfe.in.th/shampoo-conditioner?srsltid=AfmBOooxBq0LzgENB1IjoXRh7Sz8H9GimWFvVneq6gUaOKTzC3UU7fZA">https://happylyfe.in.th/shampoo-conditioner?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">72</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">72</td>
           <td class="kw-cell" title="shop cold pressed juice thailand">shop cold pressed juice thailand</td>
           <td class="rank-cell rank-down">17</td>
           <td class="rank-cell">5</td>
@@ -828,6 +977,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/cold-press-juices?srsltid=AfmBOoouKcnIDbRJ0ml339Wj-wrnvvoVqmbiMfuS6qjlxWY1EzrcGSkV" target="_blank" title="https://happylyfe.in.th/cold-press-juices?srsltid=AfmBOoouKcnIDbRJ0ml339Wj-wrnvvoVqmbiMfuS6qjlxWY1EzrcGSkV">https://happylyfe.in.th/cold-press-juices?srs...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">73</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">73</td>
           <td class="kw-cell" title="organic vegetables online">organic vegetables online</td>
           <td class="rank-cell rank-down">17</td>
           <td class="rank-cell">5</td>
@@ -836,6 +987,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/vegetables?srsltid=AfmBOoo_fdeQcgxAAmm0-mxDFOJz2TsJI_W0CYGHEpOMgHM27UYs27IV" target="_blank" title="https://happylyfe.in.th/vegetables?srsltid=AfmBOoo_fdeQcgxAAmm0-mxDFOJz2TsJI_W0CYGHEpOMgHM27UYs27IV">https://happylyfe.in.th/vegetables?srsltid=Af...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">74</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">74</td>
           <td class="kw-cell" title="cbd balm">cbd balm</td>
           <td class="rank-cell rank-down">18</td>
           <td class="rank-cell">12</td>
@@ -844,6 +997,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/sukjai-thai-cbd-extract-massage-balm?srsltid=AfmBOopxucG_l9-MpTvVk8mMV6PFYMkx1x3edbYY8UEzEwR7Fe_Tbl2R" target="_blank" title="https://happylyfe.in.th/th/product/sukjai-thai-cbd-extract-massage-balm?srsltid=AfmBOopxucG_l9-MpTvVk8mMV6PFYMkx1x3edbYY8UEzEwR7Fe_Tbl2R">https://happylyfe.in.th/th/product/sukjai-tha...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">75</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">75</td>
           <td class="kw-cell" title="ซื้อมะม่วงอบแห้งในประเทศไทย">ซื้อมะม่วงอบแห้งในประเทศไทย</td>
           <td class="rank-cell rank-up">19</td>
           <td class="rank-cell">20</td>
@@ -852,6 +1007,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/dried-mango?srsltid=AfmBOop21eqcssU0xU8cBq5hBC5ke8wCaeQZbIyx1hu_3Qg79Ivubak_" target="_blank" title="https://happylyfe.in.th/th/product/dried-mango?srsltid=AfmBOop21eqcssU0xU8cBq5hBC5ke8wCaeQZbIyx1hu_3Qg79Ivubak_">https://happylyfe.in.th/th/product/dried-mang...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">76</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">76</td>
           <td class="kw-cell" title="ซื้อลูกฟิกส์สดออนไลน์">ซื้อลูกฟิกส์สดออนไลน์</td>
           <td class="rank-cell rank-down">19</td>
           <td class="rank-cell">6</td>
@@ -860,6 +1017,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/freshfigs?srsltid=AfmBOopzuB9_ucYpie-YoKZEDywqh43uci29KX-0m_XfaPzcpPVWqkbE" target="_blank" title="https://happylyfe.in.th/th/product/freshfigs?srsltid=AfmBOopzuB9_ucYpie-YoKZEDywqh43uci29KX-0m_XfaPzcpPVWqkbE">https://happylyfe.in.th/th/product/freshfigs?...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">77</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">77</td>
           <td class="kw-cell" title="ไข่เลี้ยงปล่อยแบบอิสระ">ไข่เลี้ยงปล่อยแบบอิสระ</td>
           <td class="rank-cell rank-new">20</td>
           <td class="rank-cell">NR</td>
@@ -868,6 +1027,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/free-range-chicken-eggs?srsltid=AfmBOoqy76Jgrrn8UPF0gAEAA5Y2UvGZved9PiRxK-jlirpc__MCqUZ6" target="_blank" title="https://happylyfe.in.th/th/product/free-range-chicken-eggs?srsltid=AfmBOoqy76Jgrrn8UPF0gAEAA5Y2UvGZved9PiRxK-jlirpc__MCqUZ6">https://happylyfe.in.th/th/product/free-range...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">78</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">78</td>
           <td class="kw-cell" title="best organic eggs">best organic eggs</td>
           <td class="rank-cell rank-down">20</td>
           <td class="rank-cell">15</td>
@@ -876,6 +1037,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqjrqEzPpLY2hx2ygUKi9ZRoYFCAvzi5jgsy2VucwADZV0mdAYX" target="_blank" title="https://happylyfe.in.th/blog/thailand-free-range-eggs?srsltid=AfmBOoqjrqEzPpLY2hx2ygUKi9ZRoYFCAvzi5jgsy2VucwADZV0mdAYX">https://happylyfe.in.th/blog/thailand-free-ra...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">79</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">79</td>
           <td class="kw-cell" title="organic food">organic food</td>
           <td class="rank-cell rank-new">21</td>
           <td class="rank-cell">NR</td>
@@ -884,6 +1047,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOopsAYh6TlFeRcfvQOqtam27fCQRxeQ9X3xY7r2Z-Tg3_s_ntfcT" target="_blank" title="https://happylyfe.in.th/blog/benefit-of-organic-vegetable-thailand?srsltid=AfmBOopsAYh6TlFeRcfvQOqtam27fCQRxeQ9X3xY7r2Z-Tg3_s_ntfcT">https://happylyfe.in.th/blog/benefit-of-organ...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">80</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">80</td>
           <td class="kw-cell" title="ไข่เป็ด">ไข่เป็ด</td>
           <td class="rank-cell rank-flat">23</td>
           <td class="rank-cell">23</td>
@@ -892,6 +1057,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/blog/difference-between-free-range-duck-eggs-vs-chicken-eggs?srsltid=AfmBOooA7oER1hTxxy3k0uEM_x2Xl-T-qw9Jw85-hDwvs7MF7-BUkEu2" target="_blank" title="https://happylyfe.in.th/th/blog/difference-between-free-range-duck-eggs-vs-chicken-eggs?srsltid=AfmBOooA7oER1hTxxy3k0uEM_x2Xl-T-qw9Jw85-hDwvs7MF7-BUkEu2">https://happylyfe.in.th/th/blog/difference-be...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">81</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">81</td>
           <td class="kw-cell" title="vegan products">vegan products</td>
           <td class="rank-cell rank-down">24</td>
           <td class="rank-cell">6</td>
@@ -900,6 +1067,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/dietary-preference/vegan?srsltid=AfmBOorjJ8vm2SuyK-atvFKAOoMpPL3FBj3r7C0lvRyW2xc91d0-HIxd" target="_blank" title="https://happylyfe.in.th/dietary-preference/vegan?srsltid=AfmBOorjJ8vm2SuyK-atvFKAOoMpPL3FBj3r7C0lvRyW2xc91d0-HIxd">https://happylyfe.in.th/dietary-preference/ve...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">82</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">82</td>
           <td class="kw-cell" title="cashewnuts">cashewnuts</td>
           <td class="rank-cell rank-up">24</td>
           <td class="rank-cell">29</td>
@@ -908,6 +1077,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/crispy-cashew-nuts-2?srsltid=AfmBOooKl7a5T0HLDhDQ8q_hi21GIsU8Erqg4kXA8EtW4r1pzOSWq95q" target="_blank" title="https://happylyfe.in.th/product/crispy-cashew-nuts-2?srsltid=AfmBOooKl7a5T0HLDhDQ8q_hi21GIsU8Erqg4kXA8EtW4r1pzOSWq95q">https://happylyfe.in.th/product/crispy-cashew...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">83</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">83</td>
           <td class="kw-cell" title="กาแฟออร์แกนิก">กาแฟออร์แกนิก</td>
           <td class="rank-cell rank-up">24</td>
           <td class="rank-cell">33</td>
@@ -916,6 +1087,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/organic-coffee-signature-drip-blend?srsltid=AfmBOoprUwohoDrHlTghw3YUL19hJZ8q2-1rUhJ6evnnf764o5cZzQda" target="_blank" title="https://happylyfe.in.th/th/product/organic-coffee-signature-drip-blend?srsltid=AfmBOoprUwohoDrHlTghw3YUL19hJZ8q2-1rUhJ6evnnf764o5cZzQda">https://happylyfe.in.th/th/product/organic-co...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">84</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">84</td>
           <td class="kw-cell" title="ครีมอาบน้ำออร์แกนิกสำหรับผิวแห้ง">ครีมอาบน้ำออร์แกนิกสำหรับผิวแห้ง</td>
           <td class="rank-cell rank-flat">25</td>
           <td class="rank-cell">25</td>
@@ -924,6 +1097,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/house-of-mul-darling-mineral-body-wash?srsltid=AfmBOoqDaRSHZZndDrYMUstwv-cPypsZpR-W0XFtNamPwPKTN5erxQY2" target="_blank" title="https://happylyfe.in.th/th/product/house-of-mul-darling-mineral-body-wash?srsltid=AfmBOoqDaRSHZZndDrYMUstwv-cPypsZpR-W0XFtNamPwPKTN5erxQY2">https://happylyfe.in.th/th/product/house-of-m...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">85</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">85</td>
           <td class="kw-cell" title="fresh kefir milk">fresh kefir milk</td>
           <td class="rank-cell rank-new">26</td>
           <td class="rank-cell">NR</td>
@@ -932,6 +1107,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/kefir-milk?srsltid=AfmBOorUM1oQ63wyUxBNZ3XpIYpZ1-GQ3iIt35VGosuWXxPCRtANl1_c" target="_blank" title="https://happylyfe.in.th/product/kefir-milk?srsltid=AfmBOorUM1oQ63wyUxBNZ3XpIYpZ1-GQ3iIt35VGosuWXxPCRtANl1_c">https://happylyfe.in.th/product/kefir-milk?sr...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">86</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">86</td>
           <td class="kw-cell" title="buy candles">buy candles</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">13</td>
@@ -940,6 +1117,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/candles?srsltid=AfmBOor0eKvjNqpM5Jbc1QWQ5Bfmoiw5aD9I8rpjfhIACmblTst-VccW" target="_blank" title="https://happylyfe.in.th/candles?srsltid=AfmBOor0eKvjNqpM5Jbc1QWQ5Bfmoiw5aD9I8rpjfhIACmblTst-VccW">https://happylyfe.in.th/candles?srsltid=AfmBO...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">87</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">87</td>
           <td class="kw-cell" title="organic fruits online">organic fruits online</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">3</td>
@@ -948,6 +1127,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/fruits?srsltid=AfmBOopXv00uQetcaOae6gDuuxIvfQkkMLXlJdDehGNF4WK9d2uQkATO" target="_blank" title="https://happylyfe.in.th/fruits?srsltid=AfmBOopXv00uQetcaOae6gDuuxIvfQkkMLXlJdDehGNF4WK9d2uQkATO">https://happylyfe.in.th/fruits?srsltid=AfmBOo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">88</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">88</td>
           <td class="kw-cell" title="black garlic online">black garlic online</td>
           <td class="rank-cell rank-down">28</td>
           <td class="rank-cell">10</td>
@@ -956,6 +1137,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/natural-black-garlic-box?srsltid=AfmBOoqTdAsLRDLixi_Q1xqIXsyD7z9GrsD-J9SlL3UHxMUvaGNcSdD1" target="_blank" title="https://happylyfe.in.th/product/natural-black-garlic-box?srsltid=AfmBOoqTdAsLRDLixi_Q1xqIXsyD7z9GrsD-J9SlL3UHxMUvaGNcSdD1">https://happylyfe.in.th/product/natural-black...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">89</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">89</td>
           <td class="kw-cell" title="super food supplement">super food supplement</td>
           <td class="rank-cell rank-new">29</td>
           <td class="rank-cell">NR</td>
@@ -964,6 +1147,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/superfood-supplements?srsltid=AfmBOor_R5aa8Peza7lA80Xhy1FsQc_X6m2jssOieBuPuVS2xpvu6zfr" target="_blank" title="https://happylyfe.in.th/superfood-supplements?srsltid=AfmBOor_R5aa8Peza7lA80Xhy1FsQc_X6m2jssOieBuPuVS2xpvu6zfr">https://happylyfe.in.th/superfood-supplements...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">90</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">90</td>
           <td class="kw-cell" title="น้ำมัน cbd">น้ำมัน cbd</td>
           <td class="rank-cell rank-up">31</td>
           <td class="rank-cell">37</td>
@@ -972,6 +1157,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOor_6hUMcnmuUtuc9guy64vA4UECbs3hpiuK35ZbnD-E1Su7ffqd" target="_blank" title="https://happylyfe.in.th/th/cbd-oil-thailand?srsltid=AfmBOor_6hUMcnmuUtuc9guy64vA4UECbs3hpiuK35ZbnD-E1Su7ffqd">https://happylyfe.in.th/th/cbd-oil-thailand?s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">91</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">91</td>
           <td class="kw-cell" title="ไข่เลี้ยงปล่อยแบบธรรมชาติ">ไข่เลี้ยงปล่อยแบบธรรมชาติ</td>
           <td class="rank-cell rank-new">32</td>
           <td class="rank-cell">NR</td>
@@ -980,6 +1167,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/th/product/free-range-chicken-eggs?srsltid=AfmBOopCKi5tkVLS4vr65AzX5VnxFK8tN1rkgCrzcBW8ZHLJTRL3JulL" target="_blank" title="https://happylyfe.in.th/th/product/free-range-chicken-eggs?srsltid=AfmBOopCKi5tkVLS4vr65AzX5VnxFK8tN1rkgCrzcBW8ZHLJTRL3JulL">https://happylyfe.in.th/th/product/free-range...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">92</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">92</td>
           <td class="kw-cell" title="moringa">moringa</td>
           <td class="rank-cell rank-flat">36</td>
           <td class="rank-cell">36</td>
@@ -988,6 +1177,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/moringa-powder-150g?srsltid=AfmBOopJkFEhnGp4aXDWKtjeulOivGvOaEGs6qNer-vQm5MMrRlJW5hN" target="_blank" title="https://happylyfe.in.th/product/moringa-powder-150g?srsltid=AfmBOopJkFEhnGp4aXDWKtjeulOivGvOaEGs6qNer-vQm5MMrRlJW5hN">https://happylyfe.in.th/product/moringa-powde...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">93</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">93</td>
           <td class="kw-cell" title="fresh black garlic">fresh black garlic</td>
           <td class="rank-cell rank-down">37</td>
           <td class="rank-cell">22</td>
@@ -996,6 +1187,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/natural-black-garlic-jar?srsltid=AfmBOoo2HCdR8NindwEpT8uYJwaLKqn8oy69klMdeKWJWYsRdtu48e7U" target="_blank" title="https://happylyfe.in.th/product/natural-black-garlic-jar?srsltid=AfmBOoo2HCdR8NindwEpT8uYJwaLKqn8oy69klMdeKWJWYsRdtu48e7U">https://happylyfe.in.th/product/natural-black...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">94</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">94</td>
           <td class="kw-cell" title="organic whole chicken">organic whole chicken</td>
           <td class="rank-cell rank-up">38</td>
           <td class="rank-cell">59</td>
@@ -1004,6 +1197,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/chicken?srsltid=AfmBOop6Dc9b-5Uw7CseIYA2tGoPDM_KE5YXVHayTBdZRAdlSYstw-0R" target="_blank" title="https://happylyfe.in.th/chicken?srsltid=AfmBOop6Dc9b-5Uw7CseIYA2tGoPDM_KE5YXVHayTBdZRAdlSYstw-0R">https://happylyfe.in.th/chicken?srsltid=AfmBO...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">95</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">95</td>
           <td class="kw-cell" title="organic body wash for dry skin">organic body wash for dry skin</td>
           <td class="rank-cell rank-up">44</td>
           <td class="rank-cell">47</td>
@@ -1012,6 +1207,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/product/natural-body-wash?srsltid=AfmBOopSr4Yhcdw9IKEqr_O4MmY-u6bqoaYlBtafph3Wfd0qOURdI122" target="_blank" title="https://happylyfe.in.th/product/natural-body-wash?srsltid=AfmBOopSr4Yhcdw9IKEqr_O4MmY-u6bqoaYlBtafph3Wfd0qOURdI122">https://happylyfe.in.th/product/natural-body-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">96</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">96</td>
           <td class="kw-cell" title="organic coffee">organic coffee</td>
           <td class="rank-cell rank-down">50</td>
           <td class="rank-cell">48</td>
@@ -1020,6 +1217,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/coffee?srsltid=AfmBOorChFHXqgr-_wIc1S8a7wndKXhburmOcEzc1BYJztuPoekabRNy" target="_blank" title="https://happylyfe.in.th/coffee?srsltid=AfmBOorChFHXqgr-_wIc1S8a7wndKXhburmOcEzc1BYJztuPoekabRNy">https://happylyfe.in.th/coffee?srsltid=AfmBOo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">97</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">97</td>
           <td class="kw-cell" title="ผลิตภัณฑ์ออร์แกนิกบำรุงผิว">ผลิตภัณฑ์ออร์แกนิกบำรุงผิว</td>
           <td class="rank-cell rank-down">58</td>
           <td class="rank-cell">27</td>
@@ -1028,6 +1227,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/top-10-organic-skincare-products?srsltid=AfmBOorxZ_E2T6u3d1BNoaGdJLZYKK1Y5fAuaHvXd5_E8gKy8lEUuI_8" target="_blank" title="https://happylyfe.in.th/blog/top-10-organic-skincare-products?srsltid=AfmBOorxZ_E2T6u3d1BNoaGdJLZYKK1Y5fAuaHvXd5_E8gKy8lEUuI_8">https://happylyfe.in.th/blog/top-10-organic-s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">98</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">98</td>
           <td class="kw-cell" title="ผลิตภัณฑ์ออร์แกนิกสำหรับดูแลผิวกาย">ผลิตภัณฑ์ออร์แกนิกสำหรับดูแลผิวกาย</td>
           <td class="rank-cell rank-down">66</td>
           <td class="rank-cell">59</td>
@@ -1036,6 +1237,8 @@
           <td class="url-cell"><a href="https://happylyfe.in.th/blog/top-10-organic-skincare-products?srsltid=AfmBOorXbTSjGRs8RSMioz-cpFC4xNNR_Wh5y54k29VOHZ_wZmZhiBjr" target="_blank" title="https://happylyfe.in.th/blog/top-10-organic-skincare-products?srsltid=AfmBOorXbTSjGRs8RSMioz-cpFC4xNNR_Wh5y54k29VOHZ_wZmZhiBjr">https://happylyfe.in.th/blog/top-10-organic-s...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">99</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">99</td>
           <td class="kw-cell" title="wolffia thailand">wolffia thailand</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1044,6 +1247,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">100</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">100</td>
           <td class="kw-cell" title="kombucha">kombucha</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1052,6 +1257,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">101</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">101</td>
           <td class="kw-cell" title="greek yogurt">greek yogurt</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1060,6 +1267,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">102</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">102</td>
           <td class="kw-cell" title="black garlic">black garlic</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1068,6 +1277,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">103</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">103</td>
           <td class="kw-cell" title="protein">protein</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1076,6 +1287,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">104</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">104</td>
           <td class="kw-cell" title="อาหารเสริมซุปเปอร์">อาหารเสริมซุปเปอร์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1084,6 +1297,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">105</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">105</td>
           <td class="kw-cell" title="eggs">eggs</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1092,6 +1307,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">106</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">106</td>
           <td class="kw-cell" title="cbd body balm">cbd body balm</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">5</td>
@@ -1100,6 +1317,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">107</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">107</td>
           <td class="kw-cell" title="โคมไฟเกลือหิมาลัย">โคมไฟเกลือหิมาลัย</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1108,6 +1327,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">108</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">108</td>
           <td class="kw-cell" title="ซื้อสินค้าวีแกน">ซื้อสินค้าวีแกน</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1116,6 +1337,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">109</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">109</td>
           <td class="kw-cell" title="ไส้กรอกคุณภาพดี">ไส้กรอกคุณภาพดี</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1124,6 +1347,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">110</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">110</td>
           <td class="kw-cell" title="goat milk kefir">goat milk kefir</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1132,6 +1357,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">111</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">111</td>
           <td class="kw-cell" title="ไส้กรอกธรรมชาติ">ไส้กรอกธรรมชาติ</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1140,6 +1367,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">112</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">112</td>
           <td class="kw-cell" title="fit bar thailand">fit bar thailand</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1148,6 +1377,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">113</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">113</td>
           <td class="kw-cell" title="ผักสดออร์แกนิกในกรุงเทพฯ">ผักสดออร์แกนิกในกรุงเทพฯ</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1156,6 +1387,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">114</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">114</td>
           <td class="kw-cell" title="yogurt drink">yogurt drink</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1164,6 +1397,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">115</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">115</td>
           <td class="kw-cell" title="ผักออร์แกนิค">ผักออร์แกนิค</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1172,6 +1407,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">116</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">116</td>
           <td class="kw-cell" title="ผลิตภัณฑ์ดูแลผิว">ผลิตภัณฑ์ดูแลผิว</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1180,6 +1417,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">117</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">117</td>
           <td class="kw-cell" title="ซื้อผักสดออนไลน์">ซื้อผักสดออนไลน์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1188,6 +1427,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">118</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">118</td>
           <td class="kw-cell" title="อาหารออร์แกนิก">อาหารออร์แกนิก</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1196,6 +1437,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">119</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">119</td>
           <td class="kw-cell" title="wolfia">wolfia</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1204,6 +1447,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">120</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">120</td>
           <td class="kw-cell" title="electrolyte">electrolyte</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1212,6 +1457,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">121</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">121</td>
           <td class="kw-cell" title="ผักสดออร์แกนิกออนไลน์">ผักสดออร์แกนิกออนไลน์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1220,6 +1467,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">122</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">122</td>
           <td class="kw-cell" title="แชมพูและครีมนวดผม">แชมพูและครีมนวดผม</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1228,6 +1477,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">123</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">123</td>
           <td class="kw-cell" title="skin care products">skin care products</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1236,6 +1487,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">124</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">124</td>
           <td class="kw-cell" title="ผลิตภัณฑ์คีโต">ผลิตภัณฑ์คีโต</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1244,6 +1497,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">125</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">125</td>
           <td class="kw-cell" title="ซื้อน้ำผลไม้สกัดเย็นออนไลน์">ซื้อน้ำผลไม้สกัดเย็นออนไลน์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1252,6 +1507,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">126</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">126</td>
           <td class="kw-cell" title="good quality sausages">good quality sausages</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1260,6 +1517,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">127</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">127</td>
           <td class="kw-cell" title="fit bar">fit bar</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1268,6 +1527,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">128</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">128</td>
           <td class="kw-cell" title="ซื้อเครื่องดื่มคอมบูชาออนไลน์">ซื้อเครื่องดื่มคอมบูชาออนไลน์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1276,6 +1537,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">129</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">129</td>
           <td class="kw-cell" title="ผลไม้ออร์แกนิกออนไลน์">ผลไม้ออร์แกนิกออนไลน์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1284,6 +1547,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">130</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">130</td>
           <td class="kw-cell" title="wolffai">wolffai</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1292,6 +1557,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">131</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">131</td>
           <td class="kw-cell" title="ซื้อเทียนหอม">ซื้อเทียนหอม</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1300,6 +1567,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">132</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">132</td>
           <td class="kw-cell" title="นมอัลมอนด์">นมอัลมอนด์</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1308,6 +1577,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">133</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">133</td>
           <td class="kw-cell" title="shop aloe vera soap online">shop aloe vera soap online</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1316,6 +1587,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">134</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">134</td>
           <td class="kw-cell" title="ซื้ออะโวคาโดพันธุ์ไทย">ซื้ออะโวคาโดพันธุ์ไทย</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1324,6 +1597,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">135</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">135</td>
           <td class="kw-cell" title="magnesium products">magnesium products</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1332,6 +1607,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">136</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">136</td>
           <td class="kw-cell" title="ผลิตภัณฑ์มังสวิรัติ">ผลิตภัณฑ์มังสวิรัติ</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -1340,6 +1617,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">137</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">137</td>
           <td class="kw-cell" title="ชีวิตที่มีความสุข">ชีวิตที่มีความสุข</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>

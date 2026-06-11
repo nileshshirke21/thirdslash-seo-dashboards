@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">0</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">1</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">15</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">40</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">1</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">5</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">9</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">25</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">40</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="beach front resort calangute">beach front resort calangute</td>
           <td class="rank-cell rank-new">5</td>
           <td class="rank-cell">NR</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/" target="_blank" title="https://www.estrelahotels.com/">https://www.estrelahotels.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="fine dining restaurants in north goa">fine dining restaurants in north goa</td>
           <td class="rank-cell rank-up">13</td>
           <td class="rank-cell">17</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/a-taste-of-luxury-fine-dining-at-estrela-hotels-in-north-goa/" target="_blank" title="https://www.estrelahotels.com/blog/a-taste-of-luxury-fine-dining-at-estrela-hotels-in-north-goa/">https://www.estrelahotels.com/blog/a-taste-of...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="4 star hotels in north goa with private beach">4 star hotels in north goa with private beach</td>
           <td class="rank-cell rank-up">14</td>
           <td class="rank-cell">27</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="goa beach resort images">goa beach resort images</td>
           <td class="rank-cell rank-down">17</td>
           <td class="rank-cell">13</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/gallery.php" target="_blank" title="https://www.estrelahotels.com/gallery.php">https://www.estrelahotels.com/gallery.php</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="4 star resorts in north goa with private beach">4 star resorts in north goa with private beach</td>
           <td class="rank-cell rank-up">17</td>
           <td class="rank-cell">47</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="fine dining in goa">fine dining in goa</td>
           <td class="rank-cell rank-up">19</td>
           <td class="rank-cell">22</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/what-defines-the-best-fine-dine-restaurants-in-goa-for-luxury-travellers/" target="_blank" title="https://www.estrelahotels.com/blog/what-defines-the-best-fine-dine-restaurants-in-goa-for-luxury-travellers/">https://www.estrelahotels.com/blog/what-defin...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="north goa beach resorts with private beach">north goa beach resorts with private beach</td>
           <td class="rank-cell rank-up">22</td>
           <td class="rank-cell">44</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="goa hotel images">goa hotel images</td>
           <td class="rank-cell rank-down">24</td>
           <td class="rank-cell">22</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/gallery.php" target="_blank" title="https://www.estrelahotels.com/gallery.php">https://www.estrelahotels.com/gallery.php</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="luxury resorts in north goa with private beach">luxury resorts in north goa with private beach</td>
           <td class="rank-cell rank-up">27</td>
           <td class="rank-cell">47</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-4-star-hotels-in-north-goa-featuring-private-beach-access/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="goa resort with swimming pool">goa resort with swimming pool</td>
           <td class="rank-cell rank-down">32</td>
           <td class="rank-cell">17</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/indulging-in-luxury-goas-beach-resorts-with-inviting-swimming-pools/" target="_blank" title="https://www.estrelahotels.com/blog/indulging-in-luxury-goas-beach-resorts-with-inviting-swimming-pools/">https://www.estrelahotels.com/blog/indulging-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="amenities hotel goa">amenities hotel goa</td>
           <td class="rank-cell rank-up">33</td>
           <td class="rank-cell">34</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-the-best-amenities-at-4-star-hotels-in-goa/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-the-best-amenities-at-4-star-hotels-in-goa/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="luxury beach resorts goa">luxury beach resorts goa</td>
           <td class="rank-cell rank-up">35</td>
           <td class="rank-cell">38</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/embrace-the-luxury-of-staying-at-a-beach-resort-in-goa/" target="_blank" title="https://www.estrelahotels.com/blog/embrace-the-luxury-of-staying-at-a-beach-resort-in-goa/">https://www.estrelahotels.com/blog/embrace-th...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="beachfront resort in north goa">beachfront resort in north goa</td>
           <td class="rank-cell rank-flat">37</td>
           <td class="rank-cell">37</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/ultimate-guide-to-the-best-beach-resorts-in-north-goa/" target="_blank" title="https://www.estrelahotels.com/blog/ultimate-guide-to-the-best-beach-resorts-in-north-goa/">https://www.estrelahotels.com/blog/ultimate-g...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="beach resort in north goa">beach resort in north goa</td>
           <td class="rank-cell rank-down">41</td>
           <td class="rank-cell">31</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/ultimate-guide-to-the-best-beach-resorts-in-north-goa/" target="_blank" title="https://www.estrelahotels.com/blog/ultimate-guide-to-the-best-beach-resorts-in-north-goa/">https://www.estrelahotels.com/blog/ultimate-g...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="resort amenities goa">resort amenities goa</td>
           <td class="rank-cell rank-up">46</td>
           <td class="rank-cell">57</td>
@@ -372,6 +407,8 @@
           <td class="url-cell"><a href="https://www.estrelahotels.com/blog/exploring-the-best-amenities-at-4-star-hotels-in-goa/" target="_blank" title="https://www.estrelahotels.com/blog/exploring-the-best-amenities-at-4-star-hotels-in-goa/">https://www.estrelahotels.com/blog/exploring-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
           <td class="kw-cell" title="book accommodation in goa">book accommodation in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -380,6 +417,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
           <td class="kw-cell" title="restaurant in goa">restaurant in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -388,6 +427,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
           <td class="kw-cell" title="beach view resorts in goa calangute">beach view resorts in goa calangute</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -396,6 +437,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
           <td class="kw-cell" title="best resort deals in goa">best resort deals in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -404,6 +447,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
           <td class="kw-cell" title="resorts near calangute beach">resorts near calangute beach</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -412,6 +457,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
           <td class="kw-cell" title="bar and lounge offers">bar and lounge offers</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -420,6 +467,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
           <td class="kw-cell" title="cocktail bar resort in goa">cocktail bar resort in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -428,6 +477,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
           <td class="kw-cell" title="goa bar restaurant">goa bar restaurant</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -436,6 +487,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
           <td class="kw-cell" title="accommodation in north goa">accommodation in north goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -444,6 +497,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
           <td class="kw-cell" title="goa resort deals">goa resort deals</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -452,6 +507,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
           <td class="kw-cell" title="best bar and lounge deals">best bar and lounge deals</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -460,6 +517,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
           <td class="kw-cell" title="baga beach resort with swimming pool">baga beach resort with swimming pool</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -468,6 +527,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
           <td class="kw-cell" title="best resorts near baga beach">best resorts near baga beach</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -476,6 +537,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
           <td class="kw-cell" title="beach resorts in goa near baga beach">beach resorts in goa near baga beach</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -484,6 +547,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
           <td class="kw-cell" title="bar and lounge deals">bar and lounge deals</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -492,6 +557,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
           <td class="kw-cell" title="beach resort near calangute beach goa">beach resort near calangute beach goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">9</td>
@@ -500,6 +567,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
           <td class="kw-cell" title="goa resort offers">goa resort offers</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -508,6 +577,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
           <td class="kw-cell" title="family resorts in north goa">family resorts in north goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -516,6 +587,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
           <td class="kw-cell" title="hotels near baga beach goa with swimming pool">hotels near baga beach goa with swimming pool</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -524,6 +597,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
           <td class="kw-cell" title="beach resort in goa">beach resort in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -532,6 +607,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
           <td class="kw-cell" title="private pool resort in goa">private pool resort in goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -540,6 +617,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
           <td class="kw-cell" title="luxury resorts in north goa">luxury resorts in north goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -548,6 +627,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
           <td class="kw-cell" title="hotels near calangute beach goa with swimming pool">hotels near calangute beach goa with swimming pool</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -556,6 +637,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
           <td class="kw-cell" title="book rooms in goa baga beach">book rooms in goa baga beach</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -564,6 +647,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
           <td class="kw-cell" title="resort in calangute goa">resort in calangute goa</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
