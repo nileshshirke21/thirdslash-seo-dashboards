@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">0</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">0</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">12</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">15</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">0</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">2</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">10</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">1</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">2</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">15</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="event space long beach ca">event space long beach ca</td>
           <td class="rank-cell rank-up">11</td>
           <td class="rank-cell">25</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="venues in long beach ca">venues in long beach ca</td>
           <td class="rank-cell rank-up">17</td>
           <td class="rank-cell">24</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="event spaces long beach">event spaces long beach</td>
           <td class="rank-cell rank-up">21</td>
           <td class="rank-cell">25</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="party venues in long beach ca">party venues in long beach ca</td>
           <td class="rank-cell rank-flat">27</td>
           <td class="rank-cell">27</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="party venues long beach">party venues long beach</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">24</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/blog/birthday-party-venues-in-long-beach-that-shine-from-day-to-night" target="_blank" title="https://www.ovationsquare.com/blog/birthday-party-venues-in-long-beach-that-shine-from-day-to-night">https://www.ovationsquare.com/blog/birthday-p...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="banquet hall long beach ca">banquet hall long beach ca</td>
           <td class="rank-cell rank-down">29</td>
           <td class="rank-cell">27</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="banquet halls long beach">banquet halls long beach</td>
           <td class="rank-cell rank-down">31</td>
           <td class="rank-cell">27</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="venues in long beach">venues in long beach</td>
           <td class="rank-cell rank-flat">33</td>
           <td class="rank-cell">33</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="long beach reception venues">long beach reception venues</td>
           <td class="rank-cell rank-up">33</td>
           <td class="rank-cell">51</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/blog/a-guide-on-exploring-the-charm-of-wedding-venues-in-long-beach" target="_blank" title="https://www.ovationsquare.com/blog/a-guide-on-exploring-the-charm-of-wedding-venues-in-long-beach">https://www.ovationsquare.com/blog/a-guide-on...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="long beach halls for party">long beach halls for party</td>
           <td class="rank-cell rank-down">35</td>
           <td class="rank-cell">31</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="wedding locations in long beach">wedding locations in long beach</td>
           <td class="rank-cell rank-up">41</td>
           <td class="rank-cell">42</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/blog/a-guide-on-exploring-the-charm-of-wedding-venues-in-long-beach" target="_blank" title="https://www.ovationsquare.com/blog/a-guide-on-exploring-the-charm-of-wedding-venues-in-long-beach">https://www.ovationsquare.com/blog/a-guide-on...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="wedding venue long beach">wedding venue long beach</td>
           <td class="rank-cell rank-flat">48</td>
           <td class="rank-cell">48</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/" target="_blank" title="https://www.ovationsquare.com/">https://www.ovationsquare.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="unique wedding venues los angeles">unique wedding venues los angeles</td>
           <td class="rank-cell rank-up">65</td>
           <td class="rank-cell">67</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="https://www.ovationsquare.com/blog/unveiling-unique-venues-and-ideas-in-los-angeles" target="_blank" title="https://www.ovationsquare.com/blog/unveiling-unique-venues-and-ideas-in-los-angeles">https://www.ovationsquare.com/blog/unveiling-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="wedding venues in long beach ca">wedding venues in long beach ca</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">45</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="4101 e willow st long beach ca 90815">4101 e willow st long beach ca 90815</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>

@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">0</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">9</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">30</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">36</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">9</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">6</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">15</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">6</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">36</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="music venues in los angeles">music venues in los angeles</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">28</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank" title="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/">https://brickroomla.com/blog/what-are-the-bes...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="live music venues los angeles">live music venues los angeles</td>
           <td class="rank-cell rank-up">5</td>
           <td class="rank-cell">31</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank" title="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/">https://brickroomla.com/blog/what-are-the-bes...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="venue rental los angeles">venue rental los angeles</td>
           <td class="rank-cell rank-up">6</td>
           <td class="rank-cell">7</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="event space rental los angeles">event space rental los angeles</td>
           <td class="rank-cell rank-flat">7</td>
           <td class="rank-cell">7</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="engagement party venues los angeles">engagement party venues los angeles</td>
           <td class="rank-cell rank-down">7</td>
           <td class="rank-cell">6</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/" target="_blank" title="https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/">https://brickroomla.com/blog/5-mind-blowing-e...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="bar mitzvah venues los angeles">bar mitzvah venues los angeles</td>
           <td class="rank-cell rank-up">7</td>
           <td class="rank-cell">15</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="rent music venue">rent music venue</td>
           <td class="rank-cell rank-flat">8</td>
           <td class="rank-cell">8</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/music-venues-in-los-angeles/" target="_blank" title="https://brickroomla.com/music-venues-in-los-angeles/">https://brickroomla.com/music-venues-in-los-a...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="party space rental los angeles">party space rental los angeles</td>
           <td class="rank-cell rank-up">9</td>
           <td class="rank-cell">10</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="bar mitzvah rentals">bar mitzvah rentals</td>
           <td class="rank-cell rank-flat">10</td>
           <td class="rank-cell">10</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank" title="https://brickroomla.com/bar-mitzvah-venues-los-angeles/">https://brickroomla.com/bar-mitzvah-venues-lo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="la baby shower venues">la baby shower venues</td>
           <td class="rank-cell rank-down">16</td>
           <td class="rank-cell">14</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank" title="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/">https://brickroomla.com/blog/4-insta-worthy-l...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="product launch venue">product launch venue</td>
           <td class="rank-cell rank-up">16</td>
           <td class="rank-cell">19</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank" title="https://brickroomla.com/venue-for-branding-events/">https://brickroomla.com/venue-for-branding-ev...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="baby shower venue los angeles">baby shower venue los angeles</td>
           <td class="rank-cell rank-up">17</td>
           <td class="rank-cell">18</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank" title="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/">https://brickroomla.com/blog/4-insta-worthy-l...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="venue for product launch">venue for product launch</td>
           <td class="rank-cell rank-up">18</td>
           <td class="rank-cell">21</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank" title="https://brickroomla.com/venue-for-branding-events/">https://brickroomla.com/venue-for-branding-ev...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="film location rentals los angeles">film location rentals los angeles</td>
           <td class="rank-cell rank-up">20</td>
           <td class="rank-cell">26</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="rent filming locations">rent filming locations</td>
           <td class="rank-cell rank-down">20</td>
           <td class="rank-cell">15</td>
@@ -372,6 +407,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
           <td class="kw-cell" title="birthday party venues los angeles">birthday party venues los angeles</td>
           <td class="rank-cell rank-down">21</td>
           <td class="rank-cell">16</td>
@@ -380,6 +417,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
           <td class="kw-cell" title="la comedy clubs">la comedy clubs</td>
           <td class="rank-cell rank-up">21</td>
           <td class="rank-cell">23</td>
@@ -388,6 +427,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/" target="_blank" title="https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/">https://brickroomla.com/blog/comedy-club-in-l...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
           <td class="kw-cell" title="venue for comedy show">venue for comedy show</td>
           <td class="rank-cell rank-up">23</td>
           <td class="rank-cell">36</td>
@@ -396,6 +437,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank" title="https://brickroomla.com/comedy-club-los-angeles/">https://brickroomla.com/comedy-club-los-angel...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
           <td class="kw-cell" title="party venue los angeles">party venue los angeles</td>
           <td class="rank-cell rank-down">26</td>
           <td class="rank-cell">7</td>
@@ -404,6 +447,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/" target="_blank" title="https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/">https://brickroomla.com/blog/birthday-party-v...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
           <td class="kw-cell" title="bar mitzvah party venues">bar mitzvah party venues</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">26</td>
@@ -412,6 +457,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank" title="https://brickroomla.com/bar-mitzvah-venues-los-angeles/">https://brickroomla.com/bar-mitzvah-venues-lo...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
           <td class="kw-cell" title="holiday party venues los angeles">holiday party venues los angeles</td>
           <td class="rank-cell rank-down">28</td>
           <td class="rank-cell">23</td>
@@ -420,6 +467,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/holiday-party-venues-los-angeles/" target="_blank" title="https://brickroomla.com/holiday-party-venues-los-angeles/">https://brickroomla.com/holiday-party-venues-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
           <td class="kw-cell" title="small concert venues los angeles">small concert venues los angeles</td>
           <td class="rank-cell rank-down">29</td>
           <td class="rank-cell">6</td>
@@ -428,6 +477,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/" target="_blank" title="https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/">https://brickroomla.com/blog/the-5-best-music...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
           <td class="kw-cell" title="comedy club los angeles">comedy club los angeles</td>
           <td class="rank-cell rank-up">31</td>
           <td class="rank-cell">33</td>
@@ -436,6 +487,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank" title="https://brickroomla.com/comedy-club-los-angeles/">https://brickroomla.com/comedy-club-los-angel...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
           <td class="kw-cell" title="engagement party venues">engagement party venues</td>
           <td class="rank-cell rank-down">33</td>
           <td class="rank-cell">20</td>
@@ -444,6 +497,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/engagement-party-venues-los-angeles/" target="_blank" title="https://brickroomla.com/engagement-party-venues-los-angeles/">https://brickroomla.com/engagement-party-venu...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
           <td class="kw-cell" title="corporate venue rental los angeles">corporate venue rental los angeles</td>
           <td class="rank-cell rank-down">36</td>
           <td class="rank-cell">6</td>
@@ -452,6 +507,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank" title="https://brickroomla.com/corporate-event-venues-los-angeles/">https://brickroomla.com/corporate-event-venue...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
           <td class="kw-cell" title="concert venue los angeles">concert venue los angeles</td>
           <td class="rank-cell rank-down">37</td>
           <td class="rank-cell">33</td>
@@ -460,6 +517,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/" target="_blank" title="https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/">https://brickroomla.com/blog/7-venues-in-los-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
           <td class="kw-cell" title="venue for branding events">venue for branding events</td>
           <td class="rank-cell rank-down">40</td>
           <td class="rank-cell">8</td>
@@ -468,6 +527,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank" title="https://brickroomla.com/corporate-event-venues-los-angeles/">https://brickroomla.com/corporate-event-venue...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
           <td class="kw-cell" title="photoshoot rental space los angeles">photoshoot rental space los angeles</td>
           <td class="rank-cell rank-down">40</td>
           <td class="rank-cell">36</td>
@@ -476,6 +537,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
           <td class="kw-cell" title="la music venues">la music venues</td>
           <td class="rank-cell rank-down">41</td>
           <td class="rank-cell">36</td>
@@ -484,6 +547,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/blog/concert-venues-los-angeles-venue/" target="_blank" title="https://brickroomla.com/blog/concert-venues-los-angeles-venue/">https://brickroomla.com/blog/concert-venues-l...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
           <td class="kw-cell" title="corporate event venues los angeles">corporate event venues los angeles</td>
           <td class="rank-cell rank-down">50</td>
           <td class="rank-cell">27</td>
@@ -492,6 +557,8 @@
           <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
           <td class="kw-cell" title="comedy club near me">comedy club near me</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -500,6 +567,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
           <td class="kw-cell" title="birthday party rental space">birthday party rental space</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -508,6 +577,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
           <td class="kw-cell" title="holiday party rentals near me">holiday party rentals near me</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -516,6 +587,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
           <td class="kw-cell" title="venues for babyshower">venues for babyshower</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -524,6 +597,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
           <td class="kw-cell" title="intimate wedding venue los angeles">intimate wedding venue los angeles</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -532,6 +607,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
           <td class="kw-cell" title="corporate event space rental">corporate event space rental</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>

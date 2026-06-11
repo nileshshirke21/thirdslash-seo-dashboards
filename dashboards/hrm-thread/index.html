@@ -77,6 +77,10 @@
   .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
+  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
+  .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
   .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
   .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); background: var(--card2); white-space: nowrap; }
@@ -215,23 +219,23 @@
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
-  <div class="rank-summary">
-    <div class="rank-badge top3">
-      <div class="badge-num">16</div>
-      <div class="badge-label">Top 3</div>
-    </div>
-    <div class="rank-badge top10">
-      <div class="badge-num">39</div>
-      <div class="badge-label">Top 10</div>
-    </div>
-    <div class="rank-badge top50">
-      <div class="badge-num">70</div>
-      <div class="badge-label">Top 50</div>
-    </div>
-    <div class="rank-badge total">
-      <div class="badge-num">79</div>
-      <div class="badge-label">Tracked</div>
-    </div>
+  <div class="rank-bucket-wrap">
+    <table class="rank-bucket-table">
+      <thead>
+        <tr>
+          <th>Position Bucket</th>
+          <th style="text-align:center">Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">39</td></tr>
+        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">14</td></tr>
+        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">17</td></tr>
+        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td></tr>
+        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">9</td></tr>
+        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">79</td></tr>
+      </tbody>
+    </table>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header">
@@ -241,6 +245,7 @@
     <table class="rank-table">
       <thead>
         <tr>
+          <th style="text-align:center;width:40px">Sr.</th>
           <th>Keyword</th>
           <th style="text-align:center">Current</th>
           <th style="text-align:center">Previous</th>
@@ -252,6 +257,8 @@
       <tbody>
         
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">1</td>
           <td class="kw-cell" title="payroll software kolkata">payroll software kolkata</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">2</td>
@@ -260,6 +267,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">2</td>
           <td class="kw-cell" title="hr software ahmedabad">hr software ahmedabad</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -268,6 +277,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-ahmedabad/" target="_blank" title="https://www.hrmthread.com/hr-software-ahmedabad/">https://www.hrmthread.com/hr-software-ahmedab...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">3</td>
           <td class="kw-cell" title="hrms hyderabad">hrms hyderabad</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -276,6 +287,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hrms-hyderabad/" target="_blank" title="https://www.hrmthread.com/hrms-hyderabad/">https://www.hrmthread.com/hrms-hyderabad/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">4</td>
           <td class="kw-cell" title="hrms software companies in hyderabad">hrms software companies in hyderabad</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -284,6 +297,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hrms-hyderabad/" target="_blank" title="https://www.hrmthread.com/hrms-hyderabad/">https://www.hrmthread.com/hrms-hyderabad/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">5</td>
           <td class="kw-cell" title="hrms companies in ahmedabad">hrms companies in ahmedabad</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -292,6 +307,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-ahmedabad/" target="_blank" title="https://www.hrmthread.com/hr-software-ahmedabad/">https://www.hrmthread.com/hr-software-ahmedab...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">6</td>
           <td class="kw-cell" title="hrms software in ahmedabad">hrms software in ahmedabad</td>
           <td class="rank-cell rank-flat">1</td>
           <td class="rank-cell">1</td>
@@ -300,6 +317,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-ahmedabad/" target="_blank" title="https://www.hrmthread.com/hr-software-ahmedabad/">https://www.hrmthread.com/hr-software-ahmedab...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">7</td>
           <td class="kw-cell" title="best hrms software in ahmedabad">best hrms software in ahmedabad</td>
           <td class="rank-cell rank-up">1</td>
           <td class="rank-cell">2</td>
@@ -308,6 +327,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-ahmedabad/" target="_blank" title="https://www.hrmthread.com/hr-software-ahmedabad/">https://www.hrmthread.com/hr-software-ahmedab...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">8</td>
           <td class="kw-cell" title="hr software chennai">hr software chennai</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">6</td>
@@ -316,6 +337,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-chennai/" target="_blank" title="https://www.hrmthread.com/hr-software-chennai/">https://www.hrmthread.com/hr-software-chennai...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">9</td>
           <td class="kw-cell" title="best hr software in ahmedabad">best hr software in ahmedabad</td>
           <td class="rank-cell rank-flat">2</td>
           <td class="rank-cell">2</td>
@@ -324,6 +347,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-ahmedabad/" target="_blank" title="https://www.hrmthread.com/hr-software-ahmedabad/">https://www.hrmthread.com/hr-software-ahmedab...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">10</td>
           <td class="kw-cell" title="payroll software companies in mumbai">payroll software companies in mumbai</td>
           <td class="rank-cell rank-up">2</td>
           <td class="rank-cell">20</td>
@@ -332,6 +357,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-mumbai/" target="_blank" title="https://www.hrmthread.com/payroll-software-mumbai/">https://www.hrmthread.com/payroll-software-mu...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">11</td>
           <td class="kw-cell" title="attendance software uae">attendance software uae</td>
           <td class="rank-cell rank-flat">2</td>
           <td class="rank-cell">2</td>
@@ -340,6 +367,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/attendance-software-uae/" target="_blank" title="https://www.hrmthread.com/attendance-software-uae/">https://www.hrmthread.com/attendance-software...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">12</td>
           <td class="kw-cell" title="employee time management system surat">employee time management system surat</td>
           <td class="rank-cell rank-flat">2</td>
           <td class="rank-cell">2</td>
@@ -348,6 +377,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/which-features-should-you-look-for-in-attendance-software-in-surat/" target="_blank" title="https://www.hrmthread.com/which-features-should-you-look-for-in-attendance-software-in-surat/">https://www.hrmthread.com/which-features-shou...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">13</td>
           <td class="kw-cell" title="hrms software in hyderabad">hrms software in hyderabad</td>
           <td class="rank-cell rank-down">3</td>
           <td class="rank-cell">1</td>
@@ -356,6 +387,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hrms-hyderabad/" target="_blank" title="https://www.hrmthread.com/hrms-hyderabad/">https://www.hrmthread.com/hrms-hyderabad/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">14</td>
           <td class="kw-cell" title="attendance software in surat">attendance software in surat</td>
           <td class="rank-cell rank-down">3</td>
           <td class="rank-cell">2</td>
@@ -364,6 +397,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/attendance-software-surat/" target="_blank" title="https://www.hrmthread.com/attendance-software-surat/">https://www.hrmthread.com/attendance-software...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">15</td>
           <td class="kw-cell" title="best attendance software surat">best attendance software surat</td>
           <td class="rank-cell rank-down">3</td>
           <td class="rank-cell">2</td>
@@ -372,6 +407,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/attendance-software-surat/" target="_blank" title="https://www.hrmthread.com/attendance-software-surat/">https://www.hrmthread.com/attendance-software...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">16</td>
           <td class="kw-cell" title="time and attendance software in surat">time and attendance software in surat</td>
           <td class="rank-cell rank-down">3</td>
           <td class="rank-cell">2</td>
@@ -380,6 +417,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/attendance-software-surat/" target="_blank" title="https://www.hrmthread.com/attendance-software-surat/">https://www.hrmthread.com/attendance-software...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">17</td>
           <td class="kw-cell" title="hr and payroll software india">hr and payroll software india</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">6</td>
@@ -388,6 +427,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">18</td>
           <td class="kw-cell" title="hrms payroll software">hrms payroll software</td>
           <td class="rank-cell rank-down">4</td>
           <td class="rank-cell">2</td>
@@ -396,6 +437,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">19</td>
           <td class="kw-cell" title="hrms software hyderabad">hrms software hyderabad</td>
           <td class="rank-cell rank-down">4</td>
           <td class="rank-cell">1</td>
@@ -404,6 +447,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hrms-hyderabad/" target="_blank" title="https://www.hrmthread.com/hrms-hyderabad/">https://www.hrmthread.com/hrms-hyderabad/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">20</td>
           <td class="kw-cell" title="online recruitment software">online recruitment software</td>
           <td class="rank-cell rank-up">4</td>
           <td class="rank-cell">13</td>
@@ -412,6 +457,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/recruitment-software/" target="_blank" title="https://www.hrmthread.com/recruitment-software/">https://www.hrmthread.com/recruitment-softwar...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">21</td>
           <td class="kw-cell" title="cloud based employee attendance systems for surat">cloud based employee attendance systems for surat</td>
           <td class="rank-cell rank-down">4</td>
           <td class="rank-cell">1</td>
@@ -420,6 +467,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/which-features-should-you-look-for-in-attendance-software-in-surat/" target="_blank" title="https://www.hrmthread.com/which-features-should-you-look-for-in-attendance-software-in-surat/">https://www.hrmthread.com/which-features-shou...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">22</td>
           <td class="kw-cell" title="payroll software in delhi ncr">payroll software in delhi ncr</td>
           <td class="rank-cell rank-up">5</td>
           <td class="rank-cell">21</td>
@@ -428,6 +477,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-delhi/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-delhi/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">23</td>
           <td class="kw-cell" title="best hr software in chennai">best hr software in chennai</td>
           <td class="rank-cell rank-up">5</td>
           <td class="rank-cell">10</td>
@@ -436,6 +487,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-chennai/" target="_blank" title="https://www.hrmthread.com/hr-software-chennai/">https://www.hrmthread.com/hr-software-chennai...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">24</td>
           <td class="kw-cell" title="hr software india">hr software india</td>
           <td class="rank-cell rank-up">6</td>
           <td class="rank-cell">11</td>
@@ -444,6 +497,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">25</td>
           <td class="kw-cell" title="hr system dubai">hr system dubai</td>
           <td class="rank-cell rank-up">6</td>
           <td class="rank-cell">8</td>
@@ -452,6 +507,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-in-dubai/" target="_blank" title="https://www.hrmthread.com/hr-software-in-dubai/">https://www.hrmthread.com/hr-software-in-duba...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">26</td>
           <td class="kw-cell" title="time and attendance software in kolkata">time and attendance software in kolkata</td>
           <td class="rank-cell rank-up">6</td>
           <td class="rank-cell">16</td>
@@ -460,6 +517,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">27</td>
           <td class="kw-cell" title="best hr software in mumbai">best hr software in mumbai</td>
           <td class="rank-cell rank-up">7</td>
           <td class="rank-cell">19</td>
@@ -468,6 +527,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">28</td>
           <td class="kw-cell" title="hrms chennai">hrms chennai</td>
           <td class="rank-cell rank-down">7</td>
           <td class="rank-cell">5</td>
@@ -476,6 +537,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/what-challenges-can-hrms-solve-for-chennai-based-businesses/" target="_blank" title="https://www.hrmthread.com/what-challenges-can-hrms-solve-for-chennai-based-businesses/">https://www.hrmthread.com/what-challenges-can...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">29</td>
           <td class="kw-cell" title="payroll software">payroll software</td>
           <td class="rank-cell rank-down">8</td>
           <td class="rank-cell">7</td>
@@ -484,6 +547,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">30</td>
           <td class="kw-cell" title="hr software online">hr software online</td>
           <td class="rank-cell rank-flat">8</td>
           <td class="rank-cell">8</td>
@@ -492,6 +557,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">31</td>
           <td class="kw-cell" title="payroll software in delhi">payroll software in delhi</td>
           <td class="rank-cell rank-up">8</td>
           <td class="rank-cell">21</td>
@@ -500,6 +567,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-delhi/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-delhi/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">32</td>
           <td class="kw-cell" title="hrms companies in mumbai">hrms companies in mumbai</td>
           <td class="rank-cell rank-up">8</td>
           <td class="rank-cell">32</td>
@@ -508,6 +577,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-mumbai/" target="_blank" title="https://www.hrmthread.com/hr-software-mumbai/">https://www.hrmthread.com/hr-software-mumbai/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">33</td>
           <td class="kw-cell" title="hr software kolkata">hr software kolkata</td>
           <td class="rank-cell rank-down">8</td>
           <td class="rank-cell">3</td>
@@ -516,6 +587,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">34</td>
           <td class="kw-cell" title="hr software">hr software</td>
           <td class="rank-cell rank-flat">9</td>
           <td class="rank-cell">9</td>
@@ -524,6 +597,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">35</td>
           <td class="kw-cell" title="hr software hyderabad">hr software hyderabad</td>
           <td class="rank-cell rank-down">9</td>
           <td class="rank-cell">3</td>
@@ -532,6 +607,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hrms-hyderabad/" target="_blank" title="https://www.hrmthread.com/hrms-hyderabad/">https://www.hrmthread.com/hrms-hyderabad/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">36</td>
           <td class="kw-cell" title="best hr software surat">best hr software surat</td>
           <td class="rank-cell rank-up">9</td>
           <td class="rank-cell">20</td>
@@ -540,6 +617,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">37</td>
           <td class="kw-cell" title="hr management software">hr management software</td>
           <td class="rank-cell rank-down">10</td>
           <td class="rank-cell">9</td>
@@ -548,6 +627,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">38</td>
           <td class="kw-cell" title="payroll software india">payroll software india</td>
           <td class="rank-cell rank-up">10</td>
           <td class="rank-cell">11</td>
@@ -556,6 +637,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">39</td>
           <td class="kw-cell" title="hris software in india">hris software in india</td>
           <td class="rank-cell rank-up">10</td>
           <td class="rank-cell">13</td>
@@ -564,6 +647,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">40</td>
           <td class="kw-cell" title="hrms software india">hrms software india</td>
           <td class="rank-cell rank-up">11</td>
           <td class="rank-cell">25</td>
@@ -572,6 +657,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">41</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">41</td>
           <td class="kw-cell" title="best hr software delhi">best hr software delhi</td>
           <td class="rank-cell rank-up">11</td>
           <td class="rank-cell">17</td>
@@ -580,6 +667,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">42</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">42</td>
           <td class="kw-cell" title="hr software mumbai">hr software mumbai</td>
           <td class="rank-cell rank-up">13</td>
           <td class="rank-cell">32</td>
@@ -588,6 +677,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-mumbai/" target="_blank" title="https://www.hrmthread.com/hr-software-mumbai/">https://www.hrmthread.com/hr-software-mumbai/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">43</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">43</td>
           <td class="kw-cell" title="employee database management system">employee database management system</td>
           <td class="rank-cell rank-up">13</td>
           <td class="rank-cell">14</td>
@@ -596,6 +687,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/how-does-an-employee-database-management-system-improve-your-business/" target="_blank" title="https://www.hrmthread.com/how-does-an-employee-database-management-system-improve-your-business/">https://www.hrmthread.com/how-does-an-employe...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">44</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">44</td>
           <td class="kw-cell" title="performance management system online">performance management system online</td>
           <td class="rank-cell rank-new">13</td>
           <td class="rank-cell">NR</td>
@@ -604,6 +697,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/performance-management-software/" target="_blank" title="https://www.hrmthread.com/performance-management-software/">https://www.hrmthread.com/performance-managem...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">45</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">45</td>
           <td class="kw-cell" title="payroll software in bangalore">payroll software in bangalore</td>
           <td class="rank-cell rank-down">14</td>
           <td class="rank-cell">8</td>
@@ -612,6 +707,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-bangalore/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-bangalore/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">46</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">46</td>
           <td class="kw-cell" title="employee performance tracking software">employee performance tracking software</td>
           <td class="rank-cell rank-new">14</td>
           <td class="rank-cell">NR</td>
@@ -620,6 +717,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/performance-management-software/" target="_blank" title="https://www.hrmthread.com/performance-management-software/">https://www.hrmthread.com/performance-managem...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">47</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">47</td>
           <td class="kw-cell" title="hr management software surat">hr management software surat</td>
           <td class="rank-cell rank-up">14</td>
           <td class="rank-cell">47</td>
@@ -628,6 +727,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/how-can-hrms-software-improve-efficiency-in-surats-textile-and-diamond-industries/" target="_blank" title="https://www.hrmthread.com/how-can-hrms-software-improve-efficiency-in-surats-textile-and-diamond-industries/">https://www.hrmthread.com/how-can-hrms-softwa...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">48</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">48</td>
           <td class="kw-cell" title="payroll outsourcing services in kolkata">payroll outsourcing services in kolkata</td>
           <td class="rank-cell rank-up">16</td>
           <td class="rank-cell">18</td>
@@ -636,6 +737,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">49</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">49</td>
           <td class="kw-cell" title="attendance software in kolkata">attendance software in kolkata</td>
           <td class="rank-cell rank-down">16</td>
           <td class="rank-cell">14</td>
@@ -644,6 +747,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">50</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">50</td>
           <td class="kw-cell" title="hrms payroll">hrms payroll</td>
           <td class="rank-cell rank-down">17</td>
           <td class="rank-cell">15</td>
@@ -652,6 +757,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/online-hrms-payroll-software/" target="_blank" title="https://www.hrmthread.com/online-hrms-payroll-software/">https://www.hrmthread.com/online-hrms-payroll...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">51</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">51</td>
           <td class="kw-cell" title="payroll software mumbai">payroll software mumbai</td>
           <td class="rank-cell rank-up">18</td>
           <td class="rank-cell">20</td>
@@ -660,6 +767,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-mumbai/" target="_blank" title="https://www.hrmthread.com/payroll-software-mumbai/">https://www.hrmthread.com/payroll-software-mu...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">52</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">52</td>
           <td class="kw-cell" title="best hrms in mumbai">best hrms in mumbai</td>
           <td class="rank-cell rank-up">18</td>
           <td class="rank-cell">33</td>
@@ -668,6 +777,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-mumbai/" target="_blank" title="https://www.hrmthread.com/payroll-software-mumbai/">https://www.hrmthread.com/payroll-software-mu...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">53</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">53</td>
           <td class="kw-cell" title="best hrms software in chennai">best hrms software in chennai</td>
           <td class="rank-cell rank-flat">19</td>
           <td class="rank-cell">19</td>
@@ -676,6 +787,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-chennai/" target="_blank" title="https://www.hrmthread.com/hr-software-chennai/">https://www.hrmthread.com/hr-software-chennai...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">54</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">54</td>
           <td class="kw-cell" title="hr software delhi">hr software delhi</td>
           <td class="rank-cell rank-up">24</td>
           <td class="rank-cell">26</td>
@@ -684,6 +797,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-delhi/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-delhi/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">55</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">55</td>
           <td class="kw-cell" title="employee attendance tracking software in kolkata">employee attendance tracking software in kolkata</td>
           <td class="rank-cell rank-down">24</td>
           <td class="rank-cell">12</td>
@@ -692,6 +807,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">56</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">56</td>
           <td class="kw-cell" title="payroll services in bangalore">payroll services in bangalore</td>
           <td class="rank-cell rank-up">24</td>
           <td class="rank-cell">33</td>
@@ -700,6 +817,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-bangalore/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-bangalore/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">57</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">57</td>
           <td class="kw-cell" title="payroll software companies in bangalore">payroll software companies in bangalore</td>
           <td class="rank-cell rank-down">25</td>
           <td class="rank-cell">20</td>
@@ -708,6 +827,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-bangalore/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-bangalore/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">58</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">58</td>
           <td class="kw-cell" title="best attendance software kolkata">best attendance software kolkata</td>
           <td class="rank-cell rank-new">25</td>
           <td class="rank-cell">NR</td>
@@ -716,6 +837,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-kolkata/" target="_blank" title="https://www.hrmthread.com/payroll-software-kolkata/">https://www.hrmthread.com/payroll-software-ko...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">59</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">59</td>
           <td class="kw-cell" title="payroll outsourcing services in mumbai">payroll outsourcing services in mumbai</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">21</td>
@@ -724,6 +847,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-mumbai/" target="_blank" title="https://www.hrmthread.com/payroll-software-mumbai/">https://www.hrmthread.com/payroll-software-mu...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">60</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">60</td>
           <td class="kw-cell" title="payroll companies in delhi">payroll companies in delhi</td>
           <td class="rank-cell rank-down">27</td>
           <td class="rank-cell">25</td>
@@ -732,6 +857,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-delhi/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-delhi/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">61</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">61</td>
           <td class="kw-cell" title="hrms software">hrms software</td>
           <td class="rank-cell rank-new">28</td>
           <td class="rank-cell">NR</td>
@@ -740,6 +867,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/" target="_blank" title="https://www.hrmthread.com/top-6-payroll-hr-software-in-india/">https://www.hrmthread.com/top-6-payroll-hr-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">62</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">62</td>
           <td class="kw-cell" title="payroll services in delhi">payroll services in delhi</td>
           <td class="rank-cell rank-up">29</td>
           <td class="rank-cell">46</td>
@@ -748,6 +877,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-delhi/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-delhi/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">63</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">63</td>
           <td class="kw-cell" title="hris software">hris software</td>
           <td class="rank-cell rank-up">31</td>
           <td class="rank-cell">42</td>
@@ -756,6 +887,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hris-software/" target="_blank" title="https://www.hrmthread.com/hris-software/">https://www.hrmthread.com/hris-software/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">64</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">64</td>
           <td class="kw-cell" title="hrms services chennai">hrms services chennai</td>
           <td class="rank-cell rank-down">32</td>
           <td class="rank-cell">28</td>
@@ -764,6 +897,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-chennai/" target="_blank" title="https://www.hrmthread.com/hr-software-chennai/">https://www.hrmthread.com/hr-software-chennai...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">65</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">65</td>
           <td class="kw-cell" title="payroll companies in bangalore">payroll companies in bangalore</td>
           <td class="rank-cell rank-up">33</td>
           <td class="rank-cell">37</td>
@@ -772,6 +907,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/payroll-software-in-bangalore/" target="_blank" title="https://www.hrmthread.com/payroll-software-in-bangalore/">https://www.hrmthread.com/payroll-software-in...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">66</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">66</td>
           <td class="kw-cell" title="timesheet management system">timesheet management system</td>
           <td class="rank-cell rank-new">34</td>
           <td class="rank-cell">NR</td>
@@ -780,6 +917,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/timesheet-software/" target="_blank" title="https://www.hrmthread.com/timesheet-software/">https://www.hrmthread.com/timesheet-software/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">67</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">67</td>
           <td class="kw-cell" title="hrms software companies in chennai">hrms software companies in chennai</td>
           <td class="rank-cell rank-up">35</td>
           <td class="rank-cell">50</td>
@@ -788,6 +927,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/hr-software-chennai/" target="_blank" title="https://www.hrmthread.com/hr-software-chennai/">https://www.hrmthread.com/hr-software-chennai...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">68</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">68</td>
           <td class="kw-cell" title="cloud based hr software">cloud based hr software</td>
           <td class="rank-cell rank-new">36</td>
           <td class="rank-cell">NR</td>
@@ -796,6 +937,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/5-best-cloud-based-hr-software-features-smes-need/" target="_blank" title="https://www.hrmthread.com/5-best-cloud-based-hr-software-features-smes-need/">https://www.hrmthread.com/5-best-cloud-based-...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">69</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">69</td>
           <td class="kw-cell" title="employee leave management system">employee leave management system</td>
           <td class="rank-cell rank-up">38</td>
           <td class="rank-cell">40</td>
@@ -804,6 +947,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/leave-management-software/" target="_blank" title="https://www.hrmthread.com/leave-management-software/">https://www.hrmthread.com/leave-management-so...</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">70</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">70</td>
           <td class="kw-cell" title="hrms surat">hrms surat</td>
           <td class="rank-cell rank-down">44</td>
           <td class="rank-cell">7</td>
@@ -812,6 +957,8 @@
           <td class="url-cell"><a href="https://www.hrmthread.com/" target="_blank" title="https://www.hrmthread.com/">https://www.hrmthread.com/</a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">71</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">71</td>
           <td class="kw-cell" title="payroll software for small business">payroll software for small business</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -820,6 +967,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">72</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">72</td>
           <td class="kw-cell" title="payroll system">payroll system</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -828,6 +977,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">73</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">73</td>
           <td class="kw-cell" title="recruitment software">recruitment software</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -836,6 +987,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">74</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">74</td>
           <td class="kw-cell" title="leave management software">leave management software</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">25</td>
@@ -844,6 +997,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">75</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">75</td>
           <td class="kw-cell" title="attendance software">attendance software</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -852,6 +1007,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">76</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">76</td>
           <td class="kw-cell" title="hr software for small businesses">hr software for small businesses</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">NR</td>
@@ -860,6 +1017,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">77</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">77</td>
           <td class="kw-cell" title="payroll software dubai">payroll software dubai</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">3</td>
@@ -868,6 +1027,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">78</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">78</td>
           <td class="kw-cell" title="payroll system dubai">payroll system dubai</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">5</td>
@@ -876,6 +1037,8 @@
           <td class="url-cell"><a href="" target="_blank" title=""></a></td>
         </tr>
         <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px">79</td>
+          <td style="text-align:center;color:#64748b;font-size:12px">79</td>
           <td class="kw-cell" title="hr software surat">hr software surat</td>
           <td class="rank-cell rank-flat">NR</td>
           <td class="rank-cell">44</td>
