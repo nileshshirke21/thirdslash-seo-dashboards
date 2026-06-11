@@ -4,522 +4,220 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kelly Powers — SEO Dashboard | ThirdSlash</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  :root {
-    --bg: #F5F7FA; --bg2: #EDF0F4; --card: #FFFFFF; --card2: #F8FAFC;
-    --accent: #2563EB; --accent2: #1D4ED8;
-    --text: #0F172A; --muted: #64748B; --border: #E2E8F0;
-    --green: #059669; --red: #DC2626; --orange: #D97706; --blue: #2563EB;
-    --up: #059669; --down: #DC2626; --new: #7C3AED; --flat: #94A3B8;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-  .header { background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; }
-  .header-left h1 { font-size: 22px; font-weight: 700; color: #fff; }
-  .header-left .subtitle { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 3px; }
-  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-  .logo { font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 2px; }
-  .updated { font-size: 11px; color: rgba(255,255,255,0.6); }
-  .nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; gap: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .nav-tab { padding: 14px 20px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-  .nav-tab:hover { color: var(--text); }
-  .section { display: none; padding: 28px 32px; }
-  .section.active { display: block; }
-  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
-  .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid var(--accent); }
-  .metric-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
-  .period-label { font-size: 10px; color: var(--muted); margin-bottom: 10px; }
-  .metric-value { font-size: 28px; font-weight: 800; color: var(--text); line-height: 1; margin-bottom: 6px; }
-  .delta { font-size: 12px; font-weight: 600; }
-  .delta.pos { color: var(--green); }
-  .delta.neg { color: var(--red); }
-  .charts-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-bottom: 28px; }
-  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .chart-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 14px; }
-  .chart-wrap { position: relative; height: 220px; }
-  .ai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
-  .ai-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .ai-card .ai-icon { font-size: 26px; margin-bottom: 8px; }
-  .ai-card .ai-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.7px; }
-  .ai-card .ai-val { font-size: 26px; font-weight: 700; color: var(--accent); margin: 6px 0 4px; }
-  .ai-card .ai-delta { font-size: 12px; }
-  .rank-summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 24px; }
-  .rank-badge { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .rank-badge .badge-num { font-size: 34px; font-weight: 800; }
-  .rank-badge .badge-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
-  .rank-badge.top3 .badge-num { color: #F59E0B; }
-  .rank-badge.top10 .badge-num { color: var(--green); }
-  .rank-badge.top50 .badge-num { color: var(--blue); }
-  .rank-badge.total .badge-num { color: var(--muted); }
-  .rank-table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .rank-table-header { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; background: var(--card2); }
-  .rank-table-header .period { font-size: 11px; color: var(--muted); font-weight: 400; }
-  .rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .rank-table th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 2px solid var(--border); background: #F8FAFC; }
-  .rank-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  .rank-table tr:last-child td { border-bottom: none; }
-  .rank-table tr:hover td { background: #EFF6FF; }
-  .rank-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .rank-table { width: 100%; min-width: 600px; table-layout: auto; }
-  .kw-cell { word-break: break-word; white-space: normal; color: var(--text); min-width: 180px; font-weight: 500; }
-  .rank-cell { font-weight: 700; text-align: center; width: 70px; }
-  .rank-cell.rank-up { color: var(--green); }
-  .rank-cell.rank-down { color: var(--red); }
-  .rank-cell.rank-new { color: var(--new); }
-  .rank-cell.rank-flat { color: var(--muted); }
-  .move-cell { font-size: 12px; font-weight: 700; width: 80px; }
-  .move-cell.up { color: var(--up); }
-  .move-cell.down { color: var(--down); }
-  .move-cell.new { color: var(--new); }
-  .move-cell.flat { color: var(--flat); }
-  .vol-cell { color: var(--muted); font-size: 12px; width: 80px; }
-  .url-cell { font-size: 11px; color: var(--muted); word-break: break-all; white-space: normal; }
-  .url-cell a { color: var(--accent); text-decoration: none; font-weight: 500; }
-  .url-cell a:hover { text-decoration: underline; }
-  .rank-bucket-wrap { margin-bottom: 24px; display: block; width: 100%; }
-  .rank-controls { padding: 12px 16px; display:flex; align-items:center; border-bottom: 1px solid var(--border); background: var(--card2); }
-  .sort-icon { font-size:10px; color:var(--muted); margin-left:3px; vertical-align:middle; }
-  .rank-bucket-table { width: 100%; max-width: 640px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .rank-bucket-table th { background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); padding: 12px 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; text-align: left; white-space: nowrap; }
-  .rank-bucket-table td { padding: 10px 20px; font-size: 13px; border-top: 1px solid var(--border); white-space: nowrap; }
-  .rank-bucket-table tr:hover td { background: #EFF6FF; }
-  .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .history-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 900px; }
-  .history-table th { padding: 10px 14px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); background: linear-gradient(135deg, #1E3A5F 0%, #2563EB 100%); color: #fff; white-space: nowrap; }
-  .history-table th:first-child { text-align: left; }
-  .history-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); text-align: right; }
-  .history-table td:first-child { text-align: left; font-weight: 600; color: var(--accent); }
-  .history-table tr:last-child td { border-bottom: none; }
-  .history-table tr:hover td { background: #EFF6FF; }
-  .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .gmb-section { margin-bottom: 28px; }
-  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
-  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
-  .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
-  .gmb-icon { font-size: 20px; margin-bottom: 6px; }
-  .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
-  .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
-  .no-data .icon { font-size: 48px; margin-bottom: 12px; }
-  .no-data p { font-size: 14px; }
-  @media (max-width: 1100px) {
-    .metrics-grid { grid-template-columns: repeat(2,1fr); }
-    .ai-grid { grid-template-columns: repeat(2,1fr); }
-    .rank-summary { grid-template-columns: repeat(2,1fr); }
-    .charts-grid { grid-template-columns: 1fr; }
-  }
+:root{--bg:#0a0a0b;--bg2:#111113;--bg3:#18181b;--border:rgba(255,255,255,0.07);--border-accent:rgba(255,255,255,0.14);--text:#e8e8e6;--text2:#8a8a85;--text3:#55554f;--accent:#d4f060;--accent2:#a8c844;--up:#4ade80;--down:#f87171;--neutral:#60a5fa;--warn:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;background:rgba(10,10,11,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.topbar-left{display:flex;align-items:center;gap:16px}
+.logo{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase}
+.sep{width:1px;height:16px;background:var(--border-accent)}
+.client-name-top{font-size:13px;font-weight:500}
+.report-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2)}
+.status-pill{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);font-size:11px;color:var(--up);font-family:'DM Mono',monospace}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--up);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero{padding:48px 32px 32px;border-bottom:1px solid var(--border)}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+.hero-title{font-size:36px;font-weight:300;letter-spacing:-0.02em;margin-bottom:6px}
+.hero-title strong{font-weight:600}
+.hero-sub{font-size:14px;color:var(--text2)}
+.hero-meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.hero-meta-item{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)}
+.hero-meta-item span{color:var(--text2)}
+.section{padding:32px;border-bottom:1px solid var(--border)}
+.section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:20px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.metric-card{background:var(--bg2);padding:20px 22px}
+.metric-label{font-size:11px;color:var(--text2);margin-bottom:8px}
+.metric-value{font-family:'DM Mono',monospace;font-size:24px;font-weight:500;letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
+.metric-delta{font-family:'DM Mono',monospace;font-size:11px}
+.delta-up{color:var(--up)}.delta-down{color:var(--down)}.delta-neutral{color:var(--text3)}
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:16px}
+.ai-card{background:var(--bg2);padding:16px 20px}
+.ai-label{font-size:10px;color:var(--text2);margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:0.06em;text-transform:uppercase}
+.ai-value{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--neutral)}
+.ai-sub{font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;margin-top:3px}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:900px){.charts-grid{grid-template-columns:1fr}}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px}
+.chart-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
+.chart-wrap{position:relative;height:200px}
+.history-table{width:100%;border-collapse:collapse}
+.history-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);font-weight:400;white-space:nowrap}
+.history-table th:first-child{text-align:left}
+.history-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:12px;text-align:right;vertical-align:middle;font-family:'DM Mono',monospace;color:var(--text)}
+.history-table td:first-child{text-align:left;color:var(--text2);font-size:11px}
+.history-table tr:last-child td{border-bottom:none}
+.history-table tr:hover td{background:var(--bg3)}
+.history-table tr.current-month td{background:rgba(212,240,96,0.04)}
+.history-table tr.current-month td:first-child{color:var(--accent);font-weight:500}
+.rank-table{width:100%;border-collapse:collapse}
+.rank-table th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);font-weight:400}
+.rank-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle}
+.rank-table tr:last-child td{border-bottom:none}
+.rank-table tr:hover td{background:var(--bg3)}
+.rank-num{font-family:'DM Mono',monospace;font-size:15px;font-weight:500}
+.move-up{display:inline-flex;align-items:center;gap:3px;font-family:'DM Mono',monospace;font-size:11px;color:var(--up);background:rgba(74,222,128,0.08);padding:2px 7px;border-radius:4px}
+.move-down{display:inline-flex;align-items:center;gap:3px;font-family:'DM Mono',monospace;font-size:11px;color:var(--down);background:rgba(248,113,113,0.08);padding:2px 7px;border-radius:4px}
+.move-new{font-family:'DM Mono',monospace;font-size:10px;color:var(--neutral);background:rgba(96,165,250,0.08);padding:2px 7px;border-radius:4px}
+.move-flat{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)}
+.kw-url{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.task-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+.task-name{font-size:12px;font-weight:500;margin-bottom:10px}
+.task-bar-bg{height:3px;background:var(--border-accent);border-radius:2px;overflow:hidden;margin-bottom:6px}
+.task-bar-fill{height:100%;border-radius:2px;background:var(--accent);transition:width 0.8s ease}
+.task-bar-fill.done{background:var(--up)}.task-bar-fill.blocked{background:var(--down)}.task-bar-fill.waiting{background:var(--warn)}
+.task-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3)}
+.task-meta span{color:var(--text2)}
+.bl-type{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:0.04em}
+.bl-citation{background:rgba(212,240,96,0.1);color:var(--accent2)}.bl-reddit{background:rgba(251,146,60,0.1);color:#fb923c}.bl-guest{background:rgba(167,139,250,0.1);color:#a78bfa}.bl-comment{background:rgba(96,165,250,0.1);color:var(--neutral)}
+.bl-live{font-family:'DM Mono',monospace;font-size:10px;color:var(--up)}.bl-pending{font-family:'DM Mono',monospace;font-size:10px;color:var(--warn)}
+.footer{padding:24px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)}
+.footer-brand strong{color:var(--accent)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);text-decoration:none}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <div class="header-left">
-    <h1>Kelly Powers</h1>
-    <div class="subtitle">SEO Performance Dashboard</div>
-  </div>
-  <div class="header-right">
-    <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 11 Jun 2026</div>
+<div class="topbar">
+  <div class="topbar-left"><div class="logo">ThirdSlash</div><div class="sep"></div><div class="client-name-top">Kelly Powers</div></div>
+  <div style="display:flex;align-items:center;gap:16px"><div class="report-date">May 2026</div><div class="status-pill"><div class="status-dot"></div>live data</div></div>
+</div>
+<div class="hero">
+  <div class="hero-eyebrow">SEO Performance Dashboard</div>
+  <h1 class="hero-title"><strong>Kelly Powers</strong> — May 2026</h1>
+  <div class="hero-sub">Nutrition Coach Dietitian · kellypowers.com</div>
+  <div class="hero-meta">
+    <div class="hero-meta-item">Manager <span>Nilesh Shirke</span></div>
+    <div class="hero-meta-item">Team <span>Chintan Nalekar</span></div>
+    <div class="hero-meta-item">Updated <span>11 Jun 2026</span></div>
+    <div class="hero-meta-item">Location <span>San Francisco, USA</span></div>
   </div>
 </div>
 
-<div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history')">History</div>
-</div>
-
-<!-- OVERVIEW TAB -->
-<div id="tab-overview" class="section active">
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-label">SEO + AI Traffic</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">1,064</div>
-      <span class="delta neg">▼ 10.8%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Organic Sessions</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">1,043</div>
-      <span class="delta neg">▼ 11.8%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Total Sessions</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">2,318</div>
-      <span class="delta neg">▼ 11.7%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Pageviews</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">2,904</div>
-      <span class="delta neg">▼ 19.0%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Bounce Rate</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">72.5%</div>
-      <span class="delta pos">▲ 14.9%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Avg Duration (sec)</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">68</div>
-      <span class="delta neg">▼ 34.0%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Direct Sessions</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">1,221</div>
-      <span class="delta pos">▲ 11.6%</span>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Form Submissions</div>
-      <div class="period-label">May-2026 vs Apr-2026</div>
-      <div class="metric-value">0</div>
-      <span class="delta pos">▲ 0%</span>
+<!-- METRICS — GA4 ONLY -->
+<div class="section">
+  <div class="section-label">Traffic — May 2026 · Google Analytics</div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-label">Sessions</div><div class="metric-value">2,318</div><div class="metric-delta delta-up">↑ 2 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Users</div><div class="metric-value">1,924</div><div class="metric-delta delta-up">↑ 31 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Organic Sessions</div><div class="metric-value">1,043</div><div class="metric-delta delta-down">↓ -139 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Pageviews</div><div class="metric-value">2,904</div><div class="metric-delta delta-down">↓ -306 vs prev</div></div>
+    <div class="metric-card"><div class="metric-label">Bounce Rate</div><div class="metric-value">72.48%</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Avg Session Duration</div><div class="metric-value">68s</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Direct Sessions</div><div class="metric-value">1,221</div><div class="metric-delta delta-neutral">GA4</div></div>
+    <div class="metric-card"><div class="metric-label">Form Submissions</div><div class="metric-value">0</div><div class="metric-delta delta-neutral">conversions</div></div>
+  </div>
+  <!-- AI TRAFFIC -->
+  <div style="margin-top:24px">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px">AI Traffic — May 2026</div>
+    <div class="ai-grid">
+      <div class="ai-card"><div class="ai-label">ChatGPT</div><div class="ai-value">15</div><div class="ai-sub">via chatgpt.com</div></div>
+      <div class="ai-card"><div class="ai-label">Claude</div><div class="ai-value">0</div><div class="ai-sub">via claude.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Perplexity</div><div class="ai-value">1</div><div class="ai-sub">via perplexity.ai</div></div>
+      <div class="ai-card"><div class="ai-label">Gemini</div><div class="ai-value">5</div><div class="ai-sub">via gemini.google.com</div></div>
     </div>
   </div>
+</div>
 
+<!-- CHARTS -->
+<div class="section">
+  <div class="section-label">16-month trend · Google Analytics</div>
   <div class="charts-grid">
-    <div class="chart-card">
-      <div class="chart-title">Sessions vs Organic Sessions (Last 12 Completed Months)</div>
-      <div class="chart-wrap"><canvas id="sessChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Form Submissions</div>
-      <div class="chart-wrap"><canvas id="formChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">AI Traffic Trend</div>
-      <div class="chart-wrap"><canvas id="aiChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Traffic Channels (Latest Month)</div>
-      <div class="chart-wrap"><canvas id="chChart"></canvas></div>
-    </div>
-  </div>
-
-  <div class="ai-grid">
-    <div class="ai-card">
-      <div class="ai-icon">🤖</div>
-      <div class="ai-label">ChatGPT</div>
-      <div class="ai-val">15</div>
-      <div class="ai-delta pos delta">▲ 5</div>
-    </div><div class="ai-card">
-      <div class="ai-icon">🟣</div>
-      <div class="ai-label">Claude</div>
-      <div class="ai-val">0</div>
-      <div class="ai-delta pos delta">▲ 0</div>
-    </div><div class="ai-card">
-      <div class="ai-icon">🔮</div>
-      <div class="ai-label">Perplexity</div>
-      <div class="ai-val">1</div>
-      <div class="ai-delta pos delta">▲ 1</div>
-    </div><div class="ai-card">
-      <div class="ai-icon">💎</div>
-      <div class="ai-label">Gemini</div>
-      <div class="ai-val">5</div>
-      <div class="ai-delta pos delta">▲ 4</div>
-    </div>
+    <div class="chart-card"><div class="chart-title">Sessions &amp; Organic Sessions</div><div class="chart-wrap"><canvas id="sessionsChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Form Submissions</div><div class="chart-wrap"><canvas id="formsChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">AI Traffic trend</div><div class="chart-wrap"><canvas id="aiChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">Traffic channels</div><div class="chart-wrap"><canvas id="channelsChart"></canvas></div></div>
   </div>
 </div>
 
-<!-- GMB SECTION -->
-
-
-<!-- RANKINGS TAB -->
-<div id="tab-rankings" class="section">
-  
-  <div class="rank-bucket-wrap">
-    <table class="rank-bucket-table">
-      <thead>
-        <tr>
-          <th>Position Bucket</th>
-          <th style="text-align:center">Current</th>
-          <th style="text-align:center">Previous</th>
-          <th style="text-align:center">Change</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>🥇 Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr>
-        <tr><td>🥈 Position 11–20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr>
-        <tr><td>🥉 Position 21–50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr>
-        <tr><td>📉 Position 51–100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr>
-        <tr><td>❌ Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr>
-        <tr style="border-top:1px solid #334155"><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center;color:#94a3b8">—</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="rank-table-wrap">
-    <div class="rank-table-header">
-      Keyword Rankings
-      <span class="period">Last Updated: 2026-06-11</span>
-    </div>
-    <div class="rank-controls">
-      <input type="text" id="kwSearch" placeholder="🔍 Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;color:var(--text);font-size:13px;width:260px;">
-      <span style="font-size:12px;color:var(--muted);margin-left:12px">Click column headers to sort</span>
-    </div>
-    <table class="rank-table" id="rankTable">
-      <thead>
-        <tr>
-          <th style="text-align:center;width:40px">Sr.</th>
-          <th onclick="sortTable(1)" style="cursor:pointer;white-space:nowrap">Keyword <span class="sort-icon">⇅</span></th>
-          <th onclick="sortTable(2)" style="cursor:pointer;text-align:center;white-space:nowrap">Current <span class="sort-icon">⇅</span></th>
-          <th onclick="sortTable(3)" style="cursor:pointer;text-align:center;white-space:nowrap">Previous <span class="sort-icon">⇅</span></th>
-          <th style="white-space:nowrap">Movement</th>
-          <th onclick="sortTable(5)" style="cursor:pointer;white-space:nowrap">Volume <span class="sort-icon">⇅</span></th>
-          <th style="white-space:nowrap">Ranking URL</th>
-        </tr>
-      </thead>
-      <tbody id="rankTableBody">
-        
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="best self help books to read">best self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="good self help books to read">good self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="best self development books to read">best self development books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best books of all time self help">best books of all time self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="best books to read for self improvement">best books to read for self improvement</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
-          <td class="kw-cell" title="spiritual coach">spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
-          <td class="kw-cell" title="men's self help books">men's self help books</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
-          <td class="kw-cell" title="great self help books to read">great self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
-          <td class="kw-cell" title="life spiritual coach">life spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="life and spiritual coach">life and spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
-          <td class="kw-cell" title="best self help novels">best self help novels</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">9900</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
-          <td class="kw-cell" title="best self improvement books to read">best self improvement books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
-          <td class="kw-cell" title="good books to read self help">good books to read self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="spiritual life coaching">spiritual life coaching</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="top self help books to read">top self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <script>
-  var sortDir = {};
-  function sortTable(col) {
-    var tbody = document.getElementById("rankTableBody");
-    var rows = Array.from(tbody.querySelectorAll("tr"));
-    var asc = !sortDir[col];
-    sortDir = {};
-    sortDir[col] = asc;
-    rows.sort(function(a, b) {
-      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
-      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
-      var an = parseFloat(av.replace(/[^0-9.-]/g,""));
-      var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
-      if (!isNaN(an) && !isNaN(bn)) {
-        return asc ? an - bn : bn - an;
-      }
-      if (av === "NR") return asc ? 1 : -1;
-      if (bv === "NR") return asc ? -1 : 1;
-      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-    });
-    rows.forEach(function(r) { tbody.appendChild(r); });
-    // Update Sr. numbers after sort
-    rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
-  }
-  function filterTable() {
-    var q = document.getElementById("kwSearch").value.toLowerCase();
-    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
-    rows.forEach(function(r) {
-      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
-      r.style.display = kw.includes(q) ? "" : "none";
-    });
-  }
-  </script>
-  
-</div>
-
-<!-- HISTORY TAB -->
-<div id="tab-history" class="section">
-  
-  <div class="history-wrap">
-    <p style="font-size:12px;color:var(--muted);padding:10px 20px;margin:0;border-bottom:1px solid var(--border);background:var(--card2);">GA4 Historical Data — Last 13 completed months</p>
+<!-- HISTORY TABLE — GA4 ONLY -->
+<div class="section">
+  <div class="section-label">Traffic history — 16 months · Google Analytics</div>
+  <div style="overflow-x:auto">
     <table class="history-table">
-      <thead>
-        <tr>
-          <th>Month</th><th>Sessions</th><th>Users</th><th>Organic</th>
-          <th>Pageviews</th><th>Bounce %</th><th>Forms</th><th>Direct</th>
-          <th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th>
-        </tr>
-      </thead>
-      <tbody><tr><td>May-2026</td><td>2,318</td><td>1,924</td><td>1,043</td><td>2,904</td><td>72.5%</td><td>0</td><td>1,221</td><td>15</td><td>0</td><td>1</td><td>5</td></tr><tr><td>Apr-2026</td><td>2,626</td><td>2,144</td><td>1,182</td><td>3,584</td><td>63.1%</td><td>0</td><td>1,094</td><td>10</td><td>0</td><td>0</td><td>1</td></tr><tr><td>Mar-2026</td><td>3,208</td><td>2,717</td><td>1,477</td><td>3,874</td><td>68.0%</td><td>0</td><td>1,065</td><td>22</td><td>2</td><td>0</td><td>2</td></tr><tr><td>Feb-2026</td><td>3,269</td><td>2,712</td><td>1,718</td><td>4,313</td><td>66.3%</td><td>0</td><td>1,358</td><td>34</td><td>1</td><td>1</td><td>3</td></tr><tr><td>Jan-2026</td><td>3,269</td><td>2,712</td><td>1,638</td><td>4,313</td><td>66.3%</td><td>0</td><td>1,521</td><td>30</td><td>0</td><td>0</td><td>3</td></tr><tr><td>Dec-2025</td><td>2,883</td><td>2,405</td><td>1,250</td><td>3,715</td><td>62.4%</td><td>0</td><td>1,234</td><td>21</td><td>0</td><td>0</td><td>2</td></tr><tr><td>Nov-2025</td><td>2,883</td><td>2,405</td><td>1,318</td><td>3,715</td><td>62.4%</td><td>0</td><td>1,359</td><td>33</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Oct-2025</td><td>3,123</td><td>2,432</td><td>1,621</td><td>5,707</td><td>53.0%</td><td>0</td><td>853</td><td>51</td><td>2</td><td>1</td><td>1</td></tr><tr><td>Sep-2025</td><td>3,123</td><td>2,432</td><td>2,110</td><td>5,707</td><td>53.0%</td><td>0</td><td>862</td><td>45</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Aug-2025</td><td>3,923</td><td>3,016</td><td>2,122</td><td>5,322</td><td>58.3%</td><td>0</td><td>601</td><td>25</td><td>0</td><td>0</td><td>2</td></tr><tr><td>Jul-2025</td><td>3,923</td><td>3,016</td><td>2,345</td><td>5,322</td><td>58.3%</td><td>0</td><td>910</td><td>29</td><td>0</td><td>0</td><td>2</td></tr><tr><td>Jun-2025</td><td>3,697</td><td>2,890</td><td>2,268</td><td>4,944</td><td>55.6%</td><td>0</td><td>721</td><td>12</td><td>0</td><td>2</td><td>1</td></tr><tr><td>May-2025</td><td>3,697</td><td>2,890</td><td>2,582</td><td>4,944</td><td>55.6%</td><td>0</td><td>674</td><td>20</td><td>0</td><td>2</td><td>0</td></tr></tbody>
+      <thead><tr><th>Month</th><th>Sessions</th><th>Organic Sessions</th><th>Direct Sessions</th><th>Bounce Rate %</th><th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th><th>Forms</th></tr></thead>
+      <tbody><tr class="current-month"><td>May-2026</td><td>2,318</td><td>1,043</td><td>1,221</td><td>72.48</td><td>15</td><td>0</td><td>1</td><td>5</td><td>0</td></tr>
+<tr><td>Apr-2026</td><td>2,626</td><td>1,182</td><td>1,094</td><td>63.1</td><td>10</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>Mar-2026</td><td>3,208</td><td>1,477</td><td>1,065</td><td>68.02</td><td>22</td><td>2</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>Feb-2026</td><td>3,269</td><td>1,718</td><td>1,358</td><td>66.32</td><td>34</td><td>1</td><td>1</td><td>3</td><td>0</td></tr>
+<tr><td>Jan-2026</td><td>3,269</td><td>1,638</td><td>1,521</td><td>66.32</td><td>30</td><td>0</td><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>Dec-2025</td><td>2,883</td><td>1,250</td><td>1,234</td><td>62.37</td><td>21</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>Nov-2025</td><td>2,883</td><td>1,318</td><td>1,359</td><td>62.37</td><td>33</td><td>3</td><td>3</td><td>1</td><td>0</td></tr>
+<tr><td>Oct-2025</td><td>3,123</td><td>1,621</td><td>853</td><td>52.96</td><td>51</td><td>2</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><td>Sep-2025</td><td>3,123</td><td>2,110</td><td>862</td><td>52.96</td><td>45</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Aug-2025</td><td>3,923</td><td>2,122</td><td>601</td><td>58.27</td><td>25</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>Jul-2025</td><td>3,923</td><td>2,345</td><td>910</td><td>58.27</td><td>29</td><td>0</td><td>0</td><td>2</td><td>0</td></tr>
+<tr><td>Jun-2025</td><td>3,697</td><td>2,268</td><td>721</td><td>55.59</td><td>12</td><td>0</td><td>2</td><td>1</td><td>0</td></tr>
+<tr><td>May-2025</td><td>3,697</td><td>2,582</td><td>674</td><td>55.59</td><td>20</td><td>0</td><td>2</td><td>0</td><td>0</td></tr>
+<tr><td>Apr-2025</td><td>3,367</td><td>2,691</td><td>501</td><td>49.18</td><td>13</td><td>0</td><td>3</td><td>4</td><td>—</td></tr>
+<tr><td>Mar-2025</td><td>3,177</td><td>2,230</td><td>658</td><td>48.95</td><td>5</td><td>0</td><td>1</td><td>1</td><td>—</td></tr>
+<tr><td>Feb-2025</td><td>3,979</td><td>2,136</td><td>884</td><td>52.15</td><td>18</td><td>0</td><td>5</td><td>0</td><td>—</td></tr></tbody>
     </table>
   </div>
-  
+</div>
+
+<!-- RANKINGS -->
+<div class="section">
+  <div class="section-label">Keyword rankings — 11 Jun 2026 · San Francisco, USA</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Keyword</th><th>Current</th><th>Last month</th><th>Change</th><th>Ranking URL</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);font-family:'DM Mono',monospace;font-size:11px;padding:14px 12px;">+ 15 keywords not yet ranking in top 100</td></tr></tbody></table></div>
+  <div style="margin-top:14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text3)">0 ranking · 15 not in top 100 · Ubersuggest</div>
+</div>
+
+<!-- TASKS -->
+<div class="section"><div class="section-label">Tasks — May 2026</div><div class="task-grid"><div style="color:var(--text3);font-size:13px;">No tasks logged yet.</div></div></div>
+
+<!-- BACKLINKS -->
+<div class="section">
+  <div class="section-label">Links built — May 2026</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Type</th><th>Source</th><th>Target</th><th>Anchor</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td colspan="6" style="color:var(--text3);padding:20px 12px;">No backlinks logged yet.</td></tr></tbody></table></div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="section">
+  <div class="section-label">Deliverables — May 2026</div>
+  <div style="overflow-x:auto"><table class="rank-table"><thead><tr><th>Date</th><th>Deliverable</th><th>Sent by</th><th>Response</th><th>Follow-up</th></tr></thead><tbody><tr><td colspan="5" style="color:var(--text3);padding:20px 12px;">No deliverables logged yet.</td></tr></tbody></table></div>
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Powered by <strong>ThirdSlash</strong> · Digital Marketing Agency · Mumbai, India</div>
+  <div class="footer-links"><a href="mailto:nilesh@thirdslash.com">Contact</a><a href="https://thirdslash.com" target="_blank">thirdslash.com</a></div>
 </div>
 
 <script>
-function showTab(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
-const months   = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
-const sessData = [3697, 3923, 3923, 3123, 3123, 2883, 2883, 3269, 3269, 3208, 2626, 2318];
-const orgData  = [2268, 2345, 2122, 2110, 1621, 1318, 1250, 1638, 1718, 1477, 1182, 1043];
-const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [1043, 1221, 43, 0, 0, 0];
-const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [12, 29, 25, 45, 51, 33, 21, 30, 34, 22, 10, 15], "Claude": [0, 0, 0, 0, 2, 3, 0, 0, 1, 2, 0, 0], "Perplexity": [2, 0, 0, 0, 1, 3, 0, 0, 1, 0, 0, 1], "Gemini": [1, 2, 2, 0, 1, 1, 2, 3, 3, 2, 1, 5]};
-const aiLabels  = ["ChatGPT", "Claude", "Perplexity", "Gemini"];
-const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
-const dflt = {
-  responsive: true, maintainAspectRatio: false,
-  plugins: { legend: { labels: { color: '#64748B', font: { size: 11 } } } },
-  scales: {
-    x: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { display: false } },
-    y: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+const D = {"months": ["Feb-2025", "Mar-2025", "Apr-2025", "May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], "sessions": [3979, 3177, 3367, 3697, 3697, 3923, 3923, 3123, 3123, 2883, 2883, 3269, 3269, 3208, 2626, 2318], "organic_sessions": [2136, 2230, 2691, 2582, 2268, 2345, 2122, 2110, 1621, 1318, 1250, 1638, 1718, 1477, 1182, 1043], "avg_position": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null], "chatgpt": [18, 5, 13, 20, 12, 29, 25, 45, 51, 33, 21, 30, 34, 22, 10, 15], "claude": [0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, 1, 2, 0, 0], "perplexity": [5, 1, 3, 2, 2, 0, 0, 0, 1, 3, 0, 0, 1, 0, 0, 1], "gemini": [0, 1, 4, 0, 1, 2, 2, 0, 1, 1, 2, 3, 3, 2, 1, 5], "forms": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const base = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{legend:{labels:{color:'#8a8a85',font:{family:'DM Mono, monospace',size:10},boxWidth:10,padding:12}}},
+  scales:{
+    x:{ticks:{color:'#55554f',font:{family:'DM Mono, monospace',size:9},maxRotation:45},grid:{color:'rgba(255,255,255,0.04)'}},
+    y:{ticks:{color:'#55554f',font:{family:'DM Mono, monospace',size:9}},grid:{color:'rgba(255,255,255,0.04)'}}
   }
 };
-new Chart(document.getElementById('sessChart'), {
-  type: 'bar',
-  data: { labels: months, datasets: [
-    { label: 'Sessions', data: sessData, backgroundColor: 'rgba(37,99,235,0.7)', borderColor: '#2563EB', borderWidth: 1, borderRadius: 4 },
-    { label: 'Organic',  data: orgData,  backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth: 1, borderRadius: 4 }
-  ]},
-  options: {...dflt}
-});
-new Chart(document.getElementById('formChart'), {
-  type: 'bar',
-  data: { labels: months, datasets: [{ label: 'Form Submissions', data: formData, backgroundColor: 'rgba(37,99,235,0.6)', borderColor: '#2563EB', borderWidth: 1, borderRadius: 4 }]},
-  options: {...dflt}
-});
-new Chart(document.getElementById('aiChart'), {
-  type: 'bar',
-  data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
-  options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
-});
-
-new Chart(document.getElementById('chChart'), {
-  type: 'doughnut',
-  data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
-});
+new Chart(document.getElementById('sessionsChart'),{type:'line',data:{labels:D.months,datasets:[
+  {label:'Sessions',data:D.sessions,borderColor:'#d4f060',backgroundColor:'rgba(212,240,96,0.08)',tension:0.4,fill:true,pointRadius:3,pointBackgroundColor:'#d4f060'},
+  {label:'Organic',data:D.organic_sessions,borderColor:'#4ade80',backgroundColor:'rgba(74,222,128,0.06)',tension:0.4,fill:true,pointRadius:3,pointBackgroundColor:'#4ade80'}
+]},options:{...base}});
+new Chart(document.getElementById('formsChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'Form Submissions',data:D.forms,backgroundColor:'rgba(74,222,128,0.7)',borderRadius:3}
+]},options:{...base}});
+new Chart(document.getElementById('aiChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'ChatGPT',data:D.chatgpt,backgroundColor:'rgba(212,240,96,0.8)',stack:'ai'},
+  {label:'Claude',data:D.claude,backgroundColor:'rgba(251,146,60,0.8)',stack:'ai'},
+  {label:'Perplexity',data:D.perplexity,backgroundColor:'rgba(167,139,250,0.8)',stack:'ai'},
+  {label:'Gemini',data:D.gemini,backgroundColor:'rgba(96,165,250,0.8)',stack:'ai'}
+]},options:{...base}});
+new Chart(document.getElementById('channelsChart'),{type:'bar',data:{labels:D.months,datasets:[
+  {label:'Organic',data:D.organic_sessions,backgroundColor:'rgba(212,240,96,0.7)',stack:'ch'},
+  {label:'Direct',data:D.direct,backgroundColor:'rgba(96,165,250,0.7)',stack:'ch'},
+  {label:'Referral',data:D.referral,backgroundColor:'rgba(251,146,60,0.7)',stack:'ch'}
+]},options:{...base}});
+document.querySelectorAll('.task-bar-fill').forEach(b=>{const w=b.dataset.width||'0';b.style.width='0%';setTimeout(()=>{b.style.width=w+'%'},300)});
 </script>
 </body>
 </html>
