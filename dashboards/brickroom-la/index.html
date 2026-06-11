@@ -62,7 +62,9 @@
   .rank-table td { padding: 10px 14px; border-bottom: 1px solid rgba(45,49,84,0.5); vertical-align: middle; }
   .rank-table tr:last-child td { border-bottom: none; }
   .rank-table tr:hover td { background: rgba(108,99,255,0.06); }
-  .kw-cell { max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+  .rank-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .rank-table { width: 100%; min-width: 600px; table-layout: auto; }
+  .kw-cell { word-break: break-word; white-space: normal; color: var(--text); min-width: 180px; }
   .rank-cell { font-weight: 700; text-align: center; width: 70px; }
   .rank-cell.rank-up { color: var(--green); }
   .rank-cell.rank-down { color: var(--red); }
@@ -74,11 +76,11 @@
   .move-cell.new { color: var(--new); }
   .move-cell.flat { color: var(--flat); }
   .vol-cell { color: var(--muted); font-size: 12px; width: 80px; }
-  .url-cell { font-size: 11px; color: var(--muted); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .url-cell { font-size: 11px; color: var(--muted); word-break: break-all; white-space: normal; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
   .rank-bucket-wrap { margin-bottom: 24px; }
-  .rank-bucket-table { width: 320px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .rank-bucket-table { width: 100%; max-width: 400px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
   .rank-bucket-table th { background: var(--bg2); padding: 10px 16px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; }
   .rank-bucket-table td { padding: 10px 16px; font-size: 13px; border-top: 1px solid var(--border); }
   .history-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: auto; }
@@ -263,7 +265,7 @@
           <td class="rank-cell" style="text-align:center">28</td>
           <td class="move-cell up">▲ +24</td>
           <td class="vol-cell">6600</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank" title="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/">https://brickroomla.com/blog/what-are-the-bes...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank">https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
@@ -272,7 +274,7 @@
           <td class="rank-cell" style="text-align:center">31</td>
           <td class="move-cell up">▲ +26</td>
           <td class="vol-cell">880</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank" title="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/">https://brickroomla.com/blog/what-are-the-bes...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank">https://brickroomla.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
@@ -281,7 +283,7 @@
           <td class="rank-cell" style="text-align:center">7</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">260</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
@@ -290,7 +292,7 @@
           <td class="rank-cell" style="text-align:center">7</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">260</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
@@ -299,7 +301,7 @@
           <td class="rank-cell" style="text-align:center">6</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">70</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/" target="_blank" title="https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/">https://brickroomla.com/blog/5-mind-blowing-e...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/" target="_blank">https://brickroomla.com/blog/5-mind-blowing-engagement-party-venue-layouts/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
@@ -308,7 +310,7 @@
           <td class="rank-cell" style="text-align:center">15</td>
           <td class="move-cell up">▲ +8</td>
           <td class="vol-cell">50</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
@@ -317,7 +319,7 @@
           <td class="rank-cell" style="text-align:center">8</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">90</td>
-          <td class="url-cell"><a href="https://brickroomla.com/music-venues-in-los-angeles/" target="_blank" title="https://brickroomla.com/music-venues-in-los-angeles/">https://brickroomla.com/music-venues-in-los-a...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/music-venues-in-los-angeles/" target="_blank">https://brickroomla.com/music-venues-in-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
@@ -326,7 +328,7 @@
           <td class="rank-cell" style="text-align:center">10</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">70</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
@@ -335,7 +337,7 @@
           <td class="rank-cell" style="text-align:center">10</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank" title="https://brickroomla.com/bar-mitzvah-venues-los-angeles/">https://brickroomla.com/bar-mitzvah-venues-lo...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank">https://brickroomla.com/bar-mitzvah-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
@@ -344,7 +346,7 @@
           <td class="rank-cell" style="text-align:center">14</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank" title="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/">https://brickroomla.com/blog/4-insta-worthy-l...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank">https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
@@ -353,7 +355,7 @@
           <td class="rank-cell" style="text-align:center">19</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">50</td>
-          <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank" title="https://brickroomla.com/venue-for-branding-events/">https://brickroomla.com/venue-for-branding-ev...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank">https://brickroomla.com/venue-for-branding-events/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
@@ -362,7 +364,7 @@
           <td class="rank-cell" style="text-align:center">18</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank" title="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/">https://brickroomla.com/blog/4-insta-worthy-l...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/" target="_blank">https://brickroomla.com/blog/4-insta-worthy-los-angeles-baby-shower-venues/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
@@ -371,7 +373,7 @@
           <td class="rank-cell" style="text-align:center">21</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">50</td>
-          <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank" title="https://brickroomla.com/venue-for-branding-events/">https://brickroomla.com/venue-for-branding-ev...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/venue-for-branding-events/" target="_blank">https://brickroomla.com/venue-for-branding-events/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
@@ -380,7 +382,7 @@
           <td class="rank-cell" style="text-align:center">26</td>
           <td class="move-cell up">▲ +6</td>
           <td class="vol-cell">70</td>
-          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank">https://brickroomla.com/film-location-rentals-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
@@ -389,7 +391,7 @@
           <td class="rank-cell" style="text-align:center">15</td>
           <td class="move-cell down">▼ -5</td>
           <td class="vol-cell">260</td>
-          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank">https://brickroomla.com/film-location-rentals-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
@@ -398,7 +400,7 @@
           <td class="rank-cell" style="text-align:center">16</td>
           <td class="move-cell down">▼ -5</td>
           <td class="vol-cell">320</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
@@ -407,7 +409,7 @@
           <td class="rank-cell" style="text-align:center">23</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/" target="_blank" title="https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/">https://brickroomla.com/blog/comedy-club-in-l...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/" target="_blank">https://brickroomla.com/blog/comedy-club-in-los-angeles-for-you/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
@@ -416,7 +418,7 @@
           <td class="rank-cell" style="text-align:center">36</td>
           <td class="move-cell up">▲ +13</td>
           <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank" title="https://brickroomla.com/comedy-club-los-angeles/">https://brickroomla.com/comedy-club-los-angel...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank">https://brickroomla.com/comedy-club-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
@@ -425,7 +427,7 @@
           <td class="rank-cell" style="text-align:center">7</td>
           <td class="move-cell down">▼ -19</td>
           <td class="vol-cell">1000</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/" target="_blank" title="https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/">https://brickroomla.com/blog/birthday-party-v...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/" target="_blank">https://brickroomla.com/blog/birthday-party-venue-in-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
@@ -434,7 +436,7 @@
           <td class="rank-cell" style="text-align:center">26</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">480</td>
-          <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank" title="https://brickroomla.com/bar-mitzvah-venues-los-angeles/">https://brickroomla.com/bar-mitzvah-venues-lo...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/bar-mitzvah-venues-los-angeles/" target="_blank">https://brickroomla.com/bar-mitzvah-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
@@ -443,7 +445,7 @@
           <td class="rank-cell" style="text-align:center">23</td>
           <td class="move-cell down">▼ -5</td>
           <td class="vol-cell">70</td>
-          <td class="url-cell"><a href="https://brickroomla.com/holiday-party-venues-los-angeles/" target="_blank" title="https://brickroomla.com/holiday-party-venues-los-angeles/">https://brickroomla.com/holiday-party-venues-...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/holiday-party-venues-los-angeles/" target="_blank">https://brickroomla.com/holiday-party-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
@@ -452,7 +454,7 @@
           <td class="rank-cell" style="text-align:center">6</td>
           <td class="move-cell down">▼ -23</td>
           <td class="vol-cell">720</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/" target="_blank" title="https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/">https://brickroomla.com/blog/the-5-best-music...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/" target="_blank">https://brickroomla.com/blog/the-5-best-music-venues-in-los-angeles-for-live-concerts-in-2025/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
@@ -461,7 +463,7 @@
           <td class="rank-cell" style="text-align:center">33</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">14800</td>
-          <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank" title="https://brickroomla.com/comedy-club-los-angeles/">https://brickroomla.com/comedy-club-los-angel...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/comedy-club-los-angeles/" target="_blank">https://brickroomla.com/comedy-club-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
@@ -470,7 +472,7 @@
           <td class="rank-cell" style="text-align:center">20</td>
           <td class="move-cell down">▼ -13</td>
           <td class="vol-cell">6600</td>
-          <td class="url-cell"><a href="https://brickroomla.com/engagement-party-venues-los-angeles/" target="_blank" title="https://brickroomla.com/engagement-party-venues-los-angeles/">https://brickroomla.com/engagement-party-venu...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/engagement-party-venues-los-angeles/" target="_blank">https://brickroomla.com/engagement-party-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
@@ -479,7 +481,7 @@
           <td class="rank-cell" style="text-align:center">6</td>
           <td class="move-cell down">▼ -30</td>
           <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank" title="https://brickroomla.com/corporate-event-venues-los-angeles/">https://brickroomla.com/corporate-event-venue...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank">https://brickroomla.com/corporate-event-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
@@ -488,7 +490,7 @@
           <td class="rank-cell" style="text-align:center">33</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">5400</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/" target="_blank" title="https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/">https://brickroomla.com/blog/7-venues-in-los-...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/" target="_blank">https://brickroomla.com/blog/7-venues-in-los-angeles-for-shows/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
@@ -497,7 +499,7 @@
           <td class="rank-cell" style="text-align:center">8</td>
           <td class="move-cell down">▼ -32</td>
           <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank" title="https://brickroomla.com/corporate-event-venues-los-angeles/">https://brickroomla.com/corporate-event-venue...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/corporate-event-venues-los-angeles/" target="_blank">https://brickroomla.com/corporate-event-venues-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
@@ -506,7 +508,7 @@
           <td class="rank-cell" style="text-align:center">36</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank" title="https://brickroomla.com/film-location-rentals-los-angeles/">https://brickroomla.com/film-location-rentals...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/film-location-rentals-los-angeles/" target="_blank">https://brickroomla.com/film-location-rentals-los-angeles/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
@@ -515,7 +517,7 @@
           <td class="rank-cell" style="text-align:center">36</td>
           <td class="move-cell down">▼ -5</td>
           <td class="vol-cell">6600</td>
-          <td class="url-cell"><a href="https://brickroomla.com/blog/concert-venues-los-angeles-venue/" target="_blank" title="https://brickroomla.com/blog/concert-venues-los-angeles-venue/">https://brickroomla.com/blog/concert-venues-l...</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/blog/concert-venues-los-angeles-venue/" target="_blank">https://brickroomla.com/blog/concert-venues-los-angeles-venue/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
@@ -524,7 +526,7 @@
           <td class="rank-cell" style="text-align:center">27</td>
           <td class="move-cell down">▼ -23</td>
           <td class="vol-cell">40</td>
-          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank" title="https://brickroomla.com/">https://brickroomla.com/</a></td>
+          <td class="url-cell"><a href="https://brickroomla.com/" target="_blank">https://brickroomla.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
@@ -533,7 +535,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">74000</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
@@ -542,7 +544,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">5400</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
@@ -551,7 +553,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">30</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
@@ -560,7 +562,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">22200</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
@@ -569,7 +571,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">50</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
@@ -578,7 +580,7 @@
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">40</td>
-          <td class="url-cell"><a href="" target="_blank" title=""></a></td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
         </tr>
       </tbody>
     </table>
