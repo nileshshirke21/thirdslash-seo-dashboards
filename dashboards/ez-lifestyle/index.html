@@ -94,6 +94,15 @@
   .history-table tr:last-child td { border-bottom: none; }
   .history-table tr:hover td { background: #EFF6FF; }
   .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
+  .gmb-section { margin-bottom: 28px; }
+  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
+  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
+  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
+  .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
+  .gmb-icon { font-size: 20px; margin-bottom: 6px; }
+  .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
+  .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
   .no-data .icon { font-size: 48px; margin-bottom: 12px; }
   .no-data p { font-size: 14px; }
   @media (max-width: 1100px) {
@@ -220,6 +229,9 @@
   </div>
 </div>
 
+<!-- GMB SECTION -->
+
+
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
   
@@ -287,6 +299,7 @@ new Chart(document.getElementById('aiChart'), {
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
 });
+
 new Chart(document.getElementById('chChart'), {
   type: 'doughnut',
   data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
