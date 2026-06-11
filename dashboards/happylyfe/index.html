@@ -79,7 +79,11 @@
   .url-cell { font-size: 11px; color: var(--muted); word-break: break-all; white-space: normal; }
   .url-cell a { color: var(--accent2); text-decoration: none; }
   .url-cell a:hover { text-decoration: underline; }
-  .rank-bucket-wrap { margin-bottom: 24px; }
+  .rank-bucket-wrap { margin-bottom: 24px; display: block; width: 100%; }
+  .rank-controls { padding: 12px 16px; display:flex; align-items:center; border-bottom: 1px solid var(--border); }
+  .sort-icon { font-size:11px; color:var(--muted); margin-left:4px; }
+  .rank-controls { padding: 12px 16px; display:flex; align-items:center; border-bottom: 1px solid var(--border); }
+  .sort-icon { font-size:11px; color:var(--muted); margin-left:4px; }
   .rank-bucket-table { width: 100%; max-width: 640px; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 24px; }
   .rank-bucket-table th { background: var(--bg2); padding: 10px 20px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); text-align: left; white-space: nowrap; }
   .rank-bucket-table td { padding: 10px 20px; font-size: 13px; border-top: 1px solid var(--border); white-space: nowrap; }
@@ -246,19 +250,23 @@
       Keyword Rankings
       <span class="period">Last Updated: 2026-06-11</span>
     </div>
-    <table class="rank-table">
+    <div class="rank-controls">
+      <input type="text" id="kwSearch" placeholder="🔍 Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:13px;width:260px;">
+      <span style="font-size:12px;color:var(--muted);margin-left:12px">Click column headers to sort</span>
+    </div>
+    <table class="rank-table" id="rankTable">
       <thead>
         <tr>
           <th style="text-align:center;width:40px">Sr.</th>
-          <th>Keyword</th>
-          <th style="text-align:center">Current</th>
-          <th style="text-align:center">Previous</th>
+          <th onclick="sortTable(1)" style="cursor:pointer">Keyword <span class="sort-icon">⇅</span></th>
+          <th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current <span class="sort-icon">⇅</span></th>
+          <th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous <span class="sort-icon">⇅</span></th>
           <th>Movement</th>
-          <th>Volume</th>
+          <th onclick="sortTable(5)" style="cursor:pointer">Volume <span class="sort-icon">⇅</span></th>
           <th>Ranking URL</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="rankTableBody">
         
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
@@ -1496,6 +1504,39 @@
       </tbody>
     </table>
   </div>
+  <script>
+  var sortDir = {};
+  function sortTable(col) {
+    var tbody = document.getElementById("rankTableBody");
+    var rows = Array.from(tbody.querySelectorAll("tr"));
+    var asc = !sortDir[col];
+    sortDir = {};
+    sortDir[col] = asc;
+    rows.sort(function(a, b) {
+      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+      var an = parseFloat(av.replace(/[^0-9.\-]/g,""));
+      var bn = parseFloat(bv.replace(/[^0-9.\-]/g,""));
+      if (!isNaN(an) && !isNaN(bn)) {
+        return asc ? an - bn : bn - an;
+      }
+      if (av === "NR") return asc ? 1 : -1;
+      if (bv === "NR") return asc ? -1 : 1;
+      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
+    rows.forEach(function(r) { tbody.appendChild(r); });
+    // Update Sr. numbers after sort
+    rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
+  }
+  function filterTable() {
+    var q = document.getElementById("kwSearch").value.toLowerCase();
+    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
+    rows.forEach(function(r) {
+      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
+      r.style.display = kw.includes(q) ? "" : "none";
+    });
+  }
+  </script>
   
 </div>
 
