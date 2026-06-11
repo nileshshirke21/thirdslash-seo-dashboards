@@ -231,6 +231,53 @@
 
 <!-- GMB SECTION -->
 
+<div class="gmb-section">
+  <div class="gmb-header">
+    <span class="gmb-title">📍 Google My Business — May-2026</span>
+  </div>
+  <div class="gmb-grid">
+    <div class="gmb-card">
+      <div class="gmb-icon">👁️</div>
+      <div class="gmb-val">1,240</div>
+      <div class="gmb-label">Total Views</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">🖱️</div>
+      <div class="gmb-val">45</div>
+      <div class="gmb-label">Website Clicks</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">📞</div>
+      <div class="gmb-val">12</div>
+      <div class="gmb-label">Phone Calls</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">🗺️</div>
+      <div class="gmb-val">28</div>
+      <div class="gmb-label">Direction Requests</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">📝</div>
+      <div class="gmb-val">4</div>
+      <div class="gmb-label">GMB Posts</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">⭐</div>
+      <div class="gmb-val">4.6</div>
+      <div class="gmb-label">Avg Rating</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">💬</div>
+      <div class="gmb-val">3</div>
+      <div class="gmb-label">New Reviews</div>
+    </div>
+  </div>
+  <div class="chart-card" style="margin-top:16px">
+    <div class="chart-title">GMB Performance — Last 6 Months</div>
+    <div class="chart-wrap"><canvas id="gmbChart"></canvas></div>
+  </div>
+</div>
+
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -1305,6 +1352,16 @@ new Chart(document.getElementById('aiChart'), {
   type: 'bar',
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
+});
+
+new Chart(document.getElementById('gmbChart'), {
+  type: 'bar',
+  data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+    { label: 'Views', data: [980, 1050, 1100, 1180, 1210, 1240], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 },
+    { label: 'Clicks', data: [38, 41, 39, 43, 44, 45], backgroundColor: 'rgba(37,99,235,0.7)', borderColor: '#2563EB', borderWidth:1, borderRadius:4 },
+    { label: 'Calls', data: [9, 10, 11, 13, 11, 12], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#D97706', borderWidth:1, borderRadius:4 }
+  ]},
+  options: {...dflt}
 });
 
 new Chart(document.getElementById('chChart'), {
