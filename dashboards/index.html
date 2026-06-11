@@ -8,103 +8,476 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh;}
-header{background:#161b22;border-bottom:1px solid #30363d;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-size:18px;font-weight:700;letter-spacing:2px;color:#58a6ff;}
-.meta{font-size:12px;color:#8b949e;}
-.hero{padding:48px 40px 32px;}
-h1{font-size:32px;font-weight:700;margin-bottom:8px;}
+header{background:#161b22;border-bottom:1px solid #30363d;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-size:16px;font-weight:700;letter-spacing:3px;color:#58a6ff;}
+.meta{font-size:12px;color:#8b949e;display:flex;gap:16px;align-items:center;}
+.meta-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;display:inline-block;margin-right:4px;}
+.hero{padding:40px 40px 24px;}
+h1{font-size:28px;font-weight:700;margin-bottom:6px;}
 h1 span{color:#58a6ff;}
-.subtitle{color:#8b949e;font-size:14px;margin-bottom:40px;}
-.stats{display:flex;gap:24px;margin-bottom:48px;flex-wrap:wrap;}
-.stat{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px 28px;min-width:140px;}
-.stat-num{font-size:28px;font-weight:700;color:#58a6ff;}
-.stat-label{font-size:12px;color:#8b949e;margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:0 40px 60px;}
-.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:24px;text-decoration:none;color:inherit;transition:border-color .2s,transform .2s;display:block;}
+.subtitle{color:#8b949e;font-size:13px;margin-bottom:32px;}
+.stats{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px 24px;min-width:130px;}
+.stat-num{font-size:24px;font-weight:700;color:#58a6ff;}
+.stat-label{font-size:11px;color:#8b949e;margin-top:3px;text-transform:uppercase;letter-spacing:1px;}
+.search-wrap{padding:0 40px 20px;}
+.search-box{width:100%;max-width:400px;padding:10px 16px;background:#161b22;border:1px solid #30363d;border-radius:8px;color:#e6edf3;font-size:13px;outline:none;}
+.search-box:focus{border-color:#58a6ff;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:0 40px 60px;}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s;display:flex;flex-direction:column;gap:14px;}
 .card:hover{border-color:#58a6ff;transform:translateY(-2px);}
-.card-name{font-size:16px;font-weight:600;margin-bottom:6px;color:#e6edf3;}
-.card-slug{font-size:12px;color:#8b949e;}
+.card-header{display:flex;flex-direction:column;gap:3px;}
+.card-name{font-size:15px;font-weight:600;color:#e6edf3;}
+.card-domain{font-size:11px;color:#8b949e;}
+.card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#0d1117;border-radius:8px;padding:12px;}
+.card-stat{text-align:center;}
+.cs-val{font-size:18px;font-weight:700;color:#58a6ff;}
+.cs-label{font-size:10px;color:#8b949e;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+.cs-period{font-size:9px;color:#484f58;margin-top:1px;}
+.card-footer{display:flex;justify-content:space-between;align-items:center;}
+.card-status{font-size:11px;}
+.card-cta{font-size:11px;color:#58a6ff;font-weight:500;}
 footer{text-align:center;padding:24px;color:#484f58;font-size:12px;border-top:1px solid #21262d;}
+@media(max-width:768px){
+  .hero,.search-wrap,.grid{padding-left:16px;padding-right:16px;}
+  header{padding:12px 16px;}
+  .grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 <header>
 <div class="logo">THIRDSLASH</div>
-<div class="meta">Updated: Jun 2026 &nbsp;|&nbsp; 16 Active Clients</div>
+<div class="meta">
+  <span><span class="meta-dot"></span>Live Dashboards</span>
+  <span>16 Active Clients</span>
+  <span>Updated: Jun 2026</span>
+</div>
 </header>
 <div class="hero">
 <h1>SEO Client <span>Dashboards</span></h1>
-<p class="subtitle">Agency Command Center — all client dashboards in one place</p>
+<p class="subtitle">Agency Command Center — all client data in one place</p>
 <div class="stats">
-<div class="stat"><div class="stat-num">16</div><div class="stat-label">Active Clients</div></div>
+  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Active Clients</div></div>
+  <div class="stat"><div class="stat-num">928</div><div class="stat-label">Keywords Tracked</div></div>
+  <div class="stat"><div class="stat-num">353</div><div class="stat-label">Top 10 Rankings</div></div>
+  <div class="stat"><div class="stat-num">119,600</div><div class="stat-label">Total Sessions</div></div>
 </div>
 </div>
-<div class="grid">
+<div class="search-wrap">
+  <input class="search-box" type="text" placeholder="🔍 Search client or domain..." oninput="filterCards(this.value)">
+</div>
+<div class="grid" id="clientGrid">
         <a href="asset-thread/" class="card">
+          <div class="card-header">
             <div class="card-name">Asset Thread</div>
-            <div class="card-slug">asset-thread</div>
+            <div class="card-domain">assetthread.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">2,252</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">52</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">103</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 93 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="hrm-thread/" class="card">
+          <div class="card-header">
             <div class="card-name">HRM Thread</div>
-            <div class="card-slug">hrm-thread</div>
+            <div class="card-domain">hrmthread.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">14,773</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">39</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">79</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 70 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="lancers-cbse/" class="card">
+          <div class="card-header">
             <div class="card-name">Lancers CBSE</div>
-            <div class="card-slug">lancers-cbse</div>
+            <div class="card-domain">lancerscbse.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">669</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">4</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">17</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 10 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="lancers-early-years/" class="card">
+          <div class="card-header">
             <div class="card-name">Lancers Early Years</div>
-            <div class="card-slug">lancers-early-years</div>
+            <div class="card-domain">lancersearlyyears.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">318</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">8</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#94a3b8">&bull; No Rankings Yet</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="lancers-army-school/" class="card">
+          <div class="card-header">
             <div class="card-name">Lancers Army School</div>
-            <div class="card-slug">lancers-army-school</div>
+            <div class="card-domain">lancersarmyschools.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">18,305</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">9</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">29</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 9 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="potential-engineering/" class="card">
+          <div class="card-header">
             <div class="card-name">Potential Engineering</div>
-            <div class="card-slug">potential-engineering</div>
+            <div class="card-domain">potentialengineering.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">4,321</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">103</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">147</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 142 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="estrela-hotels/" class="card">
+          <div class="card-header">
             <div class="card-name">Estrela Hotels</div>
-            <div class="card-slug">estrela-hotels</div>
+            <div class="card-domain">estrelahotels.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">33,759</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">1</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">40</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 15 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="kelly-powers/" class="card">
+          <div class="card-header">
             <div class="card-name">Kelly Powers</div>
-            <div class="card-slug">kelly-powers</div>
+            <div class="card-domain">kellypowers.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">2,318</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">15</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#94a3b8">&bull; No Rankings Yet</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="happylyfe/" class="card">
+          <div class="card-header">
             <div class="card-name">HappyLyfe</div>
-            <div class="card-slug">happylyfe</div>
+            <div class="card-domain">happylyfe.in.th</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">14,324</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">56</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">137</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 98 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="public69/" class="card">
+          <div class="card-header">
             <div class="card-name">Public69</div>
-            <div class="card-slug">public69</div>
+            <div class="card-domain">public69.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">17,310</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">88</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 7 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="ovation-square/" class="card">
+          <div class="card-header">
             <div class="card-name">Ovation Square</div>
-            <div class="card-slug">ovation-square</div>
+            <div class="card-domain">ovationsquare.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">2,441</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">15</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 13 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="piovra-group/" class="card">
+          <div class="card-header">
             <div class="card-name">Piovra Group</div>
-            <div class="card-slug">piovra-group</div>
+            <div class="card-domain">piovragroup.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">2,476</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">44</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">125</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 116 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="brickroom-la/" class="card">
+          <div class="card-header">
             <div class="card-name">Brickroom LA</div>
-            <div class="card-slug">brickroom-la</div>
+            <div class="card-domain">brickroomla.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">1,623</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">9</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">36</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 30 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="mj-gorgeous/" class="card">
+          <div class="card-header">
             <div class="card-name">MJ Gorgeous</div>
-            <div class="card-slug">mj-gorgeous</div>
+            <div class="card-domain">mjgorgeous.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">2,746</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">25</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">72</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 65 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="ez-lifestyle/" class="card">
+          <div class="card-header">
             <div class="card-name">EZ Lifestyle</div>
-            <div class="card-slug">ez-lifestyle</div>
+            <div class="card-domain"></div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">1,476</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">0</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#94a3b8">&bull; No Rankings Yet</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
         <a href="lancers-gseb/" class="card">
+          <div class="card-header">
             <div class="card-name">Lancers GSEB</div>
-            <div class="card-slug">lancers-gseb</div>
+            <div class="card-domain">lancersgseb.com</div>
+          </div>
+          <div class="card-stats">
+            <div class="card-stat">
+              <div class="cs-val">489</div>
+              <div class="cs-label">Sessions</div>
+              <div class="cs-period">May-2026</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">11</div>
+              <div class="cs-label">Top 10</div>
+            </div>
+            <div class="card-stat">
+              <div class="cs-val">17</div>
+              <div class="cs-label">Keywords</div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="card-status" style="color:#4ade80">&bull; 13 Ranking</span>
+            <span class="card-cta">View Dashboard →</span>
+          </div>
         </a>
 </div>
-<footer>ThirdSlash Digital Marketing Agency &mdash; All dashboards auto-update monthly</footer>
+<footer>ThirdSlash Digital Marketing Agency &mdash; All dashboards auto-update monthly &mdash; Data: GA4 + Ubersuggest</footer>
+<script>
+function filterCards(q){
+  q = q.toLowerCase();
+  document.querySelectorAll('#clientGrid .card').forEach(function(c){
+    var t = c.innerText.toLowerCase();
+    c.style.display = t.includes(q) ? '' : 'none';
+  });
+}
+</script>
 </body>
 </html>
