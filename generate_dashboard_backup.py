@@ -16,6 +16,7 @@ BASE       = os.path.dirname(os.path.abspath(__file__))
 DASH_DIR   = os.path.expanduser("~/ThirdSlash_SEO_Dashboards/dashboards")
 TOKEN      = os.path.join(BASE, "token.pickle")
 
+# Client name must match EXACTLY what's in Google Sheets (All_GA4 + 04_Rank Tracking Log)
 CLIENTS = {
     "Asset Thread":          "asset-thread",
     "HRM Thread":            "hrm-thread",
@@ -72,6 +73,9 @@ def build_client_ga4(ga4_rows, client_name):
 
 def build_client_ranks(rank_rows, client_name):
     rows = [r for r in rank_rows if r.get("Client Name") == client_name]
+    # Column names in 04_Rank Tracking Log:
+    # Client Name, Domain, Keyword, Current Position, Previous Position,
+    # Current URL, Search Volume, Status, Last Updated
     ranking = [r for r in rows if str(r.get("Status","NR")) == "Ranking"]
     not_ranking = [r for r in rows if str(r.get("Status","NR")) != "Ranking"]
     try:
@@ -81,6 +85,7 @@ def build_client_ranks(rank_rows, client_name):
     return ranking_sorted + not_ranking
 
 def movement_class(cur, prev):
+    """Compute movement class from current and previous positions."""
     if not cur or cur == "" or cur == "NR":
         return "flat"
     if not prev or prev == "" or prev == "NR":
@@ -94,13 +99,14 @@ def movement_class(cur, prev):
         return "flat"
 
 def movement_icon(cur, prev):
+    """Compute movement icon from current and previous positions."""
     if not cur or cur == "" or str(cur) == "NR":
         return "NR"
     if not prev or prev == "" or str(prev) == "NR":
         return "★ NEW"
     try:
         c, p = int(cur), int(prev)
-        diff = p - c
+        diff = p - c  # positive = improved (moved up)
         if diff > 0: return f"▲ +{diff}"
         if diff < 0: return f"▼ {diff}"
         return "—"
@@ -117,10 +123,10 @@ def safe_float(v):
 
 def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
     from datetime import datetime as _dt
+    import datetime as _dtime
 
     today = _dt.today()
     current_month_str = today.strftime("%b-%Y")
-    now = today.strftime("%d %b %Y")
 
     def parse_m(m):
         try: return _dt.strptime(m, "%b-%Y")
@@ -145,22 +151,19 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
         arrow = "▲" if diff >= 0 else "▼"
         return cur, f'<span class="delta {cls}">{arrow} {abs(pct)}%</span>'
 
-    # SEO + AI traffic
+    # SEO + AI traffic = Organic + all AI sources
     org_s     = safe_int(latest.get("Organic Sessions", 0))
-    ai_s      = safe_int(latest.get("ChatGPT Sessions", 0)) + safe_int(latest.get("Claude Sessions", 0)) + \
-                safe_int(latest.get("Perplexity Sessions", 0)) + safe_int(latest.get("Gemini Sessions", 0))
+    ai_s      = safe_int(latest.get("ChatGPT Sessions", 0)) + safe_int(latest.get("Claude Sessions", 0)) +                 safe_int(latest.get("Perplexity Sessions", 0)) + safe_int(latest.get("Gemini Sessions", 0))
     seo_ai    = org_s + ai_s
     org_s_p   = safe_int(prev.get("Organic Sessions", 0))
-    ai_s_p    = safe_int(prev.get("ChatGPT Sessions", 0)) + safe_int(prev.get("Claude Sessions", 0)) + \
-                safe_int(prev.get("Perplexity Sessions", 0)) + safe_int(prev.get("Gemini Sessions", 0))
+    ai_s_p    = safe_int(prev.get("ChatGPT Sessions", 0)) + safe_int(prev.get("Claude Sessions", 0)) +                 safe_int(prev.get("Perplexity Sessions", 0)) + safe_int(prev.get("Gemini Sessions", 0))
     seo_ai_p  = org_s_p + ai_s_p
     seo_diff  = seo_ai - seo_ai_p
     seo_pct   = round((seo_diff / seo_ai_p * 100), 1) if seo_ai_p else 0
     seo_cls   = "pos" if seo_diff >= 0 else "neg"
     seo_arrow = "▲" if seo_diff >= 0 else "▼"
     d_seo_ai  = f'<span class="delta {seo_cls}">{seo_arrow} {abs(seo_pct)}%</span>'
-
-    # GMB data
+    # GMB data - last 6 months
     def safe_num(v):
         try: return int(v) if v else 0
         except: return 0
@@ -170,7 +173,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
         key=lambda x: parse_m(x.get("Month","")),
         reverse=True
     )[:6]
-    latest_gmb     = gmb_sorted[0] if gmb_sorted else {}
+    latest_gmb = gmb_sorted[0] if gmb_sorted else {}
     gmb_views      = safe_num(latest_gmb.get("Total Views", 0))
     gmb_clicks     = safe_num(latest_gmb.get("Website Clicks", 0))
     gmb_calls      = safe_num(latest_gmb.get("Phone Calls", 0))
@@ -181,10 +184,11 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
     gmb_month      = latest_gmb.get("Month", "—")
     gmb_has_data   = len(gmb_sorted) > 0
 
-    gmb_months_chart = [r.get("Month","") for r in reversed(gmb_sorted)]
-    gmb_views_chart  = [safe_num(r.get("Total Views",0)) for r in reversed(gmb_sorted)]
-    gmb_clicks_chart = [safe_num(r.get("Website Clicks",0)) for r in reversed(gmb_sorted)]
-    gmb_calls_chart  = [safe_num(r.get("Phone Calls",0)) for r in reversed(gmb_sorted)]
+    # GMB history for chart
+    gmb_months_chart  = [r.get("Month","") for r in reversed(gmb_sorted)]
+    gmb_views_chart   = [safe_num(r.get("Total Views",0)) for r in reversed(gmb_sorted)]
+    gmb_clicks_chart  = [safe_num(r.get("Website Clicks",0)) for r in reversed(gmb_sorted)]
+    gmb_calls_chart   = [safe_num(r.get("Phone Calls",0)) for r in reversed(gmb_sorted)]
 
     sessions,     d_sessions = delta("Sessions (Current)")
     users,        d_users    = delta("Users (Current)")
@@ -213,28 +217,52 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
     org_d  = [safe_int(r.get("Organic Sessions",0))   for r in _chart_rows]
     form_d = [safe_int(r.get("Form Submissions",0))   for r in _chart_rows]
 
+    # AI traffic
     ai_keys   = ["ChatGPT Sessions","Claude Sessions","Perplexity Sessions","Gemini Sessions"]
     ai_labels = ["ChatGPT","Claude","Perplexity","Gemini"]
     ai_vals      = [safe_int(latest.get(k,0)) for k in ai_keys]
     ai_prev_vals = [safe_int(prev.get(k,0))   for k in ai_keys]
 
+    # Traffic channels
     ch_keys   = ["Organic Sessions","Direct Sessions","Referral Sessions","Social Sessions","Email Sessions","Paid Sessions"]
     ch_labels = ["Organic","Direct","Referral","Social","Email","Paid"]
     ch_colors = ["#4CAF50","#2196F3","#FF9800","#E91E63","#9C27B0","#00BCD4"]
     ch_vals   = [safe_int(latest.get(k,0)) for k in ch_keys]
 
+    # Stacked AI monthly
     ai_monthly = {label: [safe_int(r.get(k,0)) for r in _chart_rows]
                   for k, label in zip(ai_keys, ai_labels)}
 
-    # Rankings
+    # Rankings — use correct column names from 04_Rank Tracking Log
+    # Columns: Keyword, Current Position, Previous Position, Current URL, Search Volume, Status, Last Updated
     total_tracked = len(rank_rows)
     ranking_only  = [r for r in rank_rows if str(r.get("Status","")) == "Ranking"]
-    top10         = len([r for r in ranking_only if safe_int(r.get("Current Position",999)) <= 10])
+    top3  = len([r for r in ranking_only if safe_int(r.get("Current Position",999)) <= 3])
+    top10 = len([r for r in ranking_only if safe_int(r.get("Current Position",999)) <= 10])
+    top50 = len([r for r in ranking_only if safe_int(r.get("Current Position",999)) <= 50])
     top20_only    = len([r for r in ranking_only if 11 <= safe_int(r.get("Current Position",999)) <= 20])
     top21_50      = len([r for r in ranking_only if 21 <= safe_int(r.get("Current Position",999)) <= 50])
     top51_100     = len([r for r in ranking_only if 51 <= safe_int(r.get("Current Position",999)) <= 100])
     not_ranking_count = len([r for r in rank_rows if str(r.get("Status","NR")) != "Ranking"])
 
+    # Previous bucket counts
+    prev_top10    = len([r for r in rank_rows if safe_int(r.get("Previous Position",999)) <= 10 and str(r.get("Previous Position","")) not in ["","NR"]])
+    prev_top20    = len([r for r in rank_rows if 11 <= safe_int(r.get("Previous Position",999)) <= 20 and str(r.get("Previous Position","")) not in ["","NR"]])
+    prev_top21_50 = len([r for r in rank_rows if 21 <= safe_int(r.get("Previous Position",999)) <= 50 and str(r.get("Previous Position","")) not in ["","NR"]])
+    prev_top51_100= len([r for r in rank_rows if 51 <= safe_int(r.get("Previous Position",999)) <= 100 and str(r.get("Previous Position","")) not in ["","NR"]])
+    prev_nr       = len([r for r in rank_rows if str(r.get("Previous Position","")) in ["","NR"]])
+
+    def bucket_change(cur, prev):
+        diff = cur - prev
+        if diff > 0: return f'<span style="color:#4ade80">+{diff}</span>'
+        if diff < 0: return f'<span style="color:#f87171">{diff}</span>'
+        return '<span style="color:#94a3b8">—</span>'
+    top20_only    = len([r for r in ranking_only if 11 <= safe_int(r.get("Current Position",999)) <= 20])
+    top21_50      = len([r for r in ranking_only if 21 <= safe_int(r.get("Current Position",999)) <= 50])
+    top51_100     = len([r for r in ranking_only if 51 <= safe_int(r.get("Current Position",999)) <= 100])
+    not_ranking_count = len([r for r in rank_rows if str(r.get("Status","NR")) != "Ranking"])
+
+    # Previous bucket counts
     prev_top10    = len([r for r in rank_rows if safe_int(r.get("Previous Position",999)) <= 10 and str(r.get("Previous Position","")) not in ["","NR"]])
     prev_top20    = len([r for r in rank_rows if 11 <= safe_int(r.get("Previous Position",999)) <= 20 and str(r.get("Previous Position","")) not in ["","NR"]])
     prev_top21_50 = len([r for r in rank_rows if 21 <= safe_int(r.get("Previous Position",999)) <= 50 and str(r.get("Previous Position","")) not in ["","NR"]])
@@ -251,28 +279,35 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
 
     rank_rows_html = ""
     for _sr, r in enumerate(rank_rows, 1):
-        cur    = r.get("Current Position","")
-        prv    = r.get("Previous Position","")
-        kw     = r.get("Keyword","")
-        vol    = r.get("Search Volume","")
-        url    = r.get("Current URL","")
-        cls    = movement_class(cur, prv)
-        icon   = movement_icon(cur, prv)
+        cur  = r.get("Current Position","")
+        prv  = r.get("Previous Position","")
+        kw   = r.get("Keyword","")
+        vol  = r.get("Search Volume","")
+        url  = r.get("Current URL","")
+        status = str(r.get("Status","NR"))
+
+        cls  = movement_class(cur, prv)
+        icon = movement_icon(cur, prv)
+
+        # Display position
         cur_display = cur if cur != "" else "NR"
         prv_display = prv if prv != "" else "NR"
+
         url_str = str(url) if url else ""
         rank_rows_html += f"""
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">{_sr}</td>
           <td class="kw-cell" title="{kw}">{kw}</td>
           <td class="rank-cell rank-{cls}" style="text-align:center">{cur_display}</td>
-          <td style="text-align:center;color:#94a3b8;font-size:12px">{prv_display}</td>
+          <td class="rank-cell" style="text-align:center">{prv_display}</td>
           <td class="move-cell {cls}">{icon}</td>
-          <td class="vol-cell">{vol if vol else '—'}</td>
-          <td class="url-cell">{'<a href="' + url_str + '" target="_blank">' + url_str + '</a>' if url_str else ''}</td>
+          <td class="vol-cell">{vol}</td>
+          <td class="url-cell"><a href="{url_str}" target="_blank">{url_str}</a></td>
         </tr>"""
 
-    # Pre-compute history HTML
+    now = datetime.now().strftime("%d %b %Y")
+
+    # Build history HTML outside f-string
     _hist_rows_html = "".join([
         f'<tr><td>{r.get("Month","")}</td>' +
         f'<td>{safe_int(r.get("Sessions (Current)",0)):,}</td>' +
@@ -288,76 +323,6 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[]):
         f'<td>{safe_int(r.get("Gemini Sessions",0)):,}</td></tr>'
         for r in _hist_rows
     ])
-
-    # GMB tab HTML
-    if gmb_has_data:
-        gmb_tab_html = f"""
-  <div style="margin-bottom:24px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <span style="font-size:16px;font-weight:700;color:var(--text);">Google My Business — {gmb_month}</span>
-    </div>
-    <div class="gmb-grid">
-      <div class="gmb-card">
-        <div class="gmb-icon">👁️</div>
-        <div class="gmb-val">{gmb_views:,}</div>
-        <div class="gmb-label">Total Views</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">🖱️</div>
-        <div class="gmb-val">{gmb_clicks:,}</div>
-        <div class="gmb-label">Website Clicks</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">📞</div>
-        <div class="gmb-val">{gmb_calls:,}</div>
-        <div class="gmb-label">Phone Calls</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">🗺️</div>
-        <div class="gmb-val">{gmb_directions:,}</div>
-        <div class="gmb-label">Direction Requests</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">📝</div>
-        <div class="gmb-val">{gmb_posts}</div>
-        <div class="gmb-label">GMB Posts</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">⭐</div>
-        <div class="gmb-val">{gmb_rating}</div>
-        <div class="gmb-label">Avg Rating</div>
-      </div>
-      <div class="gmb-card">
-        <div class="gmb-icon">💬</div>
-        <div class="gmb-val">{gmb_reviews}</div>
-        <div class="gmb-label">New Reviews</div>
-      </div>
-    </div>
-  </div>
-  <div class="chart-card">
-    <div class="chart-title">GMB Performance — Last 6 Months</div>
-    <div class="chart-wrap"><canvas id="gmbChart"></canvas></div>
-  </div>"""
-    else:
-        gmb_tab_html = """
-  <div class="no-data" style="padding:80px 20px;">
-    <div style="font-size:48px;margin-bottom:16px;">📍</div>
-    <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px;">GMB Data Coming Soon</p>
-    <p style="font-size:13px;color:#6B7280;">Google My Business API access has been requested.<br>Data will appear here once the API is connected.</p>
-  </div>"""
-
-    gmb_chart_js = ""
-    if gmb_has_data:
-        gmb_chart_js = f"""
-new Chart(document.getElementById('gmbChart'), {{
-  type: 'bar',
-  data: {{ labels: {json.dumps(gmb_months_chart)}, datasets: [
-    {{ label: 'Views',  data: {json.dumps(gmb_views_chart)},  backgroundColor: 'rgba(5,150,105,0.7)',  borderColor: '#059669', borderWidth:1, borderRadius:4 }},
-    {{ label: 'Clicks', data: {json.dumps(gmb_clicks_chart)}, backgroundColor: 'rgba(37,99,235,0.7)',  borderColor: '#2563EB', borderWidth:1, borderRadius:4 }},
-    {{ label: 'Calls',  data: {json.dumps(gmb_calls_chart)},  backgroundColor: 'rgba(217,119,6,0.7)',  borderColor: '#D97706', borderWidth:1, borderRadius:4 }}
-  ]}},
-  options: {{...dflt}}
-}});"""
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -455,13 +420,18 @@ new Chart(document.getElementById('gmbChart'), {{
   .history-table tr:last-child td {{ border-bottom: none; }}
   .history-table tr:hover td {{ background: #EFF6FF; }}
   .no-data {{ text-align: center; padding: 60px 20px; color: var(--muted); }}
-  .gmb-grid {{ display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 20px; }}
+  .gmb-section {{ margin-bottom: 28px; }}
+  .gmb-header {{ display: flex; align-items: center; margin-bottom: 16px; }}
+  .gmb-title {{ font-size: 15px; font-weight: 700; color: var(--text); }}
+  .gmb-grid {{ display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }}
   .gmb-card {{ background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }}
   .gmb-icon {{ font-size: 20px; margin-bottom: 6px; }}
   .gmb-val {{ font-size: 20px; font-weight: 700; color: #059669; }}
   .gmb-label {{ font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }}
-  @media(max-width:1100px) {{
-    .gmb-grid {{ grid-template-columns: repeat(4,1fr); }}
+  @media(max-width:1100px) {{ .gmb-grid {{ grid-template-columns: repeat(4,1fr); }} }}
+  .no-data .icon {{ font-size: 48px; margin-bottom: 12px; }}
+  .no-data p {{ font-size: 14px; }}
+  @media (max-width: 1100px) {{
     .metrics-grid {{ grid-template-columns: repeat(2,1fr); }}
     .ai-grid {{ grid-template-columns: repeat(2,1fr); }}
     .rank-summary {{ grid-template-columns: repeat(2,1fr); }}
@@ -483,10 +453,9 @@ new Chart(document.getElementById('gmbChart'), {{
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)">History</div>
-  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
+  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history')">History</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -562,32 +531,64 @@ new Chart(document.getElementById('gmbChart'), {{
   </div>
 
   <div class="ai-grid">
-    <div class="ai-card">
-      <div class="ai-icon">🤖</div>
-      <div class="ai-label">ChatGPT</div>
-      <div class="ai-val">{ai_vals[0]:,}</div>
-      <div class="ai-delta {'pos' if ai_vals[0]-ai_prev_vals[0]>=0 else 'neg'} delta">{'▲' if ai_vals[0]-ai_prev_vals[0]>=0 else '▼'} {abs(ai_vals[0]-ai_prev_vals[0])}</div>
-    </div>
-    <div class="ai-card">
-      <div class="ai-icon">🟣</div>
-      <div class="ai-label">Claude</div>
-      <div class="ai-val">{ai_vals[1]:,}</div>
-      <div class="ai-delta {'pos' if ai_vals[1]-ai_prev_vals[1]>=0 else 'neg'} delta">{'▲' if ai_vals[1]-ai_prev_vals[1]>=0 else '▼'} {abs(ai_vals[1]-ai_prev_vals[1])}</div>
-    </div>
-    <div class="ai-card">
-      <div class="ai-icon">🔮</div>
-      <div class="ai-label">Perplexity</div>
-      <div class="ai-val">{ai_vals[2]:,}</div>
-      <div class="ai-delta {'pos' if ai_vals[2]-ai_prev_vals[2]>=0 else 'neg'} delta">{'▲' if ai_vals[2]-ai_prev_vals[2]>=0 else '▼'} {abs(ai_vals[2]-ai_prev_vals[2])}</div>
-    </div>
-    <div class="ai-card">
-      <div class="ai-icon">💎</div>
-      <div class="ai-label">Gemini</div>
-      <div class="ai-val">{ai_vals[3]:,}</div>
-      <div class="ai-delta {'pos' if ai_vals[3]-ai_prev_vals[3]>=0 else 'neg'} delta">{'▲' if ai_vals[3]-ai_prev_vals[3]>=0 else '▼'} {abs(ai_vals[3]-ai_prev_vals[3])}</div>
-    </div>
+    {"".join([f'''<div class="ai-card">
+      <div class="ai-icon">{"🤖" if i==0 else "🟣" if i==1 else "🔮" if i==2 else "💎"}</div>
+      <div class="ai-label">{ai_labels[i]}</div>
+      <div class="ai-val">{ai_vals[i]:,}</div>
+      <div class="ai-delta {'pos' if ai_vals[i]>=ai_prev_vals[i] else 'neg'} delta">{"▲" if ai_vals[i]>=ai_prev_vals[i] else "▼"} {abs(ai_vals[i]-ai_prev_vals[i])}</div>
+    </div>''' for i in range(4)])}
   </div>
 </div>
+
+<!-- GMB SECTION -->
+{"" if not gmb_has_data else f'''
+<div class="gmb-section">
+  <div class="gmb-header">
+    <span class="gmb-title">📍 Google My Business — {gmb_month}</span>
+  </div>
+  <div class="gmb-grid">
+    <div class="gmb-card">
+      <div class="gmb-icon">👁️</div>
+      <div class="gmb-val">{gmb_views:,}</div>
+      <div class="gmb-label">Total Views</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">🖱️</div>
+      <div class="gmb-val">{gmb_clicks:,}</div>
+      <div class="gmb-label">Website Clicks</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">📞</div>
+      <div class="gmb-val">{gmb_calls:,}</div>
+      <div class="gmb-label">Phone Calls</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">🗺️</div>
+      <div class="gmb-val">{gmb_directions:,}</div>
+      <div class="gmb-label">Direction Requests</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">📝</div>
+      <div class="gmb-val">{gmb_posts}</div>
+      <div class="gmb-label">GMB Posts</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">⭐</div>
+      <div class="gmb-val">{gmb_rating}</div>
+      <div class="gmb-label">Avg Rating</div>
+    </div>
+    <div class="gmb-card">
+      <div class="gmb-icon">💬</div>
+      <div class="gmb-val">{gmb_reviews}</div>
+      <div class="gmb-label">New Reviews</div>
+    </div>
+  </div>
+  <div class="chart-card" style="margin-top:16px">
+    <div class="chart-title">GMB Performance — Last 6 Months</div>
+    <div class="chart-wrap"><canvas id="gmbChart"></canvas></div>
+  </div>
+</div>
+'''}
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -638,9 +639,42 @@ new Chart(document.getElementById('gmbChart'), {{
       </tbody>
     </table>
   </div>
+  <script>
+  var sortDir = {{}};
+  function sortTable(col) {{
+    var tbody = document.getElementById("rankTableBody");
+    var rows = Array.from(tbody.querySelectorAll("tr"));
+    var asc = !sortDir[col];
+    sortDir = {{}};
+    sortDir[col] = asc;
+    rows.sort(function(a, b) {{
+      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+      var an = parseFloat(av.replace(/[^0-9.-]/g,""));
+      var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
+      if (!isNaN(an) && !isNaN(bn)) {{
+        return asc ? an - bn : bn - an;
+      }}
+      if (av === "NR") return asc ? 1 : -1;
+      if (bv === "NR") return asc ? -1 : 1;
+      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    }});
+    rows.forEach(function(r) {{ tbody.appendChild(r); }});
+    // Update Sr. numbers after sort
+    rows.forEach(function(r, i) {{ if(r.cells[0]) r.cells[0].innerText = i+1; }});
+  }}
+  function filterTable() {{
+    var q = document.getElementById("kwSearch").value.toLowerCase();
+    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
+    rows.forEach(function(r) {{
+      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
+      r.style.display = kw.includes(q) ? "" : "none";
+    }});
+  }}
+  </script>
   ''' if total_tracked > 0 else '''
   <div class="no-data">
-    <div style="font-size:48px;margin-bottom:12px">📊</div>
+    <div class="icon">📊</div>
     <p>No rank tracking data available for this client yet.</p>
   </div>
   '''}
@@ -665,43 +699,12 @@ new Chart(document.getElementById('gmbChart'), {{
   '''}
 </div>
 
-<!-- GMB TAB -->
-<div id="tab-gmb" class="section">
-  {gmb_tab_html}
-</div>
-
 <script>
-function showTab(name, el) {{
+function showTab(name) {{
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  el.classList.add('active');
-}}
-var sortDir = {{}};
-function sortTable(col) {{
-  var tbody = document.getElementById("rankTableBody");
-  var rows = Array.from(tbody.querySelectorAll("tr"));
-  var asc = !sortDir[col];
-  sortDir = {{}};
-  sortDir[col] = asc;
-  rows.sort(function(a, b) {{
-    var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
-    var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
-    var an = parseFloat(av.replace(/[^0-9.-]/g,""));
-    var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
-    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
-    if (av === "NR") return asc ? 1 : -1;
-    if (bv === "NR") return asc ? -1 : 1;
-    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-  }});
-  rows.forEach(function(r) {{ tbody.appendChild(r); }});
-  rows.forEach(function(r, i) {{ if(r.cells[0]) r.cells[0].innerText = i+1; }});
-}}
-function filterTable() {{
-  var q = document.getElementById("kwSearch").value.toLowerCase();
-  document.getElementById("rankTableBody").querySelectorAll("tr").forEach(function(r) {{
-    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : "").includes(q) ? "" : "none";
-  }});
+  event.target.classList.add('active');
 }}
 const months   = {json.dumps(months)};
 const sessData = {json.dumps(sess_d)};
@@ -739,12 +742,22 @@ new Chart(document.getElementById('aiChart'), {{
   data: {{ labels: months, datasets: aiLabels.map((label, i) => ({{ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 }})) }},
   options: {{ ...dflt, scales: {{ ...dflt.scales, x: {{ ...dflt.scales.x, stacked: true }}, y: {{ ...dflt.scales.y, stacked: true }} }} }}
 }});
+{"" if not gmb_has_data else f'''
+new Chart(document.getElementById('gmbChart'), {{
+  type: 'bar',
+  data: {{ labels: {json.dumps(gmb_months_chart)}, datasets: [
+    {{ label: 'Views', data: {json.dumps(gmb_views_chart)}, backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }},
+    {{ label: 'Clicks', data: {json.dumps(gmb_clicks_chart)}, backgroundColor: 'rgba(37,99,235,0.7)', borderColor: '#2563EB', borderWidth:1, borderRadius:4 }},
+    {{ label: 'Calls', data: {json.dumps(gmb_calls_chart)}, backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#D97706', borderWidth:1, borderRadius:4 }}
+  ]}},
+  options: {{...dflt}}
+}});
+'''}
 new Chart(document.getElementById('chChart'), {{
   type: 'doughnut',
   data: {{ labels: chLabels, datasets: [{{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }}]}},
   options: {{ responsive: true, maintainAspectRatio: false, plugins: {{ legend: {{ position: 'right', labels: {{ color: '#64748B', font: {{ size: 11 }}, boxWidth: 12 }} }} }} }}
 }});
-{gmb_chart_js}
 </script>
 </body>
 </html>"""
@@ -757,7 +770,7 @@ def main():
     gc = gspread.authorize(load_creds())
     print("Loading sheet data...")
     ga4_rows, rank_rows, gmb_rows = get_sheet_data(gc)
-    print(f"GA4 rows: {len(ga4_rows)} | Rank rows: {len(rank_rows)} | GMB rows: {len(gmb_rows)}")
+    print(f"GA4 rows: {len(ga4_rows)} | Rank rows: {len(rank_rows)}")
 
     os.makedirs(DASH_DIR, exist_ok=True)
     generated = 0
@@ -765,11 +778,11 @@ def main():
     for client_name, slug in CLIENTS.items():
         client_ga4   = build_client_ga4(ga4_rows, client_name)
         client_ranks = build_client_ranks(rank_rows, client_name)
-        client_gmb   = [r for r in gmb_rows if r.get("Client Name") == client_name]
 
         if not client_ga4:
             print(f"  {client_name:25} — no GA4 data, generating keywords-only dashboard")
 
+        client_gmb = [r for r in gmb_rows if r.get("Client Name") == client_name]
         html = build_html(client_name, client_ga4, client_ranks, client_gmb)
         client_dir = os.path.join(DASH_DIR, slug)
         os.makedirs(client_dir, exist_ok=True)
@@ -777,20 +790,23 @@ def main():
         with open(out, "w", encoding="utf-8") as f:
             f.write(html)
         rank_count = len(client_ranks)
-        gmb_count  = len(client_gmb)
-        print(f"  {client_name:25} ✓  {len(client_ga4)} months GA4 | {rank_count} kws | {gmb_count} GMB months")
+        print(f"  {client_name:25} ✓  {len(client_ga4)} months GA4 | {rank_count} kws")
         generated += 1
+
 
     # Generate master agency index
     now_label = __import__('datetime').datetime.now().strftime('%b %Y')
     active_clients = [(name, slug) for name, slug in CLIENTS.items()]
 
+    # Build per-client summary data
     from datetime import datetime as _idt
     def _parse_m(m):
         try: return _idt.strptime(m, "%b-%Y")
         except: return _idt.min
 
     cur_month = _idt.now().strftime("%b-%Y")
+
+    # Domain map
     domain_map = {r.get("Client Name"): r.get("Domain","") for r in rank_rows}
 
     cards_html = ""
@@ -799,28 +815,29 @@ def main():
     total_top10 = 0
 
     for name, slug in active_clients:
+        # GA4 data
         cga4 = [r for r in ga4_rows if r.get("Client Name") == name and r.get("Month","") != cur_month]
         cga4_sorted = sorted(cga4, key=lambda x: _parse_m(x.get("Month","")), reverse=True)
         latest_ga4 = cga4_sorted[0] if cga4_sorted else {}
         org = int(latest_ga4.get("Organic Sessions", 0) or 0)
-        ai  = int(latest_ga4.get("ChatGPT Sessions", 0) or 0) + \
-              int(latest_ga4.get("Claude Sessions", 0) or 0) + \
-              int(latest_ga4.get("Perplexity Sessions", 0) or 0) + \
-              int(latest_ga4.get("Gemini Sessions", 0) or 0)
+        ai  = int(latest_ga4.get("ChatGPT Sessions", 0) or 0) +               int(latest_ga4.get("Claude Sessions", 0) or 0) +               int(latest_ga4.get("Perplexity Sessions", 0) or 0) +               int(latest_ga4.get("Gemini Sessions", 0) or 0)
         sessions = org + ai
         latest_month = latest_ga4.get("Month", "—")
         total_sessions += sessions
 
+        # Rank data
         cranks = [r for r in rank_rows if r.get("Client Name") == name]
-        kw_total  = len(cranks)
-        kw_top10  = len([r for r in cranks if str(r.get("Status","")) == "Ranking" and
-                         isinstance(r.get("Current Position",""), int) and r.get("Current Position",999) <= 10])
+        kw_total = len(cranks)
+        kw_top10 = len([r for r in cranks if str(r.get("Status","")) == "Ranking" and
+                        isinstance(r.get("Current Position",""), int) and r.get("Current Position",999) <= 10])
         kw_ranking = len([r for r in cranks if str(r.get("Status","")) == "Ranking"])
         total_keywords += kw_total
-        total_top10    += kw_top10
+        total_top10 += kw_top10
 
         domain = domain_map.get(name, "")
         sessions_fmt = f"{int(sessions):,}" if sessions else "—"
+
+        # Card status color
         status_color = "#4ade80" if kw_ranking > 0 else "#94a3b8"
         status_label = f"{kw_ranking} Ranking" if kw_ranking > 0 else "No Rankings Yet"
 
@@ -942,7 +959,7 @@ function filterCards(q){{
 
     print(f"\nGenerated {generated} dashboards → {DASH_DIR}")
     print("\nPush to GitHub:")
-    print("  cd ~/ThirdSlash_SEO_Dashboards && git add -A && git commit -m 'Add GMB tab to all dashboards' && git push")
+    print("  cd ~/ThirdSlash_SEO_Dashboards && git add -A && git commit -m 'Update dashboards with fresh rankings' && git push")
 
 if __name__ == "__main__":
     main()

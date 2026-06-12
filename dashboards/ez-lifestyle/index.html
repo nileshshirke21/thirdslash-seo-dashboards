@@ -94,18 +94,13 @@
   .history-table tr:last-child td { border-bottom: none; }
   .history-table tr:hover td { background: #EFF6FF; }
   .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .gmb-section { margin-bottom: 28px; }
-  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
-  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
+  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 20px; }
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
-  .no-data .icon { font-size: 48px; margin-bottom: 12px; }
-  .no-data p { font-size: 14px; }
-  @media (max-width: 1100px) {
+  @media(max-width:1100px) {
+    .gmb-grid { grid-template-columns: repeat(4,1fr); }
     .metrics-grid { grid-template-columns: repeat(2,1fr); }
     .ai-grid { grid-template-columns: repeat(2,1fr); }
     .rank-summary { grid-template-columns: repeat(2,1fr); }
@@ -127,9 +122,10 @@
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history')">History</div>
+  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
+  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -210,17 +206,20 @@
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">9</div>
       <div class="ai-delta neg delta">▼ 8</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🟣</div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🔮</div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">0</div>
       <div class="ai-delta neg delta">▼ 2</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">💎</div>
       <div class="ai-label">Gemini</div>
       <div class="ai-val">0</div>
@@ -228,9 +227,6 @@
     </div>
   </div>
 </div>
-
-<!-- GMB SECTION -->
-
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -256,12 +252,48 @@
   
 </div>
 
+<!-- GMB TAB -->
+<div id="tab-gmb" class="section">
+  
+  <div class="no-data" style="padding:80px 20px;">
+    <div style="font-size:48px;margin-bottom:16px;">📍</div>
+    <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px;">GMB Data Coming Soon</p>
+    <p style="font-size:13px;color:#6B7280;">Google My Business API access has been requested.<br>Data will appear here once the API is connected.</p>
+  </div>
+</div>
+
 <script>
-function showTab(name) {
+function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
+}
+var sortDir = {};
+function sortTable(col) {
+  var tbody = document.getElementById("rankTableBody");
+  var rows = Array.from(tbody.querySelectorAll("tr"));
+  var asc = !sortDir[col];
+  sortDir = {};
+  sortDir[col] = asc;
+  rows.sort(function(a, b) {
+    var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+    var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+    var an = parseFloat(av.replace(/[^0-9.-]/g,""));
+    var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
+    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+    if (av === "NR") return asc ? 1 : -1;
+    if (bv === "NR") return asc ? -1 : 1;
+    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
+}
+function filterTable() {
+  var q = document.getElementById("kwSearch").value.toLowerCase();
+  document.getElementById("rankTableBody").querySelectorAll("tr").forEach(function(r) {
+    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : "").includes(q) ? "" : "none";
+  });
 }
 const months   = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
 const sessData = [2348, 1793, 1604, 1604, 1697, 1697, 2017, 2017, 1300, 1300, 1128, 1476];
@@ -299,12 +331,12 @@ new Chart(document.getElementById('aiChart'), {
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
 });
-
 new Chart(document.getElementById('chChart'), {
   type: 'doughnut',
   data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
 });
+
 </script>
 </body>
 </html>

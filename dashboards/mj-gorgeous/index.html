@@ -94,18 +94,13 @@
   .history-table tr:last-child td { border-bottom: none; }
   .history-table tr:hover td { background: #EFF6FF; }
   .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .gmb-section { margin-bottom: 28px; }
-  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
-  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
+  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 20px; }
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
-  .no-data .icon { font-size: 48px; margin-bottom: 12px; }
-  .no-data p { font-size: 14px; }
-  @media (max-width: 1100px) {
+  @media(max-width:1100px) {
+    .gmb-grid { grid-template-columns: repeat(4,1fr); }
     .metrics-grid { grid-template-columns: repeat(2,1fr); }
     .ai-grid { grid-template-columns: repeat(2,1fr); }
     .rank-summary { grid-template-columns: repeat(2,1fr); }
@@ -127,9 +122,10 @@
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history')">History</div>
+  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
+  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -210,17 +206,20 @@
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">52</div>
       <div class="ai-delta neg delta">▼ 11</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🟣</div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">14</div>
       <div class="ai-delta pos delta">▲ 4</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🔮</div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">💎</div>
       <div class="ai-label">Gemini</div>
       <div class="ai-val">4</div>
@@ -228,9 +227,6 @@
     </div>
   </div>
 </div>
-
-<!-- GMB SECTION -->
-
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -282,16 +278,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
           <td class="kw-cell" title="engagement makeup service bangalore">engagement makeup service bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell up">▲ +13</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/bridal-makeup-artist-bangalore/" target="_blank">https://mjgorgeous.com/bridal-makeup-artist-bangalore/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
           <td class="kw-cell" title="bridal makeup services in bangalore">bridal makeup services in bangalore</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">390</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/bridal-makeup-artist-bangalore/" target="_blank">https://mjgorgeous.com/bridal-makeup-artist-bangalore/</a></td>
@@ -300,7 +296,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="self grooming makeup classes in bangalore">self grooming makeup classes in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -309,7 +305,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
           <td class="kw-cell" title="mj gorgeous">mj gorgeous</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">140</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -318,7 +314,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
           <td class="kw-cell" title="bridal makeup bangalore">bridal makeup bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +9</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -327,7 +323,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
           <td class="kw-cell" title="self grooming classes in bangalore">self grooming classes in bangalore</td>
           <td class="rank-cell rank-flat" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -336,7 +332,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
           <td class="kw-cell" title="personal grooming classes in bangalore">personal grooming classes in bangalore</td>
           <td class="rank-cell rank-flat" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -345,7 +341,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
           <td class="kw-cell" title="bridal makeup artist in bangalore">bridal makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">390</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -354,7 +350,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
           <td class="kw-cell" title="makeup artist bangalore">makeup artist bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">2400</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -363,7 +359,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
           <td class="kw-cell" title="top makeup artist in bangalore">top makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +6</td>
           <td class="vol-cell">170</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -372,25 +368,25 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
           <td class="kw-cell" title="engagement makeup artist bangalore">engagement makeup artist bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +6</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
           <td class="kw-cell" title="airbrush engagement makeup bangalore">airbrush engagement makeup bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/airbrush-bridal-makeup-bangalore/" target="_blank">https://mjgorgeous.com/airbrush-bridal-makeup-bangalore/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
           <td class="kw-cell" title="party makeup artist in bangalore">party makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell up">▲ +8</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -399,7 +395,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
           <td class="kw-cell" title="best makeup artist in bangalore">best makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">590</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -408,7 +404,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
           <td class="kw-cell" title="best bridal makeup artist in bangalore">best bridal makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">10</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">10</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">140</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -417,7 +413,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
           <td class="kw-cell" title="wedding makeup artist bangalore">wedding makeup artist bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">10</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">10</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">390</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -426,7 +422,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
           <td class="kw-cell" title="bangalore's best makeup artist">bangalore's best makeup artist</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -435,7 +431,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
           <td class="kw-cell" title="make up artist in bangalore">make up artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -444,7 +440,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
           <td class="kw-cell" title="makeup artist for bridesmaids">makeup artist for bridesmaids</td>
           <td class="rank-cell rank-down" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/what-every-bridesmaid-should-know-before-booking-a-makeup-artist-today/" target="_blank">https://mjgorgeous.com/what-every-bridesmaid-should-know-before-booking-a-makeup-artist-today/</a></td>
@@ -453,7 +449,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
           <td class="kw-cell" title="cocktail party makeup and hair">cocktail party makeup and hair</td>
           <td class="rank-cell rank-new" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/cocktail-party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/cocktail-party-makeup-bangalore/</a></td>
@@ -462,7 +458,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
           <td class="kw-cell" title="self grooming classes">self grooming classes</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">10</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">10</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">1000</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -471,7 +467,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
           <td class="kw-cell" title="muhurtham bridal makeup">muhurtham bridal makeup</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/muhurtham-bridal-makeup-bangalore/" target="_blank">https://mjgorgeous.com/muhurtham-bridal-makeup-bangalore/</a></td>
@@ -480,7 +476,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
           <td class="kw-cell" title="top bridal makeup artist in bangalore">top bridal makeup artist in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -489,7 +485,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
           <td class="kw-cell" title="make up artist bangalore">make up artist bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">13</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">13</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -498,25 +494,25 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
           <td class="kw-cell" title="makeup photographer in bangalore">makeup photographer in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">13</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">13</td>
           <td class="move-cell up">▲ +3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
           <td class="kw-cell" title="best engagement makeup bangalore">best engagement makeup bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">16</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">16</td>
           <td class="move-cell up">▲ +5</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
           <td class="kw-cell" title="bridal makeup for muhurtham">bridal makeup for muhurtham</td>
           <td class="rank-cell rank-up" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">17</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">17</td>
           <td class="move-cell up">▲ +6</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/what-exactly-is-muhurtham-bridal-makeup-why-its-not-just-another-wedding-look/" target="_blank">https://mjgorgeous.com/what-exactly-is-muhurtham-bridal-makeup-why-its-not-just-another-wedding-look/</a></td>
@@ -525,7 +521,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
           <td class="kw-cell" title="bridal makeup and mehndi">bridal makeup and mehndi</td>
           <td class="rank-cell rank-new" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/haldi-mehendi-makeup-bangalore/" target="_blank">https://mjgorgeous.com/haldi-mehendi-makeup-bangalore/</a></td>
@@ -534,7 +530,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
           <td class="kw-cell" title="best party makeup near me">best party makeup near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">13</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">13</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -543,7 +539,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
           <td class="kw-cell" title="personal grooming classes">personal grooming classes</td>
           <td class="rank-cell rank-up" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">19</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">19</td>
           <td class="move-cell up">▲ +6</td>
           <td class="vol-cell">1000</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -552,7 +548,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
           <td class="kw-cell" title="party makeup near me">party makeup near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">14</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">1000</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -561,7 +557,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
           <td class="kw-cell" title="cocktail">cocktail</td>
           <td class="rank-cell rank-up" style="text-align:center">15</td>
-          <td class="rank-cell" style="text-align:center">34</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">34</td>
           <td class="move-cell up">▲ +19</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/cocktail-party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/cocktail-party-makeup-bangalore/</a></td>
@@ -570,7 +566,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
           <td class="kw-cell" title="self grooming course">self grooming course</td>
           <td class="rank-cell rank-up" style="text-align:center">16</td>
-          <td class="rank-cell" style="text-align:center">20</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">20</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">1000</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -579,7 +575,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
           <td class="kw-cell" title="party makeup bangalore">party makeup bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">25</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">25</td>
           <td class="move-cell up">▲ +8</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -588,7 +584,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
           <td class="kw-cell" title="party makeup cost in bangalore">party makeup cost in bangalore</td>
           <td class="rank-cell rank-down" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -597,7 +593,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
           <td class="kw-cell" title="makeup artist for party makeup">makeup artist for party makeup</td>
           <td class="rank-cell rank-up" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">22</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">22</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -606,7 +602,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
           <td class="kw-cell" title="bridal makeup for reception">bridal makeup for reception</td>
           <td class="rank-cell rank-up" style="text-align:center">18</td>
-          <td class="rank-cell" style="text-align:center">27</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">27</td>
           <td class="move-cell up">▲ +9</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/" target="_blank">https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/</a></td>
@@ -615,7 +611,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
           <td class="kw-cell" title="makeup for reception party">makeup for reception party</td>
           <td class="rank-cell rank-down" style="text-align:center">18</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell down">▼ -7</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/" target="_blank">https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/</a></td>
@@ -624,7 +620,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
           <td class="kw-cell" title="wedding makeup artist">wedding makeup artist</td>
           <td class="rank-cell rank-up" style="text-align:center">18</td>
-          <td class="rank-cell" style="text-align:center">62</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">62</td>
           <td class="move-cell up">▲ +44</td>
           <td class="vol-cell">880</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -633,7 +629,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
           <td class="kw-cell" title="party makeup at home service near me">party makeup at home service near me</td>
           <td class="rank-cell rank-down" style="text-align:center">19</td>
-          <td class="rank-cell" style="text-align:center">16</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">16</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -642,7 +638,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
           <td class="kw-cell" title="personal grooming courses">personal grooming courses</td>
           <td class="rank-cell rank-down" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell down">▼ -8</td>
           <td class="vol-cell">1000</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -651,7 +647,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
           <td class="kw-cell" title="self grooming makeup classes">self grooming makeup classes</td>
           <td class="rank-cell rank-up" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">26</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">26</td>
           <td class="move-cell up">▲ +6</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -660,7 +656,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
           <td class="kw-cell" title="reception makeup artist">reception makeup artist</td>
           <td class="rank-cell rank-up" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">29</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">29</td>
           <td class="move-cell up">▲ +9</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -669,7 +665,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
           <td class="kw-cell" title="personal grooming makeup classes">personal grooming makeup classes</td>
           <td class="rank-cell rank-flat" style="text-align:center">21</td>
-          <td class="rank-cell" style="text-align:center">21</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">21</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -678,7 +674,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
           <td class="kw-cell" title="party makeup artist">party makeup artist</td>
           <td class="rank-cell rank-down" style="text-align:center">22</td>
-          <td class="rank-cell" style="text-align:center">15</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">15</td>
           <td class="move-cell down">▼ -7</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -687,7 +683,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
           <td class="kw-cell" title="party makeup at home service">party makeup at home service</td>
           <td class="rank-cell rank-flat" style="text-align:center">22</td>
-          <td class="rank-cell" style="text-align:center">22</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">22</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -696,7 +692,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
           <td class="kw-cell" title="bridesmaid makeup artist">bridesmaid makeup artist</td>
           <td class="rank-cell rank-up" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">28</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">28</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -705,7 +701,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
           <td class="kw-cell" title="self grooming course fees">self grooming course fees</td>
           <td class="rank-cell rank-up" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">32</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">32</td>
           <td class="move-cell up">▲ +9</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -714,7 +710,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
           <td class="kw-cell" title="engagement makeup artist">engagement makeup artist</td>
           <td class="rank-cell rank-flat" style="text-align:center">24</td>
-          <td class="rank-cell" style="text-align:center">24</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">24</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -723,7 +719,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
           <td class="kw-cell" title="self grooming makeup course">self grooming makeup course</td>
           <td class="rank-cell rank-up" style="text-align:center">24</td>
-          <td class="rank-cell" style="text-align:center">29</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">29</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -732,7 +728,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
           <td class="kw-cell" title="personal grooming course fees">personal grooming course fees</td>
           <td class="rank-cell rank-up" style="text-align:center">24</td>
-          <td class="rank-cell" style="text-align:center">36</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">36</td>
           <td class="move-cell up">▲ +12</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -741,7 +737,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
           <td class="kw-cell" title="wedding makeup near me">wedding makeup near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">27</td>
-          <td class="rank-cell" style="text-align:center">27</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">27</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">140</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/book-bridal-makeup-bangalore/" target="_blank">https://mjgorgeous.com/book-bridal-makeup-bangalore/</a></td>
@@ -750,7 +746,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
           <td class="kw-cell" title="makeup artist for wedding party">makeup artist for wedding party</td>
           <td class="rank-cell rank-down" style="text-align:center">31</td>
-          <td class="rank-cell" style="text-align:center">29</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">29</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/party-makeup-bangalore/" target="_blank">https://mjgorgeous.com/party-makeup-bangalore/</a></td>
@@ -759,7 +755,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">54</td>
           <td class="kw-cell" title="charges for party makeup">charges for party makeup</td>
           <td class="rank-cell rank-flat" style="text-align:center">32</td>
-          <td class="rank-cell" style="text-align:center">32</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">32</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/" target="_blank">https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/</a></td>
@@ -768,7 +764,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">55</td>
           <td class="kw-cell" title="makeup photographer">makeup photographer</td>
           <td class="rank-cell rank-down" style="text-align:center">33</td>
-          <td class="rank-cell" style="text-align:center">27</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">27</td>
           <td class="move-cell down">▼ -6</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -777,7 +773,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">56</td>
           <td class="kw-cell" title="makeup institute in bangalore">makeup institute in bangalore</td>
           <td class="rank-cell rank-down" style="text-align:center">35</td>
-          <td class="rank-cell" style="text-align:center">32</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">32</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -786,16 +782,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">57</td>
           <td class="kw-cell" title="advanced makeup artist course in banglore">advanced makeup artist course in banglore</td>
           <td class="rank-cell rank-up" style="text-align:center">35</td>
-          <td class="rank-cell" style="text-align:center">50</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">50</td>
           <td class="move-cell up">▲ +15</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">58</td>
           <td class="kw-cell" title="best makeup training institute in bangalore">best makeup training institute in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">36</td>
-          <td class="rank-cell" style="text-align:center">48</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">48</td>
           <td class="move-cell up">▲ +12</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -804,7 +800,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">59</td>
           <td class="kw-cell" title="makeup academy bangalore">makeup academy bangalore</td>
           <td class="rank-cell rank-down" style="text-align:center">39</td>
-          <td class="rank-cell" style="text-align:center">29</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">29</td>
           <td class="move-cell down">▼ -10</td>
           <td class="vol-cell">390</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -813,7 +809,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">60</td>
           <td class="kw-cell" title="best makeup academy in bangalore">best makeup academy in bangalore</td>
           <td class="rank-cell rank-up" style="text-align:center">39</td>
-          <td class="rank-cell" style="text-align:center">41</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">41</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/personal-grooming-courses/" target="_blank">https://mjgorgeous.com/personal-grooming-courses/</a></td>
@@ -822,7 +818,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">61</td>
           <td class="kw-cell" title="bridesmaid makeup price">bridesmaid makeup price</td>
           <td class="rank-cell rank-down" style="text-align:center">40</td>
-          <td class="rank-cell" style="text-align:center">37</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">37</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/" target="_blank">https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/</a></td>
@@ -831,7 +827,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">62</td>
           <td class="kw-cell" title="reception makeup price">reception makeup price</td>
           <td class="rank-cell rank-up" style="text-align:center">40</td>
-          <td class="rank-cell" style="text-align:center">57</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">57</td>
           <td class="move-cell up">▲ +17</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/" target="_blank">https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/</a></td>
@@ -840,7 +836,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">63</td>
           <td class="kw-cell" title="makeup and photography package">makeup and photography package</td>
           <td class="rank-cell rank-down" style="text-align:center">44</td>
-          <td class="rank-cell" style="text-align:center">33</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">33</td>
           <td class="move-cell down">▼ -11</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -849,7 +845,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">64</td>
           <td class="kw-cell" title="fashion makeup artist">fashion makeup artist</td>
           <td class="rank-cell rank-flat" style="text-align:center">47</td>
-          <td class="rank-cell" style="text-align:center">47</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">47</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/" target="_blank">https://mjgorgeous.com/</a></td>
@@ -858,7 +854,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">65</td>
           <td class="kw-cell" title="bridesmaid makeup cost">bridesmaid makeup cost</td>
           <td class="rank-cell rank-down" style="text-align:center">50</td>
-          <td class="rank-cell" style="text-align:center">39</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">39</td>
           <td class="move-cell down">▼ -11</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/" target="_blank">https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/</a></td>
@@ -867,101 +863,68 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">66</td>
           <td class="kw-cell" title="makeup artist">makeup artist</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">27100</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">67</td>
           <td class="kw-cell" title="makeup artist near me">makeup artist near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">27100</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">68</td>
           <td class="kw-cell" title="best makeup artist near me">best makeup artist near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">2400</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">69</td>
           <td class="kw-cell" title="wedding makeup artist near me">wedding makeup artist near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">480</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">70</td>
           <td class="kw-cell" title="bridal makeup near me">bridal makeup near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">2900</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">71</td>
           <td class="kw-cell" title="bridal makeup artist near me">bridal makeup artist near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">1600</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">72</td>
           <td class="kw-cell" title="best bridal makeup artist near me">best bridal makeup artist near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">320</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <script>
-  var sortDir = {};
-  function sortTable(col) {
-    var tbody = document.getElementById("rankTableBody");
-    var rows = Array.from(tbody.querySelectorAll("tr"));
-    var asc = !sortDir[col];
-    sortDir = {};
-    sortDir[col] = asc;
-    rows.sort(function(a, b) {
-      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
-      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
-      var an = parseFloat(av.replace(/[^0-9.-]/g,""));
-      var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
-      if (!isNaN(an) && !isNaN(bn)) {
-        return asc ? an - bn : bn - an;
-      }
-      if (av === "NR") return asc ? 1 : -1;
-      if (bv === "NR") return asc ? -1 : 1;
-      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-    });
-    rows.forEach(function(r) { tbody.appendChild(r); });
-    // Update Sr. numbers after sort
-    rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
-  }
-  function filterTable() {
-    var q = document.getElementById("kwSearch").value.toLowerCase();
-    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
-    rows.forEach(function(r) {
-      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
-      r.style.display = kw.includes(q) ? "" : "none";
-    });
-  }
-  </script>
   
 </div>
 
@@ -984,12 +947,48 @@
   
 </div>
 
+<!-- GMB TAB -->
+<div id="tab-gmb" class="section">
+  
+  <div class="no-data" style="padding:80px 20px;">
+    <div style="font-size:48px;margin-bottom:16px;">📍</div>
+    <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px;">GMB Data Coming Soon</p>
+    <p style="font-size:13px;color:#6B7280;">Google My Business API access has been requested.<br>Data will appear here once the API is connected.</p>
+  </div>
+</div>
+
 <script>
-function showTab(name) {
+function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
+}
+var sortDir = {};
+function sortTable(col) {
+  var tbody = document.getElementById("rankTableBody");
+  var rows = Array.from(tbody.querySelectorAll("tr"));
+  var asc = !sortDir[col];
+  sortDir = {};
+  sortDir[col] = asc;
+  rows.sort(function(a, b) {
+    var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+    var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+    var an = parseFloat(av.replace(/[^0-9.-]/g,""));
+    var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
+    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+    if (av === "NR") return asc ? 1 : -1;
+    if (bv === "NR") return asc ? -1 : 1;
+    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
+}
+function filterTable() {
+  var q = document.getElementById("kwSearch").value.toLowerCase();
+  document.getElementById("rankTableBody").querySelectorAll("tr").forEach(function(r) {
+    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : "").includes(q) ? "" : "none";
+  });
 }
 const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
 const sessData = [6192, 6192, 7370, 7370, 6084, 6958, 6958, 2400, 1511, 1454, 2151, 2151];
@@ -1027,12 +1026,12 @@ new Chart(document.getElementById('aiChart'), {
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
 });
-
 new Chart(document.getElementById('chChart'), {
   type: 'doughnut',
   data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
 });
+
 </script>
 </body>
 </html>

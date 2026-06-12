@@ -94,18 +94,13 @@
   .history-table tr:last-child td { border-bottom: none; }
   .history-table tr:hover td { background: #EFF6FF; }
   .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .gmb-section { margin-bottom: 28px; }
-  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
-  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
+  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 20px; }
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
-  .no-data .icon { font-size: 48px; margin-bottom: 12px; }
-  .no-data p { font-size: 14px; }
-  @media (max-width: 1100px) {
+  @media(max-width:1100px) {
+    .gmb-grid { grid-template-columns: repeat(4,1fr); }
     .metrics-grid { grid-template-columns: repeat(2,1fr); }
     .ai-grid { grid-template-columns: repeat(2,1fr); }
     .rank-summary { grid-template-columns: repeat(2,1fr); }
@@ -127,9 +122,10 @@
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history')">History</div>
+  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
+  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -210,17 +206,20 @@
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">20</div>
       <div class="ai-delta neg delta">▼ 3</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🟣</div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🔮</div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">💎</div>
       <div class="ai-label">Gemini</div>
       <div class="ai-val">0</div>
@@ -228,9 +227,6 @@
     </div>
   </div>
 </div>
-
-<!-- GMB SECTION -->
-
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -282,830 +278,797 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
           <td class="kw-cell" title="uk escorts">uk escorts</td>
           <td class="rank-cell rank-new" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/" target="_blank">https://public69.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
           <td class="kw-cell" title="couple escort london">couple escort london</td>
           <td class="rank-cell rank-up" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">18</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">18</td>
           <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/couples-escorts" target="_blank">https://public69.com/couples-escorts</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="independent trans escort">independent trans escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">22</td>
-          <td class="rank-cell" style="text-align:center">22</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">22</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/trans-escorts" target="_blank">https://public69.com/trans-escorts</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
           <td class="kw-cell" title="escort directory uk">escort directory uk</td>
           <td class="rank-cell rank-down" style="text-align:center">25</td>
-          <td class="rank-cell" style="text-align:center">15</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">15</td>
           <td class="move-cell down">▼ -10</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/" target="_blank">https://public69.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
           <td class="kw-cell" title="escorts uk">escorts uk</td>
           <td class="rank-cell rank-down" style="text-align:center">26</td>
-          <td class="rank-cell" style="text-align:center">18</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">18</td>
           <td class="move-cell down">▼ -8</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/" target="_blank">https://public69.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
           <td class="kw-cell" title="escort hotel london">escort hotel london</td>
           <td class="rank-cell rank-up" style="text-align:center">28</td>
-          <td class="rank-cell" style="text-align:center">36</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">36</td>
           <td class="move-cell up">▲ +8</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/blog/best-7-luxury-hotels-in-london-escort-friendly" target="_blank">https://public69.com/blog/best-7-luxury-hotels-in-london-escort-friendly</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
           <td class="kw-cell" title="escort friendly hotels london">escort friendly hotels london</td>
           <td class="rank-cell rank-up" style="text-align:center">31</td>
-          <td class="rank-cell" style="text-align:center">36</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">36</td>
           <td class="move-cell up">▲ +5</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://public69.com/blog/best-7-luxury-hotels-in-london-escort-friendly" target="_blank">https://public69.com/blog/best-7-luxury-hotels-in-london-escort-friendly</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
           <td class="kw-cell" title="uk escort services">uk escort services</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
           <td class="kw-cell" title="female escort near me">female escort near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
           <td class="kw-cell" title="erotic massage near me">erotic massage near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
           <td class="kw-cell" title="dublin escort service">dublin escort service</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
           <td class="kw-cell" title="couple escorts">couple escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
           <td class="kw-cell" title="escort trans london">escort trans london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
           <td class="kw-cell" title="couple escort">couple escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
           <td class="kw-cell" title="escort couples">escort couples</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
           <td class="kw-cell" title="escorts near me">escorts near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
           <td class="kw-cell" title="surrey escorts">surrey escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
           <td class="kw-cell" title="trans escorts">trans escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
           <td class="kw-cell" title="trans escorts london">trans escorts london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
           <td class="kw-cell" title="london escorts">london escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
           <td class="kw-cell" title="berkshire escorts">berkshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
           <td class="kw-cell" title="manchester escorts">manchester escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
           <td class="kw-cell" title="male escort">male escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
           <td class="kw-cell" title="male escorts">male escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
           <td class="kw-cell" title="female escort">female escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
           <td class="kw-cell" title="female escorts">female escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
           <td class="kw-cell" title="independent female escorts">independent female escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
           <td class="kw-cell" title="independent escorts uk">independent escorts uk</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
           <td class="kw-cell" title="london escort services">london escort services</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
           <td class="kw-cell" title="london escort agency">london escort agency</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
           <td class="kw-cell" title="escort service london">escort service london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
           <td class="kw-cell" title="escort service near me">escort service near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
           <td class="kw-cell" title="escort near me">escort near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
           <td class="kw-cell" title="escorts in surrey">escorts in surrey</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
           <td class="kw-cell" title="escorts in edinburgh">escorts in edinburgh</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
           <td class="kw-cell" title="edinburgh escorts">edinburgh escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
           <td class="kw-cell" title="edinburgh escort">edinburgh escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
           <td class="kw-cell" title="escorts in bristol">escorts in bristol</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
           <td class="kw-cell" title="bristol escorts">bristol escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
           <td class="kw-cell" title="mature escorts bristol">mature escorts bristol</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
           <td class="kw-cell" title="female escorts bristol">female escorts bristol</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
           <td class="kw-cell" title="dublin escorts">dublin escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
           <td class="kw-cell" title="dublin escort">dublin escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
           <td class="kw-cell" title="dublin escorts ie">dublin escorts ie</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
           <td class="kw-cell" title="independent dublin escorts">independent dublin escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
           <td class="kw-cell" title="escort services in dublin">escort services in dublin</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
           <td class="kw-cell" title="escorts in cornwall">escorts in cornwall</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
           <td class="kw-cell" title="cornwall escort">cornwall escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
           <td class="kw-cell" title="female escort cornwall">female escort cornwall</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
           <td class="kw-cell" title="escort services in cornwall">escort services in cornwall</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
           <td class="kw-cell" title="escorts in carmarthenshire">escorts in carmarthenshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
           <td class="kw-cell" title="escort carmarthenshire">escort carmarthenshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
           <td class="kw-cell" title="carmarthenshire escorts">carmarthenshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">54</td>
           <td class="kw-cell" title="female escort carmarthenshire">female escort carmarthenshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">55</td>
           <td class="kw-cell" title="escorts in derbyshire">escorts in derbyshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">56</td>
           <td class="kw-cell" title="derbyshire escorts">derbyshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">57</td>
           <td class="kw-cell" title="mature escorts derbyshire">mature escorts derbyshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">58</td>
           <td class="kw-cell" title="female escorts derbyshire">female escorts derbyshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">59</td>
           <td class="kw-cell" title="mature escorts berkshire">mature escorts berkshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">60</td>
           <td class="kw-cell" title="berkshire escort agency">berkshire escort agency</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">61</td>
           <td class="kw-cell" title="escort services in berkshire">escort services in berkshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">62</td>
           <td class="kw-cell" title="escorts in buckinghamshire">escorts in buckinghamshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">63</td>
           <td class="kw-cell" title="buckinghamshire escorts">buckinghamshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">64</td>
           <td class="kw-cell" title="mature escorts buckinghamshire">mature escorts buckinghamshire</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">65</td>
           <td class="kw-cell" title="escorts in dumfries">escorts in dumfries</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">66</td>
           <td class="kw-cell" title="dumfries escorts">dumfries escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">67</td>
           <td class="kw-cell" title="aberdeenshire escorts">aberdeenshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">68</td>
           <td class="kw-cell" title="aberdeenshire escort">aberdeenshire escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">69</td>
           <td class="kw-cell" title="surrey escort">surrey escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">70</td>
           <td class="kw-cell" title="manchester escort booking">manchester escort booking</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">71</td>
           <td class="kw-cell" title="escorts in manchester">escorts in manchester</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">72</td>
           <td class="kw-cell" title="trans escort london">trans escort london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">73</td>
           <td class="kw-cell" title="london trans escort">london trans escort</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">74</td>
           <td class="kw-cell" title="gay male escorts">gay male escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">75</td>
           <td class="kw-cell" title="gay escort near me">gay escort near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">76</td>
           <td class="kw-cell" title="male escorts near me">male escorts near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">77</td>
           <td class="kw-cell" title="male escort near me">male escort near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">78</td>
           <td class="kw-cell" title="male escorts london">male escorts london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">79</td>
           <td class="kw-cell" title="male escort london">male escort london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">80</td>
           <td class="kw-cell" title="couple escorts near me">couple escorts near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">81</td>
           <td class="kw-cell" title="escorts for couples">escorts for couples</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">82</td>
           <td class="kw-cell" title="erotic massage london">erotic massage london</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">83</td>
           <td class="kw-cell" title="london erotic massage">london erotic massage</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">84</td>
           <td class="kw-cell" title="erotic massage">erotic massage</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">85</td>
           <td class="kw-cell" title="trans escorts near me">trans escorts near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">86</td>
           <td class="kw-cell" title="female escorts near me">female escorts near me</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">87</td>
           <td class="kw-cell" title="independent berkshire escorts">independent berkshire escorts</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">88</td>
           <td class="kw-cell" title="female escorts edinburgh">female escorts edinburgh</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="vol-cell">—</td>
+          <td class="url-cell"></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <script>
-  var sortDir = {};
-  function sortTable(col) {
-    var tbody = document.getElementById("rankTableBody");
-    var rows = Array.from(tbody.querySelectorAll("tr"));
-    var asc = !sortDir[col];
-    sortDir = {};
-    sortDir[col] = asc;
-    rows.sort(function(a, b) {
-      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
-      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
-      var an = parseFloat(av.replace(/[^0-9.-]/g,""));
-      var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
-      if (!isNaN(an) && !isNaN(bn)) {
-        return asc ? an - bn : bn - an;
-      }
-      if (av === "NR") return asc ? 1 : -1;
-      if (bv === "NR") return asc ? -1 : 1;
-      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-    });
-    rows.forEach(function(r) { tbody.appendChild(r); });
-    // Update Sr. numbers after sort
-    rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
-  }
-  function filterTable() {
-    var q = document.getElementById("kwSearch").value.toLowerCase();
-    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
-    rows.forEach(function(r) {
-      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
-      r.style.display = kw.includes(q) ? "" : "none";
-    });
-  }
-  </script>
   
 </div>
 
@@ -1128,12 +1091,48 @@
   
 </div>
 
+<!-- GMB TAB -->
+<div id="tab-gmb" class="section">
+  
+  <div class="no-data" style="padding:80px 20px;">
+    <div style="font-size:48px;margin-bottom:16px;">📍</div>
+    <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px;">GMB Data Coming Soon</p>
+    <p style="font-size:13px;color:#6B7280;">Google My Business API access has been requested.<br>Data will appear here once the API is connected.</p>
+  </div>
+</div>
+
 <script>
-function showTab(name) {
+function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
+}
+var sortDir = {};
+function sortTable(col) {
+  var tbody = document.getElementById("rankTableBody");
+  var rows = Array.from(tbody.querySelectorAll("tr"));
+  var asc = !sortDir[col];
+  sortDir = {};
+  sortDir[col] = asc;
+  rows.sort(function(a, b) {
+    var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+    var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+    var an = parseFloat(av.replace(/[^0-9.-]/g,""));
+    var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
+    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+    if (av === "NR") return asc ? 1 : -1;
+    if (bv === "NR") return asc ? -1 : 1;
+    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
+}
+function filterTable() {
+  var q = document.getElementById("kwSearch").value.toLowerCase();
+  document.getElementById("rankTableBody").querySelectorAll("tr").forEach(function(r) {
+    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : "").includes(q) ? "" : "none";
+  });
 }
 const months   = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
 const sessData = [323, 2031, 16948, 16948, 19070, 19070, 16657, 16657, 13494, 15035, 16227, 17310];
@@ -1171,12 +1170,12 @@ new Chart(document.getElementById('aiChart'), {
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
 });
-
 new Chart(document.getElementById('chChart'), {
   type: 'doughnut',
   data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
 });
+
 </script>
 </body>
 </html>

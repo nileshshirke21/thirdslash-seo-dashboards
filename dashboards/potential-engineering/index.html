@@ -94,18 +94,13 @@
   .history-table tr:last-child td { border-bottom: none; }
   .history-table tr:hover td { background: #EFF6FF; }
   .no-data { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .gmb-section { margin-bottom: 28px; }
-  .gmb-header { display: flex; align-items: center; margin-bottom: 16px; }
-  .gmb-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 16px; }
+  .gmb-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px; margin-bottom: 20px; }
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
-  .no-data .icon { font-size: 48px; margin-bottom: 12px; }
-  .no-data p { font-size: 14px; }
-  @media (max-width: 1100px) {
+  @media(max-width:1100px) {
+    .gmb-grid { grid-template-columns: repeat(4,1fr); }
     .metrics-grid { grid-template-columns: repeat(2,1fr); }
     .ai-grid { grid-template-columns: repeat(2,1fr); }
     .rank-summary { grid-template-columns: repeat(2,1fr); }
@@ -127,9 +122,10 @@
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history')">History</div>
+  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
+  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -210,17 +206,20 @@
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">38</div>
       <div class="ai-delta neg delta">▼ 2</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🟣</div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">0</div>
       <div class="ai-delta neg delta">▼ 1</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">🔮</div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">9</div>
       <div class="ai-delta pos delta">▲ 6</div>
-    </div><div class="ai-card">
+    </div>
+    <div class="ai-card">
       <div class="ai-icon">💎</div>
       <div class="ai-label">Gemini</div>
       <div class="ai-val">19</div>
@@ -228,9 +227,6 @@
     </div>
   </div>
 </div>
-
-<!-- GMB SECTION -->
-
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
@@ -282,7 +278,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
           <td class="kw-cell" title="rotary drum oil skimmer">rotary drum oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -291,7 +287,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
           <td class="kw-cell" title="floating drum oil skimmer">floating drum oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -300,7 +296,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="drum type oil skimmer">drum type oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -309,7 +305,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
           <td class="kw-cell" title="slotted pipe skimmer">slotted pipe skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/slotted-pipe-oil-skimmer/" target="_blank">https://potentialengineering.com/product/slotted-pipe-oil-skimmer/</a></td>
@@ -318,43 +314,43 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
           <td class="kw-cell" title="gravity skimmers">gravity skimmers</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/industrial-applications-of-gravity-skimmers/" target="_blank">https://potentialengineering.com/blog/industrial-applications-of-gravity-skimmers/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
           <td class="kw-cell" title="rotary skimmers">rotary skimmers</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/rotary-skimmers/" target="_blank">https://potentialengineering.com/category/rotary-skimmers/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
           <td class="kw-cell" title="industrial rotary skimmer">industrial rotary skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/rotary-skimmers/" target="_blank">https://potentialengineering.com/category/rotary-skimmers/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
           <td class="kw-cell" title="rotary skimmer manufacturer">rotary skimmer manufacturer</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
           <td class="kw-cell" title="floating trash skimmer">floating trash skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/importance-of-trash-skimmers-in-urban-water-management/" target="_blank">https://potentialengineering.com/blog/importance-of-trash-skimmers-in-urban-water-management/</a></td>
@@ -363,7 +359,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
           <td class="kw-cell" title="tpi oil water separator">tpi oil water separator</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/</a></td>
@@ -372,7 +368,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
           <td class="kw-cell" title="tpi separator">tpi separator</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/</a></td>
@@ -381,7 +377,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
           <td class="kw-cell" title="tilted plate interceptor oil water separator">tilted plate interceptor oil water separator</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/</a></td>
@@ -390,7 +386,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
           <td class="kw-cell" title="manual bar screen">manual bar screen</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/manual-bar-screen/" target="_blank">https://potentialengineering.com/product/manual-bar-screen/</a></td>
@@ -399,7 +395,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
           <td class="kw-cell" title="manual bar screen wastewater">manual bar screen wastewater</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/manual-bar-screen/" target="_blank">https://potentialengineering.com/product/manual-bar-screen/</a></td>
@@ -408,7 +404,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
           <td class="kw-cell" title="manual bar screen rake">manual bar screen rake</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/manual-bar-screen/" target="_blank">https://potentialengineering.com/product/manual-bar-screen/</a></td>
@@ -417,7 +413,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
           <td class="kw-cell" title="floating decanter pump">floating decanter pump</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/floating-decanters/" target="_blank">https://potentialengineering.com/category/floating-decanters/</a></td>
@@ -426,7 +422,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
           <td class="kw-cell" title="floating decanter wastewater">floating decanter wastewater</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/" target="_blank">https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/</a></td>
@@ -435,16 +431,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
           <td class="kw-cell" title="ballast decanter">ballast decanter</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/ballast-decanter/" target="_blank">https://potentialengineering.com/product/ballast-decanter/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
           <td class="kw-cell" title="sluice gate manufacturers in india">sluice gate manufacturers in india</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -453,25 +449,25 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
           <td class="kw-cell" title="weir gate manufacturer">weir gate manufacturer</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/weir-gate/" target="_blank">https://potentialengineering.com/product/weir-gate/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
           <td class="kw-cell" title="open channel gate suppliers">open channel gate suppliers</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +2</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
           <td class="kw-cell" title="chain scraper">chain scraper</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/chain-scraper-system/" target="_blank">https://potentialengineering.com/product/chain-scraper-system/</a></td>
@@ -480,16 +476,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
           <td class="kw-cell" title="mobile power and pump systems">mobile power and pump systems</td>
           <td class="rank-cell rank-flat" style="text-align:center">1</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/mobile-power-and-pump-systems/" target="_blank">https://potentialengineering.com/category/mobile-power-and-pump-systems/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
           <td class="kw-cell" title="drum oil skimmer">drum oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -498,7 +494,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
           <td class="kw-cell" title="drum skimmer">drum skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/working-applications-and-advantages-of-drum-skimmer/" target="_blank">https://potentialengineering.com/blog/working-applications-and-advantages-of-drum-skimmer/</a></td>
@@ -507,16 +503,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
           <td class="kw-cell" title="fixed disc oil skimmer">fixed disc oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -1</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/how-do-fixed-oil-skimmer-work-what-are-its-advantages-and-applications/" target="_blank">https://potentialengineering.com/blog/how-do-fixed-oil-skimmer-work-what-are-its-advantages-and-applications/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
           <td class="kw-cell" title="tube oil skimmer">tube oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tube-oil-skimmer/" target="_blank">https://potentialengineering.com/product/tube-oil-skimmer/</a></td>
@@ -525,7 +521,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
           <td class="kw-cell" title="tube type oil skimmer">tube type oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tube-oil-skimmer/" target="_blank">https://potentialengineering.com/product/tube-oil-skimmer/</a></td>
@@ -534,7 +530,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
           <td class="kw-cell" title="floating funnel type oil skimmer">floating funnel type oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/floating-funnel-oil-skimmer/" target="_blank">https://potentialengineering.com/product/floating-funnel-oil-skimmer/</a></td>
@@ -543,7 +539,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
           <td class="kw-cell" title="trash skimmer">trash skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/trash-skimmers/" target="_blank">https://potentialengineering.com/category/trash-skimmers/</a></td>
@@ -552,7 +548,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
           <td class="kw-cell" title="trash skimmer machine">trash skimmer machine</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/trash-skimmers/" target="_blank">https://potentialengineering.com/category/trash-skimmers/</a></td>
@@ -561,16 +557,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
           <td class="kw-cell" title="floating trash removal">floating trash removal</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell up">▲ +3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/effective-technologies-for-floating-trash-removal/" target="_blank">https://potentialengineering.com/blog/effective-technologies-for-floating-trash-removal/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
           <td class="kw-cell" title="oil water separator supplier">oil water separator supplier</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +10</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -579,7 +575,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
           <td class="kw-cell" title="cpi separator working principle">cpi separator working principle</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">7</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/" target="_blank">https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/</a></td>
@@ -588,7 +584,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
           <td class="kw-cell" title="tpi water treatment">tpi water treatment</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/product/tpi-oil-water-separator/</a></td>
@@ -597,7 +593,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
           <td class="kw-cell" title="sluice gate suppliers">sluice gate suppliers</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -606,7 +602,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
           <td class="kw-cell" title="weir gate">weir gate</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/sluice-gate-vs-weir-gate/" target="_blank">https://potentialengineering.com/blog/sluice-gate-vs-weir-gate/</a></td>
@@ -615,16 +611,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
           <td class="kw-cell" title="floating scum removal">floating scum removal</td>
           <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/how-floating-scum-removal-systems-improve-effluent-quality/" target="_blank">https://potentialengineering.com/blog/how-floating-scum-removal-systems-improve-effluent-quality/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
           <td class="kw-cell" title="tube skimmer">tube skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tube-oil-skimmer/" target="_blank">https://potentialengineering.com/product/tube-oil-skimmer/</a></td>
@@ -633,7 +629,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
           <td class="kw-cell" title="belt oil skimmer">belt oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">390</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/" target="_blank">https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/</a></td>
@@ -642,25 +638,25 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
           <td class="kw-cell" title="floating brush oil skimmers">floating brush oil skimmers</td>
           <td class="rank-cell rank-down" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -1</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/brush-oil-skimmer/" target="_blank">https://potentialengineering.com/product/brush-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
           <td class="kw-cell" title="gravity oil skimmers">gravity oil skimmers</td>
           <td class="rank-cell rank-down" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -2</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/gravity-skimmers/" target="_blank">https://potentialengineering.com/category/gravity-skimmers/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
           <td class="kw-cell" title="ocean trash skimmer">ocean trash skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/importance-of-trash-skimmers-in-urban-water-management/" target="_blank">https://potentialengineering.com/blog/importance-of-trash-skimmers-in-urban-water-management/</a></td>
@@ -669,7 +665,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
           <td class="kw-cell" title="oil water separator manufacturers in india">oil water separator manufacturers in india</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">19</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">19</td>
           <td class="move-cell up">▲ +16</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -678,7 +674,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
           <td class="kw-cell" title="cpi water treatment">cpi water treatment</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/" target="_blank">https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/</a></td>
@@ -687,7 +683,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
           <td class="kw-cell" title="boom reels">boom reels</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">7</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/boom-reels/" target="_blank">https://potentialengineering.com/product/boom-reels/</a></td>
@@ -696,7 +692,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
           <td class="kw-cell" title="mechanical bar screen">mechanical bar screen</td>
           <td class="rank-cell rank-flat" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/mechanical-screens/" target="_blank">https://potentialengineering.com/category/mechanical-screens/</a></td>
@@ -705,7 +701,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
           <td class="kw-cell" title="mechanical screen for stp">mechanical screen for stp</td>
           <td class="rank-cell rank-flat" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/mechanical-screens/" target="_blank">https://potentialengineering.com/category/mechanical-screens/</a></td>
@@ -714,7 +710,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
           <td class="kw-cell" title="mechanical screen wastewater">mechanical screen wastewater</td>
           <td class="rank-cell rank-down" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/" target="_blank">https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/</a></td>
@@ -723,7 +719,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
           <td class="kw-cell" title="floating decanter">floating decanter</td>
           <td class="rank-cell rank-down" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/importance-of-floating-decanter-in-the-clarification-process/" target="_blank">https://potentialengineering.com/blog/importance-of-floating-decanter-in-the-clarification-process/</a></td>
@@ -732,7 +728,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
           <td class="kw-cell" title="open channel sluice gate">open channel sluice gate</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -741,7 +737,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
           <td class="kw-cell" title="open channel gate">open channel gate</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell up">▲ +5</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -750,7 +746,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
           <td class="kw-cell" title="sludge scraper system">sludge scraper system</td>
           <td class="rank-cell rank-down" style="text-align:center">3</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/sludge-scum-scraper-systems/" target="_blank">https://potentialengineering.com/category/sludge-scum-scraper-systems/</a></td>
@@ -759,34 +755,34 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">54</td>
           <td class="kw-cell" title="fixed disc oil skimmer manufacturer">fixed disc oil skimmer manufacturer</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -2</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/industrial-oil-skimmer/" target="_blank">https://potentialengineering.com/category/industrial-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">55</td>
           <td class="kw-cell" title="industrial fixed disc oil skimmer">industrial fixed disc oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/fixed-disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/fixed-disc-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">56</td>
           <td class="kw-cell" title="fixed disc oil skimmer supplier">fixed disc oil skimmer supplier</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/fixed-disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/fixed-disc-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">57</td>
           <td class="kw-cell" title="skimming tube">skimming tube</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">7</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tube-oil-skimmer/" target="_blank">https://potentialengineering.com/product/tube-oil-skimmer/</a></td>
@@ -795,7 +791,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">58</td>
           <td class="kw-cell" title="brush oil skimmer">brush oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/brush-oil-skimmer/" target="_blank">https://potentialengineering.com/product/brush-oil-skimmer/</a></td>
@@ -804,7 +800,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">59</td>
           <td class="kw-cell" title="floating weir oil skimmer">floating weir oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">6</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/the-role-of-floating-weir-oil-skimmers-in-mitigating-marine-oil-spill-impact/" target="_blank">https://potentialengineering.com/blog/the-role-of-floating-weir-oil-skimmers-in-mitigating-marine-oil-spill-impact/</a></td>
@@ -813,7 +809,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">60</td>
           <td class="kw-cell" title="slotted pipe oil skimmer">slotted pipe oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/wp-content/uploads/2021/09/Slotted-Pipe-Oil-Skimmer_Industrial-Oil-Skimmer.pdf" target="_blank">https://potentialengineering.com/wp-content/uploads/2021/09/Slotted-Pipe-Oil-Skimmer_Industrial-Oil-Skimmer.pdf</a></td>
@@ -822,25 +818,25 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">61</td>
           <td class="kw-cell" title="gravity oil skimmers application">gravity oil skimmers application</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">62</td>
           <td class="kw-cell" title="gravity oil skimmers design">gravity oil skimmers design</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/gravity-skimmers/" target="_blank">https://potentialengineering.com/category/gravity-skimmers/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">63</td>
           <td class="kw-cell" title="floating oil skimmer system">floating oil skimmer system</td>
           <td class="rank-cell rank-flat" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
@@ -849,7 +845,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">64</td>
           <td class="kw-cell" title="tpi oil separator">tpi oil separator</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell up">▲ +7</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/product/tpi-oil-water-separator/</a></td>
@@ -858,7 +854,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">65</td>
           <td class="kw-cell" title="mechanically cleaned bar screen">mechanically cleaned bar screen</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">7</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/" target="_blank">https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/</a></td>
@@ -867,7 +863,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">66</td>
           <td class="kw-cell" title="mechanical fine screen">mechanical fine screen</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">6</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/" target="_blank">https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/</a></td>
@@ -876,16 +872,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">67</td>
           <td class="kw-cell" title="basket screen manufacturer">basket screen manufacturer</td>
           <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">15</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">15</td>
           <td class="move-cell up">▲ +11</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/basket-screen/" target="_blank">https://potentialengineering.com/product/basket-screen/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">68</td>
           <td class="kw-cell" title="floating decanter for sbr">floating decanter for sbr</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/" target="_blank">https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/</a></td>
@@ -894,7 +890,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">69</td>
           <td class="kw-cell" title="chain scraper system">chain scraper system</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/chain-scraper-system/" target="_blank">https://potentialengineering.com/product/chain-scraper-system/</a></td>
@@ -903,7 +899,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">70</td>
           <td class="kw-cell" title="disc oil skimmer">disc oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/disc-oil-skimmer/</a></td>
@@ -912,7 +908,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">71</td>
           <td class="kw-cell" title="belt type oil skimmer">belt type oil skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">6</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">210</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/" target="_blank">https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/</a></td>
@@ -921,16 +917,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">72</td>
           <td class="kw-cell" title="floating funnel oil skimmer">floating funnel oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -3</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/an-overview-on-floating-funnel-technology/" target="_blank">https://potentialengineering.com/blog/an-overview-on-floating-funnel-technology/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">73</td>
           <td class="kw-cell" title="pipe oil skimmer">pipe oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/slotted-pipe-oil-skimmer/" target="_blank">https://potentialengineering.com/product/slotted-pipe-oil-skimmer/</a></td>
@@ -939,7 +935,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">74</td>
           <td class="kw-cell" title="industrial skimmer">industrial skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell up">▲ +3</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/the-usage-and-benefits-of-industrial-oil-skimmer/" target="_blank">https://potentialengineering.com/blog/the-usage-and-benefits-of-industrial-oil-skimmer/</a></td>
@@ -948,7 +944,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">75</td>
           <td class="kw-cell" title="mechanical bar screen manufacturers">mechanical bar screen manufacturers</td>
           <td class="rank-cell rank-up" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +7</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/mechanical-screens/" target="_blank">https://potentialengineering.com/category/mechanical-screens/</a></td>
@@ -957,7 +953,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">76</td>
           <td class="kw-cell" title="mechanical bar screen design">mechanical bar screen design</td>
           <td class="rank-cell rank-down" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/" target="_blank">https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/</a></td>
@@ -966,7 +962,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">77</td>
           <td class="kw-cell" title="basket screen">basket screen</td>
           <td class="rank-cell rank-up" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/basket-screen/" target="_blank">https://potentialengineering.com/product/basket-screen/</a></td>
@@ -975,7 +971,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">78</td>
           <td class="kw-cell" title="sluice gate">sluice gate</td>
           <td class="rank-cell rank-down" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">9900</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -984,7 +980,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">79</td>
           <td class="kw-cell" title="adjustable weir gate">adjustable weir gate</td>
           <td class="rank-cell rank-down" style="text-align:center">5</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/weir-gate/" target="_blank">https://potentialengineering.com/product/weir-gate/</a></td>
@@ -993,7 +989,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">80</td>
           <td class="kw-cell" title="oil skimmers">oil skimmers</td>
           <td class="rank-cell rank-down" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">1600</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
@@ -1002,7 +998,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">81</td>
           <td class="kw-cell" title="oil skimmer manufacturer in mumbai">oil skimmer manufacturer in mumbai</td>
           <td class="rank-cell rank-new" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/" target="_blank">https://potentialengineering.com/</a></td>
@@ -1011,7 +1007,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">82</td>
           <td class="kw-cell" title="trash skimmer price">trash skimmer price</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell up">▲ +8</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/trash-skimmers/" target="_blank">https://potentialengineering.com/category/trash-skimmers/</a></td>
@@ -1020,16 +1016,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">83</td>
           <td class="kw-cell" title="oil spill containment boom manufacturer">oil spill containment boom manufacturer</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell up">▲ +2</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/booms/" target="_blank">https://potentialengineering.com/product/booms/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">84</td>
           <td class="kw-cell" title="belt skimmer">belt skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">7</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">7</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/" target="_blank">https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/</a></td>
@@ -1038,7 +1034,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">85</td>
           <td class="kw-cell" title="brush skimmer">brush skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell down">▼ -3</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
@@ -1047,7 +1043,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">86</td>
           <td class="kw-cell" title="floating oil skimmer">floating oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">6</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
@@ -1056,7 +1052,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">87</td>
           <td class="kw-cell" title="floating oil skimmer design">floating oil skimmer design</td>
           <td class="rank-cell rank-up" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +2</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/the-role-of-floating-weir-oil-skimmers-in-mitigating-marine-oil-spill-impact/" target="_blank">https://potentialengineering.com/blog/the-role-of-floating-weir-oil-skimmers-in-mitigating-marine-oil-spill-impact/</a></td>
@@ -1065,7 +1061,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">88</td>
           <td class="kw-cell" title="floating oil skimmer for tanks">floating oil skimmer for tanks</td>
           <td class="rank-cell rank-down" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">6</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">6</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/are-floating-oil-skimmers-most-efficient/" target="_blank">https://potentialengineering.com/blog/are-floating-oil-skimmers-most-efficient/</a></td>
@@ -1074,7 +1070,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">89</td>
           <td class="kw-cell" title="oil spill response equipment manufacturers">oil spill response equipment manufacturers</td>
           <td class="rank-cell rank-down" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -5</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-spill-response-equipment/" target="_blank">https://potentialengineering.com/category/oil-spill-response-equipment/</a></td>
@@ -1083,7 +1079,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">90</td>
           <td class="kw-cell" title="sluice gate open channel flow">sluice gate open channel flow</td>
           <td class="rank-cell rank-up" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">18</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">18</td>
           <td class="move-cell up">▲ +11</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -1092,7 +1088,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">91</td>
           <td class="kw-cell" title="scraper wastewater treatment">scraper wastewater treatment</td>
           <td class="rank-cell rank-down" style="text-align:center">7</td>
-          <td class="rank-cell" style="text-align:center">1</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">1</td>
           <td class="move-cell down">▼ -6</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/sludge-scum-scraper-systems/" target="_blank">https://potentialengineering.com/category/sludge-scum-scraper-systems/</a></td>
@@ -1101,7 +1097,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">92</td>
           <td class="kw-cell" title="disc skimmer">disc skimmer</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">140</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/disc-oil-skimmer/</a></td>
@@ -1110,7 +1106,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">93</td>
           <td class="kw-cell" title="oil skimmer for etp plant">oil skimmer for etp plant</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">21</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">21</td>
           <td class="move-cell up">▲ +13</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/" target="_blank">https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/</a></td>
@@ -1119,7 +1115,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">94</td>
           <td class="kw-cell" title="tilted plate interceptor">tilted plate interceptor</td>
           <td class="rank-cell rank-down" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -6</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/" target="_blank">https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/</a></td>
@@ -1128,7 +1124,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">95</td>
           <td class="kw-cell" title="manual bar screen manufacturers">manual bar screen manufacturers</td>
           <td class="rank-cell rank-up" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">33</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">33</td>
           <td class="move-cell up">▲ +25</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/manual-bar-screen/" target="_blank">https://potentialengineering.com/product/manual-bar-screen/</a></td>
@@ -1137,7 +1133,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">96</td>
           <td class="kw-cell" title="open channel flow sluice gate">open channel flow sluice gate</td>
           <td class="rank-cell rank-flat" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -1146,7 +1142,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">97</td>
           <td class="kw-cell" title="hydraulic power unit">hydraulic power unit</td>
           <td class="rank-cell rank-new" style="text-align:center">8</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
           <td class="vol-cell">320</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/hydraulic-power-unit-explained/" target="_blank">https://potentialengineering.com/blog/hydraulic-power-unit-explained/</a></td>
@@ -1155,7 +1151,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">98</td>
           <td class="kw-cell" title="oil drum skimmer">oil drum skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell down">▼ -6</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -1164,7 +1160,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">99</td>
           <td class="kw-cell" title="industrial oil skimmer">industrial oil skimmer</td>
           <td class="rank-cell rank-flat" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/the-usage-and-benefits-of-industrial-oil-skimmer/" target="_blank">https://potentialengineering.com/blog/the-usage-and-benefits-of-industrial-oil-skimmer/</a></td>
@@ -1173,7 +1169,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">100</td>
           <td class="kw-cell" title="pipe skimmer">pipe skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -8</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/slotted-pipe-oil-skimmer/" target="_blank">https://potentialengineering.com/product/slotted-pipe-oil-skimmer/</a></td>
@@ -1182,16 +1178,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">101</td>
           <td class="kw-cell" title="floating disc oil skimmers">floating disc oil skimmers</td>
           <td class="rank-cell rank-up" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell up">▲ +2</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/disc-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">102</td>
           <td class="kw-cell" title="oil water separators">oil water separators</td>
           <td class="rank-cell rank-down" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">8</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">8</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">590</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1200,7 +1196,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">103</td>
           <td class="kw-cell" title="scraper bridge">scraper bridge</td>
           <td class="rank-cell rank-up" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">21</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">21</td>
           <td class="move-cell up">▲ +11</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/traveling-bridge-scraper-system/" target="_blank">https://potentialengineering.com/product/traveling-bridge-scraper-system/</a></td>
@@ -1209,7 +1205,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">104</td>
           <td class="kw-cell" title="oil water separator machine">oil water separator machine</td>
           <td class="rank-cell rank-down" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1218,7 +1214,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">105</td>
           <td class="kw-cell" title="oil containment booms">oil containment booms</td>
           <td class="rank-cell rank-down" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">50</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/advances-in-containment-boom-materials-enhancing-oil-spill-response/" target="_blank">https://potentialengineering.com/blog/advances-in-containment-boom-materials-enhancing-oil-spill-response/</a></td>
@@ -1227,7 +1223,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">106</td>
           <td class="kw-cell" title="multi rake bar screen">multi rake bar screen</td>
           <td class="rank-cell rank-flat" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/multi-rake-bar-screen/" target="_blank">https://potentialengineering.com/product/multi-rake-bar-screen/</a></td>
@@ -1236,7 +1232,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">107</td>
           <td class="kw-cell" title="basket screen wastewater">basket screen wastewater</td>
           <td class="rank-cell rank-flat" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/basket-screen/" target="_blank">https://potentialengineering.com/product/basket-screen/</a></td>
@@ -1245,7 +1241,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">108</td>
           <td class="kw-cell" title="scraper in water treatment">scraper in water treatment</td>
           <td class="rank-cell rank-down" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell down">▼ -7</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/sludge-scum-scraper-systems/" target="_blank">https://potentialengineering.com/category/sludge-scum-scraper-systems/</a></td>
@@ -1254,7 +1250,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">109</td>
           <td class="kw-cell" title="disc type oil skimmer">disc type oil skimmer</td>
           <td class="rank-cell rank-down" style="text-align:center">12</td>
-          <td class="rank-cell" style="text-align:center">5</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">5</td>
           <td class="move-cell down">▼ -7</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/disc-oil-skimmer/" target="_blank">https://potentialengineering.com/product/disc-oil-skimmer/</a></td>
@@ -1263,7 +1259,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">110</td>
           <td class="kw-cell" title="penstock gates">penstock gates</td>
           <td class="rank-cell rank-flat" style="text-align:center">12</td>
-          <td class="rank-cell" style="text-align:center">12</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">12</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">70</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/" target="_blank">https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/</a></td>
@@ -1272,7 +1268,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">111</td>
           <td class="kw-cell" title="floating weir">floating weir</td>
           <td class="rank-cell rank-down" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">2</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">2</td>
           <td class="move-cell down">▼ -11</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/floating-weir-oil-skimmer/" target="_blank">https://potentialengineering.com/product/floating-weir-oil-skimmer/</a></td>
@@ -1281,7 +1277,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">112</td>
           <td class="kw-cell" title="cpi oil separator">cpi oil separator</td>
           <td class="rank-cell rank-flat" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">13</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">13</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/" target="_blank">https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/</a></td>
@@ -1290,7 +1286,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">113</td>
           <td class="kw-cell" title="cpi separator">cpi separator</td>
           <td class="rank-cell rank-down" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/" target="_blank">https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/</a></td>
@@ -1299,7 +1295,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">114</td>
           <td class="kw-cell" title="skid mounted pump">skid mounted pump</td>
           <td class="rank-cell rank-up" style="text-align:center">13</td>
-          <td class="rank-cell" style="text-align:center">17</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">17</td>
           <td class="move-cell up">▲ +4</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/mobile-pump-skid/" target="_blank">https://potentialengineering.com/product/mobile-pump-skid/</a></td>
@@ -1308,7 +1304,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">115</td>
           <td class="kw-cell" title="decanter in wastewater treatment">decanter in wastewater treatment</td>
           <td class="rank-cell rank-flat" style="text-align:center">14</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/" target="_blank">https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/</a></td>
@@ -1317,7 +1313,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">116</td>
           <td class="kw-cell" title="centrifugal pump skid">centrifugal pump skid</td>
           <td class="rank-cell rank-flat" style="text-align:center">14</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell flat">—</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/choose-a-right-pump-skid-for-your-industrial-application/" target="_blank">https://potentialengineering.com/blog/choose-a-right-pump-skid-for-your-industrial-application/</a></td>
@@ -1326,7 +1322,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">117</td>
           <td class="kw-cell" title="brush screen">brush screen</td>
           <td class="rank-cell rank-down" style="text-align:center">14</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell down">▼ -10</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/rotary-brush-screen/" target="_blank">https://potentialengineering.com/product/rotary-brush-screen/</a></td>
@@ -1335,16 +1331,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">118</td>
           <td class="kw-cell" title="industrial oil skimmer manufacturer in mumbai">industrial oil skimmer manufacturer in mumbai</td>
           <td class="rank-cell rank-new" style="text-align:center">16</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/industrial-oil-skimmer/" target="_blank">https://potentialengineering.com/category/industrial-oil-skimmer/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">119</td>
           <td class="kw-cell" title="oil spill response equipment">oil spill response equipment</td>
           <td class="rank-cell rank-down" style="text-align:center">18</td>
-          <td class="rank-cell" style="text-align:center">4</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">4</td>
           <td class="move-cell down">▼ -14</td>
           <td class="vol-cell">30</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-spill-response-equipment/" target="_blank">https://potentialengineering.com/category/oil-spill-response-equipment/</a></td>
@@ -1353,7 +1349,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">120</td>
           <td class="kw-cell" title="sbr decanter">sbr decanter</td>
           <td class="rank-cell rank-down" style="text-align:center">18</td>
-          <td class="rank-cell" style="text-align:center">16</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">16</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/" target="_blank">https://potentialengineering.com/blog/overview-of-floating-decanters-for-wastewater-treatment-plants/</a></td>
@@ -1362,7 +1358,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">121</td>
           <td class="kw-cell" title="hydrocyclone separator">hydrocyclone separator</td>
           <td class="rank-cell rank-down" style="text-align:center">19</td>
-          <td class="rank-cell" style="text-align:center">15</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">15</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">210</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/hydrocyclone-oil-water-separator/" target="_blank">https://potentialengineering.com/product/hydrocyclone-oil-water-separator/</a></td>
@@ -1371,16 +1367,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">122</td>
           <td class="kw-cell" title="hydrocyclone separator suppliers in india">hydrocyclone separator suppliers in india</td>
           <td class="rank-cell rank-up" style="text-align:center">19</td>
-          <td class="rank-cell" style="text-align:center">24</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">24</td>
           <td class="move-cell up">▲ +5</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/hydrocyclone-oil-water-separator/" target="_blank">https://potentialengineering.com/product/hydrocyclone-oil-water-separator/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">123</td>
           <td class="kw-cell" title="wastewater bar screen manufacturers">wastewater bar screen manufacturers</td>
           <td class="rank-cell rank-down" style="text-align:center">19</td>
-          <td class="rank-cell" style="text-align:center">9</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">9</td>
           <td class="move-cell down">▼ -10</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/mechanical-screens/" target="_blank">https://potentialengineering.com/category/mechanical-screens/</a></td>
@@ -1389,16 +1385,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">124</td>
           <td class="kw-cell" title="basket screen suppliers">basket screen suppliers</td>
           <td class="rank-cell rank-down" style="text-align:center">19</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">14</td>
           <td class="move-cell down">▼ -5</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/basket-screen/" target="_blank">https://potentialengineering.com/product/basket-screen/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">125</td>
           <td class="kw-cell" title="oil spill equipment">oil spill equipment</td>
           <td class="rank-cell rank-down" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell down">▼ -9</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-spill-response-equipment/" target="_blank">https://potentialengineering.com/category/oil-spill-response-equipment/</a></td>
@@ -1407,7 +1403,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">126</td>
           <td class="kw-cell" title="screen basket">screen basket</td>
           <td class="rank-cell rank-down" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">18</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">18</td>
           <td class="move-cell down">▼ -2</td>
           <td class="vol-cell">40</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/basket-screen/" target="_blank">https://potentialengineering.com/product/basket-screen/</a></td>
@@ -1416,7 +1412,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">127</td>
           <td class="kw-cell" title="aquatic weed removal">aquatic weed removal</td>
           <td class="rank-cell rank-down" style="text-align:center">20</td>
-          <td class="rank-cell" style="text-align:center">13</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">13</td>
           <td class="move-cell down">▼ -7</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/application_area/aquatic-weed-removal/" target="_blank">https://potentialengineering.com/application_area/aquatic-weed-removal/</a></td>
@@ -1425,7 +1421,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">128</td>
           <td class="kw-cell" title="api oil water separator">api oil water separator</td>
           <td class="rank-cell rank-up" style="text-align:center">21</td>
-          <td class="rank-cell" style="text-align:center">35</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">35</td>
           <td class="move-cell up">▲ +14</td>
           <td class="vol-cell">140</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1434,7 +1430,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">129</td>
           <td class="kw-cell" title="multi rake screen">multi rake screen</td>
           <td class="rank-cell rank-down" style="text-align:center">22</td>
-          <td class="rank-cell" style="text-align:center">18</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">18</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">20</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/multi-rake-bar-screen/" target="_blank">https://potentialengineering.com/product/multi-rake-bar-screen/</a></td>
@@ -1443,7 +1439,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">130</td>
           <td class="kw-cell" title="api separator working principle">api separator working principle</td>
           <td class="rank-cell rank-up" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">24</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">24</td>
           <td class="move-cell up">▲ +1</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/api-oil-water-separator/" target="_blank">https://potentialengineering.com/product/api-oil-water-separator/</a></td>
@@ -1452,7 +1448,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">131</td>
           <td class="kw-cell" title="cpi oil water separator">cpi oil water separator</td>
           <td class="rank-cell rank-down" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">10</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">10</td>
           <td class="move-cell down">▼ -13</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/" target="_blank">https://potentialengineering.com/blog/applications-of-cpi-oil-water-separator-in-industries/</a></td>
@@ -1461,7 +1457,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">132</td>
           <td class="kw-cell" title="tilting weir gate">tilting weir gate</td>
           <td class="rank-cell rank-up" style="text-align:center">24</td>
-          <td class="rank-cell" style="text-align:center">47</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">47</td>
           <td class="move-cell up">▲ +23</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/sluice-gate-vs-weir-gate/" target="_blank">https://potentialengineering.com/blog/sluice-gate-vs-weir-gate/</a></td>
@@ -1470,7 +1466,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">133</td>
           <td class="kw-cell" title="oil skimmer suppliers">oil skimmer suppliers</td>
           <td class="rank-cell rank-down" style="text-align:center">25</td>
-          <td class="rank-cell" style="text-align:center">24</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">24</td>
           <td class="move-cell down">▼ -1</td>
           <td class="vol-cell">110</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/industrial-oil-skimmer/" target="_blank">https://potentialengineering.com/category/industrial-oil-skimmer/</a></td>
@@ -1479,7 +1475,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">134</td>
           <td class="kw-cell" title="api oil separator">api oil separator</td>
           <td class="rank-cell rank-down" style="text-align:center">25</td>
-          <td class="rank-cell" style="text-align:center">21</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">21</td>
           <td class="move-cell down">▼ -4</td>
           <td class="vol-cell">170</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1488,7 +1484,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">135</td>
           <td class="kw-cell" title="oil skimmer manufacturer in india">oil skimmer manufacturer in india</td>
           <td class="rank-cell rank-up" style="text-align:center">27</td>
-          <td class="rank-cell" style="text-align:center">39</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">39</td>
           <td class="move-cell up">▲ +12</td>
           <td class="vol-cell">90</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/drum-oil-skimmer/" target="_blank">https://potentialengineering.com/product/drum-oil-skimmer/</a></td>
@@ -1497,16 +1493,16 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">136</td>
           <td class="kw-cell" title="open channel manufacturer in india">open channel manufacturer in india</td>
           <td class="rank-cell rank-flat" style="text-align:center">28</td>
-          <td class="rank-cell" style="text-align:center">28</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">28</td>
           <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
+          <td class="vol-cell">—</td>
           <td class="url-cell"><a href="https://potentialengineering.com/product/open-channel-gate/" target="_blank">https://potentialengineering.com/product/open-channel-gate/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">137</td>
           <td class="kw-cell" title="oil containment barrier">oil containment barrier</td>
           <td class="rank-cell rank-up" style="text-align:center">34</td>
-          <td class="rank-cell" style="text-align:center">56</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">56</td>
           <td class="move-cell up">▲ +22</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/advances-in-containment-boom-materials-enhancing-oil-spill-response/" target="_blank">https://potentialengineering.com/blog/advances-in-containment-boom-materials-enhancing-oil-spill-response/</a></td>
@@ -1515,7 +1511,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">138</td>
           <td class="kw-cell" title="api separator">api separator</td>
           <td class="rank-cell rank-up" style="text-align:center">35</td>
-          <td class="rank-cell" style="text-align:center">45</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">45</td>
           <td class="move-cell up">▲ +10</td>
           <td class="vol-cell">170</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1524,7 +1520,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">139</td>
           <td class="kw-cell" title="api separator for refinery wastewater">api separator for refinery wastewater</td>
           <td class="rank-cell rank-up" style="text-align:center">41</td>
-          <td class="rank-cell" style="text-align:center">49</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">49</td>
           <td class="move-cell up">▲ +8</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-water-separators/" target="_blank">https://potentialengineering.com/category/oil-water-separators/</a></td>
@@ -1533,7 +1529,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">140</td>
           <td class="kw-cell" title="hydraulic power pack">hydraulic power pack</td>
           <td class="rank-cell rank-new" style="text-align:center">43</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell new">★ NEW</td>
           <td class="vol-cell">4400</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/what-is-an-electric-driven-hydraulic-power-pack-and-how-does-it-work/" target="_blank">https://potentialengineering.com/blog/what-is-an-electric-driven-hydraulic-power-pack-and-how-does-it-work/</a></td>
@@ -1542,7 +1538,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">141</td>
           <td class="kw-cell" title="oil spill equipment on ship">oil spill equipment on ship</td>
           <td class="rank-cell rank-up" style="text-align:center">46</td>
-          <td class="rank-cell" style="text-align:center">80</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">80</td>
           <td class="move-cell up">▲ +34</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/category/oil-spill-response-equipment/" target="_blank">https://potentialengineering.com/category/oil-spill-response-equipment/</a></td>
@@ -1551,7 +1547,7 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">142</td>
           <td class="kw-cell" title="deoiling hydrocyclone">deoiling hydrocyclone</td>
           <td class="rank-cell rank-up" style="text-align:center">56</td>
-          <td class="rank-cell" style="text-align:center">71</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">71</td>
           <td class="move-cell up">▲ +15</td>
           <td class="vol-cell">10</td>
           <td class="url-cell"><a href="https://potentialengineering.com/blog/what-is-a-hydrocyclone-oil-water-separator/" target="_blank">https://potentialengineering.com/blog/what-is-a-hydrocyclone-oil-water-separator/</a></td>
@@ -1560,83 +1556,50 @@
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">143</td>
           <td class="kw-cell" title="oil skimmer manufacturer in pune">oil skimmer manufacturer in pune</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">50</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">144</td>
           <td class="kw-cell" title="oil skimmer belt price">oil skimmer belt price</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">11</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">11</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">30</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">145</td>
           <td class="kw-cell" title="skimmer pipe">skimmer pipe</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">NR</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">20</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">146</td>
           <td class="kw-cell" title="pump skid">pump skid</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">21</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">21</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">210</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">147</td>
           <td class="kw-cell" title="traveling bridge clarifier">traveling bridge clarifier</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">3</td>
+          <td style="text-align:center;color:#94a3b8;font-size:12px">3</td>
           <td class="move-cell flat">NR</td>
           <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <script>
-  var sortDir = {};
-  function sortTable(col) {
-    var tbody = document.getElementById("rankTableBody");
-    var rows = Array.from(tbody.querySelectorAll("tr"));
-    var asc = !sortDir[col];
-    sortDir = {};
-    sortDir[col] = asc;
-    rows.sort(function(a, b) {
-      var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
-      var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
-      var an = parseFloat(av.replace(/[^0-9.-]/g,""));
-      var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
-      if (!isNaN(an) && !isNaN(bn)) {
-        return asc ? an - bn : bn - an;
-      }
-      if (av === "NR") return asc ? 1 : -1;
-      if (bv === "NR") return asc ? -1 : 1;
-      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
-    });
-    rows.forEach(function(r) { tbody.appendChild(r); });
-    // Update Sr. numbers after sort
-    rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
-  }
-  function filterTable() {
-    var q = document.getElementById("kwSearch").value.toLowerCase();
-    var rows = document.getElementById("rankTableBody").querySelectorAll("tr");
-    rows.forEach(function(r) {
-      var kw = r.cells[1] ? r.cells[1].innerText.toLowerCase() : "";
-      r.style.display = kw.includes(q) ? "" : "none";
-    });
-  }
-  </script>
   
 </div>
 
@@ -1659,12 +1622,48 @@
   
 </div>
 
+<!-- GMB TAB -->
+<div id="tab-gmb" class="section">
+  
+  <div class="no-data" style="padding:80px 20px;">
+    <div style="font-size:48px;margin-bottom:16px;">📍</div>
+    <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px;">GMB Data Coming Soon</p>
+    <p style="font-size:13px;color:#6B7280;">Google My Business API access has been requested.<br>Data will appear here once the API is connected.</p>
+  </div>
+</div>
+
 <script>
-function showTab(name) {
+function showTab(name, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
+  el.classList.add('active');
+}
+var sortDir = {};
+function sortTable(col) {
+  var tbody = document.getElementById("rankTableBody");
+  var rows = Array.from(tbody.querySelectorAll("tr"));
+  var asc = !sortDir[col];
+  sortDir = {};
+  sortDir[col] = asc;
+  rows.sort(function(a, b) {
+    var av = a.cells[col] ? a.cells[col].innerText.trim() : "";
+    var bv = b.cells[col] ? b.cells[col].innerText.trim() : "";
+    var an = parseFloat(av.replace(/[^0-9.-]/g,""));
+    var bn = parseFloat(bv.replace(/[^0-9.-]/g,""));
+    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;
+    if (av === "NR") return asc ? 1 : -1;
+    if (bv === "NR") return asc ? -1 : 1;
+    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  rows.forEach(function(r) { tbody.appendChild(r); });
+  rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });
+}
+function filterTable() {
+  var q = document.getElementById("kwSearch").value.toLowerCase();
+  document.getElementById("rankTableBody").querySelectorAll("tr").forEach(function(r) {
+    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : "").includes(q) ? "" : "none";
+  });
 }
 const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
 const sessData = [4715, 4386, 3803, 3606, 3794, 3794, 3798, 3853, 3853, 4286, 4286, 3973];
@@ -1702,12 +1701,12 @@ new Chart(document.getElementById('aiChart'), {
   data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
   options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
 });
-
 new Chart(document.getElementById('chChart'), {
   type: 'doughnut',
   data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
   options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
 });
+
 </script>
 </body>
 </html>
