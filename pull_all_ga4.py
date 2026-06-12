@@ -9,7 +9,7 @@ from google.analytics.data_v1beta.types import (
 )
 
 SHEET_ID        = "1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
-BASE            = os.path.expanduser("~/ThirdSlash_SEO_Automation")
+BASE            = os.path.dirname(os.path.abspath(__file__))
 TOKEN_SHEETS    = os.path.join(BASE,"token.pickle")
 TOKEN_CONNECT   = os.path.join(BASE,"token_ga4.pickle")
 TOKEN_REPORTING = os.path.join(BASE,"token_reporting.pickle")
