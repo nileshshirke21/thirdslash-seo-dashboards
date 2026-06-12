@@ -12,7 +12,7 @@ import gspread
 from google.auth.transport.requests import Request
 
 SHEET_ID   = "1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
-BASE       = os.path.expanduser("~/ThirdSlash_SEO_Automation")
+BASE       = os.path.dirname(os.path.abspath(__file__))
 DASH_DIR   = os.path.expanduser("~/ThirdSlash_SEO_Dashboards/dashboards")
 TOKEN      = os.path.join(BASE, "token.pickle")
 
