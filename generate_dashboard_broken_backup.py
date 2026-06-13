@@ -378,7 +378,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
              "In Progress": ("#FEF3C7","#92400E","&#8635; In Progress")}
         bg, fg, txt = d.get(s, ("#F1F5F9","#64748B","&#9675; Pending"))
         return ('<span style="background:' + bg + ';color:' + fg +
-                ';padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">' + txt + '</span>')
+                ';padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;">' + txt + '</span>')
 
     _task_rows_html = []
     for _ti, r in enumerate(_tasks, 1):
@@ -415,14 +415,14 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
              "Not Approved": ("#FEE2E2","#991B1B","&#10007; Not Approved")}
         bg, fg, txt = d.get(s, ("#FEF3C7","#92400E","&#8635; Pending"))
         return ('<span style="background:' + bg + ';color:' + fg +
-                ';padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">' + txt + '</span>')
+                ';padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;">' + txt + '</span>')
 
     def _type_badge(t):
         d = {"Reddit": ("#FF4500","#fff"), "Quora": ("#A82400","#fff"),
              "Blog Comment": ("#2563EB","#fff"), "Directory": ("#059669","#fff")}
         bg, fg = d.get(t, ("#64748B","#fff"))
         return ('<span style="background:' + bg + ';color:' + fg +
-                ';padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">' + t + '</span>')
+                ';padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">' + t + '</span>')
 
     _lb_rows_html = []
     for _lbi, r in enumerate(_lb, 1):
@@ -438,11 +438,11 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
         _lb_rows_html.append(
             '<tr data-type="' + t + '" data-status="' + st + '">'
             '<td style="text-align:center;color:#64748b;font-size:12px">' + str(_lbi) + '</td>'
-            '<td style="padding:8px 10px;white-space:nowrap;vertical-align:middle">' + _type_badge(t) + '</td>'
+            '<td style="padding:10px 14px">' + _type_badge(t) + '</td>'
             '<td style="padding:10px 14px;word-break:break-all;font-size:12px">'
             '<a href="' + u + '" target="_blank" style="color:#2563EB;font-weight:500">' + u + '</a></td>'
             '<td style="font-size:12px;color:#0F172A">' + an + '</td>'
-            '<td style="font-size:12px;color:#64748B;word-break:break-all">' + lt + '</td>'
+            '<td style="font-size:12px;color:#64748B;word-break:break-word">' + lt + '</td>'
             '<td style="text-align:center">' + lvh + '</td>'
             '<td style="text-align:center">' + _slb(st) + '</td>'
             '<td style="font-size:11px;color:#94A3B8">' + cm + '</td>'
@@ -548,31 +548,25 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
   .history-table tr:last-child td {{ border-bottom: none; }}
   .history-table tr:hover td {{ background: #EFF6FF; }}
   .no-data {{ text-align: center; padding: 60px 20px; color: var(--muted); }}
-  .rank-table td {{ vertical-align: middle; }}
-  .rank-table th {{ white-space: nowrap; }}
-  @media (max-width: 768px) {{
-    .section {{ padding: 16px 12px; }}
-    .metrics-grid {{ grid-template-columns: 1fr 1fr; gap: 10px; }}
+  .rank-table td, .rank-table th {{ white-space: nowrap; }}
+  .type-badge {{ display: inline-block; white-space: nowrap; }}
+  @media(max-width:768px) {{
+    .section {{ padding: 16px; }}
+    .metrics-grid {{ grid-template-columns: 1fr 1fr; }}
     .charts-grid {{ grid-template-columns: 1fr; }}
     .ai-grid {{ grid-template-columns: 1fr 1fr; }}
-    .gmb-grid {{ grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }}
-    .rank-table-wrap {{ overflow-x: auto; -webkit-overflow-scrolling: touch; }}
-    .rank-bucket-wrap {{ overflow-x: auto; }}
-    .history-wrap {{ overflow-x: auto; }}
-    .nav {{ overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }}
-    .nav-tab {{ padding: 12px 12px; font-size: 12px; flex-shrink: 0; }}
-    .header {{ padding: 12px 16px; }}
-    .header-left h1 {{ font-size: 15px; }}
-    .header-left p {{ font-size: 11px; }}
-    .chart-card {{ padding: 16px 12px; }}
-    .metric-card {{ padding: 14px 12px; }}
-    .metric-value {{ font-size: 22px; }}
+    .gmb-grid {{ grid-template-columns: repeat(2,1fr) !important; }}
+    .rank-table-wrap {{ overflow-x: auto; }}
+    .rank-bucket-table {{ width: 100%; }}
+    .history-table {{ min-width: 600px; }}
+    .nav {{ overflow-x: auto; white-space: nowrap; padding: 0 16px; }}
+    .nav-tab {{ padding: 12px 14px; font-size: 12px; }}
+    .header {{ padding: 14px 16px; }}
+    .header-left h1 {{ font-size: 16px; }}
   }}
-  @media (max-width: 480px) {{
+  @media(max-width:480px) {{
     .metrics-grid {{ grid-template-columns: 1fr; }}
-    .gmb-grid {{ grid-template-columns: 1fr 1fr !important; }}
     .ai-grid {{ grid-template-columns: 1fr 1fr; }}
-    .header-right {{ display: none; }}
   }}
   .gmb-section {{ margin-bottom: 28px; }}
   .gmb-header {{ display: flex; align-items: center; margin-bottom: 16px; }}
@@ -607,12 +601,12 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
 </div>
 
 <div class="nav">
-  <div class="nav-tab active" onclick="showTab('overview', this)\">Overview</div>
-  <div class="nav-tab" onclick="showTab('rankings', this)\">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)\">History</div>
-  <div class="nav-tab" onclick="showTab('gmb', this)\">GMB</div>
-  <div class="nav-tab" onclick="showTab('tasks', this)\">SEO Tasks</div>
-  <div class="nav-tab" onclick="showTab('linkbuilding', this)\">Link Building</div>
+  <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings')">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history')">History</div>
+  <div class="nav-tab" onclick="showTab('gmb')">GMB</div>
+  <div class="nav-tab" onclick="showTab('tasks')">SEO Tasks</div>
+  <div class="nav-tab" onclick="showTab('linkbuilding')">Link Building</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -811,6 +805,8 @@ function showTab(name) {{
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
   event.target.classList.add('active');
+
+  if(name === 'gmb' && typeof window._gmbDone === 'undefined' && typeof initGmbChart === 'function') {{ initGmbChart(); window._gmbDone = true; }}
 }}
 const months   = {json.dumps(months)};
 const sessData = {json.dumps(sess_d)};
@@ -867,11 +863,6 @@ new Chart(document.getElementById('chChart'), {{
 </script>
 
 
-<!-- RANKINGS TAB -->
-<div id="tab-rankings" class="section">
-  {(f'''<div class=\"rank-bucket-wrap\"><table class=\"rank-bucket-table\"><thead><tr><th>Position Bucket</th><th style=\"text-align:center\">Current</th><th style=\"text-align:center\">Previous</th><th style=\"text-align:center\">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style=\"text-align:center;color:#4ade80;font-weight:600\">{top10}</td><td style=\"text-align:center;color:#94a3b8\">{prev_top10}</td><td style=\"text-align:center\">{bucket_change(top10,prev_top10)}</td></tr><tr><td>&#129352; 11-20</td><td style=\"text-align:center;color:#facc15;font-weight:600\">{top20_only}</td><td style=\"text-align:center;color:#94a3b8\">{prev_top20}</td><td style=\"text-align:center\">{bucket_change(top20_only,prev_top20)}</td></tr><tr><td>&#129353; 21-50</td><td style=\"text-align:center;color:#fb923c;font-weight:600\">{top21_50}</td><td style=\"text-align:center;color:#94a3b8\">{prev_top21_50}</td><td style=\"text-align:center\">{bucket_change(top21_50,prev_top21_50)}</td></tr><tr><td>&#128200; 51-100</td><td style=\"text-align:center;color:#f87171;font-weight:600\">{top51_100}</td><td style=\"text-align:center;color:#94a3b8\">{prev_top51_100}</td><td style=\"text-align:center\">{bucket_change(top51_100,prev_top51_100)}</td></tr><tr><td>&#10060; Not Ranking</td><td style=\"text-align:center;color:#94a3b8;font-weight:600\">{not_ranking_count}</td><td style=\"text-align:center;color:#94a3b8\">{prev_nr}</td><td style=\"text-align:center\">{bucket_change(not_ranking_count,prev_nr)}</td></tr><tr><td><strong>Total Tracked</strong></td><td style=\"text-align:center;font-weight:700\">{total_tracked}</td><td style=\"text-align:center;color:#94a3b8\">{total_tracked}</td><td style=\"text-align:center;color:#94a3b8\">&mdash;</td></tr></tbody></table></div><div class=\"rank-table-wrap\"><div class=\"rank-table-header\">Keyword Rankings<span class=\"period\">Last Updated: {last_updated}</span></div><div class=\"rank-controls\"><input type=\"text\" id=\"kwSearch\" placeholder=\"Search keyword...\" oninput=\"filterTable()\" style=\"padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;\"></div><table class=\"rank-table\" id=\"rankTable\"><thead><tr><th style=\"text-align:center;width:40px\">Sr.</th><th onclick=\"sortTable(1)\" style=\"cursor:pointer\">Keyword &#8645;</th><th onclick=\"sortTable(2)\" style=\"cursor:pointer;text-align:center\">Current &#8645;</th><th onclick=\"sortTable(3)\" style=\"cursor:pointer;text-align:center\">Previous &#8645;</th><th>Movement</th><th onclick=\"sortTable(5)\" style=\"cursor:pointer\">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id=\"rankTableBody\">{rank_rows_html}</tbody></table></div>''' if total_tracked > 0 else '<div class="no-data"><p>No rank tracking data yet.</p></div>')}
-</div>
-
 
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
@@ -892,7 +883,7 @@ new Chart(document.getElementById('chChart'), {{
       <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; {_tasks_pending} Pending</div>
     </div>
   </div>
-  {('<div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; ' + last_month_str + '</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody>' + _task_rows_html + '</tbody></table></div>')
+  {('<div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; ' + last_month_str + '</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTaskTable(1)" style="cursor:pointer">Task Name &#8645;</th><th onclick="sortTaskTable(2)" style="cursor:pointer;text-align:center;width:120px">Assigned To &#8645;</th><th onclick="sortTaskTable(3)" style="cursor:pointer;text-align:center;width:130px">Status &#8645;</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody>' + _task_rows_html + '</tbody></table></div>')
   if _tasks else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>'}
 </div>
 
@@ -934,8 +925,8 @@ new Chart(document.getElementById('chChart'), {{
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="width:110px">Type</th>
-        <th>URL</th>
+        <th onclick="sortLBTable(1)" style="cursor:pointer;width:110px">Type &#8645;</th>
+        <th onclick="sortLBTable(2)" style="cursor:pointer">URL &#8645;</th>
         <th style="width:130px">Anchor Text</th>
         <th style="width:160px">Linking To</th>
         <th style="text-align:center;width:70px">Live Link</th>
@@ -947,11 +938,11 @@ new Chart(document.getElementById('chChart'), {{
   </div>
 </div>
 
-{"" if not gmb_has_data else f'''<script>new Chart(document.getElementById(\'gmbChart\'), {{  type: \'bar\', data: {{ labels: ''' + json.dumps(gmb_months_chart) + ''', datasets: [{{ label: \'Views\', data: ''' + json.dumps(gmb_views_chart) + ''', backgroundColor: \'rgba(5,150,105,0.7)\', borderColor: \'#059669\', borderWidth:1, borderRadius:4 }},{{ label: \'Clicks\', data: ''' + json.dumps(gmb_clicks_chart) + ''', backgroundColor: \'rgba(37,99,235,0.7)\', borderColor: \'#2563EB\', borderWidth:1, borderRadius:4 }},{{ label: \'Calls\', data: ''' + json.dumps(gmb_calls_chart) + ''', backgroundColor: \'rgba(217,119,6,0.7)\', borderColor: \'#D97706\', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>''' if gmb_has_data else ""}
+{"" if not gmb_has_data else f'''<script>function initGmbChart() {{ new Chart(document.getElementById(\'gmbChart\'), {{  type: \'bar\', data: {{ labels: ''' + json.dumps(gmb_months_chart) + ''', datasets: [{{ label: \'Views\', data: ''' + json.dumps(gmb_views_chart) + ''', backgroundColor: \'rgba(5,150,105,0.7)\', borderColor: \'#059669\', borderWidth:1, borderRadius:4 }},{{ label: \'Clicks\', data: ''' + json.dumps(gmb_clicks_chart) + ''', backgroundColor: \'rgba(37,99,235,0.7)\', borderColor: \'#2563EB\', borderWidth:1, borderRadius:4 }},{{ label: \'Calls\', data: ''' + json.dumps(gmb_calls_chart) + ''', backgroundColor: \'rgba(217,119,6,0.7)\', borderColor: \'#D97706\', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});}; </script>''' if gmb_has_data else ""}
 
 </body>
 </html>"""
-    html += "\n<script>\nvar sortDir = {};\nvar taskSortDir = {};\nvar lbSortDir = {};\nvar _gmbDone = false;\nfunction showTab(name, el) {\n  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});\n  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});\n  document.getElementById('tab-' + name).classList.add('active');\n  if(el) el.classList.add('active');\n  if(name === 'gmb' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }\n}\nfunction sortTable(col) {\n  var tbody = document.getElementById('rankTableBody');\n  if(!tbody) return;\n  var rows = Array.from(tbody.querySelectorAll('tr'));\n  var asc = !sortDir[col]; sortDir = {}; sortDir[col] = asc;\n  rows.sort(function(a,b){\n    var av=a.cells[col]?a.cells[col].innerText.trim():'';\n    var bv=b.cells[col]?b.cells[col].innerText.trim():'';\n    var an=parseFloat(av.replace(/[^0-9.-]/g,'')); var bn=parseFloat(bv.replace(/[^0-9.-]/g,''));\n    if(!isNaN(an)&&!isNaN(bn)) return asc?an-bn:bn-an;\n    if(av==='NR') return asc?1:-1; if(bv==='NR') return asc?-1:1;\n    return asc?av.localeCompare(bv):bv.localeCompare(av);\n  });\n  rows.forEach(function(r){tbody.appendChild(r);});\n  rows.forEach(function(r,i){if(r.cells[0])r.cells[0].innerText=i+1;});\n}\nfunction filterTable() {\n  var q=document.getElementById('kwSearch').value.toLowerCase();\n  document.getElementById('rankTableBody').querySelectorAll('tr').forEach(function(r){\n    r.style.display=(r.cells[1]?r.cells[1].innerText.toLowerCase():'').includes(q)?'':'none';\n  });\n}\nfunction sortTaskTable(col) {\n  var tbody=document.getElementById('taskBody');\n  if(!tbody) return;\n  var rows=Array.from(tbody.querySelectorAll('tr'));\n  var asc=!taskSortDir[col]; taskSortDir={}; taskSortDir[col]=asc;\n  rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});\n  rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});\n}\nfunction filterLB() {\n  var t=document.getElementById('lbType').value;\n  var s=document.getElementById('lbStatus').value;\n  var sr=1;\n  document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r){\n    var rt=r.getAttribute('data-type')||'';\n    var rs=r.getAttribute('data-status')||'';\n    var show=(t==='all'||rt===t)&&(s==='all'||rs===s);\n    r.style.display=show?'':'none';\n    if(show&&r.cells[0])r.cells[0].innerText=sr++;\n  });\n}\nfunction sortLBTable(col) {\n  var tbody=document.getElementById('lbBody');\n  if(!tbody) return;\n  var rows=Array.from(tbody.querySelectorAll('tr')).filter(function(r){return r.style.display!=='none';});\n  var asc=!lbSortDir[col]; lbSortDir={}; lbSortDir[col]=asc;\n  rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});\n  rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});\n}\n</script>\n"
+    html += "\n<script>\nvar sortDir = {};\nfunction showTab(name, el) {\n  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));\n  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));\n  document.getElementById('tab-' + name).classList.add('active');\n  if(el) el.classList.add('active');\n}\nfunction sortTable(col) {\n  var tbody = document.getElementById('rankTableBody');\n  if(!tbody) return;\n  var rows = Array.from(tbody.querySelectorAll('tr'));\n  var asc = !sortDir[col]; sortDir = {}; sortDir[col] = asc;\n  rows.sort(function(a, b) {\n    var av = a.cells[col] ? a.cells[col].innerText.trim() : '';\n    var bv = b.cells[col] ? b.cells[col].innerText.trim() : '';\n    var an = parseFloat(av.replace(/[^0-9.-]/g,'')); var bn = parseFloat(bv.replace(/[^0-9.-]/g,''));\n    if (!isNaN(an) && !isNaN(bn)) return asc ? an - bn : bn - an;\n    if (av === 'NR') return asc ? 1 : -1; if (bv === 'NR') return asc ? -1 : 1;\n    return asc ? av.localeCompare(bv) : bv.localeCompare(av);\n  });\n  rows.forEach(function(r) { tbody.appendChild(r); });\n  rows.forEach(function(r, i) { if(r.cells[0]) r.cells[0].innerText = i+1; });\n}\nfunction filterTable() {\n  var q = document.getElementById('kwSearch').value.toLowerCase();\n  document.getElementById('rankTableBody').querySelectorAll('tr').forEach(function(r) {\n    r.style.display = (r.cells[1] ? r.cells[1].innerText.toLowerCase() : '').includes(q) ? '' : 'none';\n  });\n}\nfunction filterLB() {\n  var t = document.getElementById('lbType').value;\n  var s = document.getElementById('lbStatus').value;\n  var sr = 1;\n  document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r) {\n    var rt = r.getAttribute('data-type') || '';\n    var rs = r.getAttribute('data-status') || '';\n    var show = (t === 'all' || rt === t) && (s === 'all' || rs === s);\n    r.style.display = show ? '' : 'none';\n    if (show && r.cells[0]) r.cells[0].innerText = sr++;\n  });\n}\n</script>\n"
     return html
 
 
@@ -1142,8 +1133,6 @@ function filterCards(q){{
   }});
 }}
 </script>
-
-
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   {(f'''<div style=\"margin-bottom:16px;\"><span style=\"font-size:15px;font-weight:700;color:var(--text);\">&#128205; Google My Business &mdash; {gmb_month}</span></div><div class=\"gmb-grid\"><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128065;&#65039;</div><div class=\"gmb-val\">{gmb_views:,}</div><div class=\"gmb-label\">Total Views</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128433;&#65039;</div><div class=\"gmb-val\">{gmb_clicks:,}</div><div class=\"gmb-label\">Website Clicks</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128222;</div><div class=\"gmb-val\">{gmb_calls:,}</div><div class=\"gmb-label\">Phone Calls</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128506;&#65039;</div><div class=\"gmb-val\">{gmb_directions:,}</div><div class=\"gmb-label\">Direction Requests</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128221;</div><div class=\"gmb-val\">{gmb_posts}</div><div class=\"gmb-label\">GMB Posts</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#11088;</div><div class=\"gmb-val\">{gmb_rating}</div><div class=\"gmb-label\">Avg Rating</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128172;</div><div class=\"gmb-val\">{gmb_reviews}</div><div class=\"gmb-label\">New Reviews</div></div></div><div class=\"chart-card\" style=\"margin-top:16px;\"><div class=\"chart-title\">GMB Performance &mdash; Last 6 Months</div><div class=\"chart-wrap\"><canvas id=\"gmbChart\"></canvas></div></div>''' if gmb_has_data else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128205;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">GMB Data Coming Soon</p><p style="font-size:13px;color:#6B7280">API access requested.</p></div>')}
@@ -1163,7 +1152,7 @@ function filterCards(q){{
       <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; {_tasks_pending} Pending</div>
     </div>
   </div>
-  {('<div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; ' + last_month_str + '</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody>' + _task_rows_html + '</tbody></table></div>')
+  {('<div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; ' + last_month_str + '</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTaskTable(1)" style="cursor:pointer">Task Name &#8645;</th><th onclick="sortTaskTable(2)" style="cursor:pointer;text-align:center;width:120px">Assigned To &#8645;</th><th onclick="sortTaskTable(3)" style="cursor:pointer;text-align:center;width:130px">Status &#8645;</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody>' + _task_rows_html + '</tbody></table></div>')
   if _tasks else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>'}
 </div>
 
@@ -1205,8 +1194,8 @@ function filterCards(q){{
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="width:110px">Type</th>
-        <th>URL</th>
+        <th onclick="sortLBTable(1)" style="cursor:pointer;width:110px">Type &#8645;</th>
+        <th onclick="sortLBTable(2)" style="cursor:pointer">URL &#8645;</th>
         <th style="width:130px">Anchor Text</th>
         <th style="width:160px">Linking To</th>
         <th style="text-align:center;width:70px">Live Link</th>
