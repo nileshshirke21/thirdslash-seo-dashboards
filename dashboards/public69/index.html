@@ -2014,7 +2014,7 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-tasks" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; May-2026</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done</div>
       <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -2031,24 +2031,24 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-linkbuilding" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; May-2026</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 0</div>
-      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 0</div>
+      
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 0</div>
       <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
     </div>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
-      <span>All Link Building Activity &mdash; May-2026</span>
+      <span>All Link Building Activity</span>
       <div style="display:flex;gap:6px;align-items:center;">
+        <select id="lbMonth" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;"><option value="all">All Months</option><option value="May 2026">May 2026</option></select>
         <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
           <option value="all">All Types</option>
           <option value="Reddit">Reddit</option>
-          <option value="Quora">Quora</option>
           <option value="Blog Comment">Blog Comments</option>
           <option value="Directory">Directories</option>
         </select>
@@ -2064,6 +2064,7 @@ new Chart(document.getElementById('chChart'), {
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
+        <th style="text-align:center;width:90px">Month</th>
         <th style="width:110px">Type</th>
         <th>URL</th>
         <th style="width:130px">Anchor Text</th>
@@ -2123,14 +2124,26 @@ function sortTaskTable(col) {
   rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});
   rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});
 }
+function filterTasks() {
+  var m=document.getElementById('tasksMonth').value;
+  var sr=1;
+  document.getElementById('tasksBody').querySelectorAll('tr').forEach(function(r){
+    var rm=r.getAttribute('data-month')||'';
+    var show=(m==='all'||rm===m);
+    r.style.display=show?'':'none';
+    if(show&&r.cells[0])r.cells[0].innerText=sr++;
+  });
+}
 function filterLB() {
   var t=document.getElementById('lbType').value;
   var s=document.getElementById('lbStatus').value;
+  var m=document.getElementById('lbMonth').value;
   var sr=1;
   document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r){
     var rt=r.getAttribute('data-type')||'';
     var rs=r.getAttribute('data-status')||'';
-    var show=(t==='all'||rt===t)&&(s==='all'||rs===s);
+    var rm=r.getAttribute('data-month')||'';
+    var show=(t==='all'||rt===t)&&(s==='all'||rs===s)&&(m==='all'||rm===m);
     r.style.display=show?'':'none';
     if(show&&r.cells[0])r.cells[0].innerText=sr++;
   });
