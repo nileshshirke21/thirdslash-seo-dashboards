@@ -59,10 +59,10 @@ HEADER=["Date Pulled","Month","Client Name",
     "Pageviews (Current)","Pageviews (Prev)","Pageviews Change",
     "Bounce Rate %","Avg Session Duration (sec)",
     "Organic Sessions","Direct Sessions","Referral Sessions",
-    "ChatGPT Sessions","Claude Sessions","Perplexity Sessions","Gemini Sessions",
+    "ChatGPT Sessions","Claude Sessions","Perplexity Sessions","Gemini Sessions","Copilot Sessions",
     "Form Submissions"]
 
-AI_SOURCES={"ChatGPT":"chatgpt.com","Claude":"claude.ai","Perplexity":"perplexity.ai","Gemini":"gemini.google.com"}
+AI_SOURCES={"ChatGPT":"chatgpt.com","Claude":"claude.ai","Perplexity":"perplexity.ai","Gemini":"gemini.google.com","Copilot":"copilot.microsoft.com"}
 
 def load_creds(f):
     with open(f,"rb") as fh: creds=pickle.load(fh)

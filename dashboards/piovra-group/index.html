@@ -127,11 +127,6 @@
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
-  
-  .gmb-delta { font-size: 10px; margin-top: 6px; font-weight: 600; border-radius: 4px; padding: 2px 6px; display: inline-block; }
-  .gmb-delta-up { color: #059669; background: rgba(5,150,105,0.1); }
-  .gmb-delta-down { color: #dc2626; background: rgba(220,38,38,0.1); }
-  .gmb-delta-neutral { color: #6b7280; background: rgba(107,114,128,0.1); }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
   @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
   .no-data .icon { font-size: 48px; margin-bottom: 12px; }
@@ -153,14 +148,14 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 13 Jun 2026</div>
+    <div class="updated">Updated: 19 Jun 2026</div>
   </div>
 </div>
 
 <div class="nav">
   <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)">GA4 Data</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
   <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
@@ -238,27 +233,110 @@
     </div>
   </div>
 
-  <div class="ai-grid">
+  <div class="ai-grid" style="grid-template-columns:repeat(5,1fr);">
     <div class="ai-card">
-      <div class="ai-icon">🤖</div>
+      <div class="ai-icon"><img src="../icons/chatgpt.png" alt="ChatGPT" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">37</div>
       <div class="ai-delta neg delta">▼ 17</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🟣</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png" alt="Gemini" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Gemini</div>
+      <div class="ai-val">3</div>
+      <div class="ai-delta pos delta">▲ 2</div>
+    </div><div class="ai-card">
+      <div class="ai-icon"><img src="../icons/claude.png" alt="Claude" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">1</div>
       <div class="ai-delta neg delta">▼ 3</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🔮</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/perplexity.png" alt="Perplexity" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">1</div>
       <div class="ai-delta neg delta">▼ 1</div>
     </div><div class="ai-card">
-      <div class="ai-icon">💎</div>
-      <div class="ai-label">Gemini</div>
-      <div class="ai-val">3</div>
-      <div class="ai-delta pos delta">▲ 2</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/microsoft-copilot.png" alt="Copilot" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Copilot</div>
+      <div class="ai-val">0</div>
+      <div class="ai-delta pos delta">▲ 0</div>
+    </div>
+  </div>
+
+  
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-top:24px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-size:13px;font-weight:700;">Total Backlinks Report</span>
+      <span style="color:rgba(255,255,255,0.7);font-size:11px;">Jun-2026 vs Previous</span>
+    </div>
+
+    <!-- Current vs Previous summary -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#F8FAFC;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Jun-2026</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Previous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">External Backlinks</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">1,110</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Unique Referring Domains</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">330</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#2563EB;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Rating (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">28</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#7C3AED;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Moz</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Authority (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">12</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6-month history -->
+    <div style="border-top:2px solid #E2E8F0;overflow-x:auto;">
+      <div style="padding:10px 16px 6px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;background:#F8FAFC;">
+        6-Month History
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);">
+            <th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Metric</th>
+            <th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.15);">Jun-2026</th>
+          </tr>
+        </thead>
+        <tbody style="background:#fff;">
+          <tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Backlinks</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">1,110</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Referring Domains</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">330</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Rating (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">28</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Authority (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">12</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:8px 16px;background:#F8FAFC;border-top:1px solid #E2E8F0;font-size:10px;color:#94A3B8;">
+      DR by <a href="https://ahrefs.com/" target="_blank" style="color:#94A3B8;">Ahrefs</a> &nbsp;|&nbsp; DA by Moz &nbsp;|&nbsp; Backlinks data via DataForSEO
     </div>
   </div>
 </div>
@@ -1480,24 +1558,23 @@
     <table class="history-table">
       <thead>
         <tr>
-          <th>Month</th><th>Sessions</th><th>Users</th><th>Organic</th>
-          <th>Pageviews</th><th>Bounce %</th><th>Forms</th><th>Direct</th>
-          <th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th>
+          <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Apr-2026</td><td>2,783</td><td>2,312</td><td>1,295</td><td>3,345</td><td>65.7%</td><td>0</td><td>966</td><td>37</td><td>1</td><td>1</td><td>3</td></tr><tr><td>Mar-2026</td><td>2,783</td><td>2,312</td><td>1,440</td><td>3,345</td><td>65.7%</td><td>0</td><td>1,231</td><td>54</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Feb-2026</td><td>2,509</td><td>2,088</td><td>1,203</td><td>3,072</td><td>64.7%</td><td>0</td><td>1,142</td><td>61</td><td>0</td><td>3</td><td>2</td></tr><tr><td>Jan-2026</td><td>2,466</td><td>2,002</td><td>1,361</td><td>3,004</td><td>59.7%</td><td>0</td><td>986</td><td>67</td><td>0</td><td>0</td><td>3</td></tr><tr><td>Dec-2025</td><td>2,676</td><td>2,111</td><td>983</td><td>4,289</td><td>62.9%</td><td>0</td><td>964</td><td>53</td><td>0</td><td>1</td><td>0</td></tr><tr><td>Nov-2025</td><td>2,676</td><td>2,111</td><td>1,224</td><td>4,289</td><td>62.9%</td><td>0</td><td>1,245</td><td>64</td><td>0</td><td>0</td><td>2</td></tr><tr><td>Oct-2025</td><td>2,665</td><td>2,053</td><td>1,626</td><td>3,374</td><td>56.1%</td><td>0</td><td>864</td><td>99</td><td>2</td><td>0</td><td>0</td></tr><tr><td>Sep-2025</td><td>2,219</td><td>1,786</td><td>1,286</td><td>2,711</td><td>50.2%</td><td>0</td><td>670</td><td>87</td><td>1</td><td>2</td><td>2</td></tr><tr><td>Aug-2025</td><td>1,985</td><td>1,615</td><td>1,267</td><td>4,597</td><td>49.0%</td><td>0</td><td>486</td><td>45</td><td>0</td><td>1</td><td>0</td></tr><tr><td>Jul-2025</td><td>1,945</td><td>1,474</td><td>1,242</td><td>2,735</td><td>48.3%</td><td>0</td><td>439</td><td>40</td><td>0</td><td>1</td><td>0</td></tr><tr><td>Jun-2025</td><td>2,063</td><td>1,616</td><td>1,250</td><td>2,399</td><td>54.8%</td><td>0</td><td>443</td><td>23</td><td>1</td><td>1</td><td>0</td></tr><tr><td>May-2025</td><td>2,090</td><td>1,635</td><td>1,450</td><td>2,930</td><td>50.8%</td><td>0</td><td>499</td><td>59</td><td>0</td><td>6</td><td>0</td></tr><tr><td>Apr-2025</td><td>2,403</td><td>2,021</td><td>1,456</td><td>7,804</td><td>54.4%</td><td>0</td><td>552</td><td>35</td><td>0</td><td>0</td><td>2</td></tr></tbody>
+      <tbody><tr><td>Apr-2026</td><td>2,783</td><td>1,295</td><td>966</td><td>42</td><td>2,312</td><td>3,345</td><td>65.7%</td><td>0</td></tr><tr><td>Mar-2026</td><td>2,783</td><td>1,440</td><td>1,231</td><td>61</td><td>2,312</td><td>3,345</td><td>65.7%</td><td>0</td></tr><tr><td>Feb-2026</td><td>2,509</td><td>1,203</td><td>1,142</td><td>66</td><td>2,088</td><td>3,072</td><td>64.7%</td><td>0</td></tr><tr><td>Jan-2026</td><td>2,466</td><td>1,361</td><td>986</td><td>70</td><td>2,002</td><td>3,004</td><td>59.7%</td><td>0</td></tr><tr><td>Dec-2025</td><td>2,676</td><td>983</td><td>964</td><td>54</td><td>2,111</td><td>4,289</td><td>62.9%</td><td>0</td></tr><tr><td>Nov-2025</td><td>2,676</td><td>1,224</td><td>1,245</td><td>66</td><td>2,111</td><td>4,289</td><td>62.9%</td><td>0</td></tr><tr><td>Oct-2025</td><td>2,665</td><td>1,626</td><td>864</td><td>101</td><td>2,053</td><td>3,374</td><td>56.1%</td><td>0</td></tr><tr><td>Sep-2025</td><td>2,219</td><td>1,286</td><td>670</td><td>92</td><td>1,786</td><td>2,711</td><td>50.2%</td><td>0</td></tr><tr><td>Aug-2025</td><td>1,985</td><td>1,267</td><td>486</td><td>46</td><td>1,615</td><td>4,597</td><td>49.0%</td><td>0</td></tr><tr><td>Jul-2025</td><td>1,945</td><td>1,242</td><td>439</td><td>41</td><td>1,474</td><td>2,735</td><td>48.3%</td><td>0</td></tr><tr><td>Jun-2025</td><td>2,063</td><td>1,250</td><td>443</td><td>25</td><td>1,616</td><td>2,399</td><td>54.8%</td><td>0</td></tr><tr><td>May-2025</td><td>2,090</td><td>1,450</td><td>499</td><td>65</td><td>1,635</td><td>2,930</td><td>50.8%</td><td>0</td></tr><tr><td>Apr-2025</td><td>2,403</td><td>1,456</td><td>552</td><td>37</td><td>2,021</td><td>7,804</td><td>54.4%</td><td>0</td></tr></tbody>
     </table>
   </div>
   
 </div>
 
 <script>
-function showTab(name, el) {
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  if(el) el.classList.add('active');
-  if(name==='gmb'&&!window._gmbInit&&typeof initGmbChart==='function'){initGmbChart();window._gmbInit=true;}
+  event.target.classList.add('active');
 }
 const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
 const sessData = [2090, 2063, 1945, 1985, 2219, 2665, 2676, 2676, 2466, 2509, 2783, 2783];
@@ -1506,8 +1583,8 @@ const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [1295, 966, 69, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [59, 23, 40, 45, 87, 99, 64, 53, 67, 61, 54, 37], "Claude": [0, 1, 0, 0, 1, 2, 0, 0, 0, 0, 4, 1], "Perplexity": [6, 1, 1, 1, 2, 0, 0, 1, 0, 3, 2, 1], "Gemini": [0, 0, 0, 0, 2, 0, 2, 0, 3, 2, 1, 3]};
-const aiLabels  = ["ChatGPT", "Claude", "Perplexity", "Gemini"];
+const aiMonthly = {"ChatGPT": [59, 23, 40, 45, 87, 99, 64, 53, 67, 61, 54, 37], "Gemini": [0, 0, 0, 0, 2, 0, 2, 0, 3, 2, 1, 3], "Claude": [0, 1, 0, 0, 1, 2, 0, 0, 0, 0, 4, 1], "Perplexity": [6, 1, 1, 1, 2, 0, 0, 1, 0, 3, 2, 1], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
   responsive: true, maintainAspectRatio: false,
@@ -1545,10 +1622,1139 @@ new Chart(document.getElementById('chChart'), {
 
 
 <!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">44</td><td style="text-align:center;color:#94a3b8">44</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">41</td><td style="text-align:center;color:#94a3b8">41</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">31</td><td style="text-align:center;color:#94a3b8">28</td><td style="text-align:center"><span style="color:#4ade80">+3</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">9</td><td style="text-align:center;color:#94a3b8">12</td><td style="text-align:center"><span style="color:#f87171">-3</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">125</td><td style="text-align:center;color:#94a3b8">125</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
+          <td class="kw-cell" title="cannabis friendly event space">cannabis friendly event space</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/cannabis-event-spaces-los-angeles" target="_blank">https://www.piovragroup.com/cannabis-event-spaces-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
+          <td class="kw-cell" title="eden sunset">eden sunset</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">880</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/eden" target="_blank">https://www.piovragroup.com/eden</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
+          <td class="kw-cell" title="eden sunset hollywood">eden sunset hollywood</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/eden" target="_blank">https://www.piovragroup.com/eden</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="eden sunset los angeles">eden sunset los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/eden" target="_blank">https://www.piovragroup.com/eden</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
+          <td class="kw-cell" title="create the lab">create the lab</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/create-the-lab" target="_blank">https://www.piovragroup.com/create-the-lab</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="the lab hawthorne">the lab hawthorne</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/create-the-lab" target="_blank">https://www.piovragroup.com/create-the-lab</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="capture studios los angeles">capture studios los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/capture-studios" target="_blank">https://www.piovragroup.com/capture-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+          <td class="kw-cell" title="capture studios studio city">capture studios studio city</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/capture-studios" target="_blank">https://www.piovragroup.com/capture-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
+          <td class="kw-cell" title="smoke friendly venues near me">smoke friendly venues near me</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell up">▲ +8</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/cannabis-event-spaces-los-angeles" target="_blank">https://www.piovragroup.com/cannabis-event-spaces-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
+          <td class="kw-cell" title="venues that allow smoking near me">venues that allow smoking near me</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/cannabis-event-spaces-los-angeles" target="_blank">https://www.piovragroup.com/cannabis-event-spaces-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
+          <td class="kw-cell" title="eden sunset photos">eden sunset photos</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/eden" target="_blank">https://www.piovragroup.com/eden</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
+          <td class="kw-cell" title="event venues near west los angeles">event venues near west los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
+          <td class="kw-cell" title="57 windward">57 windward</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">720</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/57-windward-venice-beach-event-space" target="_blank">https://www.piovragroup.com/57-windward-venice-beach-event-space</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
+          <td class="kw-cell" title="57 windward ave">57 windward ave</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/57-windward-venice-beach-event-space" target="_blank">https://www.piovragroup.com/57-windward-venice-beach-event-space</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
+          <td class="kw-cell" title="nft events los angeles">nft events los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell up">▲ +7</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles" target="_blank">https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
+          <td class="kw-cell" title="2101 gallery">2101 gallery</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/2101-gallery-graffiti-event-space" target="_blank">https://www.piovragroup.com/2101-gallery-graffiti-event-space</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="event venues west los angeles">event venues west los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
+          <td class="kw-cell" title="event venues in west los angeles">event venues in west los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+          <td class="kw-cell" title="catwalk downtown la">catwalk downtown la</td>
+          <td class="rank-cell rank-flat" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/catwalk" target="_blank">https://www.piovragroup.com/catwalk</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
+          <td class="kw-cell" title="party venues west los angeles">party venues west los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
+          <td class="kw-cell" title="catwalk los angeles">catwalk los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/catwalk" target="_blank">https://www.piovragroup.com/catwalk</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
+          <td class="kw-cell" title="candela la brea">candela la brea</td>
+          <td class="rank-cell rank-up" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">2900</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/candela-the-dome-fullservice-venue" target="_blank">https://www.piovragroup.com/candela-the-dome-fullservice-venue</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
+          <td class="kw-cell" title="nft los angeles">nft los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles" target="_blank">https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+          <td class="kw-cell" title="capture studios photos">capture studios photos</td>
+          <td class="rank-cell rank-up" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/capture-studios" target="_blank">https://www.piovragroup.com/capture-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
+          <td class="kw-cell" title="catwalk club los angeles">catwalk club los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/catwalk" target="_blank">https://www.piovragroup.com/catwalk</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
+          <td class="kw-cell" title="optimist studios los angeles">optimist studios los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">9</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/optimist-studios" target="_blank">https://www.piovragroup.com/optimist-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
+          <td class="kw-cell" title="academy la capacity">academy la capacity</td>
+          <td class="rank-cell rank-up" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/academy-la" target="_blank">https://www.piovragroup.com/academy-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
+          <td class="kw-cell" title="capture studios">capture studios</td>
+          <td class="rank-cell rank-down" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">170</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/capture-studios" target="_blank">https://www.piovragroup.com/capture-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
+          <td class="kw-cell" title="nft events">nft events</td>
+          <td class="rank-cell rank-up" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles" target="_blank">https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
+          <td class="kw-cell" title="culver city banquet halls">culver city banquet halls</td>
+          <td class="rank-cell rank-flat" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-spaces-in-culver-city" target="_blank">https://www.piovragroup.com/event-spaces-in-culver-city</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
+          <td class="kw-cell" title="venue consulting">venue consulting</td>
+          <td class="rank-cell rank-up" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">9</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/what-are-some-of-the-benefits-of-using-a-venue-consultant" target="_blank">https://www.piovragroup.com/blog/what-are-some-of-the-benefits-of-using-a-venue-consultant</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
+          <td class="kw-cell" title="wedding venues west los angeles">wedding venues west los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">18</td>
+          <td class="move-cell up">▲ +11</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
+          <td class="kw-cell" title="candela la brea photos">candela la brea photos</td>
+          <td class="rank-cell rank-down" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/candela-the-dome-fullservice-venue" target="_blank">https://www.piovragroup.com/candela-the-dome-fullservice-venue</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
+          <td class="kw-cell" title="optimist studios photos">optimist studios photos</td>
+          <td class="rank-cell rank-flat" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/optimist-studios" target="_blank">https://www.piovragroup.com/optimist-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
+          <td class="kw-cell" title="banquet halls in culver city ca">banquet halls in culver city ca</td>
+          <td class="rank-cell rank-flat" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-spaces-in-culver-city" target="_blank">https://www.piovragroup.com/event-spaces-in-culver-city</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
+          <td class="kw-cell" title="event venue consulting">event venue consulting</td>
+          <td class="rank-cell rank-up" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">9</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/what-are-some-of-the-benefits-of-using-a-venue-consultant" target="_blank">https://www.piovragroup.com/blog/what-are-some-of-the-benefits-of-using-a-venue-consultant</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
+          <td class="kw-cell" title="candela la">candela la</td>
+          <td class="rank-cell rank-down" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/candela-the-dome-fullservice-venue" target="_blank">https://www.piovragroup.com/candela-the-dome-fullservice-venue</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
+          <td class="kw-cell" title="optimist studios">optimist studios</td>
+          <td class="rank-cell rank-down" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">1600</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/optimist-studios" target="_blank">https://www.piovragroup.com/optimist-studios</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
+          <td class="kw-cell" title="party venues in culver city">party venues in culver city</td>
+          <td class="rank-cell rank-up" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">12</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-spaces-in-culver-city" target="_blank">https://www.piovragroup.com/event-spaces-in-culver-city</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
+          <td class="kw-cell" title="church space for rent los angeles">church space for rent los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified" target="_blank">https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
+          <td class="kw-cell" title="event venues venice beach">event venues venice beach</td>
+          <td class="rank-cell rank-down" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/57-windward-venice-beach-event-space" target="_blank">https://www.piovragroup.com/57-windward-venice-beach-event-space</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
+          <td class="kw-cell" title="event venues near venice beach">event venues near venice beach</td>
+          <td class="rank-cell rank-down" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell down">▼ -5</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/57-windward-venice-beach-event-space" target="_blank">https://www.piovragroup.com/57-windward-venice-beach-event-space</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
+          <td class="kw-cell" title="the catwalk club">the catwalk club</td>
+          <td class="rank-cell rank-up" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">▲ +6</td>
+          <td class="vol-cell">3600</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/catwalk" target="_blank">https://www.piovragroup.com/catwalk</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
+          <td class="kw-cell" title="church for rent los angeles">church for rent los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified" target="_blank">https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
+          <td class="kw-cell" title="academy la venue">academy la venue</td>
+          <td class="rank-cell rank-down" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">▼ -5</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/academy-la" target="_blank">https://www.piovragroup.com/academy-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
+          <td class="kw-cell" title="culver city venues">culver city venues</td>
+          <td class="rank-cell rank-down" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-spaces-in-culver-city" target="_blank">https://www.piovragroup.com/event-spaces-in-culver-city</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
+          <td class="kw-cell" title="venues in west hollywood">venues in west hollywood</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">27</td>
+          <td class="move-cell up">▲ +15</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
+          <td class="kw-cell" title="church for lease los angeles">church for lease los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">▲ +8</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified" target="_blank">https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
+          <td class="kw-cell" title="los angeles churches for lease">los angeles churches for lease</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">19</td>
+          <td class="move-cell up">▲ +7</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified" target="_blank">https://www.piovragroup.com/blog/unlocking-the-perfect-venue-church-space-rental-in-los-angeles-demystified</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
+          <td class="kw-cell" title="rooftop party venues los angeles">rooftop party venues los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
+          <td class="kw-cell" title="venice beach wedding venues">venice beach wedding venues</td>
+          <td class="rank-cell rank-down" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">9</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venice-beach-penthouse" target="_blank">https://www.piovragroup.com/venice-beach-penthouse</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
+          <td class="kw-cell" title="event space west los angeles">event space west los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell down">▼ -9</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
+          <td class="kw-cell" title="event space venice">event space venice</td>
+          <td class="rank-cell rank-up" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-venice-beach" target="_blank">https://www.piovragroup.com/event-space-in-venice-beach</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">54</td>
+          <td class="kw-cell" title="los angeles rooftop venues">los angeles rooftop venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">19</td>
+          <td class="move-cell up">▲ +5</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">55</td>
+          <td class="kw-cell" title="event space culver city">event space culver city</td>
+          <td class="rank-cell rank-flat" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-spaces-in-culver-city" target="_blank">https://www.piovragroup.com/event-spaces-in-culver-city</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">56</td>
+          <td class="kw-cell" title="the reserve los angeles photos">the reserve los angeles photos</td>
+          <td class="rank-cell rank-down" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/the-reserve" target="_blank">https://www.piovragroup.com/the-reserve</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">57</td>
+          <td class="kw-cell" title="hollywood party hall">hollywood party hall</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">58</td>
+          <td class="kw-cell" title="los angeles performance venues">los angeles performance venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">24</td>
+          <td class="move-cell up">▲ +9</td>
+          <td class="vol-cell">6600</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/" target="_blank">https://www.piovragroup.com/blog/what-are-the-best-venues-for-live-music-in-los-angeles-for-different-genres/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">59</td>
+          <td class="kw-cell" title="rooftop event space los angeles">rooftop event space los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">60</td>
+          <td class="kw-cell" title="wedding venue consultant">wedding venue consultant</td>
+          <td class="rank-cell rank-new" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venue-consulting" target="_blank">https://www.piovragroup.com/event-venue-consulting</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">61</td>
+          <td class="kw-cell" title="party vendors">party vendors</td>
+          <td class="rank-cell rank-up" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">22</td>
+          <td class="move-cell up">▲ +6</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/vendor-events-los-angeles" target="_blank">https://www.piovragroup.com/vendor-events-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">62</td>
+          <td class="kw-cell" title="film location rentals los angeles">film location rentals los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rent-filming-locations" target="_blank">https://www.piovragroup.com/rent-filming-locations</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">63</td>
+          <td class="kw-cell" title="culver city wedding venues">culver city wedding venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">30</td>
+          <td class="move-cell up">▲ +13</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/palm-sophia-rooftop" target="_blank">https://www.piovragroup.com/palm-sophia-rooftop</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">64</td>
+          <td class="kw-cell" title="rooftop event venues los angeles">rooftop event venues los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">18</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">65</td>
+          <td class="kw-cell" title="downtown la venues">downtown la venues</td>
+          <td class="rank-cell rank-down" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">390</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">66</td>
+          <td class="kw-cell" title="bar mitzvah venues los angeles">bar mitzvah venues los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -6</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/bar-mitzvah-venues-los-angeles" target="_blank">https://www.piovragroup.com/bar-mitzvah-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">67</td>
+          <td class="kw-cell" title="los angeles crypto services">los angeles crypto services</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">28</td>
+          <td class="move-cell up">▲ +11</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles" target="_blank">https://www.piovragroup.com/venues-for-crypto-nft-events-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">68</td>
+          <td class="kw-cell" title="los angeles rooftop event space">los angeles rooftop event space</td>
+          <td class="rank-cell rank-down" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">69</td>
+          <td class="kw-cell" title="event booking">event booking</td>
+          <td class="rank-cell rank-up" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">19</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">320</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venue-booking" target="_blank">https://www.piovragroup.com/event-venue-booking</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">70</td>
+          <td class="kw-cell" title="event production companies los angeles">event production companies los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-production" target="_blank">https://www.piovragroup.com/event-production</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">71</td>
+          <td class="kw-cell" title="film locations for rent">film locations for rent</td>
+          <td class="rank-cell rank-up" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">390</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rent-filming-locations" target="_blank">https://www.piovragroup.com/rent-filming-locations</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">72</td>
+          <td class="kw-cell" title="banquet halls downtown los angeles">banquet halls downtown los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">27</td>
+          <td class="move-cell up">▲ +9</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">73</td>
+          <td class="kw-cell" title="wedding venues downtown los angeles">wedding venues downtown los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">390</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">74</td>
+          <td class="kw-cell" title="club catwalk">club catwalk</td>
+          <td class="rank-cell rank-up" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">28</td>
+          <td class="move-cell up">▲ +9</td>
+          <td class="vol-cell">1300</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/catwalk" target="_blank">https://www.piovragroup.com/catwalk</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">75</td>
+          <td class="kw-cell" title="party venues santa monica">party venues santa monica</td>
+          <td class="rank-cell rank-down" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">18</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-santa-monica" target="_blank">https://www.piovragroup.com/event-space-in-santa-monica</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">76</td>
+          <td class="kw-cell" title="event space santa monica">event space santa monica</td>
+          <td class="rank-cell rank-up" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">170</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-santa-monica" target="_blank">https://www.piovragroup.com/event-space-in-santa-monica</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">77</td>
+          <td class="kw-cell" title="banquet halls santa monica">banquet halls santa monica</td>
+          <td class="rank-cell rank-down" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -5</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-santa-monica" target="_blank">https://www.piovragroup.com/event-space-in-santa-monica</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">78</td>
+          <td class="kw-cell" title="wedding venues west hollywood">wedding venues west hollywood</td>
+          <td class="rank-cell rank-up" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">▲ +10</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">79</td>
+          <td class="kw-cell" title="venue selection services">venue selection services</td>
+          <td class="rank-cell rank-new" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venue-consulting" target="_blank">https://www.piovragroup.com/event-venue-consulting</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">80</td>
+          <td class="kw-cell" title="birthday party venues los angeles">birthday party venues los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell down">▼ -6</td>
+          <td class="vol-cell">320</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/birthday-party-venues-los-angeles" target="_blank">https://www.piovragroup.com/birthday-party-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">81</td>
+          <td class="kw-cell" title="venice party venue">venice party venue</td>
+          <td class="rank-cell rank-down" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venice-beach-penthouse" target="_blank">https://www.piovragroup.com/venice-beach-penthouse</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">82</td>
+          <td class="kw-cell" title="academy la">academy la</td>
+          <td class="rank-cell rank-down" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell down">▼ -9</td>
+          <td class="vol-cell">33100</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/academy-la" target="_blank">https://www.piovragroup.com/academy-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">83</td>
+          <td class="kw-cell" title="wedding venues in west hollywood ca">wedding venues in west hollywood ca</td>
+          <td class="rank-cell rank-down" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">84</td>
+          <td class="kw-cell" title="bay area indian wedding venues">bay area indian wedding venues</td>
+          <td class="rank-cell rank-flat" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/2025/3/18/how-to-choose-the-perfect-bay-area-venue-for-an-indian-wedding" target="_blank">https://www.piovragroup.com/blog/2025/3/18/how-to-choose-the-perfect-bay-area-venue-for-an-indian-wedding</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">85</td>
+          <td class="kw-cell" title="film location rentals">film location rentals</td>
+          <td class="rank-cell rank-flat" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rent-filming-locations" target="_blank">https://www.piovragroup.com/rent-filming-locations</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">86</td>
+          <td class="kw-cell" title="the reserve los angeles">the reserve los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">21</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell down">▼ -8</td>
+          <td class="vol-cell">2900</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/the-reserve" target="_blank">https://www.piovragroup.com/the-reserve</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">87</td>
+          <td class="kw-cell" title="party venues west hollywood">party venues west hollywood</td>
+          <td class="rank-cell rank-down" style="text-align:center">22</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell down">▼ -9</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">88</td>
+          <td class="kw-cell" title="party venues downtown los angeles">party venues downtown los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">22</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">▼ -6</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">89</td>
+          <td class="kw-cell" title="holiday party event space">holiday party event space</td>
+          <td class="rank-cell rank-flat" style="text-align:center">22</td>
+          <td class="rank-cell" style="text-align:center">22</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/holiday-party-venues-los-angeles" target="_blank">https://www.piovragroup.com/holiday-party-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">90</td>
+          <td class="kw-cell" title="event venues downtown los angeles">event venues downtown los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">23</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">91</td>
+          <td class="kw-cell" title="event consulting services">event consulting services</td>
+          <td class="rank-cell rank-new" style="text-align:center">23</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venue-consulting" target="_blank">https://www.piovragroup.com/event-venue-consulting</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">92</td>
+          <td class="kw-cell" title="event space west hollywood">event space west hollywood</td>
+          <td class="rank-cell rank-down" style="text-align:center">24</td>
+          <td class="rank-cell" style="text-align:center">17</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">93</td>
+          <td class="kw-cell" title="holiday party venues los angeles">holiday party venues los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">24</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell down">▼ -16</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/holiday-party-venues-los-angeles" target="_blank">https://www.piovragroup.com/holiday-party-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">94</td>
+          <td class="kw-cell" title="event venues hollywood">event venues hollywood</td>
+          <td class="rank-cell rank-down" style="text-align:center">24</td>
+          <td class="rank-cell" style="text-align:center">23</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">95</td>
+          <td class="kw-cell" title="bar mitzvah venues near me">bar mitzvah venues near me</td>
+          <td class="rank-cell rank-up" style="text-align:center">25</td>
+          <td class="rank-cell" style="text-align:center">39</td>
+          <td class="move-cell up">▲ +14</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/bar-mitzvah-venues-los-angeles" target="_blank">https://www.piovragroup.com/bar-mitzvah-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">96</td>
+          <td class="kw-cell" title="event venues near hollywood">event venues near hollywood</td>
+          <td class="rank-cell rank-down" style="text-align:center">26</td>
+          <td class="rank-cell" style="text-align:center">23</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">97</td>
+          <td class="kw-cell" title="santa monica venues">santa monica venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">31</td>
+          <td class="move-cell up">▲ +4</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-santa-monica" target="_blank">https://www.piovragroup.com/event-space-in-santa-monica</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">98</td>
+          <td class="kw-cell" title="wedding reception venue los angeles">wedding reception venue los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">40</td>
+          <td class="move-cell up">▲ +13</td>
+          <td class="vol-cell">480</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/wedding-venues-los-angeles" target="_blank">https://www.piovragroup.com/wedding-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">99</td>
+          <td class="kw-cell" title="downtown la event spaces">downtown la event spaces</td>
+          <td class="rank-cell rank-down" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">590</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-downtown-la" target="_blank">https://www.piovragroup.com/event-space-in-downtown-la</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">100</td>
+          <td class="kw-cell" title="bar mitzvah spaces near me">bar mitzvah spaces near me</td>
+          <td class="rank-cell rank-up" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/bar-mitzvah-venues-los-angeles" target="_blank">https://www.piovragroup.com/bar-mitzvah-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">101</td>
+          <td class="kw-cell" title="corporate event venues los angeles">corporate event venues los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">36</td>
+          <td class="move-cell up">▲ +8</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/corporate-event-space-los-angeles" target="_blank">https://www.piovragroup.com/corporate-event-space-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">102</td>
+          <td class="kw-cell" title="party venues in los angeles">party venues in los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">33</td>
+          <td class="move-cell up">▲ +5</td>
+          <td class="vol-cell">880</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/birthday-party-venues-los-angeles" target="_blank">https://www.piovragroup.com/birthday-party-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">103</td>
+          <td class="kw-cell" title="event spaces in hollywood">event spaces in hollywood</td>
+          <td class="rank-cell rank-up" style="text-align:center">29</td>
+          <td class="rank-cell" style="text-align:center">35</td>
+          <td class="move-cell up">▲ +6</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">104</td>
+          <td class="kw-cell" title="ndoor & outdoor rooftop venue">ndoor & outdoor rooftop venue</td>
+          <td class="rank-cell rank-flat" style="text-align:center">29</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/rooftop-venues" target="_blank">https://www.piovragroup.com/rooftop-venues</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">105</td>
+          <td class="kw-cell" title="venues west hollywood">venues west hollywood</td>
+          <td class="rank-cell rank-down" style="text-align:center">32</td>
+          <td class="rank-cell" style="text-align:center">30</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-space-in-west-hollywood" target="_blank">https://www.piovragroup.com/event-space-in-west-hollywood</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">106</td>
+          <td class="kw-cell" title="party venues in beverly hills">party venues in beverly hills</td>
+          <td class="rank-cell rank-flat" style="text-align:center">34</td>
+          <td class="rank-cell" style="text-align:center">34</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-place-in-beverly-hills" target="_blank">https://www.piovragroup.com/event-place-in-beverly-hills</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">107</td>
+          <td class="kw-cell" title="event management companies los angeles">event management companies los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">35</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -21</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/" target="_blank">https://www.piovragroup.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">108</td>
+          <td class="kw-cell" title="venice beach venues">venice beach venues</td>
+          <td class="rank-cell rank-down" style="text-align:center">35</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">▼ -19</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/venice-beach-penthouse" target="_blank">https://www.piovragroup.com/venice-beach-penthouse</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">109</td>
+          <td class="kw-cell" title="bar mitzvah locations">bar mitzvah locations</td>
+          <td class="rank-cell rank-up" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">46</td>
+          <td class="move-cell up">▲ +10</td>
+          <td class="vol-cell">1000</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/bar-mitzvah-venues-los-angeles" target="_blank">https://www.piovragroup.com/bar-mitzvah-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">110</td>
+          <td class="kw-cell" title="los angeles indian wedding">los angeles indian wedding</td>
+          <td class="rank-cell rank-down" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -22</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/indian-wedding-sangeet-venues-los-angeles" target="_blank">https://www.piovragroup.com/indian-wedding-sangeet-venues-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">111</td>
+          <td class="kw-cell" title="event space beverly hills">event space beverly hills</td>
+          <td class="rank-cell rank-flat" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">36</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-place-in-beverly-hills" target="_blank">https://www.piovragroup.com/event-place-in-beverly-hills</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">112</td>
+          <td class="kw-cell" title="venues in beverly hills">venues in beverly hills</td>
+          <td class="rank-cell rank-flat" style="text-align:center">37</td>
+          <td class="rank-cell" style="text-align:center">37</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-place-in-beverly-hills" target="_blank">https://www.piovragroup.com/event-place-in-beverly-hills</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">113</td>
+          <td class="kw-cell" title="cannabis friendly wedding venues">cannabis friendly wedding venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">39</td>
+          <td class="rank-cell" style="text-align:center">41</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/cannabis-event-spaces-los-angeles" target="_blank">https://www.piovragroup.com/cannabis-event-spaces-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">114</td>
+          <td class="kw-cell" title="unique venues los angeles">unique venues los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">42</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell down">▼ -10</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/blog/what-are-unique-event-venues-in-los-angeles-worth-exploring-for-memorable-events" target="_blank">https://www.piovragroup.com/blog/what-are-unique-event-venues-in-los-angeles-worth-exploring-for-memorable-events</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">115</td>
+          <td class="kw-cell" title="event venues in los angeles">event venues in los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">44</td>
+          <td class="rank-cell" style="text-align:center">50</td>
+          <td class="move-cell up">▲ +6</td>
+          <td class="vol-cell">1600</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venues-in-west-los-angeles" target="_blank">https://www.piovragroup.com/event-venues-in-west-los-angeles</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">116</td>
+          <td class="kw-cell" title="venue finding services">venue finding services</td>
+          <td class="rank-cell rank-down" style="text-align:center">50</td>
+          <td class="rank-cell" style="text-align:center">31</td>
+          <td class="move-cell down">▼ -19</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://www.piovragroup.com/event-venue-consulting" target="_blank">https://www.piovragroup.com/event-venue-consulting</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">117</td>
+          <td class="kw-cell" title="wedding venue los angeles">wedding venue los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">6600</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">118</td>
+          <td class="kw-cell" title="event spaces los angeles">event spaces los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">1600</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">119</td>
+          <td class="kw-cell" title="banquet halls in hollywood">banquet halls in hollywood</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">120</td>
+          <td class="kw-cell" title="beverly hills wedding venues">beverly hills wedding venues</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">480</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">121</td>
+          <td class="kw-cell" title="wedding venues in beverly hills ca">wedding venues in beverly hills ca</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">480</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">122</td>
+          <td class="kw-cell" title="event space">event space</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">33100</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">123</td>
+          <td class="kw-cell" title="events space near me">events space near me</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">33100</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">124</td>
+          <td class="kw-cell" title="los angeles vendor events">los angeles vendor events</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">125</td>
+          <td class="kw-cell" title="vendor events los angeles">vendor events los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr></tbody></table></div>
+</div>
+
+
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
-  <div style="margin-bottom:16px;"><span style="font-size:15px;font-weight:700;color:var(--text);">&#128205; Google My Business &mdash; May-2026</span></div><div class="gmb-grid"><div class="gmb-card"><div class="gmb-icon">&#128065;&#65039;</div><div class="gmb-val">459</div><div class="gmb-label">Total Views</div><div class="gmb-delta gmb-delta-down">&#x2193; 34 (7%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128433;&#65039;</div><div class="gmb-val">39</div><div class="gmb-label">Website Clicks</div><div class="gmb-delta gmb-delta-up">&#x2191; 7 (22%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128222;</div><div class="gmb-val">0</div><div class="gmb-label">Phone Calls</div><div class="gmb-delta gmb-delta-down">&#x2193; 1 (100%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128506;&#65039;</div><div class="gmb-val">23</div><div class="gmb-label">Direction Requests</div><div class="gmb-delta gmb-delta-down">&#x2193; 38 (62%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128221;</div><div class="gmb-val">—</div><div class="gmb-label">GMB Posts</div></div><div class="gmb-card"><div class="gmb-icon">&#11088;</div><div class="gmb-val">—</div><div class="gmb-label">Avg Rating</div></div><div class="gmb-card"><div class="gmb-icon">&#128172;</div><div class="gmb-val">—</div><div class="gmb-label">New Reviews</div></div></div><div class="chart-card" style="margin-top:16px;"><div class="chart-title">GMB Performance &mdash; Last 6 Months</div><div class="chart-wrap"><canvas id="gmbChart"></canvas></div></div>
-  </div>
+  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128205;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">GMB Data Coming Soon</p><p style="font-size:13px;color:#6B7280">API access requested.</p></div>
 </div>
 
 
@@ -1556,7 +2762,7 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-tasks" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; May-2026</div>
       <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -1565,7 +2771,7 @@ new Chart(document.getElementById('chChart'), {
       <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; 0 Pending</div>
     </div>
   </div>
-  <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>
+  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>
 </div>
 
 
@@ -1573,24 +2779,24 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-linkbuilding" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; May-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 0</div>
-      
+      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 0</div>
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 0</div>
       <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
     </div>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
-      <span>All Link Building Activity</span>
+      <span>All Link Building Activity &mdash; May-2026</span>
       <div style="display:flex;gap:6px;align-items:center;">
-        <select id="lbMonth" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;"><option value="all">All Months</option><option value="Apr 2026">Apr 2026</option></select>
         <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
           <option value="all">All Types</option>
           <option value="Reddit">Reddit</option>
+          <option value="Quora">Quora</option>
           <option value="Blog Comment">Blog Comments</option>
           <option value="Directory">Directories</option>
         </select>
@@ -1606,7 +2812,6 @@ new Chart(document.getElementById('chChart'), {
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="text-align:center;width:90px">Month</th>
         <th style="width:110px">Type</th>
         <th>URL</th>
         <th style="width:130px">Anchor Text</th>
@@ -1622,7 +2827,6 @@ new Chart(document.getElementById('chChart'), {
 
 
 
-<script>function initGmbChart(){if(!document.getElementById('gmbChart'))return;new Chart(document.getElementById('gmbChart'),{type:'bar',data:{labels:["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"],datasets:[{label:'Views',type:'bar',data:[496, 627, 483, 542, 493, 459],backgroundColor:'rgba(5,150,105,0.15)',borderColor:'#059669',borderWidth:2,borderRadius:6,yAxisID:'y'},{label:'Directions',type:'line',data:[52, 64, 55, 21, 61, 23],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.08)',borderWidth:2,pointBackgroundColor:'#7c3aed',pointRadius:4,pointHoverRadius:6,fill:true,tension:0.4,yAxisID:'y'},{label:'Website Clicks',type:'line',data:[15, 47, 55, 26, 32, 39],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.05)',borderWidth:2,pointBackgroundColor:'#2563eb',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'},{label:'Calls',type:'line',data:[0, 2, 3, 2, 1, 0],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.05)',borderWidth:2,pointBackgroundColor:'#d97706',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:20,font:{size:12}}},tooltip:{backgroundColor:'rgba(15,23,42,0.9)',titleColor:'#f1f5f9',bodyColor:'#cbd5e1',padding:12,cornerRadius:8,callbacks:{label:function(c){return ' '+c.dataset.label+': '+c.parsed.y.toLocaleString()}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{position:'left',grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:11},callback:function(v){return v.toLocaleString()}},title:{display:true,text:'Views / Directions',font:{size:11}}},y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:11}},title:{display:true,text:'Clicks / Calls',font:{size:11}}}}}});}</script>
 </body>
 </html>
 <script>
@@ -1667,26 +2871,14 @@ function sortTaskTable(col) {
   rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});
   rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});
 }
-function filterTasks() {
-  var m=document.getElementById('tasksMonth').value;
-  var sr=1;
-  document.getElementById('tasksBody').querySelectorAll('tr').forEach(function(r){
-    var rm=r.getAttribute('data-month')||'';
-    var show=(m==='all'||rm===m);
-    r.style.display=show?'':'none';
-    if(show&&r.cells[0])r.cells[0].innerText=sr++;
-  });
-}
 function filterLB() {
   var t=document.getElementById('lbType').value;
   var s=document.getElementById('lbStatus').value;
-  var m=document.getElementById('lbMonth').value;
   var sr=1;
   document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r){
     var rt=r.getAttribute('data-type')||'';
     var rs=r.getAttribute('data-status')||'';
-    var rm=r.getAttribute('data-month')||'';
-    var show=(t==='all'||rt===t)&&(s==='all'||rs===s)&&(m==='all'||rm===m);
+    var show=(t==='all'||rt===t)&&(s==='all'||rs===s);
     r.style.display=show?'':'none';
     if(show&&r.cells[0])r.cells[0].innerText=sr++;
   });

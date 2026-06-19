@@ -127,11 +127,6 @@
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
-  
-  .gmb-delta { font-size: 10px; margin-top: 6px; font-weight: 600; border-radius: 4px; padding: 2px 6px; display: inline-block; }
-  .gmb-delta-up { color: #059669; background: rgba(5,150,105,0.1); }
-  .gmb-delta-down { color: #dc2626; background: rgba(220,38,38,0.1); }
-  .gmb-delta-neutral { color: #6b7280; background: rgba(107,114,128,0.1); }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
   @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
   .no-data .icon { font-size: 48px; margin-bottom: 12px; }
@@ -153,14 +148,14 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 13 Jun 2026</div>
+    <div class="updated">Updated: 19 Jun 2026</div>
   </div>
 </div>
 
 <div class="nav">
   <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)">GA4 Data</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
   <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
@@ -238,27 +233,110 @@
     </div>
   </div>
 
-  <div class="ai-grid">
+  <div class="ai-grid" style="grid-template-columns:repeat(5,1fr);">
     <div class="ai-card">
-      <div class="ai-icon">🤖</div>
+      <div class="ai-icon"><img src="../icons/chatgpt.png" alt="ChatGPT" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">0</div>
       <div class="ai-delta neg delta">▼ 1</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🟣</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png" alt="Gemini" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Gemini</div>
+      <div class="ai-val">0</div>
+      <div class="ai-delta pos delta">▲ 0</div>
+    </div><div class="ai-card">
+      <div class="ai-icon"><img src="../icons/claude.png" alt="Claude" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🔮</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/perplexity.png" alt="Perplexity" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
     </div><div class="ai-card">
-      <div class="ai-icon">💎</div>
-      <div class="ai-label">Gemini</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/microsoft-copilot.png" alt="Copilot" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Copilot</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
+    </div>
+  </div>
+
+  
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-top:24px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-size:13px;font-weight:700;">Total Backlinks Report</span>
+      <span style="color:rgba(255,255,255,0.7);font-size:11px;">Jun-2026 vs Previous</span>
+    </div>
+
+    <!-- Current vs Previous summary -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#F8FAFC;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Jun-2026</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Previous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">External Backlinks</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">1,328</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Unique Referring Domains</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">53</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#2563EB;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Rating (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">0.2</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#7C3AED;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Moz</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Authority (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">5</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6-month history -->
+    <div style="border-top:2px solid #E2E8F0;overflow-x:auto;">
+      <div style="padding:10px 16px 6px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;background:#F8FAFC;">
+        6-Month History
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);">
+            <th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Metric</th>
+            <th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.15);">Jun-2026</th>
+          </tr>
+        </thead>
+        <tbody style="background:#fff;">
+          <tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Backlinks</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">1,328</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Referring Domains</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">53</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Rating (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">0.2</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Authority (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:8px 16px;background:#F8FAFC;border-top:1px solid #E2E8F0;font-size:10px;color:#94A3B8;">
+      DR by <a href="https://ahrefs.com/" target="_blank" style="color:#94A3B8;">Ahrefs</a> &nbsp;|&nbsp; DA by Moz &nbsp;|&nbsp; Backlinks data via DataForSEO
     </div>
   </div>
 </div>
@@ -508,24 +586,23 @@
     <table class="history-table">
       <thead>
         <tr>
-          <th>Month</th><th>Sessions</th><th>Users</th><th>Organic</th>
-          <th>Pageviews</th><th>Bounce %</th><th>Forms</th><th>Direct</th>
-          <th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th>
+          <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Apr-2026</td><td>514</td><td>434</td><td>84</td><td>890</td><td>60.7%</td><td>0</td><td>230</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Mar-2026</td><td>514</td><td>434</td><td>76</td><td>890</td><td>60.7%</td><td>0</td><td>240</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Feb-2026</td><td>477</td><td>420</td><td>44</td><td>747</td><td>69.0%</td><td>0</td><td>252</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Jan-2026</td><td>420</td><td>372</td><td>45</td><td>760</td><td>60.2%</td><td>0</td><td>219</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Dec-2025</td><td>449</td><td>407</td><td>39</td><td>740</td><td>54.3%</td><td>0</td><td>199</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Nov-2025</td><td>449</td><td>407</td><td>49</td><td>740</td><td>54.3%</td><td>0</td><td>247</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Oct-2025</td><td>276</td><td>229</td><td>34</td><td>722</td><td>34.1%</td><td>0</td><td>100</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Sep-2025</td><td>276</td><td>229</td><td>64</td><td>722</td><td>34.1%</td><td>0</td><td>53</td><td>2</td><td>0</td><td>2</td><td>0</td></tr><tr><td>Aug-2025</td><td>244</td><td>188</td><td>67</td><td>602</td><td>43.0%</td><td>0</td><td>33</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Jul-2025</td><td>321</td><td>246</td><td>53</td><td>921</td><td>43.6%</td><td>0</td><td>53</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Jun-2025</td><td>321</td><td>246</td><td>69</td><td>921</td><td>43.6%</td><td>6</td><td>114</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>May-2025</td><td>315</td><td>285</td><td>41</td><td>597</td><td>62.9%</td><td>0</td><td>170</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Apr-2025</td><td>255</td><td>218</td><td>49</td><td>616</td><td>35.3%</td><td>0</td><td>62</td><td>0</td><td>0</td><td>1</td><td>0</td></tr></tbody>
+      <tbody><tr><td>Apr-2026</td><td>514</td><td>84</td><td>230</td><td>0</td><td>434</td><td>890</td><td>60.7%</td><td>0</td></tr><tr><td>Mar-2026</td><td>514</td><td>76</td><td>240</td><td>1</td><td>434</td><td>890</td><td>60.7%</td><td>0</td></tr><tr><td>Feb-2026</td><td>477</td><td>44</td><td>252</td><td>0</td><td>420</td><td>747</td><td>69.0%</td><td>0</td></tr><tr><td>Jan-2026</td><td>420</td><td>45</td><td>219</td><td>0</td><td>372</td><td>760</td><td>60.2%</td><td>0</td></tr><tr><td>Dec-2025</td><td>449</td><td>39</td><td>199</td><td>1</td><td>407</td><td>740</td><td>54.3%</td><td>0</td></tr><tr><td>Nov-2025</td><td>449</td><td>49</td><td>247</td><td>0</td><td>407</td><td>740</td><td>54.3%</td><td>0</td></tr><tr><td>Oct-2025</td><td>276</td><td>34</td><td>100</td><td>1</td><td>229</td><td>722</td><td>34.1%</td><td>0</td></tr><tr><td>Sep-2025</td><td>276</td><td>64</td><td>53</td><td>4</td><td>229</td><td>722</td><td>34.1%</td><td>0</td></tr><tr><td>Aug-2025</td><td>244</td><td>67</td><td>33</td><td>1</td><td>188</td><td>602</td><td>43.0%</td><td>0</td></tr><tr><td>Jul-2025</td><td>321</td><td>53</td><td>53</td><td>1</td><td>246</td><td>921</td><td>43.6%</td><td>0</td></tr><tr><td>Jun-2025</td><td>321</td><td>69</td><td>114</td><td>0</td><td>246</td><td>921</td><td>43.6%</td><td>6</td></tr><tr><td>May-2025</td><td>315</td><td>41</td><td>170</td><td>1</td><td>285</td><td>597</td><td>62.9%</td><td>0</td></tr><tr><td>Apr-2025</td><td>255</td><td>49</td><td>62</td><td>1</td><td>218</td><td>616</td><td>35.3%</td><td>0</td></tr></tbody>
     </table>
   </div>
   
 </div>
 
 <script>
-function showTab(name, el) {
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  if(el) el.classList.add('active');
-  if(name==='gmb'&&!window._gmbInit&&typeof initGmbChart==='function'){initGmbChart();window._gmbInit=true;}
+  event.target.classList.add('active');
 }
 const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
 const sessData = [315, 321, 321, 244, 276, 276, 449, 449, 420, 477, 514, 514];
@@ -534,8 +611,8 @@ const formData = [0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [84, 230, 133, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [1, 0, 1, 1, 2, 1, 0, 1, 0, 0, 1, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
-const aiLabels  = ["ChatGPT", "Claude", "Perplexity", "Gemini"];
+const aiMonthly = {"ChatGPT": [1, 0, 1, 1, 2, 1, 0, 1, 0, 0, 1, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
   responsive: true, maintainAspectRatio: false,
@@ -573,10 +650,167 @@ new Chart(document.getElementById('chChart'), {
 
 
 <!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">4</td><td style="text-align:center;color:#94a3b8">3</td><td style="text-align:center"><span style="color:#4ade80">+1</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">5</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#4ade80">+1</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">3</td><td style="text-align:center"><span style="color:#f87171">-2</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">7</td><td style="text-align:center;color:#94a3b8">7</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">17</td><td style="text-align:center;color:#94a3b8">17</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
+          <td class="kw-cell" title="best schools in surat cbse">best schools in surat cbse</td>
+          <td class="rank-cell rank-flat" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/" target="_blank">https://lancerscbse.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
+          <td class="kw-cell" title="top cbse schools in surat">top cbse schools in surat</td>
+          <td class="rank-cell rank-up" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">880</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/" target="_blank">https://lancerscbse.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
+          <td class="kw-cell" title="best cbse schools surat">best cbse schools surat</td>
+          <td class="rank-cell rank-up" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">880</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/" target="_blank">https://lancerscbse.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="cbse schools surat">cbse schools surat</td>
+          <td class="rank-cell rank-up" style="text-align:center">7</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell up">▲ +8</td>
+          <td class="vol-cell">1900</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/" target="_blank">https://lancerscbse.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
+          <td class="kw-cell" title="top 10 schools in surat cbse">top 10 schools in surat cbse</td>
+          <td class="rank-cell rank-up" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">23</td>
+          <td class="move-cell up">▲ +10</td>
+          <td class="vol-cell">320</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/" target="_blank">https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="cbse board school in surat">cbse board school in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">13</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/" target="_blank">https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="cbse schools in surat gujarat">cbse schools in surat gujarat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">1600</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/" target="_blank">https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+          <td class="kw-cell" title="cbse affiliated schools in surat">cbse affiliated schools in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">15</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/" target="_blank">https://lancerscbse.com/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
+          <td class="kw-cell" title="best cbse schools in gujarat">best cbse schools in gujarat</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">23</td>
+          <td class="move-cell up">▲ +6</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/exploring-cbse-schools-in-gujarat-what-makes-them-stand-out/" target="_blank">https://lancerscbse.com/exploring-cbse-schools-in-gujarat-what-makes-them-stand-out/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
+          <td class="kw-cell" title="list of cbse schools in surat">list of cbse schools in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">27</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/" target="_blank">https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
+          <td class="kw-cell" title="good cbse schools near me">good cbse schools near me</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">1300</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
+          <td class="kw-cell" title="cbse 11th and 12th schools near me">cbse 11th and 12th schools near me</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
+          <td class="kw-cell" title="top cbse schools near me">top cbse schools near me</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">1300</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
+          <td class="kw-cell" title="top 10 cbse schools near me">top 10 cbse schools near me</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">720</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
+          <td class="kw-cell" title="top 10 schools in india cbse">top 10 schools in india cbse</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">1600</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
+          <td class="kw-cell" title="cbse schools gujarat">cbse schools gujarat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="cbse schools piplod">cbse schools piplod</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr></tbody></table></div>
+</div>
+
+
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
-  <div style="margin-bottom:16px;"><span style="font-size:15px;font-weight:700;color:var(--text);">&#128205; Google My Business &mdash; May-2026</span></div><div class="gmb-grid"><div class="gmb-card"><div class="gmb-icon">&#128065;&#65039;</div><div class="gmb-val">5,539</div><div class="gmb-label">Total Views</div><div class="gmb-delta gmb-delta-down">&#x2193; 1,070 (16%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128433;&#65039;</div><div class="gmb-val">122</div><div class="gmb-label">Website Clicks</div><div class="gmb-delta gmb-delta-down">&#x2193; 46 (27%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128222;</div><div class="gmb-val">190</div><div class="gmb-label">Phone Calls</div><div class="gmb-delta gmb-delta-down">&#x2193; 72 (27%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128506;&#65039;</div><div class="gmb-val">2,004</div><div class="gmb-label">Direction Requests</div><div class="gmb-delta gmb-delta-up">&#x2191; 246 (14%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128221;</div><div class="gmb-val">—</div><div class="gmb-label">GMB Posts</div></div><div class="gmb-card"><div class="gmb-icon">&#11088;</div><div class="gmb-val">—</div><div class="gmb-label">Avg Rating</div></div><div class="gmb-card"><div class="gmb-icon">&#128172;</div><div class="gmb-val">—</div><div class="gmb-label">New Reviews</div></div></div><div class="chart-card" style="margin-top:16px;"><div class="chart-title">GMB Performance &mdash; Last 6 Months</div><div class="chart-wrap"><canvas id="gmbChart"></canvas></div></div>
-  </div>
+  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128205;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">GMB Data Coming Soon</p><p style="font-size:13px;color:#6B7280">API access requested.</p></div>
 </div>
 
 
@@ -584,7 +818,7 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-tasks" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; May-2026</div>
       <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -593,7 +827,7 @@ new Chart(document.getElementById('chChart'), {
       <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; 0 Pending</div>
     </div>
   </div>
-  <p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>
+  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>
 </div>
 
 
@@ -601,24 +835,24 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-linkbuilding" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; May-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 0</div>
-      
+      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 0</div>
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 0</div>
       <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
     </div>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
-      <span>All Link Building Activity</span>
+      <span>All Link Building Activity &mdash; May-2026</span>
       <div style="display:flex;gap:6px;align-items:center;">
-        <select id="lbMonth" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;"><option value="all">All Months</option><option value="Apr 2026">Apr 2026</option></select>
         <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
           <option value="all">All Types</option>
           <option value="Reddit">Reddit</option>
+          <option value="Quora">Quora</option>
           <option value="Blog Comment">Blog Comments</option>
           <option value="Directory">Directories</option>
         </select>
@@ -634,7 +868,6 @@ new Chart(document.getElementById('chChart'), {
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="text-align:center;width:90px">Month</th>
         <th style="width:110px">Type</th>
         <th>URL</th>
         <th style="width:130px">Anchor Text</th>
@@ -650,7 +883,6 @@ new Chart(document.getElementById('chChart'), {
 
 
 
-<script>function initGmbChart(){if(!document.getElementById('gmbChart'))return;new Chart(document.getElementById('gmbChart'),{type:'bar',data:{labels:["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"],datasets:[{label:'Views',type:'bar',data:[6437, 6112, 6742, 7992, 6609, 5539],backgroundColor:'rgba(5,150,105,0.15)',borderColor:'#059669',borderWidth:2,borderRadius:6,yAxisID:'y'},{label:'Directions',type:'line',data:[1701, 1421, 2594, 1860, 1758, 2004],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.08)',borderWidth:2,pointBackgroundColor:'#7c3aed',pointRadius:4,pointHoverRadius:6,fill:true,tension:0.4,yAxisID:'y'},{label:'Website Clicks',type:'line',data:[150, 152, 128, 249, 168, 122],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.05)',borderWidth:2,pointBackgroundColor:'#2563eb',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'},{label:'Calls',type:'line',data:[159, 162, 187, 351, 262, 190],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.05)',borderWidth:2,pointBackgroundColor:'#d97706',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:20,font:{size:12}}},tooltip:{backgroundColor:'rgba(15,23,42,0.9)',titleColor:'#f1f5f9',bodyColor:'#cbd5e1',padding:12,cornerRadius:8,callbacks:{label:function(c){return ' '+c.dataset.label+': '+c.parsed.y.toLocaleString()}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{position:'left',grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:11},callback:function(v){return v.toLocaleString()}},title:{display:true,text:'Views / Directions',font:{size:11}}},y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:11}},title:{display:true,text:'Clicks / Calls',font:{size:11}}}}}});}</script>
 </body>
 </html>
 <script>
@@ -695,26 +927,14 @@ function sortTaskTable(col) {
   rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});
   rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});
 }
-function filterTasks() {
-  var m=document.getElementById('tasksMonth').value;
-  var sr=1;
-  document.getElementById('tasksBody').querySelectorAll('tr').forEach(function(r){
-    var rm=r.getAttribute('data-month')||'';
-    var show=(m==='all'||rm===m);
-    r.style.display=show?'':'none';
-    if(show&&r.cells[0])r.cells[0].innerText=sr++;
-  });
-}
 function filterLB() {
   var t=document.getElementById('lbType').value;
   var s=document.getElementById('lbStatus').value;
-  var m=document.getElementById('lbMonth').value;
   var sr=1;
   document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r){
     var rt=r.getAttribute('data-type')||'';
     var rs=r.getAttribute('data-status')||'';
-    var rm=r.getAttribute('data-month')||'';
-    var show=(t==='all'||rt===t)&&(s==='all'||rs===s)&&(m==='all'||rm===m);
+    var show=(t==='all'||rt===t)&&(s==='all'||rs===s);
     r.style.display=show?'':'none';
     if(show&&r.cells[0])r.cells[0].innerText=sr++;
   });

@@ -133,7 +133,155 @@ def safe_float(v):
     try: return float(str(v).replace("%","")) if v else 0.0
     except: return 0.0
 
-def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_rows=[]):
+def _render_backlinks_table(data):
+    """Render the Total Backlinks Report + 6-month history for the Overview tab."""
+    if not data:
+        return ""
+
+    # Sort months newest first, take up to 6
+    from datetime import datetime as _dt
+    def parse_m(m):
+        try: return _dt.strptime(m, "%b-%Y")
+        except: return _dt.min
+
+    months     = sorted(data.keys(), key=parse_m, reverse=True)
+    cur_month  = months[0] if months else None
+    prev_month = months[1] if len(months) > 1 else None
+    hist_months = list(reversed(months[:6]))  # oldest→newest for history chart
+
+    cur  = data.get(cur_month, {})
+    prev = data.get(prev_month, {})
+
+    # ── helpers ──────────────────────────────────────────────────────────────
+    def fmt_num(v):
+        if v is None: return "—"
+        try: return f"{int(v):,}"
+        except: return str(v)
+
+    def fmt_score(v):
+        if v is None: return "—"
+        try:
+            f = float(v)
+            return str(int(f)) if f == int(f) else f"{f:.1f}"
+        except: return str(v)
+
+    def delta_html(key, is_score=False):
+        c = cur.get(key)
+        p = prev.get(key)
+        if c is None or p is None:
+            return '<span style="color:#CBD5E1;font-size:11px;">—</span>'
+        try:
+            d = float(c) - float(p)
+            if d == 0:
+                return '<span style="color:#94A3B8;font-size:12px;font-weight:600;">—</span>'
+            sign  = "▲" if d > 0 else "▼"
+            ad    = abs(d)
+            val   = (str(int(ad)) if ad == int(ad) else f"{ad:.1f}") if is_score else f"{int(ad):,}"
+            color = "#059669" if d > 0 else "#DC2626"
+            return f'<span style="color:{color};font-size:12px;font-weight:700;">{sign} {val}</span>'
+        except:
+            return ""
+
+    # ── 4 metric rows ─────────────────────────────────────────────────────────
+    METRICS = [
+        ("ahrefs_backlinks",          "Ahrefs",  "External Backlinks",          False, "#1E3A5F"),
+        ("ahrefs_referring_domains",  "Ahrefs",  "Unique Referring Domains",    False, "#1E3A5F"),
+        ("domain_rating",             "Ahrefs",  "Domain Rating (Out of 100)",  True,  "#2563EB"),
+        ("domain_authority",          "Moz",     "Domain Authority (Out of 100)", True, "#7C3AED"),
+    ]
+
+    summary_rows = ""
+    for key, source, label, is_score, color in METRICS:
+        val_cur  = fmt_score(cur.get(key))  if is_score else fmt_num(cur.get(key))
+        val_prev = fmt_score(prev.get(key)) if is_score else fmt_num(prev.get(key))
+        summary_rows += f"""
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:{color};white-space:nowrap;border-bottom:1px solid #F1F5F9;">{source}</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">{label}</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;">{delta_html(key, is_score)}</td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">{val_cur}</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">{val_prev}</td>
+          </tr>"""
+
+    # ── 6-month history table ─────────────────────────────────────────────────
+    hist_headers = "".join(
+        f'<th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.15);">{m}</th>'
+        for m in hist_months
+    )
+
+    def hist_row(label, key, is_score=False):
+        cells = ""
+        for m in hist_months:
+            v = data.get(m, {}).get(key)
+            display = fmt_score(v) if is_score else fmt_num(v)
+            is_latest = (m == cur_month)
+            bg = "background:#EFF6FF;" if is_latest else ""
+            fw = "font-weight:700;" if is_latest else ""
+            cells += f'<td style="padding:9px 14px;text-align:center;{bg}{fw}color:#0F172A;border-left:1px solid #F1F5F9;">{display}</td>'
+        return f'<tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">{label}</td>{cells}</tr>'
+
+    history_rows = (
+        hist_row("Ahrefs Backlinks",          "ahrefs_backlinks")        +
+        hist_row("Ahrefs Referring Domains",  "ahrefs_referring_domains") +
+        hist_row("Domain Rating (Out of 100)",     "domain_rating",  True)    +
+        hist_row("Domain Authority (Out of 100)",  "domain_authority", True)
+    )
+
+    col_cur  = cur_month  or "Current"
+    col_prev = prev_month or "Previous"
+
+    return f"""
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-top:24px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-size:13px;font-weight:700;">Total Backlinks Report</span>
+      <span style="color:rgba(255,255,255,0.7);font-size:11px;">{col_cur} vs {col_prev}</span>
+    </div>
+
+    <!-- Current vs Previous summary -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#F8FAFC;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">{col_cur}</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">{col_prev}</th>
+          </tr>
+        </thead>
+        <tbody>{summary_rows}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6-month history -->
+    <div style="border-top:2px solid #E2E8F0;overflow-x:auto;">
+      <div style="padding:10px 16px 6px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;background:#F8FAFC;">
+        6-Month History
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);">
+            <th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Metric</th>
+            {hist_headers}
+          </tr>
+        </thead>
+        <tbody style="background:#fff;">
+          {history_rows}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:8px 16px;background:#F8FAFC;border-top:1px solid #E2E8F0;font-size:10px;color:#94A3B8;">
+      DR by <a href="https://ahrefs.com/" target="_blank" style="color:#94A3B8;">Ahrefs</a> &nbsp;|&nbsp; DA by Moz &nbsp;|&nbsp; Backlinks data via DataForSEO
+    </div>
+  </div>"""
+
+
+def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_rows=[], backlinks_data=None):
     from datetime import datetime as _dt
     import datetime as _dtime
 
@@ -165,10 +313,10 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
 
     # SEO + AI traffic = Organic + all AI sources
     org_s     = safe_int(latest.get("Organic Sessions", 0))
-    ai_s      = safe_int(latest.get("ChatGPT Sessions", 0)) + safe_int(latest.get("Claude Sessions", 0)) +                 safe_int(latest.get("Perplexity Sessions", 0)) + safe_int(latest.get("Gemini Sessions", 0))
+    ai_s      = safe_int(latest.get("ChatGPT Sessions", 0)) + safe_int(latest.get("Claude Sessions", 0)) + safe_int(latest.get("Perplexity Sessions", 0)) + safe_int(latest.get("Gemini Sessions", 0)) + safe_int(latest.get("Copilot Sessions", 0))
     seo_ai    = org_s + ai_s
     org_s_p   = safe_int(prev.get("Organic Sessions", 0))
-    ai_s_p    = safe_int(prev.get("ChatGPT Sessions", 0)) + safe_int(prev.get("Claude Sessions", 0)) +                 safe_int(prev.get("Perplexity Sessions", 0)) + safe_int(prev.get("Gemini Sessions", 0))
+    ai_s_p    = safe_int(prev.get("ChatGPT Sessions", 0)) + safe_int(prev.get("Claude Sessions", 0)) + safe_int(prev.get("Perplexity Sessions", 0)) + safe_int(prev.get("Gemini Sessions", 0)) + safe_int(prev.get("Copilot Sessions", 0))
     seo_ai_p  = org_s_p + ai_s_p
     seo_diff  = seo_ai - seo_ai_p
     seo_pct   = round((seo_diff / seo_ai_p * 100), 1) if seo_ai_p else 0
@@ -230,8 +378,8 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
     form_d = [safe_int(r.get("Form Submissions",0))   for r in _chart_rows]
 
     # AI traffic
-    ai_keys   = ["ChatGPT Sessions","Claude Sessions","Perplexity Sessions","Gemini Sessions"]
-    ai_labels = ["ChatGPT","Claude","Perplexity","Gemini"]
+    ai_keys   = ["ChatGPT Sessions","Gemini Sessions","Claude Sessions","Perplexity Sessions","Copilot Sessions"]
+    ai_labels = ["ChatGPT","Gemini","Claude","Perplexity","Copilot"]
     ai_vals      = [safe_int(latest.get(k,0)) for k in ai_keys]
     ai_prev_vals = [safe_int(prev.get(k,0))   for k in ai_keys]
 
@@ -323,16 +471,13 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
     _hist_rows_html = "".join([
         f'<tr><td>{r.get("Month","")}</td>' +
         f'<td>{safe_int(r.get("Sessions (Current)",0)):,}</td>' +
-        f'<td>{safe_int(r.get("Users (Current)",0)):,}</td>' +
         f'<td>{safe_int(r.get("Organic Sessions",0)):,}</td>' +
+        f'<td>{safe_int(r.get("Direct Sessions",0)):,}</td>' +
+        f'<td>{safe_int(r.get("ChatGPT Sessions",0)) + safe_int(r.get("Claude Sessions",0)) + safe_int(r.get("Perplexity Sessions",0)) + safe_int(r.get("Gemini Sessions",0)) + safe_int(r.get("Copilot Sessions",0)):,}</td>' +
+        f'<td>{safe_int(r.get("Users (Current)",0)):,}</td>' +
         f'<td>{safe_int(r.get("Pageviews (Current)",0)):,}</td>' +
         f'<td>{safe_float(r.get("Bounce Rate %",0)):.1f}%</td>' +
-        f'<td>{safe_int(r.get("Form Submissions",0)):,}</td>' +
-        f'<td>{safe_int(r.get("Direct Sessions",0)):,}</td>' +
-        f'<td>{safe_int(r.get("ChatGPT Sessions",0)):,}</td>' +
-        f'<td>{safe_int(r.get("Claude Sessions",0)):,}</td>' +
-        f'<td>{safe_int(r.get("Perplexity Sessions",0)):,}</td>' +
-        f'<td>{safe_int(r.get("Gemini Sessions",0)):,}</td></tr>'
+        f'<td>{safe_int(r.get("Form Submissions",0)):,}</td></tr>'
         for r in _hist_rows
     ])
 
@@ -687,14 +832,16 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
     </div>
   </div>
 
-  <div class="ai-grid">
+  <div class="ai-grid" style="grid-template-columns:repeat(5,1fr);">
     {"".join([f'''<div class="ai-card">
-      <div class="ai-icon">{"🤖" if i==0 else "🟣" if i==1 else "🔮" if i==2 else "💎"}</div>
+      <div class="ai-icon"><img src="{["../icons/chatgpt.png","https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png","../icons/claude.png","https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/perplexity.png","https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/microsoft-copilot.png"][i]}" alt="{ai_labels[i]}" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">{ai_labels[i]}</div>
       <div class="ai-val">{ai_vals[i]:,}</div>
       <div class="ai-delta {'pos' if ai_vals[i]>=ai_prev_vals[i] else 'neg'} delta">{"▲" if ai_vals[i]>=ai_prev_vals[i] else "▼"} {abs(ai_vals[i]-ai_prev_vals[i])}</div>
-    </div>''' for i in range(4)])}
+    </div>''' for i in range(5)])}
   </div>
+
+  {_render_backlinks_table(backlinks_data)}
 </div>
 
 <div id="tab-rankings" class="section">
@@ -794,9 +941,9 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
     <table class="history-table">
       <thead>
         <tr>
-          <th>Month</th><th>Sessions</th><th>Users</th><th>Organic</th>
-          <th>Pageviews</th><th>Bounce %</th><th>Forms</th><th>Direct</th>
-          <th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th>
+          <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>Forms</th>
         </tr>
       </thead>
       <tbody>{_hist_rows_html}</tbody>
@@ -963,6 +1110,16 @@ def main():
     ga4_rows, rank_rows, gmb_rows, tasks_rows, lb_rows = get_sheet_data(gc)
     print(f"GA4 rows: {len(ga4_rows)} | Rank rows: {len(rank_rows)}")
 
+    # Load backlinks data if available
+    backlinks_file = os.path.join(BASE, "backlinks_data.json")
+    all_backlinks = {}
+    if os.path.exists(backlinks_file):
+        with open(backlinks_file) as f:
+            all_backlinks = json.load(f)
+        print(f"Backlinks data loaded for {len(all_backlinks)} clients.")
+    else:
+        print("No backlinks_data.json found — run pull_backlinks.py first.")
+
     os.makedirs(DASH_DIR, exist_ok=True)
     generated = 0
 
@@ -973,10 +1130,11 @@ def main():
         if not client_ga4:
             print(f"  {client_name:25} — no GA4 data, generating keywords-only dashboard")
 
-        client_gmb   = [r for r in gmb_rows   if r.get("Client Name") == client_name]
-        client_tasks = [r for r in tasks_rows if r.get("Client Name") == client_name]
-        client_lb    = [r for r in lb_rows    if r.get("Client Name") == client_name]
-        html = build_html(client_name, client_ga4, client_ranks, client_gmb, client_tasks, client_lb)
+        client_gmb       = [r for r in gmb_rows   if r.get("Client Name") == client_name]
+        client_tasks     = [r for r in tasks_rows if r.get("Client Name") == client_name]
+        client_lb        = [r for r in lb_rows    if r.get("Client Name") == client_name]
+        client_backlinks = all_backlinks.get(client_name, {})
+        html = build_html(client_name, client_ga4, client_ranks, client_gmb, client_tasks, client_lb, client_backlinks)
         client_dir = os.path.join(DASH_DIR, slug)
         os.makedirs(client_dir, exist_ok=True)
         out = os.path.join(client_dir, "index.html")
@@ -1013,7 +1171,7 @@ def main():
         cga4_sorted = sorted(cga4, key=lambda x: _parse_m(x.get("Month","")), reverse=True)
         latest_ga4 = cga4_sorted[0] if cga4_sorted else {}
         org = int(latest_ga4.get("Organic Sessions", 0) or 0)
-        ai  = int(latest_ga4.get("ChatGPT Sessions", 0) or 0) +               int(latest_ga4.get("Claude Sessions", 0) or 0) +               int(latest_ga4.get("Perplexity Sessions", 0) or 0) +               int(latest_ga4.get("Gemini Sessions", 0) or 0)
+        ai  = int(latest_ga4.get("ChatGPT Sessions", 0) or 0) + int(latest_ga4.get("Claude Sessions", 0) or 0) + int(latest_ga4.get("Perplexity Sessions", 0) or 0) + int(latest_ga4.get("Gemini Sessions", 0) or 0) + int(latest_ga4.get("Copilot Sessions", 0) or 0)
         sessions = org + ai
         latest_month = latest_ga4.get("Month", "—")
         total_sessions += sessions
@@ -1144,81 +1302,8 @@ function filterCards(q){{
 </script>
 
 
-<!-- GMB TAB -->
-<div id="tab-gmb" class="section">
-  {(f'''<div style=\"margin-bottom:16px;\"><span style=\"font-size:15px;font-weight:700;color:var(--text);\">&#128205; Google My Business &mdash; {gmb_month}</span></div><div class=\"gmb-grid\"><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128065;&#65039;</div><div class=\"gmb-val\">{gmb_views:,}</div><div class=\"gmb-label\">Total Views</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128433;&#65039;</div><div class=\"gmb-val\">{gmb_clicks:,}</div><div class=\"gmb-label\">Website Clicks</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128222;</div><div class=\"gmb-val\">{gmb_calls:,}</div><div class=\"gmb-label\">Phone Calls</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128506;&#65039;</div><div class=\"gmb-val\">{gmb_directions:,}</div><div class=\"gmb-label\">Direction Requests</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128221;</div><div class=\"gmb-val\">{gmb_posts}</div><div class=\"gmb-label\">GMB Posts</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#11088;</div><div class=\"gmb-val\">{gmb_rating}</div><div class=\"gmb-label\">Avg Rating</div></div><div class=\"gmb-card\"><div class=\"gmb-icon\">&#128172;</div><div class=\"gmb-val\">{gmb_reviews}</div><div class=\"gmb-label\">New Reviews</div></div></div><div class=\"chart-card\" style=\"margin-top:16px;\"><div class=\"chart-title\">GMB Performance &mdash; Last 6 Months</div><div class=\"chart-wrap\"><canvas id=\"gmbChart\"></canvas></div></div>''' if gmb_has_data else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128205;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">GMB Data Coming Soon</p><p style="font-size:13px;color:#6B7280">API access requested.</p></div>')}
-</div>
 
 
-<!-- SEO TASKS TAB -->
-<div id="tab-tasks" class="section">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-    <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; {last_month_str}</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <div style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#10003; {_tasks_done} Completed</div>
-      <div style="background:#FEF3C7;color:#92400E;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#8635; {_tasks_prog} In Progress</div>
-      <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; {_tasks_pending} Pending</div>
-    </div>
-  </div>
-  {('<div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; ' + last_month_str + '</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody>' + _task_rows_html + '</tbody></table></div>')
-  if _tasks else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>'}
-</div>
-
-
-<!-- LINK BUILDING TAB -->
-<div id="tab-linkbuilding" class="section">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-    <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; {last_month_str}</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: {len(_reddit)}</div>
-      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: {len(_quora)}</div>
-      <div style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: {len(_blogs)}</div>
-      <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: {len(_dirs)}</div>
-    </div>
-  </div>
-  <div class="rank-table-wrap">
-    <div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
-      <span>All Link Building Activity &mdash; {last_month_str}</span>
-      <div style="display:flex;gap:6px;align-items:center;">
-        <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
-          <option value="all">All Types</option>
-          <option value="Reddit">Reddit</option>
-          <option value="Quora">Quora</option>
-          <option value="Blog Comment">Blog Comments</option>
-          <option value="Directory">Directories</option>
-        </select>
-        <select id="lbStatus" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
-          <option value="all">All Status</option>
-          <option value="Live">Live</option>
-          <option value="Approved">Approved</option>
-          <option value="Pending">Pending</option>
-          <option value="Not Approved">Not Approved</option>
-        </select>
-      </div>
-    </div>
-    <table class="rank-table" style="min-width:900px;">
-      <thead><tr style="background:#F8FAFC;">
-        <th style="text-align:center;width:40px">Sr.</th>
-        <th style="width:110px">Type</th>
-        <th>URL</th>
-        <th style="width:130px">Anchor Text</th>
-        <th style="width:160px">Linking To</th>
-        <th style="text-align:center;width:70px">Live Link</th>
-        <th style="text-align:center;width:120px">Status</th>
-        <th style="width:130px">Comment</th>
-      </tr></thead>
-      <tbody id="lbBody">{_lb_combined_html}</tbody>
-    </table>
-  </div>
-</div>
-
-{"" if not gmb_has_data else f'''<script>new Chart(document.getElementById(\'gmbChart\'), {{  type: \'bar\', data: {{ labels: ''' + json.dumps(gmb_months_chart) + ''', datasets: [{{ label: \'Views\', data: ''' + json.dumps(gmb_views_chart) + ''', backgroundColor: \'rgba(5,150,105,0.7)\', borderColor: \'#059669\', borderWidth:1, borderRadius:4 }},{{ label: \'Clicks\', data: ''' + json.dumps(gmb_clicks_chart) + ''', backgroundColor: \'rgba(37,99,235,0.7)\', borderColor: \'#2563EB\', borderWidth:1, borderRadius:4 }},{{ label: \'Calls\', data: ''' + json.dumps(gmb_calls_chart) + ''', backgroundColor: \'rgba(217,119,6,0.7)\', borderColor: \'#D97706\', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>''' if gmb_has_data else ""}
 
 </body>
 </html>"""

@@ -1,6 +1,8 @@
 # Secrets & auth tokens
 client_secret.json
 *.pickle
+.env
+backlinks_data.json
 
 # Mac
 .DS_Store

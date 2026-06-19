@@ -127,11 +127,6 @@
   .gmb-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 3px solid #059669; }
   .gmb-icon { font-size: 20px; margin-bottom: 6px; }
   .gmb-val { font-size: 20px; font-weight: 700; color: #059669; }
-  
-  .gmb-delta { font-size: 10px; margin-top: 6px; font-weight: 600; border-radius: 4px; padding: 2px 6px; display: inline-block; }
-  .gmb-delta-up { color: #059669; background: rgba(5,150,105,0.1); }
-  .gmb-delta-down { color: #dc2626; background: rgba(220,38,38,0.1); }
-  .gmb-delta-neutral { color: #6b7280; background: rgba(107,114,128,0.1); }
   .gmb-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
   @media(max-width:1100px) { .gmb-grid { grid-template-columns: repeat(4,1fr); } }
   .no-data .icon { font-size: 48px; margin-bottom: 12px; }
@@ -153,14 +148,14 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 13 Jun 2026</div>
+    <div class="updated">Updated: 19 Jun 2026</div>
   </div>
 </div>
 
 <div class="nav">
   <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)">GA4 Data</div>
+  <div class="nav-tab" onclick="showTab('history', this)">History</div>
   <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
@@ -238,27 +233,110 @@
     </div>
   </div>
 
-  <div class="ai-grid">
+  <div class="ai-grid" style="grid-template-columns:repeat(5,1fr);">
     <div class="ai-card">
-      <div class="ai-icon">🤖</div>
+      <div class="ai-icon"><img src="../icons/chatgpt.png" alt="ChatGPT" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">ChatGPT</div>
       <div class="ai-val">0</div>
       <div class="ai-delta neg delta">▼ 8</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🟣</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-gemini.png" alt="Gemini" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Gemini</div>
+      <div class="ai-val">1</div>
+      <div class="ai-delta pos delta">▲ 1</div>
+    </div><div class="ai-card">
+      <div class="ai-icon"><img src="../icons/claude.png" alt="Claude" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Claude</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
     </div><div class="ai-card">
-      <div class="ai-icon">🔮</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/perplexity.png" alt="Perplexity" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
       <div class="ai-label">Perplexity</div>
       <div class="ai-val">0</div>
       <div class="ai-delta pos delta">▲ 0</div>
     </div><div class="ai-card">
-      <div class="ai-icon">💎</div>
-      <div class="ai-label">Gemini</div>
-      <div class="ai-val">1</div>
-      <div class="ai-delta pos delta">▲ 1</div>
+      <div class="ai-icon"><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/microsoft-copilot.png" alt="Copilot" style="width:28px;height:28px;border-radius:6px;object-fit:contain;"></div>
+      <div class="ai-label">Copilot</div>
+      <div class="ai-val">0</div>
+      <div class="ai-delta pos delta">▲ 0</div>
+    </div>
+  </div>
+
+  
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-top:24px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-size:13px;font-weight:700;">Total Backlinks Report</span>
+      <span style="color:rgba(255,255,255,0.7);font-size:11px;">Jun-2026 vs Previous</span>
+    </div>
+
+    <!-- Current vs Previous summary -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#F8FAFC;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Jun-2026</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Previous</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">External Backlinks</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">90</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#1E3A5F;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Unique Referring Domains</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">54</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#2563EB;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Rating (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">16</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#7C3AED;white-space:nowrap;border-bottom:1px solid #F1F5F9;">Moz</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">Domain Authority (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;"><span style="color:#CBD5E1;font-size:11px;">—</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">7</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6-month history -->
+    <div style="border-top:2px solid #E2E8F0;overflow-x:auto;">
+      <div style="padding:10px 16px 6px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;background:#F8FAFC;">
+        6-Month History
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);">
+            <th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Metric</th>
+            <th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.15);">Jun-2026</th>
+          </tr>
+        </thead>
+        <tbody style="background:#fff;">
+          <tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Backlinks</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">90</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Ahrefs Referring Domains</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">54</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Rating (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">16</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">Domain Authority (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#EFF6FF;font-weight:700;color:#0F172A;border-left:1px solid #F1F5F9;">7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:8px 16px;background:#F8FAFC;border-top:1px solid #E2E8F0;font-size:10px;color:#94A3B8;">
+      DR by <a href="https://ahrefs.com/" target="_blank" style="color:#94A3B8;">Ahrefs</a> &nbsp;|&nbsp; DA by Moz &nbsp;|&nbsp; Backlinks data via DataForSEO
     </div>
   </div>
 </div>
@@ -1282,24 +1360,23 @@
     <table class="history-table">
       <thead>
         <tr>
-          <th>Month</th><th>Sessions</th><th>Users</th><th>Organic</th>
-          <th>Pageviews</th><th>Bounce %</th><th>Forms</th><th>Direct</th>
-          <th>ChatGPT</th><th>Claude</th><th>Perplexity</th><th>Gemini</th>
+          <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>May-2026</td><td>2,252</td><td>1,797</td><td>165</td><td>3,466</td><td>56.2%</td><td>98</td><td>415</td><td>0</td><td>0</td><td>0</td><td>1</td></tr><tr><td>Apr-2026</td><td>2,252</td><td>1,797</td><td>152</td><td>3,466</td><td>56.2%</td><td>306</td><td>420</td><td>8</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Mar-2026</td><td>1,677</td><td>1,344</td><td>103</td><td>2,448</td><td>61.3%</td><td>122</td><td>488</td><td>2</td><td>0</td><td>0</td><td>1</td></tr><tr><td>Feb-2026</td><td>1,677</td><td>1,344</td><td>130</td><td>2,448</td><td>61.3%</td><td>126</td><td>535</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Jan-2026</td><td>1,702</td><td>1,437</td><td>155</td><td>2,348</td><td>63.5%</td><td>112</td><td>466</td><td>2</td><td>0</td><td>3</td><td>0</td></tr><tr><td>Dec-2025</td><td>2,550</td><td>2,154</td><td>145</td><td>3,547</td><td>62.8%</td><td>124</td><td>709</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>Nov-2025</td><td>2,550</td><td>2,154</td><td>107</td><td>3,547</td><td>62.8%</td><td>234</td><td>520</td><td>10</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Oct-2025</td><td>668</td><td>515</td><td>123</td><td>986</td><td>56.7%</td><td>54</td><td>196</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Sep-2025</td><td>1,205</td><td>1,097</td><td>79</td><td>3,932</td><td>49.1%</td><td>40</td><td>171</td><td>1</td><td>0</td><td>2</td><td>0</td></tr><tr><td>Aug-2025</td><td>2,135</td><td>1,710</td><td>156</td><td>2,903</td><td>49.5%</td><td>106</td><td>217</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>Jul-2025</td><td>2,135</td><td>1,710</td><td>164</td><td>2,903</td><td>49.5%</td><td>134</td><td>424</td><td>3</td><td>0</td><td>1</td><td>0</td></tr><tr><td>Jun-2025</td><td>1,607</td><td>1,344</td><td>119</td><td>2,034</td><td>50.0%</td><td>46</td><td>471</td><td>1</td><td>0</td><td>1</td><td>0</td></tr><tr><td>May-2025</td><td>1,361</td><td>1,094</td><td>129</td><td>1,992</td><td>58.6%</td><td>88</td><td>186</td><td>7</td><td>0</td><td>0</td><td>0</td></tr></tbody>
+      <tbody><tr><td>May-2026</td><td>2,252</td><td>165</td><td>415</td><td>1</td><td>1,797</td><td>3,466</td><td>56.2%</td><td>98</td></tr><tr><td>Apr-2026</td><td>2,252</td><td>152</td><td>420</td><td>8</td><td>1,797</td><td>3,466</td><td>56.2%</td><td>306</td></tr><tr><td>Mar-2026</td><td>1,677</td><td>103</td><td>488</td><td>3</td><td>1,344</td><td>2,448</td><td>61.3%</td><td>122</td></tr><tr><td>Feb-2026</td><td>1,677</td><td>130</td><td>535</td><td>1</td><td>1,344</td><td>2,448</td><td>61.3%</td><td>126</td></tr><tr><td>Jan-2026</td><td>1,702</td><td>155</td><td>466</td><td>5</td><td>1,437</td><td>2,348</td><td>63.5%</td><td>112</td></tr><tr><td>Dec-2025</td><td>2,550</td><td>145</td><td>709</td><td>2</td><td>2,154</td><td>3,547</td><td>62.8%</td><td>124</td></tr><tr><td>Nov-2025</td><td>2,550</td><td>107</td><td>520</td><td>10</td><td>2,154</td><td>3,547</td><td>62.8%</td><td>234</td></tr><tr><td>Oct-2025</td><td>668</td><td>123</td><td>196</td><td>0</td><td>515</td><td>986</td><td>56.7%</td><td>54</td></tr><tr><td>Sep-2025</td><td>1,205</td><td>79</td><td>171</td><td>3</td><td>1,097</td><td>3,932</td><td>49.1%</td><td>40</td></tr><tr><td>Aug-2025</td><td>2,135</td><td>156</td><td>217</td><td>1</td><td>1,710</td><td>2,903</td><td>49.5%</td><td>106</td></tr><tr><td>Jul-2025</td><td>2,135</td><td>164</td><td>424</td><td>4</td><td>1,710</td><td>2,903</td><td>49.5%</td><td>134</td></tr><tr><td>Jun-2025</td><td>1,607</td><td>119</td><td>471</td><td>2</td><td>1,344</td><td>2,034</td><td>50.0%</td><td>46</td></tr><tr><td>May-2025</td><td>1,361</td><td>129</td><td>186</td><td>7</td><td>1,094</td><td>1,992</td><td>58.6%</td><td>88</td></tr></tbody>
     </table>
   </div>
   
 </div>
 
 <script>
-function showTab(name, el) {
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  if(el) el.classList.add('active');
-  if(name==='gmb'&&!window._gmbInit&&typeof initGmbChart==='function'){initGmbChart();window._gmbInit=true;}
+  event.target.classList.add('active');
 }
 const months   = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
 const sessData = [1607, 2135, 2135, 1205, 668, 2550, 2550, 1702, 1677, 1677, 2252, 2252];
@@ -1308,8 +1385,8 @@ const formData = [46, 134, 106, 40, 54, 234, 124, 112, 126, 122, 306, 98];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [165, 415, 35, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [1, 3, 1, 1, 0, 10, 1, 2, 1, 2, 8, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [1, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1]};
-const aiLabels  = ["ChatGPT", "Claude", "Perplexity", "Gemini"];
+const aiMonthly = {"ChatGPT": [1, 3, 1, 1, 0, 10, 1, 2, 1, 2, 8, 0], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [1, 1, 0, 2, 0, 0, 1, 3, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
   responsive: true, maintainAspectRatio: false,
@@ -1357,9 +1434,941 @@ new Chart(document.getElementById('chChart'), {
 
 
 <!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">52</td><td style="text-align:center;color:#94a3b8">55</td><td style="text-align:center"><span style="color:#f87171">-3</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">16</td><td style="text-align:center;color:#94a3b8">6</td><td style="text-align:center"><span style="color:#4ade80">+10</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">22</td><td style="text-align:center;color:#94a3b8">26</td><td style="text-align:center"><span style="color:#f87171">-4</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">3</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#4ade80">+2</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">10</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center"><span style="color:#f87171">-5</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">103</td><td style="text-align:center;color:#94a3b8">103</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
+          <td class="kw-cell" title="fixed asset tracking software bangalore">fixed asset tracking software bangalore</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-bangalore/" target="_blank">https://assetthread.com/fixed-asset-management-software-bangalore/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
+          <td class="kw-cell" title="fixed asset management systems bangalore">fixed asset management systems bangalore</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-bangalore/" target="_blank">https://assetthread.com/fixed-asset-management-software-bangalore/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
+          <td class="kw-cell" title="fixed asset tracking software hyderabad">fixed asset tracking software hyderabad</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-hyderabad/" target="_blank">https://assetthread.com/fixed-asset-management-software-hyderabad/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="fixed asset management systems hyderabad">fixed asset management systems hyderabad</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/" target="_blank">https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
+          <td class="kw-cell" title="fixed asset management software provider mumbai">fixed asset management software provider mumbai</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="fixed asset tracking software delhi">fixed asset tracking software delhi</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-delhi/" target="_blank">https://assetthread.com/fixed-asset-management-software-delhi/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="fixed asset management systems delhi ncr">fixed asset management systems delhi ncr</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-delhi/" target="_blank">https://assetthread.com/fixed-asset-management-software-delhi/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+          <td class="kw-cell" title="bank assets tracking system dubai">bank assets tracking system dubai</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
+          <td class="kw-cell" title="fixed asset management software for agriculture">fixed asset management software for agriculture</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-agriculture/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-agriculture/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
+          <td class="kw-cell" title="education asset management software">education asset management software</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">21</td>
+          <td class="move-cell up">▲ +20</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-education/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-education/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
+          <td class="kw-cell" title="fixed asset management software for telecom industry">fixed asset management software for telecom industry</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-telecom-industry-dubai/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-telecom-industry-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
+          <td class="kw-cell" title="depreciation software">depreciation software</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">390</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank">https://assetthread.com/asset-depreciation-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
+          <td class="kw-cell" title="fixed asset management software hyderabad">fixed asset management software hyderabad</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/" target="_blank">https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
+          <td class="kw-cell" title="fixed asset tracking software mumbai">fixed asset tracking software mumbai</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
+          <td class="kw-cell" title="fixed asset management software delhi">fixed asset management software delhi</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-delhi/" target="_blank">https://assetthread.com/fixed-asset-management-software-delhi/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
+          <td class="kw-cell" title="fixed asset management software providers delhi">fixed asset management software providers delhi</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-delhi/" target="_blank">https://assetthread.com/fixed-asset-management-software-delhi/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="best asset depreciation software uae">best asset depreciation software uae</td>
+          <td class="rank-cell rank-flat" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
+          <td class="kw-cell" title="asset depreciation solutions uae">asset depreciation solutions uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-depreciation-software-in-dubai/" target="_blank">https://assetthread.com/asset-depreciation-software-in-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+          <td class="kw-cell" title="asset management software for banks uae">asset management software for banks uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
+          <td class="kw-cell" title="banking asset management system dubai">banking asset management system dubai</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
+          <td class="kw-cell" title="banking asset management software uae">banking asset management software uae</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
+          <td class="kw-cell" title="bank asset tracking software dubai">bank asset tracking software dubai</td>
+          <td class="rank-cell rank-down" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
+          <td class="kw-cell" title="asset management software for small business uae">asset management software for small business uae</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+          <td class="kw-cell" title="asset management solution for small businesses uae">asset management solution for small businesses uae</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
+          <td class="kw-cell" title="small business asset tracking software uae">small business asset tracking software uae</td>
+          <td class="rank-cell rank-flat" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-in-uae/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
+          <td class="kw-cell" title="asset software for small business uae">asset software for small business uae</td>
+          <td class="rank-cell rank-flat" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-in-uae/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
+          <td class="kw-cell" title="depreciation calculation software">depreciation calculation software</td>
+          <td class="rank-cell rank-up" style="text-align:center">2</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank">https://assetthread.com/asset-depreciation-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
+          <td class="kw-cell" title="best fixed asset management software bangalore">best fixed asset management software bangalore</td>
+          <td class="rank-cell rank-down" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-bangalore/" target="_blank">https://assetthread.com/fixed-asset-management-software-bangalore/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
+          <td class="kw-cell" title="best fixed asset management software hyderabad">best fixed asset management software hyderabad</td>
+          <td class="rank-cell rank-down" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/" target="_blank">https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
+          <td class="kw-cell" title="fixed asset management software for banks dubai">fixed asset management software for banks dubai</td>
+          <td class="rank-cell rank-down" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
+          <td class="kw-cell" title="best asset software for small business uae">best asset software for small business uae</td>
+          <td class="rank-cell rank-flat" style="text-align:center">3</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-small-business-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-small-business-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
+          <td class="kw-cell" title="fixed asset management software bangalore">fixed asset management software bangalore</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-bangalore/" target="_blank">https://assetthread.com/fixed-asset-management-software-bangalore/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
+          <td class="kw-cell" title="fixed asset management system mumbai">fixed asset management system mumbai</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
+          <td class="kw-cell" title="fixed asset management mumbai">fixed asset management mumbai</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell up">▲ +2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
+          <td class="kw-cell" title="best fixed asset management software delhi">best fixed asset management software delhi</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-delhi/" target="_blank">https://assetthread.com/fixed-asset-management-software-delhi/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
+          <td class="kw-cell" title="asset depreciation software uae">asset depreciation software uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
+          <td class="kw-cell" title="asset depreciation management software uae">asset depreciation management software uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
+          <td class="kw-cell" title="best asset tracking software uae">best asset tracking software uae</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell up">▲ +3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
+          <td class="kw-cell" title="fixed asset management software for education">fixed asset management software for education</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell up">▲ +21</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-education/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-education/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
+          <td class="kw-cell" title="asset management software for education">asset management software for education</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell up">▲ +21</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-education/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-education/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
+          <td class="kw-cell" title="fixed asset management bengaluru">fixed asset management bengaluru</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-bangalore/" target="_blank">https://assetthread.com/fixed-asset-management-software-bangalore/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
+          <td class="kw-cell" title="fixed asset software for depreciation calculation">fixed asset software for depreciation calculation</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell up">▲ +4</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank">https://assetthread.com/asset-depreciation-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
+          <td class="kw-cell" title="asset depreciation software">asset depreciation software</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank">https://assetthread.com/asset-depreciation-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
+          <td class="kw-cell" title="it asset management system uae">it asset management system uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">▼ -3</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/it-asset-management-software-in-uae/" target="_blank">https://assetthread.com/it-asset-management-software-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
+          <td class="kw-cell" title="best it asset management software uae">best it asset management software uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
+          <td class="kw-cell" title="fixed asset management software for banks uae">fixed asset management software for banks uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/" target="_blank">https://assetthread.com/blog/what-key-features-define-the-best-fixed-asset-management-software-in-the-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
+          <td class="kw-cell" title="fixed asset management software for government institutions">fixed asset management software for government institutions</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-government-institutions/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-government-institutions/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
+          <td class="kw-cell" title="fixed asset management software mumbai">fixed asset management software mumbai</td>
+          <td class="rank-cell rank-down" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -5</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
+          <td class="kw-cell" title="best fixed asset management software mumbai">best fixed asset management software mumbai</td>
+          <td class="rank-cell rank-down" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-mumbai/" target="_blank">https://assetthread.com/fixed-asset-management-software-mumbai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
+          <td class="kw-cell" title="asset tracking software uae">asset tracking software uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">8</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">▼ -2</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-tracking-software-uae/" target="_blank">https://assetthread.com/asset-tracking-software-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
+          <td class="kw-cell" title="it asset management software uae">it asset management software uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">9</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/it-asset-management-software-in-uae/" target="_blank">https://assetthread.com/it-asset-management-software-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
+          <td class="kw-cell" title="fixed asset depreciation system uae">fixed asset depreciation system uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">▼ -8</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/how-asset-depreciation-software-simplifies-accounting-for-companies-in-dubai/" target="_blank">https://assetthread.com/blog/how-asset-depreciation-software-simplifies-accounting-for-companies-in-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
+          <td class="kw-cell" title="fixed asset management software for manufacturing units">fixed asset management software for manufacturing units</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">41</td>
+          <td class="move-cell up">▲ +29</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-manufacturing-units/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-manufacturing-units/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">54</td>
+          <td class="kw-cell" title="asset tracking tools uae">asset tracking tools uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-tracking-software-uae/" target="_blank">https://assetthread.com/asset-tracking-software-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">55</td>
+          <td class="kw-cell" title="fixed asset management software for warehouses">fixed asset management software for warehouses</td>
+          <td class="rank-cell rank-down" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell down">▼ -12</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-warehouses/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-warehouses/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">56</td>
+          <td class="kw-cell" title="education asset tracking software">education asset tracking software</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">23</td>
+          <td class="move-cell up">▲ +9</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-education/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-education/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">57</td>
+          <td class="kw-cell" title="asset management in construction">asset management in construction</td>
+          <td class="rank-cell rank-new" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/why-is-asset-management-crucial-for-construction-projects/" target="_blank">https://assetthread.com/blog/why-is-asset-management-crucial-for-construction-projects/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">58</td>
+          <td class="kw-cell" title="asset management software for schools">asset management software for schools</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">31</td>
+          <td class="move-cell up">▲ +17</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/why-should-schools-invest-in-education-asset-management-software/" target="_blank">https://assetthread.com/blog/why-should-schools-invest-in-education-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">59</td>
+          <td class="kw-cell" title="asset management system for schools">asset management system for schools</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">35</td>
+          <td class="move-cell up">▲ +21</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/why-should-schools-invest-in-education-asset-management-software/" target="_blank">https://assetthread.com/blog/why-should-schools-invest-in-education-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">60</td>
+          <td class="kw-cell" title="asset tracking solutions uae">asset tracking solutions uae</td>
+          <td class="rank-cell rank-new" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-tracking-software-uae/" target="_blank">https://assetthread.com/asset-tracking-software-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">61</td>
+          <td class="kw-cell" title="construction asset management">construction asset management</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">50</td>
+          <td class="move-cell up">▲ +35</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/why-is-asset-management-crucial-for-construction-projects/" target="_blank">https://assetthread.com/blog/why-is-asset-management-crucial-for-construction-projects/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">62</td>
+          <td class="kw-cell" title="fixed asset management software features">fixed asset management software features</td>
+          <td class="rank-cell rank-down" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -4</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/essential-features-to-look-for-in-fixed-asset-management-software/" target="_blank">https://assetthread.com/blog/essential-features-to-look-for-in-fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">63</td>
+          <td class="kw-cell" title="it asset management tools uae">it asset management tools uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell down">▼ -12</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/it-asset-management-software-in-uae/" target="_blank">https://assetthread.com/it-asset-management-software-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">64</td>
+          <td class="kw-cell" title="asset tracking system uae">asset tracking system uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell down">▼ -8</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-tracking-software-uae/" target="_blank">https://assetthread.com/asset-tracking-software-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">65</td>
+          <td class="kw-cell" title="cloud-based asset management for banks uae">cloud-based asset management for banks uae</td>
+          <td class="rank-cell rank-up" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">▲ +11</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/asset-management-software-for-banks-dubai/" target="_blank">https://assetthread.com/asset-management-software-for-banks-dubai/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">66</td>
+          <td class="kw-cell" title="asset management software features">asset management software features</td>
+          <td class="rank-cell rank-down" style="text-align:center">18</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -7</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/key-features-to-consider-while-choosing-asset-management-software/" target="_blank">https://assetthread.com/blog/key-features-to-consider-while-choosing-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">67</td>
+          <td class="kw-cell" title="best fixed asset tracking software">best fixed asset tracking software</td>
+          <td class="rank-cell rank-up" style="text-align:center">19</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">▲ +1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">68</td>
+          <td class="kw-cell" title="asset management system features">asset management system features</td>
+          <td class="rank-cell rank-down" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="move-cell down">▼ -6</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/key-features-to-consider-while-choosing-asset-management-software/" target="_blank">https://assetthread.com/blog/key-features-to-consider-while-choosing-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">69</td>
+          <td class="kw-cell" title="it asset management solutions uae">it asset management solutions uae</td>
+          <td class="rank-cell rank-down" style="text-align:center">21</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">▼ -18</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/it-asset-management-software-in-uae/" target="_blank">https://assetthread.com/it-asset-management-software-in-uae/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">70</td>
+          <td class="kw-cell" title="best fixed asset management software">best fixed asset management software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">28</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">71</td>
+          <td class="kw-cell" title="banking asset management system">banking asset management system</td>
+          <td class="rank-cell rank-flat" style="text-align:center">30</td>
+          <td class="rank-cell" style="text-align:center">30</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-banks/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-banks/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">72</td>
+          <td class="kw-cell" title="bank assets tracking system">bank assets tracking system</td>
+          <td class="rank-cell rank-down" style="text-align:center">30</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell down">▼ -10</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-banks/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-banks/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">73</td>
+          <td class="kw-cell" title="fixed asset register software">fixed asset register software</td>
+          <td class="rank-cell rank-up" style="text-align:center">31</td>
+          <td class="rank-cell" style="text-align:center">36</td>
+          <td class="move-cell up">▲ +5</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">74</td>
+          <td class="kw-cell" title="hospital asset management">hospital asset management</td>
+          <td class="rank-cell rank-down" style="text-align:center">33</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell down">▼ -22</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="https://assetthread.com/blog/why-effective-hospital-asset-management-is-crucial-for-healthcare-efficiency/" target="_blank">https://assetthread.com/blog/why-effective-hospital-asset-management-is-crucial-for-healthcare-efficiency/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">75</td>
+          <td class="kw-cell" title="best fixed asset software">best fixed asset software</td>
+          <td class="rank-cell rank-down" style="text-align:center">33</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell down">▼ -1</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">76</td>
+          <td class="kw-cell" title="fixed asset register system">fixed asset register system</td>
+          <td class="rank-cell rank-up" style="text-align:center">34</td>
+          <td class="rank-cell" style="text-align:center">39</td>
+          <td class="move-cell up">▲ +5</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">77</td>
+          <td class="kw-cell" title="fixed asset management software">fixed asset management software</td>
+          <td class="rank-cell rank-up" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">40</td>
+          <td class="move-cell up">▲ +4</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">78</td>
+          <td class="kw-cell" title="fixed asset accounting software">fixed asset accounting software</td>
+          <td class="rank-cell rank-new" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">79</td>
+          <td class="kw-cell" title="fixed asset tracking system">fixed asset tracking system</td>
+          <td class="rank-cell rank-up" style="text-align:center">38</td>
+          <td class="rank-cell" style="text-align:center">49</td>
+          <td class="move-cell up">▲ +11</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">80</td>
+          <td class="kw-cell" title="education asset management">education asset management</td>
+          <td class="rank-cell rank-flat" style="text-align:center">38</td>
+          <td class="rank-cell" style="text-align:center">38</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-education/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-education/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">81</td>
+          <td class="kw-cell" title="fixed asset management tools">fixed asset management tools</td>
+          <td class="rank-cell rank-up" style="text-align:center">39</td>
+          <td class="rank-cell" style="text-align:center">43</td>
+          <td class="move-cell up">▲ +4</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">82</td>
+          <td class="kw-cell" title="fixed asset software programs">fixed asset software programs</td>
+          <td class="rank-cell rank-up" style="text-align:center">39</td>
+          <td class="rank-cell" style="text-align:center">48</td>
+          <td class="move-cell up">▲ +9</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">83</td>
+          <td class="kw-cell" title="fixed asset tracking software">fixed asset tracking software</td>
+          <td class="rank-cell rank-down" style="text-align:center">41</td>
+          <td class="rank-cell" style="text-align:center">24</td>
+          <td class="move-cell down">▼ -17</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">84</td>
+          <td class="kw-cell" title="fixed asset management solution">fixed asset management solution</td>
+          <td class="rank-cell rank-new" style="text-align:center">42</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">85</td>
+          <td class="kw-cell" title="fixed asset tracking">fixed asset tracking</td>
+          <td class="rank-cell rank-new" style="text-align:center">42</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">86</td>
+          <td class="kw-cell" title="asset management software for hospitals">asset management software for hospitals</td>
+          <td class="rank-cell rank-down" style="text-align:center">43</td>
+          <td class="rank-cell" style="text-align:center">28</td>
+          <td class="move-cell down">▼ -15</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-hospital/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-hospital/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">87</td>
+          <td class="kw-cell" title="fixed asset software">fixed asset software</td>
+          <td class="rank-cell rank-down" style="text-align:center">44</td>
+          <td class="rank-cell" style="text-align:center">36</td>
+          <td class="move-cell down">▼ -8</td>
+          <td class="vol-cell">70</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">88</td>
+          <td class="kw-cell" title="fixed asset management software for construction">fixed asset management software for construction</td>
+          <td class="rank-cell rank-down" style="text-align:center">47</td>
+          <td class="rank-cell" style="text-align:center">33</td>
+          <td class="move-cell down">▼ -14</td>
+          <td class="vol-cell">0</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-construction/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-construction/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">89</td>
+          <td class="kw-cell" title="construction asset management software">construction asset management software</td>
+          <td class="rank-cell rank-down" style="text-align:center">47</td>
+          <td class="rank-cell" style="text-align:center">33</td>
+          <td class="move-cell down">▼ -14</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software-for-construction/" target="_blank">https://assetthread.com/fixed-asset-management-software-for-construction/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">90</td>
+          <td class="kw-cell" title="fixed asset software for accountants">fixed asset software for accountants</td>
+          <td class="rank-cell rank-flat" style="text-align:center">48</td>
+          <td class="rank-cell" style="text-align:center">48</td>
+          <td class="move-cell flat">—</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">91</td>
+          <td class="kw-cell" title="asset management software india">asset management software india</td>
+          <td class="rank-cell rank-down" style="text-align:center">51</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell down">▼ -19</td>
+          <td class="vol-cell">90</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">92</td>
+          <td class="kw-cell" title="fixed asset management system">fixed asset management system</td>
+          <td class="rank-cell rank-up" style="text-align:center">54</td>
+          <td class="rank-cell" style="text-align:center">58</td>
+          <td class="move-cell up">▲ +4</td>
+          <td class="vol-cell">30</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">93</td>
+          <td class="kw-cell" title="asset management application">asset management application</td>
+          <td class="rank-cell rank-new" style="text-align:center">58</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell new">★ NEW</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank">https://assetthread.com/fixed-asset-management-software/</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">94</td>
+          <td class="kw-cell" title="fixed asset depreciation software">fixed asset depreciation software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">95</td>
+          <td class="kw-cell" title="asset management software">asset management software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">1300</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">96</td>
+          <td class="kw-cell" title="enterprise asset management software">enterprise asset management software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">480</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">97</td>
+          <td class="kw-cell" title="it asset management system">it asset management system</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">50</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">98</td>
+          <td class="kw-cell" title="it asset management solution">it asset management solution</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">99</td>
+          <td class="kw-cell" title="it asset management tools">it asset management tools</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">170</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">100</td>
+          <td class="kw-cell" title="best it asset management tools">best it asset management tools</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">40</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">101</td>
+          <td class="kw-cell" title="best it asset management software">best it asset management software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">210</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">102</td>
+          <td class="kw-cell" title="asset tracking software">asset tracking software</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">170</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">103</td>
+          <td class="kw-cell" title="asset tracking system">asset tracking system</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">260</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr></tbody></table></div>
+</div>
+
+
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
-  <div style="margin-bottom:16px;"><span style="font-size:15px;font-weight:700;color:var(--text);">&#128205; Google My Business &mdash; May-2026</span></div><div class="gmb-grid"><div class="gmb-card"><div class="gmb-icon">&#128065;&#65039;</div><div class="gmb-val">49</div><div class="gmb-label">Total Views</div><div class="gmb-delta gmb-delta-down">&#x2193; 24 (33%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128433;&#65039;</div><div class="gmb-val">0</div><div class="gmb-label">Website Clicks</div><div class="gmb-delta gmb-delta-neutral">— vs prev</div></div><div class="gmb-card"><div class="gmb-icon">&#128222;</div><div class="gmb-val">0</div><div class="gmb-label">Phone Calls</div><div class="gmb-delta gmb-delta-neutral">— vs prev</div></div><div class="gmb-card"><div class="gmb-icon">&#128506;&#65039;</div><div class="gmb-val">53</div><div class="gmb-label">Direction Requests</div><div class="gmb-delta gmb-delta-down">&#x2193; 17 (24%)</div></div><div class="gmb-card"><div class="gmb-icon">&#128221;</div><div class="gmb-val">4</div><div class="gmb-label">GMB Posts</div></div><div class="gmb-card"><div class="gmb-icon">&#11088;</div><div class="gmb-val">4.6</div><div class="gmb-label">Avg Rating</div></div><div class="gmb-card"><div class="gmb-icon">&#128172;</div><div class="gmb-val">3</div><div class="gmb-label">New Reviews</div></div></div><div class="chart-card" style="margin-top:16px;"><div class="chart-title">GMB Performance &mdash; Last 6 Months</div><div class="chart-wrap"><canvas id="gmbChart"></canvas></div></div>
+  <div style="margin-bottom:16px;"><span style="font-size:15px;font-weight:700;color:var(--text);">&#128205; Google My Business &mdash; May-2026</span></div><div class="gmb-grid"><div class="gmb-card"><div class="gmb-icon">&#128065;&#65039;</div><div class="gmb-val">1,240</div><div class="gmb-label">Total Views</div></div><div class="gmb-card"><div class="gmb-icon">&#128433;&#65039;</div><div class="gmb-val">45</div><div class="gmb-label">Website Clicks</div></div><div class="gmb-card"><div class="gmb-icon">&#128222;</div><div class="gmb-val">12</div><div class="gmb-label">Phone Calls</div></div><div class="gmb-card"><div class="gmb-icon">&#128506;&#65039;</div><div class="gmb-val">28</div><div class="gmb-label">Direction Requests</div></div><div class="gmb-card"><div class="gmb-icon">&#128221;</div><div class="gmb-val">4</div><div class="gmb-label">GMB Posts</div></div><div class="gmb-card"><div class="gmb-icon">&#11088;</div><div class="gmb-val">4.6</div><div class="gmb-label">Avg Rating</div></div><div class="gmb-card"><div class="gmb-icon">&#128172;</div><div class="gmb-val">3</div><div class="gmb-label">New Reviews</div></div></div><div class="chart-card" style="margin-top:16px;"><div class="chart-title">GMB Performance &mdash; Last 6 Months</div><div class="chart-wrap"><canvas id="gmbChart"></canvas></div></div>
 </div>
 
 
@@ -1367,7 +2376,7 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-tasks" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; May-2026</div>
       <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
     </div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -1376,7 +2385,7 @@ new Chart(document.getElementById('chChart'), {
       <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; 0 Pending</div>
     </div>
   </div>
-  <div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;"><span>Monthly SEO Activities</span><div style="display:flex;gap:6px;align-items:center;"><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash</span><select id="tasksMonth" onchange="filterTasks()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;"><option value="all">All Months</option><option value="May 2026">May 2026</option></select></div></div><table class="rank-table" style="min-width:700px;" id="tasksTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th style="text-align:center;width:90px">Month</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody id="tasksBody"><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Blog Topic Title Suggestion</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">In-Depth On-Page Optimization — Fixed Asset Tracking Page</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank" style="color:#2563EB;font-size:11px;">View</a></td><td style="font-size:11px;color:#64748B">Changes live</td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">In-Depth On-Page Optimization — Asset Depreciation Software</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank" style="color:#2563EB;font-size:11px;">View</a></td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Blog Post Optimization & GMB Promotion</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Business Directory Submission</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Reddit & Quora Commenting — 5 Reddit + 5 Quora</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Updated Keyword Ranking</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Preparing SEO Monthly Report</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr></tbody></table></div>
+  <div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; May-2026</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody><tr><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Blog Topic Title Suggestion</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">In-Depth On-Page Optimization — Fixed Asset Tracking Page</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center"><a href="https://assetthread.com/fixed-asset-management-software/" target="_blank" style="color:#2563EB;font-size:11px;">View</a></td><td style="font-size:11px;color:#64748B">Changes live</td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">In-Depth On-Page Optimization — Asset Depreciation Software</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center"><a href="https://assetthread.com/asset-depreciation-software/" target="_blank" style="color:#2563EB;font-size:11px;">View</a></td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Blog Post Optimization & GMB Promotion</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">5 Business Directory Submission</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Reddit & Quora Commenting — 5 Reddit + 5 Quora</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Updated Keyword Ranking</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Preparing SEO Monthly Report</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">—</td><td style="font-size:11px;color:#64748B"></td></tr></tbody></table></div>
 </div>
 
 
@@ -1384,24 +2393,24 @@ new Chart(document.getElementById('chChart'), {
 <div id="tab-linkbuilding" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; May-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 3</div>
-      
+      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 2</div>
       <div style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 3</div>
       <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 3</div>
     </div>
   </div>
   <div class="rank-table-wrap">
     <div class="rank-table-header" style="background:linear-gradient(135deg,#1E3A5F 0%,#2563EB 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
-      <span>All Link Building Activity</span>
+      <span>All Link Building Activity &mdash; May-2026</span>
       <div style="display:flex;gap:6px;align-items:center;">
-        <select id="lbMonth" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;"><option value="all">All Months</option><option value="May 2026">May 2026</option></select>
         <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
           <option value="all">All Types</option>
           <option value="Reddit">Reddit</option>
+          <option value="Quora">Quora</option>
           <option value="Blog Comment">Blog Comments</option>
           <option value="Directory">Directories</option>
         </select>
@@ -1417,7 +2426,6 @@ new Chart(document.getElementById('chChart'), {
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="text-align:center;width:90px">Month</th>
         <th style="width:110px">Type</th>
         <th>URL</th>
         <th style="width:130px">Anchor Text</th>
@@ -1426,12 +2434,12 @@ new Chart(document.getElementById('chChart'), {
         <th style="text-align:center;width:120px">Status</th>
         <th style="width:130px">Comment</th>
       </tr></thead>
-      <tbody id="lbBody"><tr data-type="Reddit" data-status="Live" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/AskIndia/comments/1qlh748/is_water_contamination_a_serious_concern/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/AskIndia/comments/1qlh748/is_water_contamination_a_serious_concern/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Reddit" data-status="Live" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/collapse/comments/1se8kqa/over_70_protected_ocean_areas/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/collapse/comments/1se8kqa/over_70_protected_ocean_areas/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Reddit" data-status="Live" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/Allahabad/comments/1is9c6k/are_sewage_treatment_plants_working/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/Allahabad/comments/1is9c6k/are_sewage_treatment_plants_working/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Blog Comment" data-status="Pending" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://navinsider.com/oily-water-separators-3/" target="_blank" style="color:#2563EB;font-weight:500">https://navinsider.com/oily-water-separators-3/</a></td><td style="font-size:12px;color:#0F172A">Asset Thread</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap">Awaiting moderation</td></tr><tr data-type="Blog Comment" data-status="Pending" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://vodaland-usa.com/blogs/case-studies/why-do-you-need-an-oil-water-separator" target="_blank" style="color:#2563EB;font-weight:500">https://vodaland-usa.com/blogs/case-studies/why-do-you-need-an-oil-water-separator</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com/fixed-asset-management-software/</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Blog Comment" data-status="Approved" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">9</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://chfour.net/blog/zero-liquid-discharge-in-india-industries/" target="_blank" style="color:#2563EB;font-weight:500">https://chfour.net/blog/zero-liquid-discharge-in-india-industries/</a></td><td style="font-size:12px;color:#0F172A">Asset Thread</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#DBEAFE;color:#1E40AF;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Approved</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Directory" data-status="Live" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://highrankdirectory.com" target="_blank" style="color:#2563EB;font-weight:500">https://highrankdirectory.com</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center"><a href="https://highrankdirectory.com/listing/assetthread" target="_blank" style="color:#2563EB;font-size:11px">View</a></td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Directory" data-status="Live" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.brownbook.net" target="_blank" style="color:#2563EB;font-weight:500">https://www.brownbook.net</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center"><a href="https://www.brownbook.net/business/54900784/" target="_blank" style="color:#2563EB;font-size:11px">View</a></td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr><tr data-type="Directory" data-status="Pending" data-month="May 2026"><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="text-align:center;font-size:11px;color:#64748B;white-space:nowrap">May 2026</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://localfrog.in" target="_blank" style="color:#2563EB;font-weight:500">https://localfrog.in</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8;white-space:nowrap"></td></tr></tbody>
+      <tbody id="lbBody"><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.reddit.com/r/AskIndia/comments/1qlh748/is_water_contamination_a_serious_concern/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/AskIndia/comments/1qlh748/is_water_contamination_a_serious_concern/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.reddit.com/r/collapse/comments/1se8kqa/over_70_protected_ocean_areas/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/collapse/comments/1se8kqa/over_70_protected_ocean_areas/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#FF4500;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.reddit.com/r/Allahabad/comments/1is9c6k/are_sewage_treatment_plants_working/" target="_blank" style="color:#2563EB;font-weight:500">https://www.reddit.com/r/Allahabad/comments/1is9c6k/are_sewage_treatment_plants_working/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Quora" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#A82400;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Quora</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.quora.com/What-is-a-drum-oil-skimmer-and-its-benefits/" target="_blank" style="color:#2563EB;font-weight:500">https://www.quora.com/What-is-a-drum-oil-skimmer-and-its-benefits/</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Quora" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#A82400;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Quora</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.quora.com/What-are-the-benefits-of-using-an-industrial-oil-skimmer" target="_blank" style="color:#2563EB;font-weight:500">https://www.quora.com/What-are-the-benefits-of-using-an-industrial-oil-skimmer</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://navinsider.com/oily-water-separators-3/" target="_blank" style="color:#2563EB;font-weight:500">https://navinsider.com/oily-water-separators-3/</a></td><td style="font-size:12px;color:#0F172A">Asset Thread</td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8">Awaiting moderation</td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://vodaland-usa.com/blogs/case-studies/why-do-you-need-an-oil-water-separator" target="_blank" style="color:#2563EB;font-weight:500">https://vodaland-usa.com/blogs/case-studies/why-do-you-need-an-oil-water-separator</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com/fixed-asset-management-software/</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Approved"><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#2563EB;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://chfour.net/blog/zero-liquid-discharge-in-india-industries/" target="_blank" style="color:#2563EB;font-weight:500">https://chfour.net/blog/zero-liquid-discharge-in-india-industries/</a></td><td style="font-size:12px;color:#0F172A">Asset Thread</td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#DBEAFE;color:#1E40AF;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Approved</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Directory" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">9</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://highrankdirectory.com" target="_blank" style="color:#2563EB;font-weight:500">https://highrankdirectory.com</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center"><a href="https://highrankdirectory.com/listing/assetthread" target="_blank" style="color:#2563EB;font-size:11px">View</a></td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Directory" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">10</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://www.brownbook.net" target="_blank" style="color:#2563EB;font-weight:500">https://www.brownbook.net</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center"><a href="https://www.brownbook.net/business/54900784/" target="_blank" style="color:#2563EB;font-size:11px">View</a></td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Directory" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">11</td><td style="padding:8px 10px;white-space:nowrap;vertical-align:middle"><span style="background:#059669;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Directory</span></td><td style="padding:10px 14px;word-break:break-all;font-size:12px"><a href="https://localfrog.in" target="_blank" style="color:#2563EB;font-weight:500">https://localfrog.in</a></td><td style="font-size:12px;color:#0F172A"></td><td style="font-size:12px;color:#64748B;word-break:break-all">https://assetthread.com</td><td style="text-align:center">—</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Pending</span></td><td style="font-size:11px;color:#94A3B8"></td></tr></tbody>
     </table>
   </div>
 </div>
 
-<script>function initGmbChart(){if(!document.getElementById('gmbChart'))return;new Chart(document.getElementById('gmbChart'),{type:'bar',data:{labels:["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"],datasets:[{label:'Views',type:'bar',data:[56, 49, 58, 54, 73, 49],backgroundColor:'rgba(5,150,105,0.15)',borderColor:'#059669',borderWidth:2,borderRadius:6,yAxisID:'y'},{label:'Directions',type:'line',data:[62, 55, 45, 29, 70, 53],borderColor:'#7c3aed',backgroundColor:'rgba(124,58,237,0.08)',borderWidth:2,pointBackgroundColor:'#7c3aed',pointRadius:4,pointHoverRadius:6,fill:true,tension:0.4,yAxisID:'y'},{label:'Website Clicks',type:'line',data:[0, 0, 0, 0, 0, 0],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.05)',borderWidth:2,pointBackgroundColor:'#2563eb',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'},{label:'Calls',type:'line',data:[0, 0, 0, 0, 0, 0],borderColor:'#d97706',backgroundColor:'rgba(217,119,6,0.05)',borderWidth:2,pointBackgroundColor:'#d97706',pointRadius:4,pointHoverRadius:6,fill:false,tension:0.4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{usePointStyle:true,padding:20,font:{size:12}}},tooltip:{backgroundColor:'rgba(15,23,42,0.9)',titleColor:'#f1f5f9',bodyColor:'#cbd5e1',padding:12,cornerRadius:8,callbacks:{label:function(c){return ' '+c.dataset.label+': '+c.parsed.y.toLocaleString()}}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{position:'left',grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:11},callback:function(v){return v.toLocaleString()}},title:{display:true,text:'Views / Directions',font:{size:11}}},y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:11}},title:{display:true,text:'Clicks / Calls',font:{size:11}}}}}});}</script>
+<script>new Chart(document.getElementById('gmbChart'), {  type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [{{ label: 'Views', data: [980, 1050, 1100, 1180, 1210, 1240], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }},{{ label: 'Clicks', data: [38, 41, 39, 43, 44, 45], backgroundColor: 'rgba(37,99,235,0.7)', borderColor: '#2563EB', borderWidth:1, borderRadius:4 }},{{ label: 'Calls', data: [9, 10, 11, 13, 11, 12], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#D97706', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>
 
 </body>
 </html>
@@ -1477,26 +2485,14 @@ function sortTaskTable(col) {
   rows.sort(function(a,b){var av=a.cells[col]?a.cells[col].innerText.trim():'';var bv=b.cells[col]?b.cells[col].innerText.trim():'';return asc?av.localeCompare(bv):bv.localeCompare(av);});
   rows.forEach(function(r,i){tbody.appendChild(r);if(r.cells[0])r.cells[0].innerText=i+1;});
 }
-function filterTasks() {
-  var m=document.getElementById('tasksMonth').value;
-  var sr=1;
-  document.getElementById('tasksBody').querySelectorAll('tr').forEach(function(r){
-    var rm=r.getAttribute('data-month')||'';
-    var show=(m==='all'||rm===m);
-    r.style.display=show?'':'none';
-    if(show&&r.cells[0])r.cells[0].innerText=sr++;
-  });
-}
 function filterLB() {
   var t=document.getElementById('lbType').value;
   var s=document.getElementById('lbStatus').value;
-  var m=document.getElementById('lbMonth').value;
   var sr=1;
   document.getElementById('lbBody').querySelectorAll('tr').forEach(function(r){
     var rt=r.getAttribute('data-type')||'';
     var rs=r.getAttribute('data-status')||'';
-    var rm=r.getAttribute('data-month')||'';
-    var show=(t==='all'||rt===t)&&(s==='all'||rs===s)&&(m==='all'||rm===m);
+    var show=(t==='all'||rt===t)&&(s==='all'||rs===s);
     r.style.display=show?'':'none';
     if(show&&r.cells[0])r.cells[0].innerText=sr++;
   });
