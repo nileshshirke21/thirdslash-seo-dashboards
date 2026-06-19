@@ -196,11 +196,11 @@ def _render_backlinks_table(data):
         val_prev = fmt_score(prev.get(key)) if is_score else fmt_num(prev.get(key))
         summary_rows += f"""
           <tr>
-            <td style="padding:11px 16px;font-weight:600;color:{color};white-space:nowrap;border-bottom:1px solid #F1F5F9;">{source}</td>
-            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #F1F5F9;">{label}</td>
-            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #F1F5F9;">{delta_html(key, is_score)}</td>
-            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #F1F5F9;">{val_cur}</td>
-            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #F1F5F9;">{val_prev}</td>
+            <td style="padding:11px 16px;font-weight:600;color:{color};white-space:nowrap;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">{source}</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">{label}</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">{delta_html(key, is_score)}</td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">{val_cur}</td>
+            <td style="padding:11px 16px;text-align:center;color:#64748B;border-bottom:1px solid #E2E8F0;">{val_prev}</td>
           </tr>"""
 
     # ── 6-month history table ─────────────────────────────────────────────────
@@ -244,10 +244,10 @@ def _render_backlinks_table(data):
       <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
           <tr style="background:#F8FAFC;">
-            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Source</th>
-            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Metric</th>
-            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">vs Last Month</th>
-            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">{col_cur}</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#2563EB;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">{col_cur}</th>
             <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">{col_prev}</th>
           </tr>
         </thead>
