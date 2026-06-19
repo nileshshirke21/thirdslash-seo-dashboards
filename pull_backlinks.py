@@ -3,16 +3,20 @@ ThirdSlash SEO Dashboards — Backlinks Data Puller
 Fetches monthly backlink metrics for all clients and saves to backlinks_data.json
 
 Sources:
-  - DataForSEO Backlinks API  → Ahrefs Backlinks + Referring Domains
+  - Manual_Data Google Sheet  → Ahrefs Backlinks + Referring Domains (manual entry)
   - Ahrefs Public API (free)  → Domain Rating (no key needed)
   - Moz Links API (free tier) → Domain Authority
-  - Google Search Console     → GSC Backlinks + GSC Referring Domains
 
 Run: python3 pull_backlinks.py
-Cost: ~$0.02 per client domain (DataForSEO only)
+Cost: $0 (all free sources)
+
+Workflow:
+  1. Fill in Ahrefs backlinks + referring domains in Manual_Data sheet
+  2. Run this script — it reads the sheet and fetches DR + DA automatically
+  3. Run generate_dashboard.py to rebuild dashboards
 """
 
-import os, json, pickle, base64, requests, time
+import os, json, pickle, requests, time
 from datetime import datetime
 from google.auth.transport.requests import Request
 
@@ -21,8 +25,9 @@ from google.auth.transport.requests import Request
 BASE     = os.path.dirname(os.path.abspath(__file__))
 OUT_FILE = os.path.join(BASE, "backlinks_data.json")
 TOKEN    = os.path.join(BASE, "token.pickle")
+SHEET_ID = "1J6yx5qZO05dDkmSiC-IvOXleqU4tL2GTqUu0b0idTxE"
 
-# Load .env file if present (keeps secrets out of source control)
+# Load .env file if present
 _env_file = os.path.join(BASE, ".env")
 if os.path.exists(_env_file):
     for _line in open(_env_file):
@@ -30,10 +35,6 @@ if os.path.exists(_env_file):
         if _line and not _line.startswith("#") and "=" in _line:
             _k, _v = _line.split("=", 1)
             os.environ.setdefault(_k.strip(), _v.strip())
-
-# DataForSEO credentials — stored in .env
-DATAFORSEO_LOGIN    = os.environ.get("DATAFORSEO_LOGIN", "")
-DATAFORSEO_PASSWORD = os.environ.get("DATAFORSEO_PASSWORD", "")
 
 # Moz API — Bearer token from https://moz.com/account/api/tokens
 MOZ_API_TOKEN = os.environ.get("MOZ_API_TOKEN", "")
@@ -48,7 +49,7 @@ CLIENTS = {
     "Potential Engineering": "potentialengineering.com",
     "Estrela Hotels":        "estrelahotels.com",
     "Kelly Powers":          "kellypowers.com",
-    "HappyLyfe":             "happylyfe.in",
+    "HappyLyfe":             "happylyfe.in.th",
     "Public69":              "public69.com",
     "Ovation Square":        "ovationsquare.com",
     "Piovra Group":          "piovragroup.com",
@@ -56,13 +57,12 @@ CLIENTS = {
     "MJ Gorgeous":           "mjgorgeous.com",
     "EZ Lifestyle":          "ezlifestyle.in",
     "Lancers GSEB":          "lancersgseb.com",
-    # ThirdSlash itself
     "ThirdSlash":            "thirdslash.com",
 }
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
-def load_gsc_creds():
+def load_creds():
     try:
         with open(TOKEN, "rb") as f:
             c = pickle.load(f)
@@ -72,62 +72,59 @@ def load_gsc_creds():
                 pickle.dump(c, f)
         return c
     except Exception as e:
-        print(f"  [GSC] Could not load token: {e}")
+        print(f"  [Auth] Could not load token: {e}")
         return None
 
 
-def fmt(n):
-    """Format number with comma separator."""
+def safe_int(v):
     try:
-        return f"{int(n):,}"
+        return int(str(v).replace(",", "").strip()) if v else None
     except:
-        return str(n)
+        return None
 
 
-# ── DataForSEO: Ahrefs Backlinks + Referring Domains ─────────────────────────
+def safe_float(v):
+    try:
+        return float(str(v).strip()) if v else None
+    except:
+        return None
 
-def fetch_dataforseo_backlinks(domains):
+
+# ── Google Sheet: Read Manual_Data ────────────────────────────────────────────
+
+def read_manual_data(gc, month_label):
     """
-    POST to backlinks/summary/live — one request per domain (trial plan limit).
-    Returns dict: { domain: { backlinks, referring_domains } }
-    Cost: $0.02 per domain
+    Read Ahrefs backlinks, referring domains, GMB posts, rating, reviews
+    from the Manual_Data sheet for the given month.
+    Returns dict: { client_name: { ahrefs_backlinks, ahrefs_referring_domains, ... } }
     """
-    if not DATAFORSEO_LOGIN or not DATAFORSEO_PASSWORD:
-        print("  [DataForSEO] Credentials not set — skipping.")
+    import gspread
+    try:
+        sheet = gc.open_by_key(SHEET_ID)
+        ws = sheet.worksheet("Manual_Data")
+        rows = ws.get_all_records()
+    except Exception as e:
+        print(f"  [Sheet] Could not read Manual_Data: {e}")
         return {}
 
-    url = "https://api.dataforseo.com/v3/backlinks/summary/live"
-    creds = base64.b64encode(f"{DATAFORSEO_LOGIN}:{DATAFORSEO_PASSWORD}".encode()).decode()
-    headers = {"Authorization": f"Basic {creds}", "Content-Type": "application/json"}
-
     results = {}
-    for domain in domains:
-        try:
-            r = requests.post(url, headers=headers,
-                              json=[{"target": domain, "include_subdomains": True}],
-                              timeout=30)
-            r.raise_for_status()
-            data = r.json()
-            for task in data.get("tasks", []):
-                for item in (task.get("result") or []):
-                    results[domain] = {
-                        "backlinks":         item.get("backlinks"),
-                        "referring_domains": item.get("referring_domains"),
-                    }
-        except Exception as e:
-            print(f"  [DataForSEO] {domain}: {e}")
-        time.sleep(0.3)  # stay under rate limits
-
+    for r in rows:
+        if r.get("Month", "") == month_label:
+            client = r.get("Client Name", "")
+            if client:
+                results[client] = {
+                    "ahrefs_backlinks":      safe_int(r.get("Ahrefs External Backlinks")),
+                    "ahrefs_referring_domains": safe_int(r.get("Ahrefs Referring Domains")),
+                    "gmb_posts":             safe_int(r.get("GMB Posts")),
+                    "gmb_avg_rating":        safe_float(r.get("GMB Average Rating")),
+                    "gmb_new_reviews":       safe_int(r.get("GMB New Reviews")),
+                }
     return results
 
 
 # ── Ahrefs Public API: Domain Rating (free, no key) ──────────────────────────
 
 def fetch_ahrefs_dr(domain):
-    """
-    Free Ahrefs public endpoint — no API key needed.
-    Attribution required: "Domain Rating by Ahrefs" (https://ahrefs.com/)
-    """
     url = f"https://api.ahrefs.com/v3/public/domain-rating-free?target={domain}"
     try:
         r = requests.get(url, timeout=10)
@@ -139,14 +136,9 @@ def fetch_ahrefs_dr(domain):
         return None
 
 
-# ── Moz API: Domain Authority (free, 10 calls/month) ─────────────────────────
+# ── Moz API: Domain Authority (free, 50 rows/month) ──────────────────────────
 
 def fetch_moz_da(domain):
-    """
-    Moz Links API v2 — free tier: 50 rows/month.
-    Auth: Bearer token from https://moz.com/account/api/tokens
-    Docs: https://moz.com/products/mozscape/mozscape-api-docs
-    """
     if not MOZ_API_TOKEN:
         print("  [Moz] API token not set — skipping.")
         return None
@@ -168,48 +160,11 @@ def fetch_moz_da(domain):
     return None
 
 
-# ── Google Search Console: Backlinks + Referring Domains ─────────────────────
-
-def fetch_gsc_links(domain, creds):
-    """
-    GSC Search Console API — Links report.
-    Returns { gsc_backlinks, gsc_referring_domains }
-    Note: GSC 'links' endpoint returns top linking sites count and total links.
-    """
-    if not creds:
-        return {"gsc_backlinks": None, "gsc_referring_domains": None}
-
-    from urllib.parse import quote
-    site_url = f"sc-domain:{domain}"   # domain property format in GSC
-    headers  = {"Authorization": f"Bearer {creds.token}"}
-    base     = "https://searchconsole.googleapis.com/webmasters/v3"
-
-    # Try sc-domain: format first, fall back to https://domain/
-    for s_url in [f"sc-domain:{domain}", f"https://{domain}/"]:
-        try:
-            r = requests.get(
-                f"{base}/sites/{quote(s_url, safe='')}/links",
-                headers=headers, timeout=15,
-            )
-            if r.status_code == 200:
-                data = r.json()
-                ext = data.get("externalLinks", {})
-                top_sources = ext.get("topSources", {}).get("rows", [])
-                total_links  = sum(int(row.get("count", 0)) for row in top_sources)
-                total_domains = len(top_sources)
-                return {
-                    "gsc_backlinks":         total_links  or None,
-                    "gsc_referring_domains": total_domains or None,
-                }
-        except Exception as e:
-            print(f"  [GSC Links] {domain} ({s_url}): {e}")
-
-    return {"gsc_backlinks": None, "gsc_referring_domains": None}
-
-
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
+    import gspread
+
     month_label = datetime.now().strftime("%b-%Y")
     print(f"\n=== Backlinks Pull — {month_label} ===\n")
 
@@ -220,50 +175,41 @@ def main():
     else:
         all_data = {}
 
-    # Load GSC credentials once
-    gsc_creds = load_gsc_creds()
+    # Auth + read manual data from Google Sheet
+    creds = load_creds()
+    gc = gspread.authorize(creds)
 
-    domains = list(CLIENTS.values())
+    print("[1/3] Reading Manual_Data sheet...")
+    manual = read_manual_data(gc, month_label)
+    print(f"      Found manual data for {len(manual)} clients.")
 
-    # ── Step 1: DataForSEO batch call (cheapest: 1 batch = N domains) ────────
-    print(f"[1/4] DataForSEO — fetching backlinks + referring domains for {len(domains)} domains...")
-    dfs_results = fetch_dataforseo_backlinks(domains)
-    print(f"      Got data for {len(dfs_results)} domains.")
-
-    # ── Step 2-4: Per-domain calls ────────────────────────────────────────────
+    # Per-domain: fetch DR + DA, merge with manual data
     for client_name, domain in CLIENTS.items():
         print(f"\n  {client_name} ({domain})")
 
         # Ahrefs DR (free API)
         print("    → Ahrefs DR...")
         dr = fetch_ahrefs_dr(domain)
-        time.sleep(0.5)  # be polite
+        time.sleep(0.5)
 
-        # Moz DA (free tier, max 10/month — comment out if quota exceeded)
+        # Moz DA (free tier)
         print("    → Moz DA...")
         da = fetch_moz_da(domain)
         time.sleep(0.5)
 
-        # GSC links
-        print("    → GSC links...")
-        gsc = fetch_gsc_links(domain, gsc_creds)
-
-        # DataForSEO result for this domain
-        dfs = dfs_results.get(domain, {})
+        # Manual data from sheet
+        m = manual.get(client_name, {})
+        ahrefs_bl = m.get("ahrefs_backlinks")
+        ahrefs_rd = m.get("ahrefs_referring_domains")
 
         # Build this month's record
         record = {
-            "month":                 month_label,
-            "domain":                domain,
-            # GSC
-            "gsc_backlinks":         gsc.get("gsc_backlinks"),
-            "gsc_referring_domains": gsc.get("gsc_referring_domains"),
-            # Ahrefs (via DataForSEO)
-            "ahrefs_backlinks":      dfs.get("backlinks"),
-            "ahrefs_referring_domains": dfs.get("referring_domains"),
-            # Scores
-            "domain_rating":         dr,    # Ahrefs DR (free API)
-            "domain_authority":      da,    # Moz DA
+            "month":                    month_label,
+            "domain":                   domain,
+            "ahrefs_backlinks":         ahrefs_bl,
+            "ahrefs_referring_domains": ahrefs_rd,
+            "domain_rating":            dr,
+            "domain_authority":         da,
         }
 
         # Store under client, keyed by month
@@ -271,16 +217,17 @@ def main():
             all_data[client_name] = {}
         all_data[client_name][month_label] = record
 
-        print(f"    ✓ DR={dr}  DA={da}  "
-              f"Ahrefs BL={dfs.get('backlinks')}  RD={dfs.get('referring_domains')}  "
-              f"GSC BL={gsc.get('gsc_backlinks')}  GSC RD={gsc.get('gsc_referring_domains')}")
+        bl_src = "sheet" if ahrefs_bl is not None else "empty"
+        print(f"    ✓ DR={dr}  DA={da}  BL={ahrefs_bl} ({bl_src})  RD={ahrefs_rd}")
 
     # Save
     with open(OUT_FILE, "w") as f:
         json.dump(all_data, f, indent=2)
 
     print(f"\n✅ Saved to {OUT_FILE}")
-    print(f"   Estimated DataForSEO cost: ${len(domains) * 0.02:.2f}")
+    print(f"   Cost: $0 (all free sources)")
+    print(f"\n📝 Remember to fill in Manual_Data sheet before running:")
+    print(f"   https://docs.google.com/spreadsheets/d/{SHEET_ID}")
 
 
 if __name__ == "__main__":
