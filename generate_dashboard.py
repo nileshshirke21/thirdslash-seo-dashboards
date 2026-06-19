@@ -277,7 +277,7 @@ def _render_backlinks_table(data):
   </div>"""
 
 
-def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_rows=[], backlinks_data=None):
+def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_rows=[], backlinks_data=None, tech_audit_html=""):
     from datetime import datetime as _dt
     import datetime as _dtime
 
@@ -593,6 +593,8 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
         '<tr><td colspan="8" style="text-align:center;color:#94A3B8;padding:20px;">'
         'No link building activity this month</td></tr>')
 
+    _tech_audit_html = tech_audit_html if tech_audit_html else '<div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128269;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">Tech Audit Coming Soon</p><p style="font-size:13px;color:#6B7280">Next audit scheduled. Run Screaming Frog crawl to generate report.</p></div>'
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -754,6 +756,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
   <div class="nav-tab" onclick="showTab('gmb', this)\">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)\">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)\">Link Building</div>
+  <div class="nav-tab" onclick="showTab('techaudit', this)\">Tech Audit</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -1090,6 +1093,11 @@ new Chart(document.getElementById('chChart'), {{
   </div>
 </div>
 
+<!-- TECH AUDIT TAB -->
+<div id="tab-techaudit" class="section">
+  {_tech_audit_html}
+</div>
+
 {"" if not gmb_has_data else f'''<script>new Chart(document.getElementById(\'gmbChart\'), {{  type: \'bar\', data: {{ labels: ''' + json.dumps(gmb_months_chart) + ''', datasets: [{{ label: \'Views\', data: ''' + json.dumps(gmb_views_chart) + ''', backgroundColor: \'rgba(5,150,105,0.7)\', borderColor: \'#059669\', borderWidth:1, borderRadius:4 }},{{ label: \'Clicks\', data: ''' + json.dumps(gmb_clicks_chart) + ''', backgroundColor: \'rgba(37,99,235,0.7)\', borderColor: \'#2563EB\', borderWidth:1, borderRadius:4 }},{{ label: \'Calls\', data: ''' + json.dumps(gmb_calls_chart) + ''', backgroundColor: \'rgba(217,119,6,0.7)\', borderColor: \'#D97706\', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>''' if gmb_has_data else ""}
 
 </body>
@@ -1130,7 +1138,16 @@ def main():
         client_tasks     = [r for r in tasks_rows if r.get("Client Name") == client_name]
         client_lb        = [r for r in lb_rows    if r.get("Client Name") == client_name]
         client_backlinks = all_backlinks.get(client_name, {})
-        html = build_html(client_name, client_ga4, client_ranks, client_gmb, client_tasks, client_lb, client_backlinks)
+
+        # Tech Audit — check if crawl data exists for this client
+        crawl_dir = os.path.join(BASE, "crawls", slug)
+        _ta_html = ""
+        if os.path.isdir(crawl_dir) and os.path.exists(os.path.join(crawl_dir, "internal_html.csv")):
+            from generate_tech_audit import generate_tech_audit_html
+            _domain = client_backlinks.get(sorted(client_backlinks.keys())[-1] if client_backlinks else "", {}).get("domain", slug.replace("-", "") + ".com") if client_backlinks else slug.replace("-", "") + ".com"
+            _ta_html = generate_tech_audit_html(crawl_dir, client_name, _domain, __import__('datetime').datetime.now().strftime("%Y-%m-%d"))
+
+        html = build_html(client_name, client_ga4, client_ranks, client_gmb, client_tasks, client_lb, client_backlinks, _ta_html)
         client_dir = os.path.join(DASH_DIR, slug)
         os.makedirs(client_dir, exist_ok=True)
         out = os.path.join(client_dir, "index.html")
