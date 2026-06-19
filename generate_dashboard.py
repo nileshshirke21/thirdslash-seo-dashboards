@@ -217,8 +217,8 @@ def _render_backlinks_table(data):
             is_latest = (m == cur_month)
             bg = "background:#EFF6FF;" if is_latest else ""
             fw = "font-weight:700;" if is_latest else ""
-            cells += f'<td style="padding:9px 14px;text-align:center;{bg}{fw}color:#0F172A;border-left:1px solid #F1F5F9;">{display}</td>'
-        return f'<tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;">{label}</td>{cells}</tr>'
+            cells += f'<td style="padding:9px 14px;text-align:center;{bg}{fw}color:#0F172A;border-left:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">{display}</td>'
+        return f'<tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;border-bottom:1px solid #E2E8F0;">{label}</td>{cells}</tr>'
 
     history_rows = (
         hist_row("Ahrefs Backlinks",          "ahrefs_backlinks")        +
