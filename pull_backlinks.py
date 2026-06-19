@@ -55,7 +55,7 @@ CLIENTS = {
     "Piovra Group":          "piovragroup.com",
     "Brickroom LA":          "brickroomla.com",
     "MJ Gorgeous":           "mjgorgeous.com",
-    "EZ Lifestyle":          "ezlifestyle.in",
+    "EZ Lifestyle":          "ez-lifestyle.com",
     "Lancers GSEB":          "lancersgseb.com",
     "ThirdSlash":            "thirdslash.com",
 }
