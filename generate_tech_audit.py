@@ -606,7 +606,7 @@ def generate_tech_audit_html(crawl_dir, client_name, domain, audit_date):
     </div>
     <div class="ta-banner-text">
       <h2>Technical SEO Health</h2>
-      <p>{client_name} &middot; {domain} &middot; Audit: {audit_date}</p>
+      <p>{client_name} &middot; {domain} &middot; Screaming Frog Pro Crawl &middot; {dt.strftime("%d %b %Y")} &middot; {total_html} pages scanned</p>
       <span class="ta-label" style="background:{score_color};color:#fff">{score_label}</span>
     </div>
   </div>
@@ -623,10 +623,6 @@ def generate_tech_audit_html(crawl_dir, client_name, domain, audit_date):
     <div class="ta-metric-card {"ta-mc-amber" if meta_issue_count > 0 else ""}"><div class="ta-mc-val">{meta_issue_count}</div><div class="ta-mc-label">Meta Issues</div></div>
   </div>
 
-  <!-- Source Legend -->
-  <div class="ta-legend">
-    <div><span>SF</span> = Screaming Frog Pro Crawl &middot; {total_html} pages scanned</div>
-  </div>
 
   <!-- Filters -->
   <div class="ta-filters">
@@ -673,7 +669,7 @@ def generate_tech_audit_html(crawl_dir, client_name, domain, audit_date):
 
     for issue in issues:
         iid = issue["id"]
-        src_tags = "".join(f'<span class="ta-src">{s}</span>' for s in issue["src"])
+        src_tags = ""
 
         own_select = f'<select class="ta-select ta-own-sel" data-id="{iid}" onchange="taSaveState()">'
         for opt in owner_options:
