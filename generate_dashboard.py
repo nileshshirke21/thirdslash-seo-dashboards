@@ -1142,10 +1142,16 @@ def main():
         # Tech Audit — check if crawl data exists for this client
         crawl_dir = os.path.join(BASE, "crawls", slug)
         _ta_html = ""
-        if os.path.isdir(crawl_dir) and os.path.exists(os.path.join(crawl_dir, "internal_html.csv")):
+        _csv_path = os.path.join(crawl_dir, "internal_html.csv")
+        _has_crawl = os.path.isdir(crawl_dir) and os.path.exists(_csv_path) and sum(1 for _ in open(_csv_path, errors="replace")) > 5
+        if _has_crawl:
             from generate_tech_audit import generate_tech_audit_html
             _domain = client_backlinks.get(sorted(client_backlinks.keys())[-1] if client_backlinks else "", {}).get("domain", slug.replace("-", "") + ".com") if client_backlinks else slug.replace("-", "") + ".com"
-            _ta_html = generate_tech_audit_html(crawl_dir, client_name, _domain, __import__('datetime').datetime.now().strftime("%Y-%m-%d"))
+            try:
+                _ta_html = generate_tech_audit_html(crawl_dir, client_name, _domain, __import__('datetime').datetime.now().strftime("%Y-%m-%d"))
+            except Exception as e:
+                print(f"    Tech audit error: {e}")
+                _ta_html = ""
 
         html = build_html(client_name, client_ga4, client_ranks, client_gmb, client_tasks, client_lb, client_backlinks, _ta_html)
         client_dir = os.path.join(DASH_DIR, slug)

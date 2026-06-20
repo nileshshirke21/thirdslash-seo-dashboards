@@ -15,9 +15,12 @@ def _read_csv(path):
     """Read a CSV file and return list of dicts. Handles BOM."""
     if not os.path.isfile(path):
         return []
-    with open(path, "r", encoding="utf-8-sig") as f:
-        reader = csv.DictReader(f)
-        return list(reader)
+    try:
+        with open(path, "r", encoding="utf-8-sig", errors="replace") as f:
+            reader = csv.DictReader(f)
+            return list(reader)
+    except Exception:
+        return []
 
 
 def _count_rows(path):

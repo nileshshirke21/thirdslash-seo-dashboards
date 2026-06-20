@@ -148,7 +148,7 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 19 Jun 2026</div>
+    <div class="updated">Updated: 20 Jun 2026</div>
   </div>
 </div>
 
@@ -844,7 +844,584 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- TECH AUDIT TAB -->
 <div id="tab-techaudit" class="section">
-  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128269;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">Tech Audit Coming Soon</p><p style="font-size:13px;color:#6B7280">Next audit scheduled. Run Screaming Frog crawl to generate report.</p></div>
+  
+<style>
+/* ── Tech Audit Scoped Styles ── */
+.ta-wrap {
+  --navy:#1B2A4A; --orange:#F4812A; --orange-light:#FEF0E6; --bg:#F5F6F8; --card:#fff; --border:#E4E7ED;
+  --text:#1A1D23; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
+  --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+}
+.ta-banner {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.ta-score-ring {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+.ta-score-ring svg {
+  transform: rotate(-90deg);
+}
+.ta-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ta-score-num .ta-big {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.ta-score-num .ta-of {
+  font-size: 13px;
+  opacity: .6;
+}
+.ta-banner-text h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ta-banner-text p {
+  margin: 0;
+  opacity: .7;
+  font-size: 14px;
+}
+.ta-banner-text .ta-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ta-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ta-metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.ta-metric-card .ta-mc-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ta-metric-card .ta-mc-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
+.ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
+.ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+.ta-legend {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ta-legend span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Filters */
+.ta-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ta-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.ta-chip.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.ta-chip:hover {
+  border-color: var(--navy);
+}
+.ta-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Issue table */
+.ta-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ta-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ta-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ta-table tr:last-child td { border-bottom: none; }
+.ta-table tr.ta-row-issue { cursor: pointer; }
+.ta-table tr.ta-row-issue:hover { background: var(--bg); }
+
+/* Pills */
+.ta-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ta-pill-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.ta-pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ta-pill-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.ta-pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* Priority badges */
+.ta-prio {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ta-prio-high { background: var(--red-bg); color: var(--red); }
+.ta-prio-medium { background: var(--amber-bg); color: var(--amber); }
+.ta-prio-low { background: var(--blue-bg); color: var(--blue); }
+
+/* Source tag */
+.ta-src {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--purple-bg);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  margin-left: 4px;
+}
+
+/* Expandable URL panel */
+.ta-url-panel {
+  display: none;
+}
+.ta-url-panel.open {
+  display: table-row;
+}
+.ta-url-panel td {
+  background: var(--bg);
+  padding: 0;
+}
+.ta-url-inner {
+  padding: 12px 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.ta-url-inner .ta-url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.ta-url-inner .ta-url-item:last-child { border-bottom: none; }
+.ta-url-inner .ta-url-item a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-all;
+}
+.ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
+.ta-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.ta-copy-btn:hover { background: var(--border); }
+
+/* Owner / Status dropdowns in table */
+.ta-table select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Expand arrow */
+.ta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+  margin-right: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.ta-arrow.open {
+  transform: rotate(90deg);
+}
+</style>
+
+<div class="ta-wrap">
+
+  <!-- Health Score Banner -->
+  <div class="ta-banner">
+    <div class="ta-score-ring">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+        <circle cx="64" cy="64" r="54" fill="none" stroke="#D97706" stroke-width="10"
+                stroke-dasharray="339.3" stroke-dashoffset="105.2"
+                stroke-linecap="round"/>
+      </svg>
+      <div class="ta-score-num">
+        <span class="ta-big">69</span>
+        <span class="ta-of">/ 100</span>
+      </div>
+    </div>
+    <div class="ta-banner-text">
+      <h2>Technical SEO Health</h2>
+      <p>Kelly Powers &middot; kellypowers.com &middot; Screaming Frog Pro Crawl &middot; 20 Jun 2026 &middot; 19 pages scanned</p>
+      <span class="ta-label" style="background:#D97706;color:#fff">Needs Work</span>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="ta-metrics">
+    <div class="ta-metric-card"><div class="ta-mc-val">19</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">19</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">17</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">1</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">2</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">9</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">17</div><div class="ta-mc-label">Meta Issues</div></div>
+  </div>
+
+
+  <!-- Filters -->
+  <div class="ta-filters">
+    <button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All Issues</button>
+    <button class="ta-chip" data-cat="errors" onclick="taFilter(this)">Errors</button>
+    <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
+    <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
+    <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
+      <option value="all">All Priorities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="Under Review">Under Review</option>
+      <option value="Completed">Completed</option>
+      <option value="Not Completed">Not Completed</option>
+      <option value="Blocked">Blocked</option>
+      <option value="Waiting for Approval">Waiting for Approval</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <!-- Issue Log Table -->
+  <table class="ta-table" id="ta-issue-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:110px">Owner</th>
+        <th style="width:130px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>1 pages returning 404 errors </td>
+        <td><span class="ta-pill ta-pill-red">1</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>These pages return a 404 Not Found status. Search engines will deindex them and users hitting these URLs get a dead end.</td>
+        <td>Set up 301 redirects to the most relevant live page. If the content was removed intentionally, ensure proper 410 Gone status and update internal links.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i01">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i01"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>2 pages with 3xx redirects </td>
+        <td><span class="ta-pill ta-pill-amber">2</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i02">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i02"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>9 pages with titles below 30 characters </td>
+        <td><span class="ta-pill ta-pill-blue">9</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>13 pages with missing meta descriptions </td>
+        <td><span class="ta-pill ta-pill-amber">13</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
+        <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>4 pages with meta descriptions over 155 characters </td>
+        <td><span class="ta-pill ta-pill-blue">4</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="high" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>17 pages with missing H1 tags </td>
+        <td><span class="ta-pill ta-pill-red">17</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>The H1 tag is the primary heading signal for search engines. Missing H1s weaken topical relevance and hurt rankings.</td>
+        <td>Add a single, unique H1 tag to each page that includes the primary keyword and clearly describes the page topic.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="high" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>15 pages with missing canonical tags </td>
+        <td><span class="ta-pill ta-pill-red">15</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i08" data-cat="content" data-prio="medium" onclick="taToggle('i08')">
+        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>1 pages with thin / low content </td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
+        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i08" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i08">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i08"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  var LS_KEY = "kelly-powers_techaudit_jun_2026";
+  var ALL_URLS = {"i01": ["https://www.instagram.com/kelly.powers.intuitive//"], "i02": ["https://www.facebook.com/Kelly.Powers.Intuitive/", "https://www.facebook.com/kelly.powers.Intuitive/"], "i03": ["https://kellypowers.com/", "https://kellypowers.com/book-your-session.html", "https://kellypowers.com/what-people-are-saying.html", "https://kellypowers.com/about-kelly.html", "https://kellypowers.com/Sessions/", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive.html", "https://kellypowers.com/Sessions/Entries/2022/12/can-intuition-be-developed-.html", "https://kellypowers.com/Sessions/Entries/2018/2/8_Developing_Intuitive_Insight.html", "https://kellypowers.com/Sessions/Entries/2024/4/19_What_is_an_Intuitive.html"], "i04": ["https://kellypowers.com/", "https://kellypowers.com/book-your-session.html", "https://kellypowers.com/what-people-are-saying.html", "https://kellypowers.com/about-kelly.html", "https://kellypowers.com/Sessions/Entries/2024/4/how-to-have-the-best-possible-session.html", "https://kellypowers.com/Sessions/", "https://kellypowers.com/Sessions/Entries/2024/4/3_General_Information_About_My_Sessions.html", "https://kellypowers.com/Sessions/Entries/2024/4/hearing-voices-working-by-phone-1.html", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive-session-with-you-like-1.html", "https://kellypowers.com/Sessions/Entries/2023/5/8_Listening_for_the_Calling_of_Your_Life_in_Uncertain_Times.html", "https://kellypowers.com/Sessions/Entries/2022/12/can-intuition-be-developed-.html", "https://kellypowers.com/Sessions/Entries/2024/4/an-invitation-and-a-road-map-for-coming-home-to-yourself.html", "https://kellypowers.com/Sessions/Entries/2024/4/30_How_To_Have_The_Best_Possible_Session.html"], "i05": ["https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive.html", "https://kellypowers.com/Sessions/Entries/2024/4/7_Trial_and_Error__The_Fine_Print.html", "https://kellypowers.com/Sessions/Entries/2018/2/8_Developing_Intuitive_Insight.html", "https://kellypowers.com/Sessions/Entries/2024/4/19_What_is_an_Intuitive.html"], "i06": ["https://kellypowers.com/", "https://kellypowers.com/book-your-session.html", "https://kellypowers.com/what-people-are-saying.html", "https://kellypowers.com/about-kelly.html", "https://kellypowers.com/Sessions/Entries/2024/4/how-to-have-the-best-possible-session.html", "https://kellypowers.com/Sessions/", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive.html", "https://kellypowers.com/Sessions/Entries/2024/4/3_General_Information_About_My_Sessions.html", "https://kellypowers.com/Sessions/Entries/2024/4/hearing-voices-working-by-phone-1.html", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive-session-with-you-like-1.html", "https://kellypowers.com/Sessions/Entries/2023/5/8_Listening_for_the_Calling_of_Your_Life_in_Uncertain_Times.html", "https://kellypowers.com/Sessions/Entries/2024/4/7_Trial_and_Error__The_Fine_Print.html", "https://kellypowers.com/Sessions/Entries/2022/12/can-intuition-be-developed-.html", "https://kellypowers.com/Sessions/Entries/2024/4/an-invitation-and-a-road-map-for-coming-home-to-yourself.html", "https://kellypowers.com/Sessions/Entries/2018/2/8_Developing_Intuitive_Insight.html", "https://kellypowers.com/Sessions/Entries/2024/4/19_What_is_an_Intuitive.html", "https://kellypowers.com/Sessions/Entries/2024/4/30_How_To_Have_The_Best_Possible_Session.html"], "i07": ["https://kellypowers.com/book-your-session.html", "https://kellypowers.com/what-people-are-saying.html", "https://kellypowers.com/about-kelly.html", "https://kellypowers.com/Sessions/Entries/2024/4/how-to-have-the-best-possible-session.html", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive.html", "https://kellypowers.com/Sessions/Entries/2024/4/3_General_Information_About_My_Sessions.html", "https://kellypowers.com/Sessions/Entries/2024/4/hearing-voices-working-by-phone-1.html", "https://kellypowers.com/Sessions/Entries/2024/4/what-is-an-intuitive-session-with-you-like-1.html", "https://kellypowers.com/Sessions/Entries/2023/5/8_Listening_for_the_Calling_of_Your_Life_in_Uncertain_Times.html", "https://kellypowers.com/Sessions/Entries/2024/4/7_Trial_and_Error__The_Fine_Print.html", "https://kellypowers.com/Sessions/Entries/2022/12/can-intuition-be-developed-.html", "https://kellypowers.com/Sessions/Entries/2024/4/an-invitation-and-a-road-map-for-coming-home-to-yourself.html", "https://kellypowers.com/Sessions/Entries/2018/2/8_Developing_Intuitive_Insight.html", "https://kellypowers.com/Sessions/Entries/2024/4/19_What_is_an_Intuitive.html", "https://kellypowers.com/Sessions/Entries/2024/4/30_How_To_Have_The_Best_Possible_Session.html"], "i08": ["https://kellypowers.com/"]};
+
+  // Restore saved state
+  function taLoadState() {
+    try {
+      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
+      });
+      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+      });
+    } catch(e) {}
+  }
+
+  window.taSaveState = function() {
+    var s = {};
+    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].own = el.value;
+    });
+    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].stat = el.value;
+    });
+    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Toggle expandable URL panel
+  window.taToggle = function(iid) {
+    var panel = document.getElementById('ta-panel-' + iid);
+    var arrow = document.getElementById('ta-arrow-' + iid);
+    var isOpen = panel.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
+    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      arrow.classList.add('open');
+      // Populate URLs
+      var container = document.getElementById('ta-urls-' + iid);
+      if (!container.dataset.loaded) {
+        var urls = ALL_URLS[iid] || [];
+        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
+        urls.forEach(function(u, idx) {
+          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+        });
+        container.innerHTML = html;
+        container.dataset.loaded = '1';
+      }
+    }
+  };
+
+  window.taCopyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  };
+
+  window.taCopyAll = function(iid) {
+    var urls = ALL_URLS[iid] || [];
+    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
+    });
+  };
+
+  // Filter by category chip
+  var activeCat = 'all';
+  window.taFilter = function(btn) {
+    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    taApplyFilters();
+  };
+
+  window.taApplyFilters = function() {
+    var prio = document.getElementById('ta-prio-filter').value;
+    var stat = document.getElementById('ta-status-filter').value;
+    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
+      var iid = row.dataset.id;
+      var show = true;
+      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
+      if (stat !== 'all') {
+        var sel = row.querySelector('.ta-stat-sel');
+        if (sel && sel.value !== stat) show = false;
+      }
+      row.style.display = show ? '' : 'none';
+      var panel = document.getElementById('ta-panel-' + iid);
+      if (!show && panel) { panel.classList.remove('open'); }
+    });
+  };
+
+  taLoadState();
+})();
+</script>
+
 </div>
 
 

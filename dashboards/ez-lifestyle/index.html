@@ -148,7 +148,7 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 19 Jun 2026</div>
+    <div class="updated">Updated: 20 Jun 2026</div>
   </div>
 </div>
 
@@ -494,7 +494,584 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- TECH AUDIT TAB -->
 <div id="tab-techaudit" class="section">
-  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128269;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">Tech Audit Coming Soon</p><p style="font-size:13px;color:#6B7280">Next audit scheduled. Run Screaming Frog crawl to generate report.</p></div>
+  
+<style>
+/* ── Tech Audit Scoped Styles ── */
+.ta-wrap {
+  --navy:#1B2A4A; --orange:#F4812A; --orange-light:#FEF0E6; --bg:#F5F6F8; --card:#fff; --border:#E4E7ED;
+  --text:#1A1D23; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
+  --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+}
+.ta-banner {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.ta-score-ring {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+.ta-score-ring svg {
+  transform: rotate(-90deg);
+}
+.ta-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ta-score-num .ta-big {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.ta-score-num .ta-of {
+  font-size: 13px;
+  opacity: .6;
+}
+.ta-banner-text h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ta-banner-text p {
+  margin: 0;
+  opacity: .7;
+  font-size: 14px;
+}
+.ta-banner-text .ta-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ta-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ta-metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.ta-metric-card .ta-mc-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ta-metric-card .ta-mc-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
+.ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
+.ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+.ta-legend {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ta-legend span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Filters */
+.ta-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ta-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.ta-chip.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.ta-chip:hover {
+  border-color: var(--navy);
+}
+.ta-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Issue table */
+.ta-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ta-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ta-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ta-table tr:last-child td { border-bottom: none; }
+.ta-table tr.ta-row-issue { cursor: pointer; }
+.ta-table tr.ta-row-issue:hover { background: var(--bg); }
+
+/* Pills */
+.ta-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ta-pill-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.ta-pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ta-pill-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.ta-pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* Priority badges */
+.ta-prio {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ta-prio-high { background: var(--red-bg); color: var(--red); }
+.ta-prio-medium { background: var(--amber-bg); color: var(--amber); }
+.ta-prio-low { background: var(--blue-bg); color: var(--blue); }
+
+/* Source tag */
+.ta-src {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--purple-bg);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  margin-left: 4px;
+}
+
+/* Expandable URL panel */
+.ta-url-panel {
+  display: none;
+}
+.ta-url-panel.open {
+  display: table-row;
+}
+.ta-url-panel td {
+  background: var(--bg);
+  padding: 0;
+}
+.ta-url-inner {
+  padding: 12px 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.ta-url-inner .ta-url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.ta-url-inner .ta-url-item:last-child { border-bottom: none; }
+.ta-url-inner .ta-url-item a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-all;
+}
+.ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
+.ta-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.ta-copy-btn:hover { background: var(--border); }
+
+/* Owner / Status dropdowns in table */
+.ta-table select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Expand arrow */
+.ta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+  margin-right: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.ta-arrow.open {
+  transform: rotate(90deg);
+}
+</style>
+
+<div class="ta-wrap">
+
+  <!-- Health Score Banner -->
+  <div class="ta-banner">
+    <div class="ta-score-ring">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+        <circle cx="64" cy="64" r="54" fill="none" stroke="#DC2626" stroke-width="10"
+                stroke-dasharray="339.3" stroke-dashoffset="213.8"
+                stroke-linecap="round"/>
+      </svg>
+      <div class="ta-score-num">
+        <span class="ta-big">37</span>
+        <span class="ta-of">/ 100</span>
+      </div>
+    </div>
+    <div class="ta-banner-text">
+      <h2>Technical SEO Health</h2>
+      <p>EZ Lifestyle &middot; ez-lifestyle.com &middot; Screaming Frog Pro Crawl &middot; 20 Jun 2026 &middot; 136 pages scanned</p>
+      <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="ta-metrics">
+    <div class="ta-metric-card"><div class="ta-mc-val">136</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">132</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">125</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">68</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">129</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">26</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">46</div><div class="ta-mc-label">Meta Issues</div></div>
+  </div>
+
+
+  <!-- Filters -->
+  <div class="ta-filters">
+    <button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All Issues</button>
+    <button class="ta-chip" data-cat="errors" onclick="taFilter(this)">Errors</button>
+    <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
+    <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
+    <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
+      <option value="all">All Priorities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="Under Review">Under Review</option>
+      <option value="Completed">Completed</option>
+      <option value="Not Completed">Not Completed</option>
+      <option value="Blocked">Blocked</option>
+      <option value="Waiting for Approval">Waiting for Approval</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <!-- Issue Log Table -->
+  <table class="ta-table" id="ta-issue-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:110px">Owner</th>
+        <th style="width:130px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>68 pages returning 404 errors </td>
+        <td><span class="ta-pill ta-pill-red">68</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>These pages return a 404 Not Found status. Search engines will deindex them and users hitting these URLs get a dead end.</td>
+        <td>Set up 301 redirects to the most relevant live page. If the content was removed intentionally, ensure proper 410 Gone status and update internal links.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i01">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i01"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>129 pages with 3xx redirects </td>
+        <td><span class="ta-pill ta-pill-amber">129</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i02">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i02"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="medium" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>26 pages with titles over 60 characters </td>
+        <td><span class="ta-pill ta-pill-amber">26</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
+        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="low" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>46 pages with meta descriptions over 155 characters </td>
+        <td><span class="ta-pill ta-pill-blue">46</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="medium" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>9 pages with duplicate H1 tags </td>
+        <td><span class="ta-pill ta-pill-amber">9</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Multiple H1 tags on a page dilute the heading hierarchy and confuse search engines about the primary topic.</td>
+        <td>Ensure each page has exactly one H1 tag. Demote additional H1s to H2 or H3 as appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="technical" data-prio="medium" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>7 pages set to noindex </td>
+        <td><span class="ta-pill ta-pill-amber">7</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
+        <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="high" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>11 pages with missing canonical tags </td>
+        <td><span class="ta-pill ta-pill-red">11</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i08" data-cat="content" data-prio="medium" onclick="taToggle('i08')">
+        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>1 pages with thin / low content </td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
+        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i08" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i08">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i08"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  var LS_KEY = "ez-lifestyle_techaudit_jun_2026";
+  var ALL_URLS = {"i01": ["https://www.amazon.ca/dp/B0BJ12K6N5?ref=myi_title_dp", "https://ez-lifestyle.com/products/dream-ez", "https://cdn.prod.website-files.com/5d8f430cd12b5b6dbb892d35/5d8f430dd12b5b4fbb892d4d_ic_chevron_right_36px.svg", "https://cdn.prod.website-files.com/5d8f430cd12b5b6dbb892d35/5d8f430dd12b5b8064892d4c_ic_chevron_left_36px.svg", "https://cdn.prod.website-files.com/svg+xml;base64,PHN2ZyBjbGFzcz0idy02IGgtNiBtbC0yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0eWxlPSJtYXJnaW4tbGVmdDogMC41cmVtOyB3aWR0aDogMS41cmVtOyBoZWlnaHQ6IDEuNXJlbTsgY29sb3I6ICMwMDA7Ij4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjIiIGQ9Ik0xMyA3bDUgNW0wIDBsLTUgNW01LTVINiI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvc3ZnPg==", "https://www.amazon.com/gp/product/B07FK3CLDZ/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=lifestylepr02-20&creative=9325&linkCode=as2&creativeASIN=B07FK3CLDZ&linkId=2ef225ae0cdfc3a6d4cbf44c433b20b7", "https://www.amazon.com/gp/product/B07FK3CLDZ/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B07FK3CLDZ&linkCode=as2&tag=lifestylepr02-20&linkId=f9db6fe9d658e1e661b3bf788d11c597", "https://cdn.prod.website-files.com/5d8f430cd12b5b6dbb892d35/5d8f430dd12b5b07e1892d4b_bx-truck.svg", "https://www.doctoroz.com/slideshow/health-secrets-dr-oz-only-tells-his-friends?gallery=true&page=2", "https://www.pexels.com/photo/blur-breakfast-close-up-dairy-product-376464/?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "https://onlinelibrary.wiley.com/doi/10.1111/j.1530-0277.2009.01116.x", "https://ods.od.nih.gov/factsheets/magnesium-Consumer/", "https://www.amazon.ca/EZ-Pre-Drink-Brighter-Mornings-Servings/dp/B084ZXSCXK/ref=sr_1_2?crid=3LME68QMIXYSC&dib=eyJ2IjoiMSJ9.UcdaQP-fdUkwEULATmZW3EVRfVQwvs6T91BcLa9vHwf74okH3dLl3gCuuX2tcGTnhQjkP8-1X5EJE3ntGWLHbML2xkf6bkZLc4EixkYrMM6s9glh8_jRoYgbKOMw9_96cvp8dzmjQHr1RNh_GA3-pg.BNJMSlx3EseKV6mxlQdwUpv9LMmwVkwf1wyIXbFVoDA&dib_tag=se&keywords=over+ez&qid=1724934170&sprefix=over+e%2Caps%2C261&sr=8-2", "http://www.abstractsonline.com/pp8/index.html#!/4071/presentation/22484", "https://www.pexels.com/@burst?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "https://americanaddictioncenters.org/ambien-treatment/side-effects", "https://www.hopkinsmedicine.org/health/conditions-and-diseases/headache/hangover-headache", "https://www.forhims.com/blog/sleep-deprivation", "https://ods.od.nih.gov/factsheets/VitaminB12-Consumer/", "https://www.verywellhealth.com/can-you-drink-alcohol-while-taking-ibuprofen-4122470", "https://ods.od.nih.gov/factsheets/Valerian-HealthProfessional/", "https://www.over-ez.com/pages/hangover-cure", "https://physoc.onlinelibrary.wiley.com/doi/pdf/10.1113/jphysiol.1932.sp002933", "https://www.pexels.com/@ash-122861?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "https://time.com/6258780/magnesium-glycinate-sleep-anxiety-tiktok/", "https://www.sheknows.com/food-and-recipes/articles/816997/foods-that-help-a-hangover-2/", "https://www.webmd.com/sleep-disorders/guide/understanding-the-side-effects-of-sleeping-pills", "https://www.over-ez.com/pages/faq", "https://www.pexels.com/@daria?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "https://www.researchgate.net/publication/6130580_Ginkgo_biloba_Extract_Prevents_Ethanol_Induced_Dyslipidemia", "https://www.uofmhealth.org/health-library/hn-2922005", "https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide/pineapples", "https://pixabay.com/photos/sleeping-tired-bed-feet-1159279/", "https://www.hopkinsmedicine.org/health/wellness-and-prevention/melatonin-for-sleep-does-it-work", "https://www.everydayhealth.com/mens-health-pictures/the-perpetual-search-for-a-hangover-remedy.aspx", "https://www.verywellmind.com/the-causes-of-a-hangover-67348", "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118543436.ch34", "https://sites.duke.edu/apep/module-1-gender-matters/content/content-how-is-alcohol-absorbed-into-the-body/", "https://www.consumerlab.com/reviews/iron-supplements-review/iron/", "https://onlinelibrary.wiley.com/doi/abs/10.1002/(SICI)1099-1573(199908/09)13:5<408::AID-PTR530>3.0.CO;2-C", "https://www.verywellmind.com/the-benefits-of-yoga-for-stress-management-3145205", "https://onlinelibrary.wiley.com/doi/10.1002/fsn3.4010", "https://www.pexels.com/@olly?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "https://academic.oup.com/jn/article/128/10/1731/4723095", "https://www.pexels.com/@vicky?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "http://www.abstractsonline.com/pp8/index.html#!/4071/presentation/29989", "https://www.sciencedirect.com/science/article/pii/S0278691512008484", "https://ods.od.nih.gov/factsheets/VitaminC-Consumer/", "https://www.consumerlab.com/reviews/Cocoa_Powders_and_Chocolates_Sources_of_Flavanols/cocoa-flavanols/", "https://www.cdc.gov/sleep/data_statistics.html", "https://www.sciencedirect.com/science/article/pii/S0191886918305762", "https://www.mensjournal.com/health-fitness/whats-the-best-way-to-cure-a-hangover-8-experts-weigh-in-w477169/the-naturopathic-doctor-w477173/", "https://www.sciencedirect.com/science/article/pii/S0306460321002148", "https://www.pexels.com/@7hust?utm_content=attributionCopyText&utm_medium=referral&utm_source=pexels", "http://time.com/5065236/best-hangover-cure-headache-nausea/", "https://qz.com/quartzy/1401348/the-five-most-popular-hangover-cures-rated-by-scientists/", "https://www.over-ez.com/products/overez-hangover-pills", "https://academic.oup.com/ajcn/article/63/2/220/4650541", "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/", "https://www.hopkinsmedicine.org/health/wellness-and-prevention/ginger-benefits", "https://www.consumerlab.com/reviews/Review_Best_B_Vitamins_and_Complexes_Energy_B6_B12_Biotin_Niacin_Folic_Acid/bvitamins/", "https://onlinelibrary.wiley.com/doi/full/10.1111/j.1530-0277.2009.01116.x", "https://www.apotheken-umschau.de/Ernaehrung/Tipps-fuer-das-Anti-Kater-Fruehstueck-103043.html", "https://www.webmd.com/sleep-disorders/guide/sleep-101", "https://adaa.org/understanding-anxiety/related-illnesses/sleep-disorders", "https://www.marketwatch.com/story/pedialyte-is-the-hottest-hangover-cure-but-does-it-really-work-2018-12-31", "https://www.alcohol.org/mixing-with/oxycontin/", "https://www.addictioncenter.com/stimulants/adderall/"], "i02": ["https://www.emotve.org/sms/ezlifestyles.myshopify.com/663f008a-efc5-11eb-8523-0693b87898f9", "https://web.archive.org/web/20210604012331/https://www.instagram.com/cheershealth/", "https://www.emotve.com/sms/ezlifestyles.myshopify.com/a2db58de-ebd0-11eb-8938-0a87bfbf9ccd", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8238992/", "https://www.amazon.ca/gp/customer-reviews/R1BV4R5R6HSMW7/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://www.amazon.ca/gp/customer-reviews/REJ7EH2VVFTLH/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://twitter.com/webflow", "https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js", "https://www.emotve.com/sms/ezlifestyles.myshopify.com/663f008a-efc5-11eb-8523-0693b87898f9", "https://www.amazon.com/gp/customer-reviews/RB67IAU2C7JNF/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07FK3CLDZ&tag=swolhead-20", "https://www.amazon.ca/gp/customer-reviews/R25JNQZ3EPZQ4V/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://www.amazon.ca/gp/customer-reviews/RDOU61L0IAKD2/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://ezlifestyle.faire.com/user/sign-up", "https://www.amazon.com/gp/customer-reviews/RU5D12Q0CVNIT/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B07KFQJMP5", "https://www.amazon.com/gp/customer-reviews/R33AGFNSZBYIY7/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07FK3CLDZ&tag=swolhead-20", "https://www.amazon.ca/gp/customer-reviews/RB38G16RKY4OT/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://www.amazon.com/gp/customer-reviews/RRG8BGV92HAQQ/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B07FK3CLDZ&tag=swolhead-20", "https://www.emotve.net/sms/ezlifestyles.myshopify.com/11413054-f0aa-11eb-846c-021a9b05b823", "https://www.amazon.ca/gp/customer-reviews/RKFVM8N3EF6KR/ref=cm_cr_getr_d_rvw_ttl?ie=UTF8&ASIN=B081TMSJ15", "https://www.amazon.com/gp/customer-reviews/R2Y0J4I2WE89EQ/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B07KFQJMP5", "https://app.conjured.co/shopify/referral/widget.js?shop=ezlifestyles.myshopify.com&cmp=3999", "https://www.amazon.com/gp/customer-reviews/R312YYJAJWFK2Z/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=B07KFQJMP5", "https://pubmed.ncbi.nlm.nih.gov/16611389/", "https://www.ncbi.nlm.nih.gov/pubmed/24458173", "https://pubmed.ncbi.nlm.nih.gov/16952998/", "https://www.ncbi.nlm.nih.gov/pubmed/17846884", "https://www.ncbi.nlm.nih.gov/pubmed/24756059", "https://www.ncbi.nlm.nih.gov/pubmed/20559749", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249911/", "https://pubmed.ncbi.nlm.nih.gov/21818642/", "https://soyummy.com/foods-never-eat-hungover/", "https://www.ncbi.nlm.nih.gov/books/NBK223337/", "https://pubmed.ncbi.nlm.nih.gov/9619120/", "https://www.healthline.com/nutrition/8-coconut-water-benefits", "https://www.ncbi.nlm.nih.gov/pubmed/23057991", "https://pubmed.ncbi.nlm.nih.gov/32267550/", "https://www.webmd.com/digestive-disorders/milk-thistle-benefits-and-side-effects", "https://ez-lifestyle.com/blogs/hangover-cure/ezlifestlye-products", "https://www.webmd.com/vitamins/ai/ingredientmono-1018/n-acetyl-cysteine-nac", "https://www.huffpost.com/entry/the-benefits-and-consider_n_9996782", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5563313/", "https://www.ncbi.nlm.nih.gov/pubmed/26192072", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6821396/", "https://www.ncbi.nlm.nih.gov/pubmed/20347389", "https://www.ncbi.nlm.nih.gov/pubmed/26424423", "https://pubmed.ncbi.nlm.nih.gov/16373736/", "https://pubmed.ncbi.nlm.nih.gov/27795667/", "https://www.ncbi.nlm.nih.gov/pubmed/21036578", "https://pubmed.ncbi.nlm.nih.gov/37786445/", "https://www.aafp.org/pubs/afp/issues/2007/0401/p1027.html", "https://pubmed.ncbi.nlm.nih.gov/15162936/", "https://www.ncbi.nlm.nih.gov/pubmed/10956379/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3959115/", "https://www.sleepfoundation.org/articles/why-electronics-may-stimulate-you-bed", "https://www.health.harvard.edu/staying-healthy/7-steps-to-cure-your-hangover-and-ginkgo-biloba-whats-the-verdict", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4158648/", "https://www.ncbi.nlm.nih.gov/pubmed/20386132", "https://www.ncbi.nlm.nih.gov/pubmed/20466802/", "https://www.ncbi.nlm.nih.gov/pubmed/19038698", "https://pubmed.ncbi.nlm.nih.gov/17612945/", "https://ez-lifestyle.com/blogs/hangover-cure/suffering-from-bad-hangover", "https://pubmed.ncbi.nlm.nih.gov/15138463/", "https://www.mountsinai.org/health-library/herb/milk-thistle", "https://www.biocare.co.uk/news/erratic-energy-is-stress-depleting-your-energy.html", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1978319/", "https://www.ncbi.nlm.nih.gov/pubmed/25126052", "https://www.ncbi.nlm.nih.gov/pubmed/15526191", "https://pubmed.ncbi.nlm.nih.gov/9428569/", "https://pubmed.ncbi.nlm.nih.gov/39290562/", "https://www.truelemon.com/blogs/tc/how-hydration-fights-fatigue", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3178961/", "https://www.webmd.com/mental-health/addiction/what-to-know-congeners-alcohol", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7140758/", "https://internationalprobiotics.org/home/unraveling-the-role-of-gut-microbiota-in-alcoholic-liver-disease/", "https://pubmed.ncbi.nlm.nih.gov/20712591/", "https://www.webmd.com/vitamins/ai/ingredientmono-437/lemon-balm", "https://immunizenevada.org/the-role-of-vitamin-d-in-mental-health-and-immune-function/", "https://pubmed.ncbi.nlm.nih.gov/37049411/", "https://www.ncbi.nlm.nih.gov/pubmed/23439798", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2845864/", "https://www.ncbi.nlm.nih.gov/pubmed/20564545", "https://pubmed.ncbi.nlm.nih.gov/15706734/", "http://www.biomed.cas.cz/physiolres/pdf/1998/47_137.pdf", "https://www.ncbi.nlm.nih.gov/pubmed/21143248", "https://www.ncbi.nlm.nih.gov/pubmed/23596162", "https://www.ncbi.nlm.nih.gov/pubmed/22285436", "https://www.ncbi.nlm.nih.gov/books/NBK537183/", "https://www.mindbodygreen.com/0-25235/5-reasons-youre-tired-all-the-time-how-to-get-more-energy.html", "https://www.mindbodygreen.com/0-27793/natural-hangover-remedies-that-are-way-better-than-advil.html", "https://pubmed.ncbi.nlm.nih.gov/37140282/", "https://www.ncbi.nlm.nih.gov/pubmed/25104243", "https://pubmed.ncbi.nlm.nih.gov/3243694/", "https://www.webmd.com/diet/obesity/features/eat-to-boost-your-energy", "https://www.sleepfoundation.org/articles/5-facts-about-sleep-and-exercise", "https://www.ncbi.nlm.nih.gov/pubmed/20712591", "https://pubmed.ncbi.nlm.nih.gov/39631226/", "https://www.ncbi.nlm.nih.gov/books/NBK507271/", "https://www.ncbi.nlm.nih.gov/sites/books/NBK513274/", "https://www.ncbi.nlm.nih.gov/pubmed/28648359", "https://www.nhs.uk/live-well/alcohol-support/calculating-alcohol-units/", "https://time.com/3671777/drinking-sleep/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4818021/", "https://www.medicalnewstoday.com/articles/324178.php", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3273429/", "https://www.ncbi.nlm.nih.gov/pubmed/14592218", "http://content.time.com/time/specials/packages/article/0,28804,2039990_2039991_2040040,00.html", "https://pubmed.ncbi.nlm.nih.gov/1302043/", "https://www.ncbi.nlm.nih.gov/books/NBK548448/", "https://www.ncbi.nlm.nih.gov/books/NBK56394/bin/algorithms-fs6.pdf", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9876543/", "https://www.ncbi.nlm.nih.gov/books/NBK590821/", "https://www.ncbi.nlm.nih.gov/pubmed/8241707", "https://pubmed.ncbi.nlm.nih.gov/23484092/", "https://www.ncbi.nlm.nih.gov/pubmed/18691289", "https://pubmed.ncbi.nlm.nih.gov/8370699/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2048496/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7564564/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5556677/", "https://www.mindbodygreen.com/0-7264/8-best-superfoods-to-boost-your-mood-energy-levels.html", "https://www.webmd.com/drugs/2/drug-63163/adderall-oral/details", "https://www.ncbi.nlm.nih.gov/pubmed/27387273", "https://www.ncbi.nlm.nih.gov/pubmed/3723647", "https://ez-lifestyle.com/products/fuel-ez/", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2624613/", "https://www.onnit.com/academy/4-ways-to-sleep-better/", "https://psychcentral.com/lib/the-importance-of-rem-sleep-dreaming/", "https://www.webmd.com/diet/obesity/features/the-facts-on-leptin-faq", "https://www.webmd.com/food-recipes/features/is-coconut-water-all-its-cracked-up-to-be", "https://splinternews.com/so-youre-hungover-heres-what-not-to-do-1793848721"], "i03": ["https://ez-lifestyle.com/products/over-ez", "https://ez-lifestyle.com/blog/11-vitamins-and-supplements-that-boost-energy", "https://ez-lifestyle.com/blog/5-best-and-worst-foods-to-cure-your-hangover", "https://ez-lifestyle.com/blog/what-vitamins-help-with-hangovers", "https://ez-lifestyle.com/blog/why-hangovers-get-worse-with-age-the-surprising-truth-you-need-to-know", "https://ez-lifestyle.com/blog/supplement-for-hangover", "https://ez-lifestyle.com/blog/11-all-natural-backed-by-science-hangover-cures-that-actually-work", "https://ez-lifestyle.com/blog/hangover-cant-sleep", "https://ez-lifestyle.com/blog/7-things-you-dont-know-about-hangover-medicine", "https://ez-lifestyle.com/blog/the-6-most-outrageous-and-effective-hangover-cure-drinks", "https://ez-lifestyle.com/blog/6-incredible-hangover-cure-foods-youve-never-heard-of", "https://ez-lifestyle.com/blog/beat-your-hangover-before-it-begins-with-these-tricks", "https://ez-lifestyle.com/blog/preventing-hangovers-science-backed-strategies-that-actually-work", "https://ez-lifestyle.com/blog/this-hangover-pill-defied-my-expectations", "https://ez-lifestyle.com/blog/herbs-for-hangover", "https://ez-lifestyle.com/blog/hangover-pills-canada", "https://ez-lifestyle.com/blog/can-coconut-water-cure-a-hangover", "https://ez-lifestyle.com/blog/what-occasions-make-hangover-prevention-supplements-a-smart-choice", "https://ez-lifestyle.com/blog/7-popular-hangover-cures-reviewed-by-experts", "https://ez-lifestyle.com/blog/8-steps-to-cure-your-hangover", "https://ez-lifestyle.com/blog/9-ways-to-get-the-most-energy-out", "https://ez-lifestyle.com/blog/vitamin-b-hangover", "https://ez-lifestyle.com/blog/can-you-prevent-your-next-hangover-by-using-over-ez", "https://ez-lifestyle.com/blog/top-10-things-by-doctors-for-natural-sleep-aid", "https://ez-lifestyle.com/blog/ezlifestlye-products", "https://ez-lifestyle.com/lp/overez/c/party-smart"], "i04": ["https://ez-lifestyle.com/products/over-ez", "https://ez-lifestyle.com/blog", "https://ez-lifestyle.com/blog/11-vitamins-and-supplements-that-boost-energy", "https://ez-lifestyle.com/blog/important-role-of-energy-supplements-to-improve-energy", "https://ez-lifestyle.com/blog/why-hangovers-get-worse-with-age-the-surprising-truth-you-need-to-know", "https://ez-lifestyle.com/blog/hangovers-really-do-get-worse-as-you-age--heres-why-and-how-to-prevent-them", "https://ez-lifestyle.com/blog/6-most-effective-home-remedies-to-ease-a-bad-hangover", "https://ez-lifestyle.com/blog/11-all-natural-backed-by-science-hangover-cures-that-actually-work", "https://ez-lifestyle.com/blog/l-cysteine-the-reason-why-you-feel-so-great-after-drinking", "https://ez-lifestyle.com/blog/7-things-you-dont-know-about-hangover-medicine", "https://ez-lifestyle.com/blog/anti-hangover-drink", "https://ez-lifestyle.com/blog/this-is-why-it-your-hangovers-are-getting-worse-with-age", "https://ez-lifestyle.com/blog/how-sleep-deprivation-and-stress-connect", "https://ez-lifestyle.com/blog/beat-your-hangover-before-it-begins-with-these-tricks", "https://ez-lifestyle.com/blog/which-vitamins-and-supplements-should-you-take-to-prevent-a-hangover", "https://ez-lifestyle.com/blog/this-hangover-pill-defied-my-expectations", "https://ez-lifestyle.com/blog/5-horrible-side-effects-of-prescribed-sleeping-pills", "https://ez-lifestyle.com/blog/7-natural-supplements-for-focus-and-energy", "https://ez-lifestyle.com/blog/why-do-hangovers-feel-worse-as-you-get-older", "https://ez-lifestyle.com/blog/8-natural-sleep-aids-backed-by-science", "https://ez-lifestyle.com/blog/10-reasons-why-over-ez-is-the-ultimate-hangover-prevention-solution-in-2024", "https://ez-lifestyle.com/blog/all-you-need-to-know-about-sleeping-pills", "https://ez-lifestyle.com/blog/can-coconut-water-cure-a-hangover", "https://ez-lifestyle.com/blog/14-ways-to-prevent-and-cure-your-hangover-after-drinking-alcohol", "https://ez-lifestyle.com/blog/how-stress-affects-your-sleep", "https://ez-lifestyle.com/blog/7-reasons-hangover-pills-trending-in-north-america", "https://ez-lifestyle.com/blog/9-ways-to-get-the-most-energy-out", "https://ez-lifestyle.com/blog/5-natural-energy-supplements-helps-to-improve-energy", "https://ez-lifestyle.com/blog/the-bulletproof-hangover-prevention-process", "https://ez-lifestyle.com/blog/which-sleep-aid-is-right-for-me", "https://ez-lifestyle.com/blog/6-best-natural-ways-to-fall-asleep", "https://ez-lifestyle.com/blog/the-best-supplements-to-ease-your-hangover", "https://ez-lifestyle.com/blog/can-you-prevent-your-next-hangover-by-using-over-ez", "https://ez-lifestyle.com/blog/top-10-things-by-doctors-for-natural-sleep-aid", "https://ez-lifestyle.com/blog/i-thought-i-had-to-quit-drinking-to-avoid-hangovers-until-i-tried-this", "https://ez-lifestyle.com/blog/5-signs-not-getting-quality-sleep", "https://ez-lifestyle.com/blog/ezlifestlye-products", "https://ez-lifestyle.com/blog/what-is-rem-sleep-and-why-is-it-the-most-important", "https://ez-lifestyle.com/blog/11-hangover-prevention-process", "https://ez-lifestyle.com/lp/overez/lf/overez-2-y", "https://ez-lifestyle.com/blog/beat-your-hangover", "https://ez-lifestyle.com/blog/suffering-from-bad-hangover", "https://ez-lifestyle.com/blog/adderall-vs-natural-energy-boosters", "https://ez-lifestyle.com/blog/16-hangover-prevention-tips", "https://ez-lifestyle.com/blog/5-reasons-for-brain-fog", "https://ez-lifestyle.com/lp/overez/c/h-proof"], "i05": ["https://ez-lifestyle.com/lp/overez/hangover-prevention", "https://ez-lifestyle.com/lp/overez/ca/hangover-prevention", "https://ez-lifestyle.com/products/overez-auto-renew", "https://ez-lifestyle.com/blog/how-can-i-cure-my-hangover-asap", "https://ez-lifestyle.com/blog/beat-your-hangover-before-it-begins-with-these-tricks", "https://ez-lifestyle.com/blog/beat-your-hangover", "https://ez-lifestyle.com/blog/suffering-from-bad-hangover", "https://ez-lifestyle.com/lp/overez/c/party-smart", "https://ez-lifestyle.com/lp/overez/c/h-proof"], "i06": ["https://ez-lifestyle.com/pages/return-policy", "https://ez-lifestyle.com/pages/terms-and-conditions", "https://ez-lifestyle.com/pages/refer-a-friend", "https://ez-lifestyle.com/pages/privacy-policy", "https://ez-lifestyle.com/pages/retailers", "https://ez-lifestyle.com/pages/about-us", "https://ez-lifestyle.com/pages/reviews"], "i07": ["https://ez-lifestyle.com/pages/contact-us", "https://ez-lifestyle.com/products/overez-auto-renew", "https://ez-lifestyle.com/products/essentials-pack", "https://ez-lifestyle.com/products/fuel-ez", "https://ez-lifestyle.com/lp/overez/hangover-prevention", "https://ez-lifestyle.com/lp/dreamez/sleep-supplement", "https://ez-lifestyle.com/pages/shipping-policy", "https://ez-lifestyle.com/lp/overez/ca/hangover-prevention", "https://ez-lifestyle.com/lp/overez/lf/overez-2-y", "https://ez-lifestyle.com/lp/overez/c/party-smart", "https://ez-lifestyle.com/lp/overez/c/h-proof"], "i08": ["https://ez-lifestyle.com/pages/contact-us"]};
+
+  // Restore saved state
+  function taLoadState() {
+    try {
+      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
+      });
+      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+      });
+    } catch(e) {}
+  }
+
+  window.taSaveState = function() {
+    var s = {};
+    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].own = el.value;
+    });
+    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].stat = el.value;
+    });
+    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Toggle expandable URL panel
+  window.taToggle = function(iid) {
+    var panel = document.getElementById('ta-panel-' + iid);
+    var arrow = document.getElementById('ta-arrow-' + iid);
+    var isOpen = panel.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
+    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      arrow.classList.add('open');
+      // Populate URLs
+      var container = document.getElementById('ta-urls-' + iid);
+      if (!container.dataset.loaded) {
+        var urls = ALL_URLS[iid] || [];
+        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
+        urls.forEach(function(u, idx) {
+          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+        });
+        container.innerHTML = html;
+        container.dataset.loaded = '1';
+      }
+    }
+  };
+
+  window.taCopyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  };
+
+  window.taCopyAll = function(iid) {
+    var urls = ALL_URLS[iid] || [];
+    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
+    });
+  };
+
+  // Filter by category chip
+  var activeCat = 'all';
+  window.taFilter = function(btn) {
+    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    taApplyFilters();
+  };
+
+  window.taApplyFilters = function() {
+    var prio = document.getElementById('ta-prio-filter').value;
+    var stat = document.getElementById('ta-status-filter').value;
+    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
+      var iid = row.dataset.id;
+      var show = true;
+      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
+      if (stat !== 'all') {
+        var sel = row.querySelector('.ta-stat-sel');
+        if (sel && sel.value !== stat) show = false;
+      }
+      row.style.display = show ? '' : 'none';
+      var panel = document.getElementById('ta-panel-' + iid);
+      if (!show && panel) { panel.classList.remove('open'); }
+    });
+  };
+
+  taLoadState();
+})();
+</script>
+
 </div>
 
 

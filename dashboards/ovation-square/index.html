@@ -148,7 +148,7 @@
   </div>
   <div class="header-right">
     <div class="logo">THIRDSLASH</div>
-    <div class="updated">Updated: 19 Jun 2026</div>
+    <div class="updated">Updated: 20 Jun 2026</div>
   </div>
 </div>
 
@@ -844,7 +844,626 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- TECH AUDIT TAB -->
 <div id="tab-techaudit" class="section">
-  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128269;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">Tech Audit Coming Soon</p><p style="font-size:13px;color:#6B7280">Next audit scheduled. Run Screaming Frog crawl to generate report.</p></div>
+  
+<style>
+/* ── Tech Audit Scoped Styles ── */
+.ta-wrap {
+  --navy:#1B2A4A; --orange:#F4812A; --orange-light:#FEF0E6; --bg:#F5F6F8; --card:#fff; --border:#E4E7ED;
+  --text:#1A1D23; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
+  --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+}
+.ta-banner {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.ta-score-ring {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+.ta-score-ring svg {
+  transform: rotate(-90deg);
+}
+.ta-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ta-score-num .ta-big {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.ta-score-num .ta-of {
+  font-size: 13px;
+  opacity: .6;
+}
+.ta-banner-text h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ta-banner-text p {
+  margin: 0;
+  opacity: .7;
+  font-size: 14px;
+}
+.ta-banner-text .ta-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ta-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ta-metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.ta-metric-card .ta-mc-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ta-metric-card .ta-mc-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
+.ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
+.ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+.ta-legend {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ta-legend span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Filters */
+.ta-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ta-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.ta-chip.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.ta-chip:hover {
+  border-color: var(--navy);
+}
+.ta-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Issue table */
+.ta-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ta-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ta-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ta-table tr:last-child td { border-bottom: none; }
+.ta-table tr.ta-row-issue { cursor: pointer; }
+.ta-table tr.ta-row-issue:hover { background: var(--bg); }
+
+/* Pills */
+.ta-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ta-pill-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.ta-pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ta-pill-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.ta-pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* Priority badges */
+.ta-prio {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ta-prio-high { background: var(--red-bg); color: var(--red); }
+.ta-prio-medium { background: var(--amber-bg); color: var(--amber); }
+.ta-prio-low { background: var(--blue-bg); color: var(--blue); }
+
+/* Source tag */
+.ta-src {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--purple-bg);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  margin-left: 4px;
+}
+
+/* Expandable URL panel */
+.ta-url-panel {
+  display: none;
+}
+.ta-url-panel.open {
+  display: table-row;
+}
+.ta-url-panel td {
+  background: var(--bg);
+  padding: 0;
+}
+.ta-url-inner {
+  padding: 12px 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.ta-url-inner .ta-url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.ta-url-inner .ta-url-item:last-child { border-bottom: none; }
+.ta-url-inner .ta-url-item a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-all;
+}
+.ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
+.ta-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.ta-copy-btn:hover { background: var(--border); }
+
+/* Owner / Status dropdowns in table */
+.ta-table select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Expand arrow */
+.ta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+  margin-right: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.ta-arrow.open {
+  transform: rotate(90deg);
+}
+</style>
+
+<div class="ta-wrap">
+
+  <!-- Health Score Banner -->
+  <div class="ta-banner">
+    <div class="ta-score-ring">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+        <circle cx="64" cy="64" r="54" fill="none" stroke="#DC2626" stroke-width="10"
+                stroke-dasharray="339.3" stroke-dashoffset="254.5"
+                stroke-linecap="round"/>
+      </svg>
+      <div class="ta-score-num">
+        <span class="ta-big">25</span>
+        <span class="ta-of">/ 100</span>
+      </div>
+    </div>
+    <div class="ta-banner-text">
+      <h2>Technical SEO Health</h2>
+      <p>Ovation Square &middot; ovationsquare.com &middot; Screaming Frog Pro Crawl &middot; 20 Jun 2026 &middot; 465 pages scanned</p>
+      <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="ta-metrics">
+    <div class="ta-metric-card"><div class="ta-mc-val">465</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">289</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">138</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">171</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">1</div><div class="ta-mc-label">5xx Errors</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">22</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">59</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">76</div><div class="ta-mc-label">Meta Issues</div></div>
+  </div>
+
+
+  <!-- Filters -->
+  <div class="ta-filters">
+    <button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All Issues</button>
+    <button class="ta-chip" data-cat="errors" onclick="taFilter(this)">Errors</button>
+    <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
+    <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
+    <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
+      <option value="all">All Priorities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="Under Review">Under Review</option>
+      <option value="Completed">Completed</option>
+      <option value="Not Completed">Not Completed</option>
+      <option value="Blocked">Blocked</option>
+      <option value="Waiting for Approval">Waiting for Approval</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <!-- Issue Log Table -->
+  <table class="ta-table" id="ta-issue-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:110px">Owner</th>
+        <th style="width:130px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>171 pages returning 404 errors </td>
+        <td><span class="ta-pill ta-pill-red">171</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>These pages return a 404 Not Found status. Search engines will deindex them and users hitting these URLs get a dead end.</td>
+        <td>Set up 301 redirects to the most relevant live page. If the content was removed intentionally, ensure proper 410 Gone status and update internal links.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i01">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i01"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="errors" data-prio="high" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>1 pages returning 5xx server errors </td>
+        <td><span class="ta-pill ta-pill-red">1</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Server errors prevent both users and search engines from accessing these pages. Persistent 5xx errors signal instability to Google.</td>
+        <td>Investigate server logs for root cause. Common fixes: increase server resources, fix broken database queries, or resolve plugin conflicts.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i02">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i02"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i03" data-cat="technical" data-prio="medium" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>22 pages with 3xx redirects </td>
+        <td><span class="ta-pill ta-pill-amber">22</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>57 pages with titles over 60 characters </td>
+        <td><span class="ta-pill ta-pill-amber">57</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
+        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>2 pages with titles below 30 characters </td>
+        <td><span class="ta-pill ta-pill-blue">2</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="medium" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>1 pages with missing meta descriptions </td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
+        <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i07" data-cat="onpage" data-prio="low" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>75 pages with meta descriptions over 155 characters </td>
+        <td><span class="ta-pill ta-pill-blue">75</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i08" data-cat="onpage" data-prio="high" onclick="taToggle('i08')">
+        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>1 pages with missing H1 tags </td>
+        <td><span class="ta-pill ta-pill-red">1</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>The H1 tag is the primary heading signal for search engines. Missing H1s weaken topical relevance and hurt rankings.</td>
+        <td>Add a single, unique H1 tag to each page that includes the primary keyword and clearly describes the page topic.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i08" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i08">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i08"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i09" data-cat="onpage" data-prio="medium" onclick="taToggle('i09')">
+        <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>3 pages with duplicate H1 tags </td>
+        <td><span class="ta-pill ta-pill-amber">3</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Multiple H1 tags on a page dilute the heading hierarchy and confuse search engines about the primary topic.</td>
+        <td>Ensure each page has exactly one H1 tag. Demote additional H1s to H2 or H3 as appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i09" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i09" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i09">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i09"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i10" data-cat="technical" data-prio="medium" onclick="taToggle('i10')">
+        <td><span class="ta-arrow" id="ta-arrow-i10">&#9654;</span>1 pages set to noindex </td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
+        <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i10" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i10" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i10">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i10"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i11" data-cat="content" data-prio="medium" onclick="taToggle('i11')">
+        <td><span class="ta-arrow" id="ta-arrow-i11">&#9654;</span>13 pages with thin / low content </td>
+        <td><span class="ta-pill ta-pill-amber">13</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
+        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i11" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i11" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i11">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i11"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  var LS_KEY = "ovation-square_techaudit_jun_2026";
+  var ALL_URLS = {"i01": ["https://www.ovationsquare.com/Indian%20wedding%20venues%20in%20Downtown%20Long%20Beach", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=typguidkr3yp08fkiwyxhommj6uy9r", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=sp21hguohq7gdp1vn8kd736dr6jni2", "https://www.ovationsquare.com/blog/what-are-some-tips-for-choosing-an-event-venue-for-corporate-team-building", "https://www.ovationsquare.com/events/40th-birthday-party?itemId=zeeldqev1afg8z2945aatlbns22fqf", "https://www.ovationsquare.com/events/40th-birthday-party?itemId=ubd0arjx54phk51htbbit1uqbk7a12", "https://www.ovationsquare.com/events/40th-birthday-party?itemId=meeo95u5dle2unkw6ug8l101lrf9go", "https://www.ovationsquare.com/blog/unlocking-the-perfect-conference-venue-in-los-angeles", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=no78lhukzgg10md3196j4kd0x0pzav", "https://www.ovationsquare.com/events/50th-birthday-party?itemId=8knyhed7rz6w59t8hbzkmhghuodiah", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=0pu5uhiwp7ou31xs8p43fsxr4377jo", "https://www.ovationsquare.com/events/ebaytopstar?itemId=4p1uo1znvvxmnsjt71smb0nj57mt0f", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=q15z2f942o6k0rjeah3qbsghfx2g23", "https://www.ovationsquare.com/events/corporate-conference?itemId=6hximm36b7wv7mavi77zll5gstm5k8", "https://www.ovationsquare.com/blog/how-to-select-bar-mitzvah-venues-in-long-beach-that-balance-tradition-and-fun", "https://www.ovationsquare.com/blog/what-are-some-dos-and-donts-of-venue-booking", "https://www.ovationsquare.com/blog/how-long-beach-wedding-venues-make-planning-stress-free-for-couples", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=agfz2tjsllfedj6lwnxz74252qq04v", "https://www.ovationsquare.com/blog/how-to-plan-a-corporate-party", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=qwdajimvq3eo9hy3fmve36ohnoamur", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=4kc3oaf3vwvzs7fdrudcfupyk9wpvo", "https://www.ovationsquare.com/events/corporate-conference?itemId=tta3rygsc0mnqzkh5173z030347num", "https://www.ovationsquare.com/events/candlelight-concert?itemId=wa4h0vngf780bv3m1qjwlo3k7wosxf", "https://www.ovationsquare.com/events/usfoods-immersion-event?itemId=d07iz48ic83bmiwqsimkmna1foijfu", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=ukvhm4sjl2xrva0wqig4ey7tvzaehe", "https://www.ovationsquare.com/blog/where-to-find-the-best-photoshoot-rental-spaces-in-los-angeles", "https://www.ovationsquare.com/events/usfoods-immersion-event?itemId=7khxkme7gm7ozt995yq1vmmgmjlze1", "https://www.ovationsquare.com/events/40th-birthday-party?itemId=vv4dmr5yhveazgkkl8a9cm676p4xht", "https://www.ovationsquare.com/events/candlelight-concert?itemId=w6gpo8uucozhjw51iylrtz9j7ghz8t", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=9c8b5kiiclkco0eswsd8ytyzweyt2i", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=16ral8zp2ppsoth7es2b9uhnz6qsy3", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=0264cu4f1x62fkyw2egokvuz9qh079", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=7wlisvfndjsniab5fx1d380qfvfz2w", "https://www.ovationsquare.com/events/40th-birthday-party?itemId=vpaaum6c4n2y31qxvxapt692y25bx3", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=kreg2waq9pablgfaadlouordz8u3u5", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=psc37q5k2jwm4rifkt3tf80c6qz2iv", "https://www.ovationsquare.com/blog/finding-the-perfect-party-venue-in-long-beach", "https://www.ovationsquare.com/blog/why-is-long-beach-an-ideal-location-for-corporate-event-venues", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=isomhvflugdvythwdi844xyviobmpf", "https://www.ovationsquare.com/blog/why-long-beach-is-becoming-a-favorite-location-for-birthday-party-venues", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=x1xfipxnb9ev2417oeclz7rqy79lhr", "https://www.ovationsquare.com/blog/the-ultimate-party-guide-to-throw-an-outdoor-winter-party", "https://www.ovationsquare.com/events/ebaytopstar?itemId=tigx1o90d2j0vjuea4iiuun1gsiv2z", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=hrs6m78sq7edckmzi71wl8omk217bh", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=d78tsgoh6mgo0gx87by6jv6igfep7y", "https://www.ovationsquare.com/blog/some-amazing-wedding-venue-marketing-tips-to-increase-bookings", "https://www.ovationsquare.com/blog/reasons-to-choose-a-unique-wedding-venue", "https://www.ovationsquare.com/blog/los-angeles-live-music-venues-that-celebrate-local-talent", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=1o0vgfwl1aqk6az09ar9ie7qlr28m9", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=uzltdyxqj5pwu9gjj7h52lpta1x14s", "https://www.ovationsquare.com/blog/why-long-beach-is-becoming-a-top-choice-for-indian-weddings-in-2026", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=dm75dfxhuruqy66awdygc3r29disyc", "https://www.ovationsquare.com/events/corporate-conference?itemId=7uy7if3of5ex86ofbwf53kvhpyeutn", "https://www.ovationsquare.com/events/candlelight-concert?itemId=t53onnn9w3w8wwbb0f486r84etxiij", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=l3z6r37ttd0wy13idzzjc6iueo49ie", "https://www.ovationsquare.com/blog/what-makes-ovation-square-the-best-filming-venue-in-la", "https://www.ovationsquare.com/blog/unlocking-success-choosing-the-perfect-venue-for-branding-events", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=xgxpyr707t9dimueuponls6he3u7mi", "https://www.ovationsquare.com/blog/raising-product-launches-with-corporate-event-spaces-in-los-angeles", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=2ik15l5u16uyhd7aq64j2ou2v06inz", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=w4hs8pz6mth0vlkx264nbymafeqs30", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=8xsmwjlhe2z46ed16zvs3zpypx3lwa", "https://www.ovationsquare.com/blog/choosing-the-perfect-bar-mitzvah-venue-for-a-memorable-celebration", "http://www.ovationsquare.com/conference-meeting-space-long-beach", "https://www.ovationsquare.com/events/50th-birthday-party?itemId=3u4yzvnfq8ol8txlwkae2vh9osmflo", "https://www.ovationsquare.com/blog/why-long-beach-is-becoming-a-go-to-destination-for-corporate-events", "https://www.ovationsquare.com/events/ebaytopstar?itemId=9cn0deksbffcfnv2k5bzl101gyv916", "https://www.ovationsquare.com/events/candlelight-concert?itemId=ux3qlzxhvu7lmo28v6s2mkti8l9e1v", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=33a5roy0qypglhb9gadzbc5oepzt98", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=ya1n4jcmmn71rgq4kxxmbsg4of7uht", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=srzy5hxxdy1hexazp6sl7qzx1c0gg1", "https://www.ovationsquare.com/events/50th-birthday-party?itemId=mfnbb6nge7xfpvkriaa3e5ady8j093", "https://www.ovationsquare.com/blog/unique-summer-wedding-ideas", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=9cits1qsz5tyshm9zvrnllub0u2z3w", "https://www.ovationsquare.com/events/candlelight-concert?itemId=um1s8wzpkozrx0g34fqla5pkld0ytl", "https://www.ovationsquare.com/filming-photo-shoots", "https://www.ovationsquare.com/blog/how-to-plan-an-outdoor-event", "https://www.ovationsquare.com/blog/what-are-the-7-key-elements-of-event-management", "https://www.ovationsquare.com/events/vegas-casino-birthday-party?itemId=y5eskn9d6h3f4hehhydug2bst9bfos", "https://www.ovationsquare.com/events/ebaytopstar?itemId=iz5wcbkk6kx2ff4dj8gpx9k3ecaahe", "https://www.ovationsquare.com/events/christmas-holiday-party?itemId=h2cijg7dxeujvtg7nh0yk48xu4y7ki", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square?itemId=yje3qe5lrlj58rem9y9s70cctwu3o6", "https://www.ovationsquare.com/blog/5-tips-for-finding-the-perfect-bar/bat-mitzvah-venue", "https://www.ovationsquare.com/blog/how-to-find-your-dream-la-venue-for-a-special-event-in-2026", "https://www.ovationsquare.com/blog/how-can-you-host-a-successful-corporate-event-at-a-downtown-party-venue", "https://www.ovationsquare.com/blog/how-to-choose-the-perfect-venue-for-your-new-years-celebration", "https://www.ovationsquare.com/blog/how-to-plan-a-baby-shower", "https://www.ovationsquare.com/blog/how-to-host-an-easy-holiday-party", "https://www.ovationsquare.com/blog/how-to-plan-a-multi-day-indian-wedding-in-los-angeles", "https://www.ovationsquare.com/blog/importance-of-brand-events-why-they-are-essential-for-building-a-strong-brand-identity", "https://www.ovationsquare.com/blog/how-to-compare-pricing-factors-when-booking-a-wedding-venue-for-2026", "https://www.ovationsquare.com/blog/how-can-you-respectfully-blend-cultural-traditions-in-modern-la-weddings", "https://www.ovationsquare.com/blog/how-to-choose-what-size-venue-rental-you-need", "https://www.ovationsquare.com/blog/reasons-you-should-hire-an-event-planner", "https://www.ovationsquare.com/blog/event-management-six-steps-to-selecting-the-venue", "https://www.ovationsquare.com/blog/how-to-transform-indian-wedding-venues-into-immersive-cultural-experiences", "https://www.ovationsquare.com/blog/finding-the-ideal-meeting-space-in-long-beach", "https://www.ovationsquare.com/blog/benefits-of-renting-social-halls-for-your-special-event", "https://www.ovationsquare.com/blog/future-sangeet-venues-shaped-by-emerging-trendsnbsp", "https://www.ovationsquare.com/blog/factors-to-consider-when-selecting-a-bar-mitzvah-venue", "https://www.ovationsquare.com/blog/ideas-to-celebrate-halloween-in-the-workplace", "https://www.ovationsquare.com/blog/how-to-plan-a-proper-retirement-party", "https://www.ovationsquare.com/blog/some-amazing-tips-to-find-the-best-photoshoot-locations", "https://www.ovationsquare.com/blog/how-to-organize-a-successful-college-event", "https://www.ovationsquare.com/blog/what-makes-long-beach-a-great-spot-for-parties", "https://www.ovationsquare.com/blog/how-to-organize-a-successful-college-event-in-2026", "https://www.ovationsquare.com/blog/how-to-find-the-best-venues-for-memorable-holiday-events-in-long-beach", "https://www.ovationsquare.com/blog/a-practical-guide-to-rental-spaces-in-long-beach-with-flexibility-for-modern-events", "http://www.ovationsquare.com/wedding-reception-venue-long-beach", "https://www.ovationsquare.com/blog/a-wedding-that-is-right-for-you", "https://www.ovationsquare.com/blog/differences-between-event-planning-and-coordinating", "https://www.ovationsquare.com/blog/coastal-beauty-redefined-long-beach-wedding-venues-pioneering-2026-trendsnbsp", "https://www.ovationsquare.com/blog/quinceaera-party-planning-how-to-throw-the-ultimate-celebration", "https://www.ovationsquare.com/blog/differences-between-wedding-planner-and-event-planner", "https://www.ovationsquare.com/blog/10-steps-to-get-you-started-with-event-planning", "https://www.ovationsquare.com/blog/a-comprehensive-guide-for-your-dream-celebration", "https://www.ovationsquare.com/blog/what-are-some-different-types-of-venues-for-events", "https://www.ovationsquare.com/blog/how-to-make-wedding-venues-in-long-beach-perfect-for-coastal-ceremonies", "https://www.ovationsquare.com/blog/everything-you-need-to-know-about-renting-filming-locations", "https://www.ovationsquare.com/blog/everything-you-need-to-know-about-planning-a-wedding-after-party", "https://www.ovationsquare.com/blog/venue-amenities-every-venue-should-provide", "https://www.ovationsquare.com/blog/how-to-make-wedding-venues-in-long-beach-feel-intimate-and-elegant", "https://www.ovationsquare.com/blog/how-to-optimize-film-location-rentals-in-long-beach-for-brand-shoots", "https://www.ovationsquare.com/blog/why-is-long-beach-ideal-for-indian-weddings", "https://www.ovationsquare.com/blog/why-long-beach-is-becoming-a-strategic-hub-for-corporate-events-in-2026", "https://www.ovationsquare.com/blog/conference-event-how-to-organize-it-in-a-professional-way", "https://www.ovationsquare.com/blog/importance-of-selecting-the-right-venue-for-branding-events", "https://www.ovationsquare.com/blog/how-to-blend-professionalism-and-style-at-a-corporate-event-venue-in-long-beach", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-planning-the-perfect-birthday-party", "https://www.ovationsquare.com/blog/perfect-conference-venue-in-los-angeles-for-a-successful-event", "https://www.ovationsquare.com/blog/how-to-find-the-right-production-space-for-rent-for-your-next-photo-or-video-shoot", "https://www.ovationsquare.com/blog/how-to-host-a-seamless-conference-using-a-corporate-event-space-rental", "https://www.ovationsquare.com/blog/how-to-turn-any-downtown-party-venue-into-an-unforgettable-experience", "https://www.ovationsquare.com/blog/hosting-productive-meetings-at-our-premier-venue-in-los-angeles", "https://www.ovationsquare.com/blog/how-to-ensure-accessibility-and-comfort-at-venues-for-social-events-in-long-beach", "https://www.ovationsquare.com/blog/mastering-memorable-social-events-essential-tips-for-los-angeles-event-planners", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-managing-an-event-venue", "https://www.ovationsquare.com/blog/how-to-plan-a-seminar", "https://www.ovationsquare.com/blog/how-to-plan-a-birthday-party-like-a-pro", "https://www.ovationsquare.com/blog/how-to-avoid-common-mistakes-when-renting-filming-locations", "https://www.ovationsquare.com/blog/perfect-meeting-spaces-in-long-beach-for-your-next-business-event", "https://www.ovationsquare.com/blog/how-to-personalize-indoor-wedding-reception-venues-for-cultural-traditions", "https://www.ovationsquare.com/blog/how-to-design-a-quinceaera-that-reflects-personal-style", "https://www.ovationsquare.com/blog/a-list-of-event-space-amenities-every-venue-should-have", "https://www.ovationsquare.com/blog/how-to-incorporate-tradition-and-fun-in-a-bar-mitzvah-celebration", "https://www.ovationsquare.com/blog?offset=1755829800069", "https://www.ovationsquare.com/blog/what-to-know-before-booking-your-quinceaera-venue", "https://www.ovationsquare.com/blog/everything-you-need-to-know-about-what-a-successful-event-manager-does", "https://www.ovationsquare.com/blog/6-common-types-of-corporate-events", "https://www.ovationsquare.com/blog/how-to-select-indoor-wedding-reception-venues-for-style-and-practicality", "https://www.ovationsquare.com/blog/tips-for-hosting-a-successful-social-event", "https://www.ovationsquare.com/blog/creative-corporate-event-ideas-for-your-business", "https://www.ovationsquare.com/blog/how-to-plan-an-indian-wedding-in-los-angeles", "https://www.ovationsquare.com/blog/tips-for-planning-the-perfect-graduation-party", "https://www.ovationsquare.com/blog/importance-of-choosing-the-right-film-location", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-location-scouting", "https://www.ovationsquare.com/blog/how-to-organize-a-successful-press-conference-event", "https://www.ovationsquare.com/blog/how-freelancers-find-photoshoot-rental-space-saving-time-and-money", "https://www.ovationsquare.com/blog/how-to-select-indian-wedding-venues-in-long-beach-supporting-traditions", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-organize-a-successful-concert-event", "https://www.ovationsquare.com/blog/how-to-plan-a-luxury-birthday-party-with-the-perfect-rental-space", "https://www.ovationsquare.com/blog/things-to-consider-when-checking-out-indian-wedding-venues-in-los-angeles", "https://www.ovationsquare.com/blog/how-to-choose-a-photoshoot-rental-space-that-matches-your-creative-vision", "https://www.ovationsquare.com/blog/the-event-planning-checklist-used-by-top-event-planners", "https://www.ovationsquare.com/blog/lights-camera-action-exploring-the-world-of-renting-filming-locations", "https://www.ovationsquare.com/blog/how-to-ensure-your-party-venue-long-beach-matches-your-dream-party-theme", "https://www.ovationsquare.com/blog/how-to-choose-the-perfect-corporate-event-space", "https://www.ovationsquare.com/blog/how-to-organize-a-family-friendly-birthday-party-in-long-beach", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-budget-friendly-wedding-venues", "https://www.ovationsquare.com/blog/how-to-customize-a-social-hall-for-different-types-of-celebrations", "https://www.ovationsquare.com/blog/how-to-find-wedding-venues-in-long-beach-that-fit-your-vision"], "i02": ["https://www.ovationsquare.com/events/40th-birthday-party?itemId=07kv58h7ky9dvm8x2brp5jj6ryzpjt"], "i03": ["https://ovationsquare.com/", "https://www.ovationsquare.com/branding-events", "https://www.ovationsquare.com/quinceneras", "https://www.ovationsquare.com/holiday-parties", "https://www.ovationsquare.com/new-dropdown", "https://www.ovationsquare.com/birthday-parties", "https://www.ovationsquare.com/concerts-live-music-events", "https://www.ovationsquare.com/social-events", "https://www.ovationsquare.com/rentals", "https://www.ovationsquare.com/bar-bat-mitzvahs", "https://www.ovationsquare.com/conferences-meetings", "http://www.ovationsquare.com/quinceneras-halls-long-beach", "https://www.ovationsquare.com/corporate-events", "http://www.ovationsquare.com/concerts-live-music-venues", "http://www.ovationsquare.com/social-events-venue-long-beach", "http://www.ovationsquare.com/venues-for-branding-events", "http://www.ovationsquare.com/birthday-party-venues-long-beach", "http://www.ovationsquare.com/holiday-party-venue-long-beach", "http://www.ovationsquare.com/bar-mitzvah-venues-long-beach", "https://www.ovationsquare.com/wedding-ceremonies-receptions", "http://www.ovationsquare.com/corporate-event-venue-long-beach", "https://www.locationsdirect.co/news/importance-of-venue-selection-in-event/"], "i04": ["https://www.ovationsquare.com/", "https://www.ovationsquare.com/blog/why-lighting-matters-more-than-decor-in-long-beach-wedding-venues", "https://www.ovationsquare.com/venues-for-branding-events", "https://www.ovationsquare.com/blog/the-most-luxurious-wedding-venues-in-long-beach-create-perfect-wedding-experiences", "https://www.ovationsquare.com/blog/5-things-to-compare-when-renting-concert-venues-in-downtown-long-beach", "https://www.ovationsquare.com/concerts-live-music-venues", "https://www.ovationsquare.com/blog/how-to-plan-a-last-minute-birthday-party-at-a-long-beach-venue", "https://www.ovationsquare.com/wedding-reception-venue-long-beach", "https://www.ovationsquare.com/blog/how-to-book-a-private-event-space-in-long-beach-for-1000-guests", "https://www.ovationsquare.com/bar-mitzvah-venues-long-beach", "https://www.ovationsquare.com/blog/why-los-angeles-remains-the-ultimate-city-for-live-music-events", "https://www.ovationsquare.com/blog/how-venue-design-shapes-brand-perception-in-marketing-events", "https://www.ovationsquare.com/venue", "https://www.ovationsquare.com/social-events-venue-long-beach", "https://www.ovationsquare.com/birthday-party-venues-long-beach", "https://www.ovationsquare.com/blog/6-tips-for-choosing-a-perfect-conference-venue", "https://www.ovationsquare.com/the-box-lounge", "https://www.ovationsquare.com/quinceneras-halls-long-beach", "https://www.ovationsquare.com/blog/what-do-los-angeles-indian-wedding-venues-offer-for-multi-day-events", "https://www.ovationsquare.com/blog/what-makes-a-venue-for-concerts-truly-exceptional-in-live-entertainment", "https://www.ovationsquare.com/holiday-party-venue-long-beach", "https://www.ovationsquare.com/blog/what-amenities-do-long-beach-birthday-party-venues-commonly-offer", "https://www.ovationsquare.com/blog/comparing-long-beach-waterfront-vs-garden-wedding-venues", "https://www.ovationsquare.com/blog/why-historic-venues-are-ideal-for-film-production-shoots", "https://www.ovationsquare.com/filming-location-rentals-long-beach", "https://www.ovationsquare.com/blog/when-are-the-best-off-peak-rates-of-corporate-event-venues-in-long-beach", "https://www.ovationsquare.com/blog/amazing-tips-for-top-tier-event-organization", "https://www.ovationsquare.com/blog/best-timing-for-social-events-in-long-beach", "https://www.ovationsquare.com/conference-meeting-space-long-beach", "https://www.ovationsquare.com/blog/what-makes-an-event-space-a-great-concert-venue", "https://www.ovationsquare.com/corporate-event-venue-long-beach", "https://www.ovationsquare.com/mezzanine", "https://www.ovationsquare.com/main-floor", "https://www.ovationsquare.com/the-vault-underground-space", "https://www.ovationsquare.com/indian-wedding-venues-long-beach", "https://www.ovationsquare.com/blog/how-do-you-rent-a-live-music-venue-in-los-angeles", "https://www.ovationsquare.com/blog/how-to-plan-a-successful-product-launch-event", "https://www.ovationsquare.com/blog/key-insights-what-wedding-planners-seek-in-long-beach-reception-venues", "https://www.ovationsquare.com/blog/turning-celebrations-into-memories-at-party-venues-in-long-beach", "https://www.ovationsquare.com/blog/planning-the-perfect-wedding-at-a-venue-in-long-beach", "https://www.ovationsquare.com/blog/5-things-every-wedding-venue-should-offer", "https://www.ovationsquare.com/blog/how-to-plan-a-wedding-during-covid-times-in-2022", "https://www.ovationsquare.com/events/indian-wedding-at-ovation-square", "https://www.ovationsquare.com/blog/maximizing-production-flexibility-with-film-location-rentals-in-long-beach", "https://www.ovationsquare.com/blog/how-stage-design-shapes-live-performances-in-los-angeles-venues", "https://www.ovationsquare.com/blog/how-to-design-a-memorable-party-experience-in-a-downtown-la-venue", "https://www.ovationsquare.com/blog/birthday-party-venues-in-long-beach-that-shine-from-day-to-night", "https://www.ovationsquare.com/blog/key-insights-for-booking-social-event-venues-in-long-beach-in-2026", "https://www.ovationsquare.com/blog/why-long-beach-is-a-top-choice-for-film-location-rentals", "https://www.ovationsquare.com/blog/why-long-beach-is-a-top-choice-for-indian-destination-weddings", "https://www.ovationsquare.com/blog/what-businesses-expect-from-a-modern-conference-venue-in-los-angeles-in-2026", "https://www.ovationsquare.com/blog/key-insights-for-booking-film-location-rentals-in-long-beach-in-2026", "https://www.ovationsquare.com/blog/choosing-the-perfect-birthday-venue-in-long-beach-for-adults-and-kids", "https://www.ovationsquare.com/blog/long-beach-booming-bar-mitzvah-2026-event-planning", "https://www.ovationsquare.com/blog/how-to-personalize-hall-rentals-for-quinceaeras-with-creative-decor", "https://www.ovationsquare.com/blog/beyond-ballrooms-trending-alternatives-to-traditional-birthday-venues-in-long-beach", "https://www.ovationsquare.com/blog/how-to-find-your-dream-la-venue-for-a-special-event-in-2026"], "i05": ["https://www.ovationsquare.com/contact", "https://www.ovationsquare.com/events"], "i06": ["https://www.ovationsquare.com/events"], "i07": ["https://www.ovationsquare.com/", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-booking-your-next-private-party-event", "https://www.ovationsquare.com/blog/why-lighting-matters-more-than-decor-in-long-beach-wedding-venues", "https://www.ovationsquare.com/venues-for-branding-events", "https://www.ovationsquare.com/concerts-live-music-venues", "https://www.ovationsquare.com/wedding-reception-venue-long-beach", "https://www.ovationsquare.com/blog/how-to-plan-a-last-minute-birthday-party-at-a-long-beach-venue", "https://www.ovationsquare.com/bar-mitzvah-venues-long-beach", "https://www.ovationsquare.com/blog/how-venue-design-shapes-brand-perception-in-marketing-events", "https://www.ovationsquare.com/venue", "https://www.ovationsquare.com/blog", "https://www.ovationsquare.com/social-events-venue-long-beach", "https://www.ovationsquare.com/birthday-party-venues-long-beach", "https://www.ovationsquare.com/blog/6-tips-for-choosing-a-perfect-conference-venue", "https://www.ovationsquare.com/the-box-lounge", "https://www.ovationsquare.com/quinceneras-halls-long-beach", "https://www.ovationsquare.com/blog/what-do-los-angeles-indian-wedding-venues-offer-for-multi-day-events", "https://www.ovationsquare.com/blog/what-amenities-do-long-beach-birthday-party-venues-commonly-offer", "https://www.ovationsquare.com/holiday-party-venue-long-beach", "https://www.ovationsquare.com/blog/top-10-tips-for-a-successful-business-event", "https://www.ovationsquare.com/blog/when-are-the-best-off-peak-rates-of-corporate-event-venues-in-long-beach", "https://www.ovationsquare.com/filming-location-rentals-long-beach", "https://www.ovationsquare.com/blog/amazing-tips-for-top-tier-event-organization", "https://www.ovationsquare.com/corporate-event-venue-long-beach", "https://www.ovationsquare.com/conference-meeting-space-long-beach", "https://www.ovationsquare.com/blog/what-makes-an-event-space-a-great-concert-venue", "https://www.ovationsquare.com/mezzanine", "https://www.ovationsquare.com/indian-wedding-venues-long-beach", "https://www.ovationsquare.com/the-vault-underground-space", "https://www.ovationsquare.com/blog/how-do-you-rent-a-live-music-venue-in-los-angeles", "https://www.ovationsquare.com/blog/top-5-trends-and-predictions-for-the-event-industry-in-2022", "https://www.ovationsquare.com/blog/how-to-plan-a-successful-product-launch-event", "https://www.ovationsquare.com/blog/7-helpful-tips-to-follow-for-successful-corporate-event-management", "https://www.ovationsquare.com/blog/turning-celebrations-into-memories-at-party-venues-in-long-beach", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ova-should-offer", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square", "https://www.ovationsquare.com/blog/how-to-plan-a-wedding-during-covid-times-in-2022", "https://www.ovationsquare.com/blog/indoor-vs-outdoor-event-venues-how-to-choose-the-right-event-venue", "https://www.ovationsquare.com/blog/some-amazing-tips-on-how-to-pull-off-a-big-professional-event", "https://www.ovationsquare.com/events/50th-birthday-party", "https://www.ovationsquare.com/blog/make-a-large-wedding-feel-more-intimate-with-these-helpful-tips", "https://www.ovationsquare.com/blog/10-must-haves-for-conference-room-facilities-to-plan-a-corporate-event", "https://www.ovationsquare.com/blog/top-tips-to-help-you-choose-the-perfect-concert-venue", "https://www.ovationsquare.com/events/vegas-casino-birthday-party", "https://www.ovationsquare.com/blog/how-to-combine-networking-and-entertainment-at-corporate-events-in-la", "https://www.ovationsquare.com/events/indian-wedding-at-ovation-square", "https://www.ovationsquare.com/blog/top-7-tips-to-keep-in-mind-when-planning-the-perfect-wedding-venue", "https://www.ovationsquare.com/events/corporate-conference", "https://www.ovationsquare.com/blog/what-are-the-best-ways-to-transform-event-venues-in-long-beach-with-decor", "https://www.ovationsquare.com/blog/maximizing-production-flexibility-with-film-location-rentals-in-long-beach", "https://www.ovationsquare.com/blog/how-stage-design-shapes-live-performances-in-los-angeles-venues", "https://www.ovationsquare.com/blog/choosing-the-perfect-corporate-event-venue", "https://www.ovationsquare.com/blog/7-last-minute-birthday-party-planning-ideas", "https://www.ovationsquare.com/blog/birthday-party-venues-in-long-beach-that-shine-from-day-to-night", "https://www.ovationsquare.com/blog/6-tips-for-hosting-the-best-office-party-this-summer", "https://www.ovationsquare.com/blog/things-to-consider-before-choosing-a-wedding-venue", "https://www.ovationsquare.com/blog/key-elements-for-planning-a-successful-trade-show", "https://www.ovationsquare.com/blog/important-things-to-know-before-hosting-socially-distant-events", "https://www.ovationsquare.com/blog/why-long-beach-is-a-top-choice-for-indian-destination-weddings", "https://www.ovationsquare.com/blog/what-businesses-expect-from-a-modern-conference-venue-in-los-angeles-in-2026", "https://www.ovationsquare.com/blog/some-easy-tips-on-how-can-you-make-an-exhibition-event-successful", "https://www.ovationsquare.com/blog/event-planning-tips-for-before-during-and-after-your-event", "https://www.ovationsquare.com/blog/how-to-avoid-9-common-corporate-event-hosting-mistakes", "https://www.ovationsquare.com/blog/5-events-that-absolutely-need-catering", "https://www.ovationsquare.com/blog/important-things-to-consider-when-planning-a-summer-wedding", "https://www.ovationsquare.com/blog/what-are-the-types-of-private-events-you-can-host", "https://www.ovationsquare.com/blog/the-ultimate-guide-to-choosing-the-perfect-birthday-party-space", "https://www.ovationsquare.com/blog/how-to-host-professional-networking-events-at-a-corporate-venue-in-long-beach", "https://www.ovationsquare.com/blog/things-to-consider-when-choosing-your-event-venue", "https://www.ovationsquare.com/blog/event-management-or-event-planning-whats-the-difference", "https://www.ovationsquare.com/blog/how-to-create-timeless-memories-at-wedding-venues-in-long-beach", "https://www.ovationsquare.com/blog/why-is-an-event-planner-a-great-investment-for-any-type-of-events", "https://www.ovationsquare.com/blog/how-to-host-the-perfect-brand-launch-event", "https://www.ovationsquare.com/blog/how-to-stage-your-venue-for-a-successful-photo-shoot", "https://www.ovationsquare.com/blog/5-tips-for-finding-the-perfect-bar/bat-mitzvah-venue"], "i08": ["https://www.ovationsquare.com/gallery"], "i09": ["https://www.ovationsquare.com/blog/how-to-evaluate-luxury-wedding-venues-in-los-angeles-before-booking", "https://www.ovationsquare.com/blog", "https://www.ovationsquare.com/blog/5-questions-to-ask-before-booking-an-event-space-rental"], "i10": ["https://www.ovationsquare.com/cart"], "i11": ["https://www.ovationsquare.com/gallery", "https://www.ovationsquare.com/contact", "https://www.ovationsquare.com/events", "https://www.ovationsquare.com/events/ebaytopstar", "https://www.ovationsquare.com/events/christmas-holiday-party", "https://www.ovationsquare.com/events/cherry-blossom-wedding-ovation-square", "https://www.ovationsquare.com/events/usfoods-immersion-event", "https://www.ovationsquare.com/events/40th-birthday-party", "https://www.ovationsquare.com/events/50th-birthday-party", "https://www.ovationsquare.com/events/candlelight-concert", "https://www.ovationsquare.com/events/vegas-casino-birthday-party", "https://www.ovationsquare.com/events/indian-wedding-at-ovation-square", "https://www.ovationsquare.com/events/corporate-conference"]};
+
+  // Restore saved state
+  function taLoadState() {
+    try {
+      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
+      });
+      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+      });
+    } catch(e) {}
+  }
+
+  window.taSaveState = function() {
+    var s = {};
+    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].own = el.value;
+    });
+    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].stat = el.value;
+    });
+    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Toggle expandable URL panel
+  window.taToggle = function(iid) {
+    var panel = document.getElementById('ta-panel-' + iid);
+    var arrow = document.getElementById('ta-arrow-' + iid);
+    var isOpen = panel.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
+    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      arrow.classList.add('open');
+      // Populate URLs
+      var container = document.getElementById('ta-urls-' + iid);
+      if (!container.dataset.loaded) {
+        var urls = ALL_URLS[iid] || [];
+        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
+        urls.forEach(function(u, idx) {
+          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+        });
+        container.innerHTML = html;
+        container.dataset.loaded = '1';
+      }
+    }
+  };
+
+  window.taCopyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  };
+
+  window.taCopyAll = function(iid) {
+    var urls = ALL_URLS[iid] || [];
+    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
+    });
+  };
+
+  // Filter by category chip
+  var activeCat = 'all';
+  window.taFilter = function(btn) {
+    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    taApplyFilters();
+  };
+
+  window.taApplyFilters = function() {
+    var prio = document.getElementById('ta-prio-filter').value;
+    var stat = document.getElementById('ta-status-filter').value;
+    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
+      var iid = row.dataset.id;
+      var show = true;
+      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
+      if (stat !== 'all') {
+        var sel = row.querySelector('.ta-stat-sel');
+        if (sel && sel.value !== stat) show = false;
+      }
+      row.style.display = show ? '' : 'none';
+      var panel = document.getElementById('ta-panel-' + iid);
+      if (!show && panel) { panel.classList.remove('open'); }
+    });
+  };
+
+  taLoadState();
+})();
+</script>
+
 </div>
 
 

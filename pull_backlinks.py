@@ -45,7 +45,7 @@ CLIENTS = {
     "HRM Thread":            "hrmthread.com",
     "Lancers CBSE":          "lancerscbse.com",
     "Lancers Early Years":   "lancersearlyyears.com",
-    "Lancers Army School":   "lancersarmyschool.com",
+    "Lancers Army School":   "lancersarmyschools.com",
     "Potential Engineering": "potentialengineering.com",
     "Estrela Hotels":        "estrelahotels.com",
     "Kelly Powers":          "kellypowers.com",
