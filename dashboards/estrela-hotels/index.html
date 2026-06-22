@@ -1206,12 +1206,7 @@ function initMetaCharts() {
 </div>
 
 <script>
-function showTab(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
+
 const months   = ["Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"];
 const sessData = [37753, 39289, 39289, 33090, 32748, 53979, 88404, 88404, 66320, 24482, 26031, 33759];
 const orgData  = [2438, 2604, 2731, 2869, 3376, 3268, 2725, 2512, 2000, 2386, 2360, 2428];

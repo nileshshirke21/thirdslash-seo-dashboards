@@ -627,12 +627,7 @@ new Chart(document.getElementById('chChart'), {
 </div>
 
 <script>
-function showTab(name) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + name).classList.add('active');
-  event.target.classList.add('active');
-}
+
 const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
 const sessData = [315, 321, 321, 244, 276, 276, 449, 449, 420, 477, 514, 514];
 const orgData  = [41, 69, 53, 67, 64, 34, 49, 39, 45, 44, 76, 84];
