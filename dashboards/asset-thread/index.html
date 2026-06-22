@@ -1345,156 +1345,59 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">0</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">0</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">49</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">21</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">28</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">2</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">0</div><div class="gmb-label">Avg. Rating</div></div>
-      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">0</div><div class="gmb-label">New Reviews</div></div>
+    <div class="gmb-header"><div class="gmb-title">Google Business Profile — May 2026</div></div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Phone Calls</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Website Clicks</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">New Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #f59e0b;">
+        <div class="metric-label" style="text-align:center;">Avg. Rating</div>
+        <div class="metric-value" style="text-align:center;color:#f59e0b;">N/A</div>
+      </div>
+    </div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">Profile Views</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">49</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Search Views</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">21</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Map Views</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">28</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
+        <div class="metric-label" style="text-align:center;">Total Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#8b5cf6;">0</div>
+      </div>
     </div>
     <div class="chart-card" style="margin-top:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
+      <div class="chart-title">GBP Performance (Last 6 Months)</div>
       <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
-    if(ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [56, 49, 58, 54, 73, 49], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [0, 0, 0, 0, 0, 0], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [0, 0, 0, 0, 0, 0], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [56, 49, 58, 54, 73, 49], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [0, 0, 0, 0, 0, 0], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [0, 0, 0, 0, 0, 0], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
   </script>
 </div>
-
-<script>
-(function() {
-  var LS_KEY = "asset-thread_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["http://assetthread.com/wp-content/uploads/2025/12/atai001.png", "http://assetthread.com/wp-content/uploads/2022/06/Increase-Productivity.png", "http://assetthread.com/wp-content/uploads/2022/06/Extend-Asset.png", "http://assetthread.com/wp-content/uploads/2022/06/Operations-Maintenance.png", "http://assetthread.com/wp-content/uploads/2026/04/fams_app_090420261143.png", "https://twitter.com/sensystech", "http://assetthread.com/wp-content/uploads/2022/06/Custom-Reports.png", "http://assetthread.com/wp-content/uploads/2022/06/Asset-Info.png", "http://assetthread.com/wp-content/uploads/2022/06/Acquisition.png", "http://assetthread.com/wp-content/uploads/2022/06/User-Friendly-Dashboard.png", "http://assetthread.com/wp-content/uploads/2022/06/Disposal.png", "http://assetthread.com/wp-content/uploads/2026/04/fams_090420261133.png", "http://assetthread.com/wp-content/uploads/2022/06/Planning.png", "http://assetthread.com/wp-content/uploads/2022/06/Asset-Disposal.png", "http://assetthread.com/wp-content/uploads/2023/04/AssetThread-Brochure.pdf", "http://assetthread.com/wp-content/uploads/2022/06/Warranty-Insurance.png", "http://assetthread.com/wp-content/uploads/2022/06/Improve-Efficiency.png", "http://assetthread.com/wp-content/uploads/2022/06/Data-Importing.png", "http://assetthread.com/wp-content/uploads/2022/06/Centralize-Data.png", "http://assetthread.com/wp-content/uploads/2025/12/atai002.png", "http://assetthread.com/wp-content/uploads/2022/06/Improve-Visibility.png", "http://assetthread.com/wp-content/uploads/2022/06/Improved-User-Interface.png", "http://assetthread.com/wp-content/uploads/2022/06/Asset-Lifecycle.png", "http://assetthread.com/wp-content/uploads/2022/06/Asset-Management.png", "http://assetthread.com/wp-content/uploads/2024/04/13.jpg", "http://assetthread.com/wp-content/uploads/2024/10/2.png", "http://assetthread.com/wp-content/uploads/2022/09/on-cloud.png", "http://assetthread.com/wp-content/uploads/2026/04/6.png", "http://assetthread.com/wp-content/uploads/2024/04/Improve-Visibility.png", "http://assetthread.com/wp-content/uploads/2024/04/Extend-Asset-Life-Spans.png", "http://assetthread.com/wp-content/uploads/2026/04/2.png", "http://assetthread.com/wp-content/uploads/2022/09/easypay.png", "http://assetthread.com/wp-content/uploads/2022/07/115994629.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-India.png", "http://assetthread.com/wp-content/uploads/2022/09/CMA-CGM.jpg", "http://assetthread.com/wp-content/uploads/2024/04/6.jpg", "http://assetthread.com/wp-content/uploads/2022/09/bpmthread1.png", "http://assetthread.com/wp-content/uploads/2022/09/XBRL.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Indore.png", "http://assetthread.com/wp-content/uploads/2024/04/webinar.png", "http://assetthread.com/wp-content/uploads/2024/04/3.jpg", "http://assetthread.com/wp-content/uploads/2026/04/10.png", "http://assetthread.com/wp-content/uploads/2024/04/5.jpg", "http://assetthread.com/wp-content/uploads/2024/04/Improve-Efficiency.png", "http://assetthread.com/wp-content/uploads/2023/10/Why-Choose-Asset-Thread.png", "http://assetthread.com/wp-content/uploads/2024/04/Centralize-Data.png", "http://assetthread.com/wp-content/uploads/2026/04/12.png", "http://assetthread.com/wp-content/uploads/2024/04/brochure.png", "http://assetthread.com/wp-content/uploads/2024/10/1.png", "http://assetthread.com/wp-content/uploads/2026/04/3.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-Vijayawada.png", "http://assetthread.com/wp-content/uploads/2022/07/34045252.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Hyderabad.png", "http://assetthread.com/wp-content/uploads/2022/09/CRM.png", "http://assetthread.com/wp-content/uploads/2024/04/9.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Ahmedabad.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Coimbatore.png", "http://assetthread.com/wp-content/uploads/2024/04/Asset-Management.png", "http://assetthread.com/wp-content/uploads/2024/10/5.png", "http://assetthread.com/wp-content/uploads/2026/04/7.png", "http://assetthread.com/wp-content/uploads/2026/04/11.png", "http://assetthread.com/wp-content/uploads/2024/04/12.jpg", "http://assetthread.com/wp-content/uploads/2026/04/4.png", "http://assetthread.com/wp-content/uploads/2024/04/4.jpg", "http://assetthread.com/wp-content/uploads/2024/04/Asset-Information-Management.png", "http://assetthread.com/wp-content/uploads/2024/04/15.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Kolkata.png", "http://assetthread.com/wp-content/uploads/2024/04/Increase-Productivity.png", "https://youtube.com/playlist?list=PLPQ-hkDRwLS_TpRHDfNIgggQwTFm5h852", "http://assetthread.com/wp-content/uploads/2022/07/80529729.jpg", "http://assetthread.com/wp-content/uploads/2022/09/Digital-Signing.png", "http://assetthread.com/wp-content/uploads/2024/04/1.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Mumbai.png", "http://assetthread.com/wp-content/uploads/2024/04/8.jpg", "http://assetthread.com/wp-content/uploads/2024/10/4.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-Chennai.png", "http://assetthread.com/wp-content/uploads/2024/04/11.jpg", "http://assetthread.com/wp-content/uploads/2026/04/1.png", "http://assetthread.com/wp-content/uploads/2026/04/8.png", "http://assetthread.com/wp-content/uploads/2026/04/080420261654.jpg", "http://assetthread.com/wp-content/uploads/2022/09/e-TDS.png", "http://assetthread.com/wp-content/uploads/2024/04/14.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Asset-Threads-Asset-Depreciation-Software.png", "http://assetthread.com/wp-content/uploads/2024/04/blog.png", "http://assetthread.com/wp-content/uploads/2022/09/tds.png", "http://assetthread.com/wp-content/uploads/2024/04/7.jpg", "http://assetthread.com/wp-content/uploads/2026/04/5.png", "http://assetthread.com/wp-content/uploads/2026/04/9.png", "http://assetthread.com/wp-content/uploads/2022/07/83142189.jpg", "http://assetthread.com/wp-content/uploads/2022/09/biometric-CCTV.png", "http://assetthread.com/wp-content/uploads/2024/04/software-video.png", "http://assetthread.com/wp-content/uploads/2024/04/10.jpg", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-in-Delhi.png", "http://assetthread.com/wp-content/uploads/2024/10/3.png", "https://assetthread.com/it-asset-management-software/", "https://assetthread.com/asset-management-software/", "http://assetthread.com/wp-content/uploads/2024/12/6.png", "http://assetthread.com/wp-content/uploads/2024/12/13.png", "http://assetthread.com/wp-content/uploads/2024/12/14.png", "http://assetthread.com/wp-content/uploads/2024/12/7.png", "http://assetthread.com/wp-content/uploads/2024/12/5.png", "http://assetthread.com/wp-content/uploads/2024/12/8.png", "http://assetthread.com/wp-content/uploads/2024/12/5-1.png", "http://assetthread.com/wp-content/uploads/2024/12/4.png", "http://assetthread.com/wp-content/uploads/2024/12/9.png", "http://assetthread.com/wp-content/uploads/2024/12/3.png", "http://assetthread.com/wp-content/uploads/2024/12/f-a-m-s-top.png", "http://assetthread.com/wp-content/uploads/2024/12/2.png", "http://assetthread.com/wp-content/uploads/2024/12/4-1.png", "http://assetthread.com/wp-content/uploads/2024/12/1-1.png", "http://assetthread.com/wp-content/uploads/2024/12/asset-life-cyc-2025.png", "http://assetthread.com/wp-content/uploads/2024/11/IT-Asset-Management-Software.png", "http://assetthread.com/wp-content/uploads/2024/12/6-1.png", "https://assetthread.com/asset-management-software-for-small-business/", "http://assetthread.com/wp-content/uploads/2024/12/1.png", "http://assetthread.com/wp-content/uploads/2024/12/3-1.png", "http://assetthread.com/wp-content/uploads/2024/12/10.png", "http://assetthread.com/wp-content/uploads/2024/12/2-1.png", "http://assetthread.com/wp-content/uploads/2024/12/why-choose-fams-2025.png", "http://assetthread.com/wp-content/uploads/2024/12/11.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-for-Hospital.png", "http://assetthread.com/wp-content/uploads/2024/12/12.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-for-Construction.png", "http://assetthread.com/wp-content/uploads/2024/11/Asset-Management-Software-for-Small-Business.png", "http://assetthread.com/wp-content/uploads/2024/11/Fixed-Asset-Management-Software-for-Education.png"], "i02": ["https://assetthread.com/webinar/", "https://assetthread.com/locations/", "https://assetthread.com/fixed-asset-management-software-for-telecom-industry-uae/", "https://assetthread.com/fixed-asset-management-software-for-corporate-in-dubai/", "https://assetthread.com/blog/from-manual-to-automated-why-your-company-needs-asset-tracking-systems/", "https://assetthread.com/transportation-asset-management-software-dubai/", "https://assetthread.com/fixed-asset-management-software-for-corporate-offices-in-uae/", "https://assetthread.com/fixed-asset-management-software-for-telecom-industry-dubai/", "https://assetthread.com/asset-management-software-for-small-business-dubai/", "https://assetthread.com/blog/the-advantages-of-asset-management-software/", "https://assetthread.com/blog/why-is-an-asset-management-system-important-for-a-business/", "https://assetthread.com/blog/essential-features-to-look-for-in-fixed-asset-management-software/", "https://assetthread.com/blog/data-accuracy-in-asset-management-key-importance/", "https://assetthread.com/blog/managing-it-assets-a-comprehensive-guide-to-reducing-security-risks/", "https://assetthread.com/blog/category/asset-management/page/2/", "https://assetthread.com/blog/how-asset-it-management-software-improves-efficiency-in-it-departments/", "https://assetthread.com/blog/the-importance-of-data-security-in-asset-tracking-software/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/2/", "https://assetthread.com/blog/techniques-for-boosting-your-it-asset-management-process/", "https://assetthread.com/blog/category/asset-it-management-software/page/2/", "https://assetthread.com/blog/best-practices-for-implementing-it-asset-management-software/", "https://assetthread.com/blog/why-businesses-in-chennai-need-fixed-asset-management-software-a-complete-guide-2/", "https://assetthread.com/blog/how-asset-depreciation-software-simplifies-accounting-for-companies-in-dubai/", "https://assetthread.com/blog/the-impact-of-asset-depreciation-software-on-financial-reporting/", "https://assetthread.com/blog/how-can-fixed-asset-tracking-increases-the-depreciation-accuracy-and-efficiency/", "https://assetthread.com/blog/asset-management-software-a-guide-to-minimizing-cyber-risks/", "https://assetthread.com/blog/key-features-to-consider-while-choosing-asset-management-software/", "https://assetthread.com/blog/how-asset-management-software-can-boost-efficiency-and-save-costs-in-your-organization/", "https://assetthread.com/blog/7-benefits-of-asset-tracking-software-to-grow-your-business/", "https://assetthread.com/blog/how-can-asset-management-software-improve-efficiency-for-coimbatore-industries/", "https://assetthread.com/blog/how-can-fixed-asset-management-software-help-in-asset-tracking-and-auditing/", "https://assetthread.com/blog/why-small-businesses-should-invest-in-asset-tracking-software/", "https://assetthread.com/blog/which-features-should-telecom-companies-look-for-in-fixed-asset-management-software/", "https://assetthread.com/blog/how-is-fixed-asset-software-helping-businesses-in-delhi-improve-compliance/", "https://assetthread.com/blog/how-small-businesses-can-benefit-from-fixed-asset-tracking-systems/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/3/", "https://assetthread.com/blog/what-challenges-can-fixed-asset-management-software-help-businesses-overcome/", "https://assetthread.com/blog/how-can-fixed-asset-management-software-optimize-manufacturing-operations/", "https://assetthread.com/blog/category/asset-management/page/3/", "https://assetthread.com/fixed-asset-management-software-for-construction/", "https://assetthread.com/blog/how-does-asset-management-software-boost-small-business-growth/", "https://assetthread.com/blog/what-is-an-asset-management-system/", "https://assetthread.com/blog/category/asset-management/page/4/", "https://assetthread.com/fixed-asset-management-software-for-government-institutions/", "https://assetthread.com/blog/the-roi-of-implementing-fixed-asset-management-software/", "https://assetthread.com/blog/how-can-fixed-asset-management-software-enhance-your-business-operations/", "https://assetthread.com/blog/category/asset-management-software-for-education/", "https://assetthread.com/fixed-asset-management-software-for-manufacturing-units/", "https://assetthread.com/fixed-asset-management-software-for-telecom-industry/", "https://assetthread.com/blog/category/fixed-asset-management-and-tracking-system/", "https://assetthread.com/blog/how-to-choose-the-ideal-fixed-asset-management-and-tracking-system/", "https://assetthread.com/blog/how-can-small-businesses-secure-their-data-in-asset-management-systems/", "https://assetthread.com/blog/how-to-find-the-right-asset-management-software-for-your-enterprise/"], "i03": ["https://assetthread.com/blog/category/fixed-asset-management-software/", "https://assetthread.com/blog/category/enterprise-asset-management-software/", "https://assetthread.com/blog/category/it-asset-management-software-uae/", "https://assetthread.com/blog/category/fixed-asset-management-systems/", "https://assetthread.com/blog/category/asset-tracking/", "https://assetthread.com/blog/category/asset-management/", "https://assetthread.com/blog/category/asset-it-management-software/", "https://assetthread.com/blog/category/asset-management-2/", "https://assetthread.com/blog/category/asset-depreciation-software/", "https://assetthread.com/blog/category/asset-tracking/page/2/", "https://assetthread.com/blog/category/asset-tracking-systems/", "https://assetthread.com/blog/category/asset-management/page/2/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/2/", "https://assetthread.com/blog/category/asset-it-management-software/page/2/", "https://assetthread.com/blog/category/compliance-risk-management/", "https://assetthread.com/blog/category/fixed-asset-tracking-system/", "https://assetthread.com/blog/category/asset-management-systems/", "https://assetthread.com/blog/category/uncategorized/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/3/", "https://assetthread.com/blog/category/asset-management/page/3/", "https://assetthread.com/blog/category/asset-management/page/4/", "https://assetthread.com/blog/category/asset-management-software-for-education/", "https://assetthread.com/blog/category/hospital-asset-management/", "https://assetthread.com/blog/category/fixed-asset-management-and-tracking-system/"], "i04": ["https://assetthread.com/fixed-asset-management-software-hyderabad/", "https://assetthread.com/about/", "https://assetthread.com/features/", "https://assetthread.com/fixed-asset-management-software-bangalore/", "https://assetthread.com/fixed-asset-management-software-delhi/", "https://assetthread.com/asset-depreciation-software/", "https://assetthread.com/fixed-asset-management-software-indore/", "https://assetthread.com/fixed-asset-management-software-kolkata/", "https://assetthread.com/fixed-asset-management-software-mumbai/", "https://assetthread.com/fixed-asset-management-software-coimbatore/", "https://assetthread.com/clients/", "https://assetthread.com/fixed-asset-physical-verification-services/", "https://assetthread.com/real-estate-asset-management-software-uae/", "https://assetthread.com/enterprise-asset-management-software-uae/", "https://assetthread.com/blog/enterprise-asset-management-software-guide/", "https://assetthread.com/asset-lifecycle-management-software-uae/", "https://assetthread.com/blog/why-fixed-asset-management-is-important/", "https://assetthread.com/fixed-asset-management-software-for-telecom-industry-uae/", "https://assetthread.com/asset-depreciation-software-in-dubai/", "https://assetthread.com/blog/5-best-asset-tracking-software-options-for-manufacturing-companies/", "https://assetthread.com/asset-management-software-for-banks-dubai/", "https://assetthread.com/hospital-asset-management-software-dubai/", "https://assetthread.com/blog/upgrade-asset-management-software-before-audit/", "https://assetthread.com/fixed-asset-management-software-for-banks-uae/", "https://assetthread.com/hospital-asset-management-software-uae/", "https://assetthread.com/blog/why-fixed-asset-management-software-in-delhi-is-a-smart-upgrade-today/", "https://assetthread.com/blog/how-fixed-asset-management-systems-simplify-audits-for-mumbai-firms/", "https://assetthread.com/blog/why-is-an-asset-management-system-important-for-a-business/", "https://assetthread.com/blog/what-is-the-role-of-fixed-asset-management-software-for-businesses-in-hyderabad/", "https://assetthread.com/fixed-it-asset-management-software/", "https://assetthread.com/blog/asset-management-systems-which-one-is-right-for-you/", "https://assetthread.com/enterprise-asset-management-software/", "https://assetthread.com/fixed-asset-management-software-for-hospital/", "https://assetthread.com/blog/why-do-fast-growing-dubai-startups-need-asset-tracking/", "https://assetthread.com/blog/7-benefits-of-asset-tracking-software-to-grow-your-business/", "https://assetthread.com/blog/why-small-businesses-should-invest-in-asset-tracking-software/", "https://assetthread.com/blog/how-small-businesses-can-benefit-from-fixed-asset-tracking-systems/", "https://assetthread.com/blog/how-can-fixed-asset-management-software-optimize-manufacturing-operations/", "https://assetthread.com/fixed-asset-management-software-for-construction/", "https://assetthread.com/blog/what-is-an-asset-management-system/", "https://assetthread.com/fixed-asset-management-software-for-small-business/", "https://assetthread.com/fixed-asset-management-software-for-government-institutions/", "https://assetthread.com/blog/the-roi-of-implementing-fixed-asset-management-software/", "https://assetthread.com/fixed-asset-management-software-for-corporate-office/", "https://assetthread.com/fixed-asset-management-software-for-manufacturing-units/", "https://assetthread.com/fixed-asset-management-software-for-education/"], "i05": ["https://assetthread.com/blogs/", "https://assetthread.com/blogs/page/2/", "https://assetthread.com/blog/category/fixed-asset-management-software/", "https://assetthread.com/blog/category/enterprise-asset-management-software/", "https://assetthread.com/blog/category/it-asset-management-software-uae/", "https://assetthread.com/blog/category/fixed-asset-management-systems/", "https://assetthread.com/blog/category/asset-tracking/", "https://assetthread.com/blog/category/asset-management/", "https://assetthread.com/blog/category/asset-it-management-software/", "https://assetthread.com/blog/category/asset-management-2/", "https://assetthread.com/blog/category/asset-depreciation-software/", "https://assetthread.com/blog/category/asset-tracking/page/2/", "https://assetthread.com/blog/category/asset-tracking-systems/", "https://assetthread.com/blogs/page/3/", "https://assetthread.com/blog/category/asset-management/page/2/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/2/", "https://assetthread.com/blog/category/asset-it-management-software/page/2/", "https://assetthread.com/blog/category/compliance-risk-management/", "https://assetthread.com/blog/category/fixed-asset-tracking-system/", "https://assetthread.com/blog/category/asset-management-systems/", "https://assetthread.com/blog/category/uncategorized/", "https://assetthread.com/blogs/page/4/", "https://assetthread.com/blog/category/fixed-asset-management-software/page/3/", "https://assetthread.com/blog/category/asset-management/page/3/", "https://assetthread.com/blog/category/asset-management/page/4/", "https://assetthread.com/blog/category/asset-management-software-for-education/", "https://assetthread.com/blogs/page/5/", "https://assetthread.com/blog/category/hospital-asset-management/", "https://assetthread.com/blogs/page/6/", "https://assetthread.com/blog/category/fixed-asset-management-and-tracking-system/", "https://assetthread.com/blogs/page/7/", "https://assetthread.com/blogs/page/8/"], "i06": ["https://assetthread.com/blog/why-businesses-in-chennai-need-fixed-asset-management-software-a-complete-guide/", "https://assetthread.com/blog/why-businesses-in-chennai-need-fixed-asset-management-software-a-complete-guide-2/"], "i07": ["https://assetthread.com/author/assetthread/", "https://assetthread.com/author/assetthread/page/2/", "https://assetthread.com/author/assetthread/page/3/", "https://assetthread.com/author/assetthread/page/4/", "https://assetthread.com/author/assetthread/page/5/", "https://assetthread.com/author/assetthread/page/6/", "https://assetthread.com/author/assetthread/page/7/", "https://assetthread.com/author/assetthread/page/8/", "https://assetthread.com/author/assetthread/page/9/", "https://assetthread.com/author/assetthread/page/10/", "https://assetthread.com/author/assetthread/page/11/", "https://assetthread.com/author/assetthread/page/12/", "https://assetthread.com/author/assetthread/page/13/", "https://assetthread.com/author/assetthread/page/14/", "https://assetthread.com/author/assetthread/page/15/"], "i08": ["https://assetthread.com/wp-content/uploads/2023/07/AssetThread-Brochure.pdf", "https://assetthread.com/wp-content/uploads/2023/04/AssetThread-Brochure.pdf"], "i09": ["https://assetthread.com/resources/", "https://assetthread.com/webinar/", "https://assetthread.com/products/", "https://assetthread.com/contact-us/", "https://assetthread.com/gallery/", "https://assetthread.com/clients/", "https://assetthread.com/blog/category/enterprise-asset-management-software/", "https://assetthread.com/blog/category/it-asset-management-software-uae/", "https://assetthread.com/blog/category/fixed-asset-management-systems/", "https://assetthread.com/industry/", "https://assetthread.com/blog/category/asset-tracking/page/2/", "https://assetthread.com/blog/category/asset-tracking-systems/", "https://assetthread.com/blog/category/asset-it-management-software/page/2/", "https://assetthread.com/blog/category/compliance-risk-management/", "https://assetthread.com/blog/category/fixed-asset-tracking-system/", "https://assetthread.com/blog/category/asset-management-software-for-education/", "https://assetthread.com/blog/category/hospital-asset-management/", "https://assetthread.com/blog/category/fixed-asset-management-and-tracking-system/"]};
-
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
-      });
-    } catch(e) {}
-  }
-
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
-  };
-
-  // Toggle expandable URL panel
-  window.taToggle = function(iid) {
-    var panel = document.getElementById('ta-panel-' + iid);
-    var arrow = document.getElementById('ta-arrow-' + iid);
-    var isOpen = panel.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
-    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
-    if (!isOpen) {
-      panel.classList.add('open');
-      arrow.classList.add('open');
-      // Populate URLs
-      var container = document.getElementById('ta-urls-' + iid);
-      if (!container.dataset.loaded) {
-        var urls = ALL_URLS[iid] || [];
-        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
-        urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
-        });
-        container.innerHTML = html;
-        container.dataset.loaded = '1';
-      }
-    }
-  };
-
-  window.taCopyUrl = function(btn, url) {
-    navigator.clipboard.writeText(url).then(function() {
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
-    });
-  };
-
-  window.taCopyAll = function(iid) {
-    var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
-      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
-      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
-    });
-  };
-
-  // Filter by category chip
-  var activeCat = 'all';
-  window.taFilter = function(btn) {
-    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    taApplyFilters();
-  };
-
-  window.taApplyFilters = function() {
-    var prio = document.getElementById('ta-prio-filter').value;
-    var stat = document.getElementById('ta-status-filter').value;
-    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
-      var iid = row.dataset.id;
-      var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
-      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
-      if (stat !== 'all') {
-        var sel = row.querySelector('.ta-stat-sel');
-        if (sel && sel.value !== stat) show = false;
-      }
-      row.style.display = show ? '' : 'none';
-      var panel = document.getElementById('ta-panel-' + iid);
-      if (!show && panel) { panel.classList.remove('open'); }
-    });
-  };
-
-  taLoadState();
-})();
-</script>
-
-</div>
-
-<script>new Chart(document.getElementById('gmbChart'), {  type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [{{ label: 'Views', data: [980, 1050, 1100, 1180, 1210, 1240], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }},{{ label: 'Clicks', data: [38, 41, 39, 43, 44, 45], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4 }},{{ label: 'Calls', data: [9, 10, 11, 13, 11, 12], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#D97706', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>
-
-</body>
-</html>
 
 <div id="tab-history" class="section">
   

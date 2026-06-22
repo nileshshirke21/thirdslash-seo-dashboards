@@ -1724,156 +1724,59 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">14</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">77</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">512</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">280</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">232</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">4</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">5</div><div class="gmb-label">Avg. Rating</div></div>
-      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">8</div><div class="gmb-label">New Reviews</div></div>
+    <div class="gmb-header"><div class="gmb-title">Google Business Profile — May 2026</div></div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Phone Calls</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">14</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Website Clicks</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">77</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">New Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #f59e0b;">
+        <div class="metric-label" style="text-align:center;">Avg. Rating</div>
+        <div class="metric-value" style="text-align:center;color:#f59e0b;">4.8 ⭐</div>
+      </div>
+    </div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">Profile Views</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">512</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Search Views</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">280</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Map Views</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">232</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
+        <div class="metric-label" style="text-align:center;">Total Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#8b5cf6;">8</div>
+      </div>
     </div>
     <div class="chart-card" style="margin-top:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
+      <div class="chart-title">GBP Performance (Last 6 Months)</div>
       <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
-    if(ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [515, 448, 460, 445, 488, 512], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [60, 86, 103, 60, 63, 77], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [20, 17, 25, 16, 24, 14], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [515, 448, 460, 445, 488, 512], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [60, 86, 103, 60, 63, 77], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [20, 17, 25, 16, 24, 14], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
   </script>
 </div>
-
-<script>
-(function() {
-  var LS_KEY = "potential-engineering_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://potentialengineering.com/application_area/fatsoil-grease-removal/", "https://potentialengineering.com/industry/power", "https://potentialengineering.com/application_area/sludge-recovery-and-treatment/", "https://potentialengineering.com/contact-us", "https://potentialengineering.com/category/chain-scraper-systems/", "https://potentialengineering.com/industry/chemical", "https://potentialengineering.com/category/oil-water-separator/", "https://potentialengineering.com/blog", "https://potentialengineering.com/industry/dairy-food", "https://potentialengineering.com/industry/mining", "https://potentialengineering.com/industry/marine", "https://potentialengineering.com/product/robotic-for-trash-removal/", "https://potentialengineering.com/product/robotic-tank-cleaning/", "https://potentialengineering.com/industry/steel", "https://potentialengineering.com/application/solution/", "https://potentialengineering.com/about-us", "https://potentialengineering.com/category/oil-skimmer/", "https://potentialengineering.com/product/traveling-bridge-system/", "https://potentialengineering.com/product/plc-based-decanter/", "https://potentialengineering.com/product/sluice-gates-open-channel-gate/", "https://potentialengineering.com/product/", "https://potentialengineering.com/product/electro-hydraulic-powerpacks/", "https://potentialengineering.com/product/fixed-float-effluent-decanter/", "https://potentialengineering.com/blog/page/1/", "https://potentialengineering.com/application/sewage-treatment-wastewater-treatment-effluent-treatment/", "https://potentialengineering.com/category/sluice-gates-penstocks-open-channel-gates/", "https://www.potentialengineering.com/", "https://potentialengineering.com/product/multi-rack-screen/", "https://potentialengineering.com/product/product-automated-oil-recovery-system-2/", "https://potentialengineering.com/product/mobile-pump-skids-rotary-lobe-driven/", "https://potentialengineering.com/product/multi-rake-screen/", "https://potentialengineering.com/application_area/hydrocarbon-storage-tank", "https://potentialengineering.com/product/traveling-bridge-scraper-system-grit-grease-removal-bridge/"], "i02": ["https://potentialengineering.com/", "https://potentialengineering.com/product/hydraulic-driven-submersible-centrifugal-pump-2/", "https://potentialengineering.com/product/effluent-decanter/", "https://potentialengineering.com/category/oil-spill-response-equipment/", "https://potentialengineering.com/category/oil-water-separators/", "https://potentialengineering.com/category/storage-tank-equipment/", "https://potentialengineering.com/category/sludge-scum-scraper-systems/", "https://potentialengineering.com/category/trash-skimmers/", "https://potentialengineering.com/product/brush-oil-skimmer/", "https://potentialengineering.com/category/vacuum-systems/", "https://potentialengineering.com/product/cpi-oil-water-separator/", "https://potentialengineering.com/category/mobile-power-and-pump-systems/", "https://potentialengineering.com/product/integrated-oil-containment-recovery-system/", "https://potentialengineering.com/blog/", "https://potentialengineering.com/product/tank-cleaning-robot-2/", "https://potentialengineering.com/product/air-blower-system-for-oil-spill-response-service/", "https://potentialengineering.com/category/gravity-skimmers/", "https://potentialengineering.com/category/rotary-skimmers/", "https://potentialengineering.com/blog/page/16/", "https://potentialengineering.com/blog/page/17/", "https://potentialengineering.com/blog/page/2/", "https://potentialengineering.com/blog/effects-of-mining-on-surface-and-ground-water/", "https://potentialengineering.com/blog/how-wastewater-treatment-plants-work/", "https://potentialengineering.com/blog/mobile-sewage-treatment-on-rent-and-its-advantage/", "https://potentialengineering.com/product/open-channel-gate/", "https://potentialengineering.com/blog/how-does-littering-impact-the-environment/", "https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/", "https://potentialengineering.com/blog/page/15/", "https://potentialengineering.com/blog/page/3/", "https://potentialengineering.com/blog/what-are-the-effects-and-causes-of-chemical-pollution/", "https://potentialengineering.com/blog/page/4/", "https://potentialengineering.com/blog/industrial-oil-skimmers-selection-guide/", "https://potentialengineering.com/blog/wastewater-treatment-in-dairy-industry/", "https://potentialengineering.com/blog/how-to-fix-common-problems-of-hydrocyclone-oil-separator/", "https://potentialengineering.com/blog/are-floating-oil-skimmers-most-efficient/", "https://potentialengineering.com/blog/page/14/", "https://potentialengineering.com/blog/page/13/", "https://potentialengineering.com/blog/why-hire-oil-spill-response-equipment/", "https://potentialengineering.com/blog/page/5/", "https://potentialengineering.com/blog/the-three-essential-screens-in-wastewater-treatment/", "https://potentialengineering.com/blog/how-do-slotted-pipes-improve-oil-removal/", "https://potentialengineering.com/blog/page/6/", "https://potentialengineering.com/blog/an-overview-of-mechanical-oil-removal-methods/", "https://potentialengineering.com/blog/how-do-fixed-oil-skimmer-work-what-are-its-advantages-and-applications/", "https://potentialengineering.com/blog/page/12/", "https://potentialengineering.com/blog/why-is-oil-water-separator-important-for-aquatic-ecosystems/", "https://potentialengineering.com/blog/how-to-prevent-your-chain-scraper-system-from-crashing/", "https://potentialengineering.com/blog/page/11/", "https://potentialengineering.com/blog/sludge-recovery-a-smart-step-toward-sustainability-and-savings/", "https://potentialengineering.com/blog/combating-chemical-water-pollution-technologies-policies-and-approaches/", "https://potentialengineering.com/blog/containment-booms-a-boon-during-emergency-oil-spill-response/", "https://potentialengineering.com/blog/page/7/", "https://potentialengineering.com/blog/when-water-turns-toxic-the-dangers-of-spills-scum-and-sludge/", "https://potentialengineering.com/blog/page/8/", "https://potentialengineering.com/blog/effective-technologies-for-floating-trash-removal/", "https://potentialengineering.com/blog/a-comprehensive-guide-to-electric-hydraulic-power-pack-maintenance/", "https://potentialengineering.com/blog/importance-of-trash-skimmers-in-urban-water-management/", "https://potentialengineering.com/blog/extending-equipment-life-with-automated-oil-recovery-systems/", "https://potentialengineering.com/blog/page/10/", "https://potentialengineering.com/blog/optimize-screening-with-honeycomb-belt-screen/", "https://potentialengineering.com/blog/the-power-of-mobility-why-industries-rely-on-trolley-mounted-vacuum-systems/", "https://potentialengineering.com/blog/integrated-oil-containment-and-recovery-systems-a-modern-solution-for-spill-response/", "https://potentialengineering.com/blog/page/9/", "https://potentialengineering.com/blog/why-is-the-honeycomb-belt-best-for-industrial-applications/", "https://potentialengineering.com/blog/reduce-industrial-waste-with-skimming/", "https://potentialengineering.com/blog/importance-of-floating-decanter-in-the-clarification-process/"], "i03": ["https://potentialengineering.com/", "https://potentialengineering.com/application/oil-pollution/", "https://potentialengineering.com/product/effluent-decanter/", "https://potentialengineering.com/category/oil-spill-response-equipment/", "https://potentialengineering.com/application/spills-scum-sludge/", "https://potentialengineering.com/product/tube-oil-skimmer/", "https://potentialengineering.com/category/oil-water-separators/", "https://potentialengineering.com/product/floating-suction-crws-tank/", "https://potentialengineering.com/product/stoplog-gate/", "https://potentialengineering.com/category/storage-tank-equipment/", "https://potentialengineering.com/category/industrial-oil-skimmer/", "https://potentialengineering.com/application_area/floating-scum-removal/", "https://potentialengineering.com/product/traveling-bridge-scraper-system/", "https://potentialengineering.com/industry/sugar/", "https://potentialengineering.com/category/sludge-scum-scraper-systems/", "https://potentialengineering.com/product/tank-cleaning-robot/", "https://potentialengineering.com/application/sewage-wastewater-treatment/", "https://potentialengineering.com/product/mobile-pump-skid/", "https://potentialengineering.com/category/vacuum-systems/", "https://potentialengineering.com/product/chain-scraper-system/", "https://potentialengineering.com/product/belt-oil-skimmer/", "https://potentialengineering.com/terms-and-conditions/", "https://potentialengineering.com/product/integrated-oil-containment-recovery-system/", "https://potentialengineering.com/product/trolley-mounted-vacuum-system/", "https://potentialengineering.com/application_area/hydrocarbon-storage-tank/", "https://potentialengineering.com/product/booms/", "https://potentialengineering.com/product/honeycomb-screen/", "https://potentialengineering.com/product/remote-operated-vehicle-rov/", "https://potentialengineering.com/product/diesel-driven-powerpacks/", "https://potentialengineering.com/application_area/sbr-plants/", "https://potentialengineering.com/industry/oil-gas/", "https://potentialengineering.com/industry/miscellaneous/", "https://potentialengineering.com/industry/pharma/", "https://potentialengineering.com/application_area/coolant-recovery-systems/", "https://potentialengineering.com/product/spdas-submersible-positive-displacement-archimedes-screw-pump/", "https://potentialengineering.com/industry/power/", "https://potentialengineering.com/product/ballast-decanter/", "https://potentialengineering.com/product/floating-funnel-oil-skimmer/", "https://potentialengineering.com/product/drum-oil-skimmer/", "https://potentialengineering.com/category/water-control-gates/", "https://potentialengineering.com/application_area/sludge-recovery-system/", "https://potentialengineering.com/product/tank-cleaning-robot-2/", "https://potentialengineering.com/product/floating-weir-oil-skimmer/", "https://potentialengineering.com/application_area/chemical-spills/", "https://potentialengineering.com/product/multi-rake-bar-screen/", "https://potentialengineering.com/product/air-blower-system-for-oil-spill-response-service/", "https://potentialengineering.com/product/step-screen/", "https://potentialengineering.com/product/boom-reels/", "https://potentialengineering.com/product/rotary-brush-screen/", "https://potentialengineering.com/application_area/post-treatment-solutions/", "https://potentialengineering.com/application_area/pre-treatment-solutions/", "https://potentialengineering.com/product/sluice-gate-penstock-open-channel-gates/", "https://potentialengineering.com/industry/food-and-beverage/", "https://potentialengineering.com/category/rotary-skimmers/", "https://potentialengineering.com/product/oil-spill-dispersant-spray-system/", "https://potentialengineering.com/product/slotted-pipe-oil-skimmer/", "https://potentialengineering.com/blog/what-makes-textile-industry-effluent-treatment-challenging-and-how-to-solve-it/", "https://potentialengineering.com/blog/effects-of-mining-on-surface-and-ground-water/", "https://potentialengineering.com/blog/how-wastewater-treatment-plants-work/", "https://potentialengineering.com/blog/understand-how-robotics-manufacturing-works-and-its-advantages/", "https://potentialengineering.com/blog/what-are-the-key-safety-and-design-considerations-for-hydrocarbon-storage-tanks/", "https://potentialengineering.com/blog/why-aquatic-weed-removal-is-essential-for-water-body-restoration/", "https://potentialengineering.com/product/open-channel-gate/", "https://potentialengineering.com/blog/how-to-choose-the-right-water-treatment-system-for-power-plants/", "https://potentialengineering.com/blog/how-does-littering-impact-the-environment/", "https://potentialengineering.com/blog/types-of-oil-skimmers-its-advantage/", "https://potentialengineering.com/blog/overview-of-a-tpi-oil-water-separator/", "https://potentialengineering.com/blog/the-usage-and-benefits-of-industrial-oil-skimmer/", "https://potentialengineering.com/blog/how-floating-decanter-systems-improve-wastewater-treatment-efficiency/", "https://potentialengineering.com/blog/what-are-the-effects-and-causes-of-chemical-pollution/", "https://potentialengineering.com/blog/belt-oil-skimmer-working-selection-performance-guide/", "https://potentialengineering.com/blog/wastewater-treatment-in-dairy-industry/", "https://potentialengineering.com/product/no-man-entry-inspection-robot/", "https://potentialengineering.com/blog/how-to-fix-common-problems-of-hydrocyclone-oil-separator/", "https://potentialengineering.com/blog/a-comprehensive-guide-to-mechanical-screens/", "https://potentialengineering.com/blog/challenges-faced-by-wastewater-treatment-plant-operators/", "https://potentialengineering.com/blog/improve-control-of-water-wastewater-flow/", "https://potentialengineering.com/blog/working-applications-and-advantages-of-drum-skimmer/", "https://potentialengineering.com/blog/types-role-of-ancillary-in-wastewater-treatment/", "https://potentialengineering.com/blog/effects-of-sluice-gate-on-fishery/", "https://potentialengineering.com/blog/oil-water-separator-to-meet-your-requirements/", "https://potentialengineering.com/blog/advancement-in-oil-spill-response/", "https://potentialengineering.com/blog/what-problems-do-drum-oil-skimmers-solve-in-oil-water-separation-systems/", "https://potentialengineering.com/blog/how-do-slotted-pipes-improve-oil-removal/", "https://potentialengineering.com/blog/sluice-gate-operations-during-power-outage-failure/", "https://potentialengineering.com/blog/manual-automatic-screens-in-water-treatment/", "https://potentialengineering.com/blog/the-5-clear-benefits-of-oil-skimming/", "https://potentialengineering.com/blog/advantages-of-oil-removal-for-the-steel-industry/", "https://potentialengineering.com/blog/wastewater-treatment-for-sustainable-fishery/", "https://potentialengineering.com/blog/oil-water-separators-safeguarding-our-marine-environment/", "https://potentialengineering.com/blog/an-overview-of-sluice-gates-in-a-dam-water-management-system/", "https://potentialengineering.com/blog/from-waste-to-resource-how-sewage-treatment-protects-our-ecosystems/", "https://potentialengineering.com/blog/containment-booms-a-boon-during-emergency-oil-spill-response/", "https://potentialengineering.com/blog/robotic-tank-cleaning-a-safer-smarter-solution-for-critical-industries/", "https://potentialengineering.com/blog/advances-in-containment-boom-materials-enhancing-oil-spill-response/", "https://potentialengineering.com/blog/things-you-must-know-about-diesel-driven-power-packs/", "https://potentialengineering.com/blog/multi-rake-bar-screen-for-high-capacity-clog-free-mechanized-screening/", "https://potentialengineering.com/blog/tpi-oil-water-separator-a-sustainable-solution-for-environmental-protection/", "https://potentialengineering.com/blog/advantages-of-a-non-metallic-chain-scraper-system/", "https://potentialengineering.com/blog/industrial-applications-of-gravity-skimmers/", "https://potentialengineering.com/blog/the-role-of-tube-skimmers-in-wastewater-treatment/", "https://potentialengineering.com/blog/guide-to-key-factors-affecting-disc-skimmer-performance/", "https://potentialengineering.com/blog/hydraulic-power-unit-explained/", "https://potentialengineering.com/blog/an-overview-of-hydraulic-driven-submersible-centrifugal-pumps/", "https://potentialengineering.com/blog/importance-of-floating-decanter-in-the-clarification-process/", "https://potentialengineering.com/blog/importance-of-coalescer-oil-water-separators-in-industries/"], "i04": ["https://potentialengineering.com/about-us/"], "i05": ["https://potentialengineering.com/terms-and-conditions/", "https://potentialengineering.com/privacy-policy/", "https://potentialengineering.com/product/tank-cleaning-robot/", "https://potentialengineering.com/product/tank-cleaning-robot-2/", "https://potentialengineering.com/blog/", "https://potentialengineering.com/blog/7-industries-most-affected-by-wastewater-regulations/", "https://potentialengineering.com/blog/how-marine-oil-spills-impact-coastal-ecosystems/"], "i06": ["https://potentialengineering.com/category/wastewater-ancilary/", "https://potentialengineering.com/staging/blog/", "https://potentialengineering.com/category/robotics/"], "i07": ["https://potentialengineering.com/wp-content/uploads/2025/10/SROTA-ROBOTIC-LIFEBOUY-BROCHURE_12.05.26__.pdf", "https://potentialengineering.com/wp-content/uploads/2022/01/Stoplog-Gates_Water-Control-Gates.pdf", "https://potentialengineering.com/wp-content/uploads/2022/08/Sludge-and-Scum-Scraper-Systems-product-line-.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Hydrocyclone-Oil-Water-Separator.pdf", "https://potentialengineering.com/wp-content/uploads/2022/06/Industrial-skimmer-product-Line-.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Tube-Oil-Skimmer_Industrial-Oil-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Boom-Reels-_Oil-Spill-response-Equipment.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Slotted-Pipe-Oil-Skimmer_Industrial-Oil-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Floating-Funnel-Oil-Skimmer_Gravity-Oil-Skimmer-1.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Floating-Suction-Oil-Skimmer_Gravity-Oil-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Sluice-Gates-_-Penstock-_Open-Channel-Gates-1.pdf", "https://potentialengineering.com/wp-content/uploads/2022/02/Fixed-Disc-Oil-Skimmer_Industrial-Oil-Skimmer_compressed.pdf", "https://potentialengineering.com/wp-content/uploads/2022/06/Screens-PL-Sub-Cat_1.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Belt-Oil-Skimmer-_-Industrial-Oil-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2022/03/Multi-Rake-Bar-Screen_Mechanical-Screen.pdf", "https://potentialengineering.com/wp-content/uploads/2022/03/Manual-Bar-Screen_Mechanical-Screen.pdf", "https://potentialengineering.com/wp-content/uploads/2024/03/Step-Screen_Mechanical-Screen.pdf", "https://potentialengineering.com/wp-content/uploads/2025/10/ROV-ONE-PAGER.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Diesel-Driven-Powerpack_Mobile-Power-and-Pump-Systems.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Mini-Vacuum-System.pdf", "https://potentialengineering.com/wp-content/uploads/2024/04/Above-Ground-Cylindrical-Tank-Oil-Water-Separator.pdf", "https://potentialengineering.com/wp-content/uploads/2024/04/Rotary-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2025/10/Trash-Skimmer_Aquatic-Weed-Harvester.pdf", "https://potentialengineering.com/wp-content/uploads/2022/07/Sluice-Gates-PL-Sub-Cat.pdf", "https://potentialengineering.com/wp-content/uploads/2022/02/Submersible-Archimedes-Screw-Pump_Mobile-Power-and-Pump-Systems.pdf", "https://potentialengineering.com/wp-content/uploads/2022/08/Oil-Spill-Response-Equipment-product-line-.pdf", "https://potentialengineering.com/wp-content/uploads/2024/04/Boom-Reels-_Oil-Spill-response-Equipment.pdf", "https://potentialengineering.com/wp-content/uploads/2022/03/Honeycomb-Screen_Mechanical-Screen.pdf", "https://potentialengineering.com/wp-content/uploads/2022/02/Hydraulic-Driven-Submersible-Centrifugal-Pump_Mobile-Power-and-Pump-Systems.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Weir-Gates_Water-Control-Gates.pdf", "https://potentialengineering.com/wp-content/uploads/2021/09/Rotary-Skimmer.pdf", "https://potentialengineering.com/wp-content/uploads/2022/02/Non-Metallic-Chain-Scraper-System_Sludge-and-Scum-Scraper-System.pdf", "https://potentialengineering.com/wp-content/uploads/2024/04/Above-Ground-Rectangular-tank-Oil-Water-Separator.pdf", "https://potentialengineering.com/wp-content/uploads/2022/02/Chain-Scraper-System-Metallic_Sludge-and-Scum-Scraper-System.pdf", "https://potentialengineering.com/wp-content/uploads/2021/12/Electric-Driven-Powerpack_Mobile-Power-and-Pump-Systems.pdf"]};
-
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
-      });
-    } catch(e) {}
-  }
-
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
-  };
-
-  // Toggle expandable URL panel
-  window.taToggle = function(iid) {
-    var panel = document.getElementById('ta-panel-' + iid);
-    var arrow = document.getElementById('ta-arrow-' + iid);
-    var isOpen = panel.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
-    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
-    if (!isOpen) {
-      panel.classList.add('open');
-      arrow.classList.add('open');
-      // Populate URLs
-      var container = document.getElementById('ta-urls-' + iid);
-      if (!container.dataset.loaded) {
-        var urls = ALL_URLS[iid] || [];
-        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
-        urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
-        });
-        container.innerHTML = html;
-        container.dataset.loaded = '1';
-      }
-    }
-  };
-
-  window.taCopyUrl = function(btn, url) {
-    navigator.clipboard.writeText(url).then(function() {
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
-    });
-  };
-
-  window.taCopyAll = function(iid) {
-    var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
-      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
-      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
-    });
-  };
-
-  // Filter by category chip
-  var activeCat = 'all';
-  window.taFilter = function(btn) {
-    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    taApplyFilters();
-  };
-
-  window.taApplyFilters = function() {
-    var prio = document.getElementById('ta-prio-filter').value;
-    var stat = document.getElementById('ta-status-filter').value;
-    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
-      var iid = row.dataset.id;
-      var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
-      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
-      if (stat !== 'all') {
-        var sel = row.querySelector('.ta-stat-sel');
-        if (sel && sel.value !== stat) show = false;
-      }
-      row.style.display = show ? '' : 'none';
-      var panel = document.getElementById('ta-panel-' + iid);
-      if (!show && panel) { panel.classList.remove('open'); }
-    });
-  };
-
-  taLoadState();
-})();
-</script>
-
-</div>
-
-
-
-</body>
-</html>
 
 <div id="tab-history" class="section">
   

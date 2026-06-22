@@ -554,156 +554,59 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">190</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">122</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">5,539</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">2,363</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">3,176</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">2</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">4</div><div class="gmb-label">Avg. Rating</div></div>
-      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">122</div><div class="gmb-label">New Reviews</div></div>
+    <div class="gmb-header"><div class="gmb-title">Google Business Profile — May 2026</div></div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Phone Calls</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">190</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Website Clicks</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">122</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">New Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #f59e0b;">
+        <div class="metric-label" style="text-align:center;">Avg. Rating</div>
+        <div class="metric-value" style="text-align:center;color:#f59e0b;">4.0 ⭐</div>
+      </div>
+    </div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">Profile Views</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">5,539</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Search Views</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">2,363</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Map Views</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">3,176</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
+        <div class="metric-label" style="text-align:center;">Total Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#8b5cf6;">122</div>
+      </div>
     </div>
     <div class="chart-card" style="margin-top:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
+      <div class="chart-title">GBP Performance (Last 6 Months)</div>
       <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
-    if(ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [6437, 6112, 6742, 7992, 6609, 5539], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [150, 152, 128, 249, 168, 122], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [159, 162, 187, 351, 262, 190], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [6437, 6112, 6742, 7992, 6609, 5539], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [150, 152, 128, 249, 168, 122], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [159, 162, 187, 351, 262, 190], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
   </script>
 </div>
-
-<script>
-(function() {
-  var LS_KEY = "lancers-cbse_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://www.facebook.com/lancerarmyschoolofficial/", "https://lancerscbse.com/early-years/", "https://lancerscbse.com/achievements/", "https://lancerscbse.com/gseb-faculty/", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancerscbse.com&text=:%20https%3A%2F%2Flancerscbse.com", "https://lancerscbse.com/early-years-faculty/", "https://lancerscbse.com/gseb-teachers/", "https://lancerscbse.com/preschool-in-surat/", "https://lancerscbse.com/about-us/achievements/?amp=1", "https://lancerscbse.com/contact/?amp=1", "https://lancerscbse.com/gallery/?amp=1", "https://lancerscbse.com/about-us/our-curriculum/?amp=1", "https://lancerscbse.com/why-students-love-studying-cbse-schools-piplod/?amp=1", "https://lancerscbse.com/about-us/school-guidelines-and-policy/?amp=1", "https://lancerscbse.com/about-us/facilities-at-school/?amp=1", "https://lancerscbse.com/how-lancers-cbse-builds-strong-foundations-in-gujarat/?amp=1", "https://lancerscbse.com/students-life/?amp=1", "https://lancerscbse.com/cbse/?amp=1", "https://lancerscbse.com/7-ways-holistic-education-shapes-well-rounded-children/?amp=1", "https://lancerscbse.com/?amp=1", "https://lancerscbse.com/how-lancers-cbse-supports-competitive-exams-cbse-schools-piplod/?amp=1", "https://lancerscbse.com/how-does-lancers-cbse-school-encourage-innovation-among-best-cbse-schools-surat/?amp=1", "https://lancerscbse.com/how-cbse-schools-gujarat-prepare-students-for-national-exams/?amp=1", "https://lancerscbse.com/cbse-parent-zone/?amp=1", "https://lancerscbse.com/mandatory-cbse-disclosure/?amp=1", "https://lancerscbse.com/blog/?amp=1", "https://lancerscbse.com/how-lancers-cbse-school-tackles-education-challenges-cbse-schools-surat/?amp=1", "https://lancerscbse.com/about-us/?amp=1", "https://lancerscbse.com/how-to-compare-cbse-schools-gujarat-before-admission/?amp=1", "https://lancerscbse.com/disclosure-form/?amp=1", "https://lancerscbse.com/how-early-should-parents-apply-to-cbse-schools-in-surat-like-lancers-cbse-school/?amp=1", "https://lancerscbse.com/cbse-faculty/?amp=1", "https://lancerscbse.com/about-us/admission-procedure/?amp=1", "https://lancerscbse.com/5-best-cbse-schools-in-surat-with-sports-facilities/?amp=1", "https://lancerscbse.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancerscbse.com/what-secrets-make-lancers-cbse-board-schools-in-surat-so-highly-recommended/?amp=1", "https://lancerscbse.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancerscbse.com/why-choose-a-cbse-school-in-surat-a-parent-guide-with-lancers-cbse/?amp=1", "https://lancerscbse.com/how-to-identify-a-good-cbse-school-in-gujarat-key-qualities-from-lancers-cbse/?amp=1", "https://lancerscbse.com/why-soft-skills-matter-most-lancers-cbse-leads-top-cbse-schools-in-surat/?amp=1", "https://lancerscbse.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancerscbse.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancerscbse.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancerscbse.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancerscbse.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancerscbse.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancerscbse.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancerscbse.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancerscbse.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancerscbse.com/why-is-lancers-cbse-recommended-when-shortlisting-cbse-schools-in-piplod/?amp=1", "https://lancerscbse.com/why-is-counselling-important-in-schools/?amp=1", "https://lancerscbse.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancerscbse.com/why-do-lancers-cbse-schools-in-surat-ensure-a-brighter-future-for-students/?amp=1", "https://lancerscbse.com/what-makes-lancers-cbse-schools-in-piplod-ideal-for-competitive-exam-prep/?amp=1", "https://lancerscbse.com/what-makes-lancers-cbse-a-trusted-name-among-cbse-schools-piplod/?amp=1", "https://lancerscbse.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancerscbse.com/how-do-cbse-schools-in-gujarat-like-lancers-school-develop-confident-and-successful-students/?amp=1", "https://lancerscbse.com/what-makes-lancers-cbse-a-future-focused-cbse-school-in-surat/?amp=1", "https://lancerscbse.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancerscbse.com/gseb-parent-zone/", "https://lancerscbse.com/how-lancers-cbse-school-in-surat-sets-a-new-standard-in-cbse-education/?amp=1", "https://lancerscbse.com/exploring-cbse-schools-in-gujarat-what-makes-them-stand-out/?amp=1", "https://lancerscbse.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancerscbse.com/importance-of-sports-in-education/?amp=1", "https://lancerscbse.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancerscbse.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancerscbse.com/tips-to-create-better-classroom-management/?amp=1", "https://lancerscbse.com/why-problem-solving-skills-are-key-in-cbse-board-schools-like-lancers-in-surat/?amp=1", "https://lancerscbse.com/how-do-cbse-schools-in-gujarat-like-lancers-school-shape-responsible-citizens/?amp=1", "https://lancerscbse.com/the-impact-of-co-curricular-activities-at-lancers-cbse-school-surat/?amp=1", "https://lancerscbse.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancerscbse.com/importance-of-cbse-school/?amp=1", "https://lancerscbse.com/how-lancers-cbse-schools-ensures-personalized-attention-for-every-student/?amp=1", "https://lancerscbse.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancerscbse.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancerscbse.com/how-lancers-cbse-schools-in-gujarat-tackle-screen-addiction-in-kids/?amp=1", "https://lancerscbse.com/enhancing-student-development-through-extracurricular-activities-in-cbse-schools/?amp=1", "https://lancerscbse.com/how-lancers-school-supports-holistic-growth-as-a-cbse-school-in-surat/?amp=1", "https://lancerscbse.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://lancerscbse.com/how-parents-can-support-their-childs-cbse-journey-in-surat/?amp=1", "https://lancerscbse.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancerscbse.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancerscbse.com/why-is-school-important/?amp=1", "https://lancerscbse.com/benefits-of-studying-in-cbse-schools/?amp=1", "https://lancerscbse.com/importance-of-cbse-school-2/?amp=1", "https://lancerscbse.com/benefits-of-play-based-learning/?amp=1", "https://lancerscbse.com/everything-you-need-to-know-about-cbse-board-2/?amp=1", "https://lancerscbse.com/importance-of-communication-skills-for-students/?amp=1", "https://lancerscbse.com/tips-for-studying-for-board-exams/?amp=1", "https://lancerscbse.com/what-are-the-key-strategies-for-time-management-in-cbse-schools/?amp=1", "https://lancerscbse.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancerscbse.com/how-do-cbse-schools-promote-digital-literacy-among-students/?amp=1", "https://lancerscbse.com/is-value-education-necessary-in-schools/?amp=1", "https://lancerscbse.com/gseb-school-in-surat/", "https://lancerscbse.com/advantages-of-cbse-over-icse-boards/?amp=1", "https://lancerscbse.com/what-role-does-sports-education-play-in-fostering-discipline-and-teamwork/?amp=1", "https://lancerscbse.com/how-do-cbse-schools-build-a-growth-mindset-in-their-students/?amp=1", "https://lancerscbse.com/how-do-lancers-cbse-teachers-inspire-a-love-for-knowledge/?amp=1", "https://lancerscbse.com/how-does-lancers-cbse-achieve-consistent-top-rankings-in-surat/?amp=1", "https://lancerscbse.com/what-makes-a-school-environment-truly-student-centric/?amp=1", "https://lancerscbse.com/how-does-cbse-support-students-mental-health-and-well-being/?amp=1", "https://lancerscbse.com/which-cbse-schools-in-surat-offer-the-best-science-and-computer-labs/?amp=1", "https://lancerscbse.com/how-does-lancers-cbse-support-slow-learners/?amp=1", "https://lancerscbse.com/how-to-select-the-best-education-for-your-child-a-parents-guide/?amp=1", "https://lancerscbse.com/deciphering-the-realm-of-cbse-education-a-guide-for-parents/?amp=1", "https://lancerscbse.com/why-cbse-education-is-the-ideal-choice-for-your-childs-future/?amp=1", "https://lancerscbse.com/how-does-lancers-cbse-promote-student-leadership/?amp=1", "https://lancerscbse.com/navigating-excellence-unveiling-the-distinctive-features-of-cbse-school/?amp=1", "https://lancerscbse.com/navigating-the-world-of-cbse-schools-in-surat/?amp=1", "https://lancerscbse.com/choosing-the-right-cbse-school-for-your-child-a-parents-guide/?amp=1", "https://lancerscbse.com/exploring-the-concept-of-holistic-syllabus-in-cbse-education-system/?amp=1", "https://lancerscbse.com/ultimate-guide-to-choosing-the-best-cbse-school-for-your-childs-education/?amp=1", "https://lancerscbse.com/embracing-innovation-in-education/?amp=1", "https://lancerscbse.com/best-cbse-schools-for-quality-education-and-holistic-development/?amp=1", "https://lancerscbse.com/why-is-lancers-cbse-the-ideal-environment-for-future-entrepreneurs/?amp=1", "https://lancerscbse.com/understanding-the-significance-of-superiority-education-in-cbse-schools/?amp=1", "https://lancerscbse.com/navigating-the-cbse-curriculum-a-roadmap-to-success/?amp=1", "https://lancerscbse.com/choosing-the-best-cbse-school-for-your-child/?amp=1", "https://lancerscbse.com/educational-innovations-in-cbse-investigating-novel-paths-for-student-achievement/?amp=1", "https://lancerscbse.com/enhancing-cbse-education-innovations-and-challenges/?amp=1", "https://lancerscbse.com/exploring-the-best-cbse-schools-in-surat/?amp=1", "https://lancerscbse.com/the-role-of-technology-in-cbse-education/?amp=1", "https://lancerscbse.com/getting-around-in-cbse-schools-tips-and-techniques-for-parents-and-students/?amp=1"], "i02": ["https://lancerscbse.com/cbse/", "https://lancerscbse.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancerscbse.com/role-and-importance-of-primary-education-in-child-development/", "https://lancerscbse.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancerscbse.com/what-are-some-features-of-a-smart-classroom/", "https://lancerscbse.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancerscbse.com/why-is-counselling-important-in-schools/", "https://lancerscbse.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancerscbse.com/tips-to-create-better-classroom-management/", "https://lancerscbse.com/is-value-education-necessary-in-schools/", "https://lancerscbse.com/what-life-skills-are-important-to-teach-in-school/", "https://lancerscbse.com/what-makes-a-school-environment-truly-student-centric/", "https://lancerscbse.com/what-role-does-sports-education-play-in-fostering-discipline-and-teamwork/", "https://lancerscbse.com/best-cbse-schools-for-quality-education-and-holistic-development/"], "i03": ["https://lancerscbse.com/category/blogs/", "https://lancerscbse.com/category/blogs/page/2/", "https://lancerscbse.com/category/blogs/page/10/", "https://lancerscbse.com/category/blogs/page/9/", "https://lancerscbse.com/category/blogs/page/3/", "https://lancerscbse.com/category/blogs/page/4/", "https://lancerscbse.com/category/blogs/page/8/", "https://lancerscbse.com/category/blogs/page/5/", "https://lancerscbse.com/category/blogs/page/7/", "https://lancerscbse.com/category/blogs/page/6/"], "i04": ["https://lancerscbse.com/", "https://lancerscbse.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancerscbse.com/about-us/our-curriculum/", "https://lancerscbse.com/about-us/achievements/", "https://lancerscbse.com/gallery/", "https://lancerscbse.com/about-us/admission-procedure/", "https://lancerscbse.com/about-us/", "https://lancerscbse.com/about-us/facilities-at-school/", "https://lancerscbse.com/cbse/", "https://lancerscbse.com/cbse-faculty/", "https://lancerscbse.com/disclosure-form/", "https://lancerscbse.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancerscbse.com/how-to-identify-a-good-cbse-school-in-gujarat-key-qualities-from-lancers-cbse/", "https://lancerscbse.com/how-lancers-cbse-supports-competitive-exams-cbse-schools-piplod/", "https://lancerscbse.com/why-is-cbse-board-school-best-for-your-child/", "https://lancerscbse.com/role-and-importance-of-primary-education-in-child-development/", "https://lancerscbse.com/why-choose-a-cbse-school-in-surat-a-parent-guide-with-lancers-cbse/", "https://lancerscbse.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancerscbse.com/what-are-some-features-of-a-smart-classroom/", "https://lancerscbse.com/7-ways-holistic-education-shapes-well-rounded-children/", "https://lancerscbse.com/why-is-lancers-cbse-recommended-when-shortlisting-cbse-schools-in-piplod/", "https://lancerscbse.com/how-lancers-cbse-builds-strong-foundations-in-gujarat/", "https://lancerscbse.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancerscbse.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancerscbse.com/everything-you-need-to-know-about-cbse-board/", "https://lancerscbse.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancerscbse.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancerscbse.com/how-to-make-education-more-personalized-for-children/", "https://lancerscbse.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancerscbse.com/how-lancers-school-supports-holistic-growth-as-a-cbse-school-in-surat/", "https://lancerscbse.com/importance-of-cbse-school/", "https://lancerscbse.com/the-impact-of-co-curricular-activities-at-lancers-cbse-school-surat/", "https://lancerscbse.com/why-is-counselling-important-in-schools/", "https://lancerscbse.com/how-lancers-cbse-school-in-surat-sets-a-new-standard-in-cbse-education/", "https://lancerscbse.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancerscbse.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancerscbse.com/tips-for-better-parent-teacher-relationships/", "https://lancerscbse.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancerscbse.com/what-is-accessible-learning-and-its-advantages/", "https://lancerscbse.com/importance-of-sports-in-education/", "https://lancerscbse.com/tips-to-create-better-classroom-management/", "https://lancerscbse.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancerscbse.com/how-does-cbse-support-students-mental-health-and-well-being/", "https://lancerscbse.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancerscbse.com/is-value-education-necessary-in-schools/", "https://lancerscbse.com/how-do-cbse-schools-build-a-growth-mindset-in-their-students/", "https://lancerscbse.com/what-life-skills-are-important-to-teach-in-school/", "https://lancerscbse.com/how-to-select-the-best-education-for-your-child-a-parents-guide/", "https://lancerscbse.com/how-does-lancers-cbse-promote-student-leadership/", "https://lancerscbse.com/tips-for-studying-for-board-exams/", "https://lancerscbse.com/why-is-technology-important-in-early-childhood-education/", "https://lancerscbse.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancerscbse.com/how-do-cbse-schools-promote-digital-literacy-among-students/", "https://lancerscbse.com/what-makes-a-school-environment-truly-student-centric/", "https://lancerscbse.com/why-is-school-important/", "https://lancerscbse.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancerscbse.com/importance-of-communication-skills-for-students/", "https://lancerscbse.com/why-is-lancers-cbse-the-ideal-environment-for-future-entrepreneurs/", "https://lancerscbse.com/benefits-of-play-based-learning/", "https://lancerscbse.com/advantages-of-cbse-over-icse-boards/", "https://lancerscbse.com/the-role-of-technology-in-cbse-education/", "https://lancerscbse.com/deciphering-the-realm-of-cbse-education-a-guide-for-parents/", "https://lancerscbse.com/ultimate-guide-to-choosing-the-best-cbse-school-for-your-childs-education/", "https://lancerscbse.com/choosing-the-right-cbse-school-for-your-child-a-parents-guide/"], "i05": ["https://lancerscbse.com/what-makes-lancers-cbse-a-future-focused-cbse-school-in-surat/", "https://lancerscbse.com/importance-of-cbse-school/", "https://lancerscbse.com/importance-of-cbse-school-2/", "https://lancerscbse.com/everything-you-need-to-know-about-cbse-board/", "https://lancerscbse.com/everything-you-need-to-know-about-cbse-board-2/"], "i06": ["https://lancerscbse.com/author/lancehgs/", "https://lancerscbse.com/category/uncategorized/", "https://lancerscbse.com/author/lancehgs/page/2/", "https://lancerscbse.com/author/lancehgs/page/9/", "https://lancerscbse.com/author/lancehgs/page/3/", "https://lancerscbse.com/author/lancersarmyschools/", "https://lancerscbse.com/author/lancehgs/?amp=1", "https://lancerscbse.com/author/lancehgs/page/9/?amp=1", "https://lancerscbse.com/author/lancehgs/page/2/?amp=1", "https://lancerscbse.com/author/lancehgs/page/8/", "https://lancerscbse.com/author/lancehgs/page/10/?amp=1", "https://lancerscbse.com/author/lancersarmyschools/?amp=1", "https://lancerscbse.com/author/lancehgs/page/3/?amp=1", "https://lancerscbse.com/author/lancehgs/page/10/", "https://lancerscbse.com/author/lancehgs/page/7/", "https://lancerscbse.com/author/lancehgs/page/4/", "https://lancerscbse.com/author/lancehgs/page/5/", "https://lancerscbse.com/author/lancehgs/page/8/?amp=1", "https://lancerscbse.com/author/lancehgs/page/6/", "https://lancerscbse.com/author/lancehgs/page/7/?amp=1", "https://lancerscbse.com/author/lancehgs/page/4/?amp=1", "https://lancerscbse.com/author/lancehgs/page/5/?amp=1", "https://lancerscbse.com/author/lancehgs/page/6/?amp=1"], "i07": ["https://lancerscbse.com/wp-content/uploads/2024/02/Point-1-Fees-Structure-2026-27.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancerscbse.com/wp-content/uploads/2021/06/SMC.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-7-Extension_of_General_Affiliation_up_to_Secondary_Senior.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-3-NOC-GovtOfGuj.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-1-Extension_of_General_Affiliation_up_to_Secondary_Senior.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-6-FIRE-SAFETY.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-4-Parent-Teacher-Association.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-5-Building-safety.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-4-RTE-REGISTRATION.pdf", "https://lancerscbse.com/wp-content/uploads/2021/06/PTA.pdf", "https://lancerscbse.com/wp-content/uploads/2021/06/NOC-GovtOfGuj.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-2-Academic-Calendar-2026-27.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/POINT-8-WATER.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancerscbse.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-2-Trust-Registration-Certificate-scaled.jpg.pdf", "https://lancerscbse.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "https://lancerscbse.com/wp-content/uploads/2024/02/Point-3-School-Management-Committee.pdf"], "i08": ["https://lancerscbse.com/gallery/"]};
-
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
-      });
-    } catch(e) {}
-  }
-
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
-  };
-
-  // Toggle expandable URL panel
-  window.taToggle = function(iid) {
-    var panel = document.getElementById('ta-panel-' + iid);
-    var arrow = document.getElementById('ta-arrow-' + iid);
-    var isOpen = panel.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
-    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
-    if (!isOpen) {
-      panel.classList.add('open');
-      arrow.classList.add('open');
-      // Populate URLs
-      var container = document.getElementById('ta-urls-' + iid);
-      if (!container.dataset.loaded) {
-        var urls = ALL_URLS[iid] || [];
-        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
-        urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
-        });
-        container.innerHTML = html;
-        container.dataset.loaded = '1';
-      }
-    }
-  };
-
-  window.taCopyUrl = function(btn, url) {
-    navigator.clipboard.writeText(url).then(function() {
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
-    });
-  };
-
-  window.taCopyAll = function(iid) {
-    var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
-      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
-      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
-    });
-  };
-
-  // Filter by category chip
-  var activeCat = 'all';
-  window.taFilter = function(btn) {
-    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    taApplyFilters();
-  };
-
-  window.taApplyFilters = function() {
-    var prio = document.getElementById('ta-prio-filter').value;
-    var stat = document.getElementById('ta-status-filter').value;
-    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
-      var iid = row.dataset.id;
-      var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
-      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
-      if (stat !== 'all') {
-        var sel = row.querySelector('.ta-stat-sel');
-        if (sel && sel.value !== stat) show = false;
-      }
-      row.style.display = show ? '' : 'none';
-      var panel = document.getElementById('ta-panel-' + iid);
-      if (!show && panel) { panel.classList.remove('open'); }
-    });
-  };
-
-  taLoadState();
-})();
-</script>
-
-</div>
-
-
-
-</body>
-</html>
 
 <div id="tab-history" class="section">
   

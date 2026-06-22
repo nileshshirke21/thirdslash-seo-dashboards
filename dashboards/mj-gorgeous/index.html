@@ -1049,156 +1049,59 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">67</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">98</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">3,095</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">2,595</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">500</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">6</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">5</div><div class="gmb-label">Avg. Rating</div></div>
-      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">775</div><div class="gmb-label">New Reviews</div></div>
+    <div class="gmb-header"><div class="gmb-title">Google Business Profile — May 2026</div></div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Phone Calls</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">67</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Website Clicks</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">98</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">New Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">4</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #f59e0b;">
+        <div class="metric-label" style="text-align:center;">Avg. Rating</div>
+        <div class="metric-value" style="text-align:center;color:#f59e0b;">4.9 ⭐</div>
+      </div>
+    </div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">Profile Views</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">3,095</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Search Views</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">2,595</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Map Views</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">500</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
+        <div class="metric-label" style="text-align:center;">Total Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#8b5cf6;">714</div>
+      </div>
     </div>
     <div class="chart-card" style="margin-top:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
+      <div class="chart-title">GBP Performance (Last 6 Months)</div>
       <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
-    if(ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [6021, 4556, 3166, 3520, 3800, 3095], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [67, 76, 57, 99, 84, 98], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [48, 60, 41, 37, 58, 67], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [6021, 4556, 3166, 3520, 3800, 3095], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [67, 76, 57, 99, 84, 98], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [48, 60, 41, 37, 58, 67], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
   </script>
 </div>
-
-<script>
-(function() {
-  var LS_KEY = "mj-gorgeous_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://mjgorgeous.com/bridal-makeup-near-me-book-the-best-bridal-makeup-artist-in-bangalore/", "https://mjgorgeous.com/party-makeup-near-me-flawless-looks-for-every-celebration/", "https://mjgorgeous.com/fashion-makeup-services/", "https://mjgorgeous.com/portfolio", "https://mjgorgeous.com/decoding-makeup-products/", "https://mjgorgeous.com/north-vs-south-indian-bridal-makeup-whats-stealing-the-spotlight-in-bangalore-right-now/", "https://mjgorgeous.com/how-long-bridal-makeup-takes-india-3-hour-timeline/", "https://mjgorgeous.com/airbrush_makeup_worth_it_indian_brides/", "https://mjgorgeous.com/high-definition-makeup-get-a-flawless-finish/", "https://mjgorgeous.com/wp-content/uploads/2021/02/MobileversionAboutus.jpg", "https://mjgorgeous.com/why-it-is-a-great-idea-to-choose-professional-makeup-artistry-as-a-career-in-2022/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist-for-your-wedding/", "https://mjgorgeous.com/how-to-become-a-successful-makeup-artist-in-india/", "https://mjgorgeous.com/makeup-artist-courses-guide/", "https://mjgorgeous.com/what-is-difference-between-beautician-and-makeup-artist/", "https://mjgorgeous.com/mjg-pixel-professional-photography-bangalore/", "https://mjgorgeous.com/5-essential-questions-makeup-artists-must-ask-their-clients-before-bridal-makeup/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist/", "https://mjgorgeous.com/south-indian-tamil-wedding-bridal-makeup-artist-guide/", "https://mjgorgeous.com/searching-for-a-makeup-academy-here-is-your-complete-honest-guide/", "https://mjgorgeous.com/bridal-makeup-course/", "https://mjgorgeous.com/how-much-does-a-makeup-artist-earn-in-india/", "https://mjgorgeous.com/how-to-build-a-professional-makeup-kit-effectively-and-efficiently/", "https://mjgorgeous.com/why-only-buying-expensive-makeup-products-wont-make-you-a-successful-makeup-artist/", "https://mjgorgeous.com/qualities-of-a-good-makeup-artist/", "https://mjgorgeous.com/why-is-professional-makeup-academy-so-important/", "https://mjgorgeous.com/want-to-be-a-premium-makeup-artist-here-a-reality-check/", "https://mjgorgeous.com/super-guide-for-makeup-beginners-everything-you-need-to-know-about-your-makeup/", "https://mjgorgeous.com/how-to-build-a-standout-professional-makeup-artist-portfolio-a-step-by-step-guide/", "https://mjgorgeous.com/essential-makeup-brushes-every-kit-needs-a-comprehensive-guid/", "https://mjgorgeous.com/why-do-you-need-to-become-a-certified-makeup-artist/", "https://mjgorgeous.com/how-much-does-it-cost-to-learn-makeup/", "https://mjgorgeous.com/makeup-artist-guide-for-right-wedding-look/", "https://mjgorgeous.com/blog/bride-skincare-tips", "https://mjgorgeous.com/is-it-easy-to-get-a-job-as-a-full-time-makeup-artist-in-india-we-have-an-answer-for-you/", "https://mjgorgeous.com/how-covid-19-pandemic-will-not-impact-makeup-artist/"], "i02": ["https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20an%20enquiry%3F", "https://mjgorgeous.com/sangeet-makeup-services/", "https://mjgorgeous.com/party-makeup-services/", "https://mjgorgeous.com/makeup-artist-near-me-book-the-best-makeup-services-near-you/", "https://mjgorgeous.com/muhurtham-makeup-services/", "https://mjgorgeous.com/bridesmaid-makeup-services/", "https://wa.me/919686455376", "https://mjgorgeous.com/reception-makeup-services/", "https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20a%20bridal%20enquiry%3F", "https://mjgorgeous.com/mjg-bridal-makeover-request-form/", "https://mjgorgeous.com/haldi-mehendi-makeup-services/", "https://mjgorgeous.com/bridal-makeup-services/", "https://mjgorgeous.com/contact/", "https://mjgorgeous.com/dont-make-these-two-mistakes-for-your-sangeet-makeup-look-expert-advise/", "http://www.mjgorgeous.com/", "https://mjgorgeous.com/party-makeup-services-2/", "https://mjgorgeous.com/about-mj-shekhar/", "https://mjgorgeous.com/professional-makeup-artist-course/", "https://www.mjgorgeous.com/", "https://mjgorgeous.com/dos-and-donts-for-hiring-a-bridal-make-up-artist-for-your-indian-wedding/", "https://mjgorgeous.com/how-a-professional-makeup-photographer-can-elevate-your-makeup-skills/", "https://www.mjgorgeous.com/blog/bridal-makeup-artist-bangalore", "https://mjgorgeous.com/mjg-wedding-toolkit/", "https://www.mjgorgeous.com/blog/bride-skincare-tips", "https://mjgorgeous.com/makeup-courses-bangalore/", "https://mjgorgeous.com/cocktail-party-makeup-services/", "http://mjgorgeous.com/"], "i03": ["https://mjgorgeous.com/north-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/how-long-does-bridal-makeup-last-indian-weddings/", "https://mjgorgeous.com/personal-grooming-application/", "https://mjgorgeous.com/luxury-bridal-makeup-bangalore/", "https://mjgorgeous.com/about/", "https://mjgorgeous.com/personal-grooming-courses/", "https://mjgorgeous.com/gallery/", "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "https://mjgorgeous.com/bridal-makeup-oily-skin-bangalore-humidity-guide/", "https://mjgorgeous.com/how-to-do-simple-party-makeup-bangalore/", "https://mjgorgeous.com/ultimate-guide-to-choosing-the-best-bridal-makeup-artist-in-bangalore/", "https://mjgorgeous.com/how-to-find-the-perfect-makeup-foundation-for-you/", "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "https://mjgorgeous.com/hd-makeup-vs-airbrush-makeup-which-one-is-better-for-bridal-makeup/", "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "https://mjgorgeous.com/7-steps-to-get-your-perfect-winged-liner-watch-the-video-for-easy-steps/", "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "https://mjgorgeous.com/makeup-tips-for-different-skin-types/", "https://mjgorgeous.com/impact-of-personal-grooming-on-self-confidence/", "https://mjgorgeous.com/how-to-apply-nude-lipstick-like-a-pro/", "https://mjgorgeous.com/how-long-does-bridal-makeup-take-in-real-weddings/", "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "https://mjgorgeous.com/beauty-burnout-are-we-overwhelmed-by-perfection/", "https://mjgorgeous.com/natural-bridal-makeup-not-painted-wedding-photos/", "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "https://mjgorgeous.com/everything-you-want-to-know-about-half-sari-function/", "https://mjgorgeous.com/bridal-makeup-trial-complete-guide-for-brides-makeup-artists/", "https://mjgorgeous.com/why-you-should-choose-airbrush-makeup-for-your-wedding/", "https://mjgorgeous.com/north-indian-vs-south-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/summer-reception-makeup-looks-that-actually-stay-put-no-melting-no-smudging/", "https://mjgorgeous.com/5-personal-grooming-tips-you-must-not-ignore-as-a-woman/", "https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/", "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "https://mjgorgeous.com/category/makeup-services/page/2/", "https://mjgorgeous.com/bridal-makeup-trends-evolving-in-2021-post-pandemic/", "https://mjgorgeous.com/what-sets-bridal-makeup-services-in-bangalore-apart-from-other-cities/", "https://mjgorgeous.com/bridal-makeup-magic-the-perfect-look-for-every-wedding-theme-in-bangalore/", "https://mjgorgeous.com/the-dynamic-connection-between-makeup-artists-and-wedding-photographers/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/bangalores-fashion-culture-is-redefining-personal-grooming-courses-heres-how/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "https://mjgorgeous.com/is-bangalore-killing-traditional-makeup-with-its-bold-party-looks/", "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "https://mjgorgeous.com/career-as-a-makeup-artist-scope-qualification-and-salary-in-india/", "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "https://mjgorgeous.com/how-to-avoid-the-most-common-bridal-makeup-mistakes/", "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "https://mjgorgeous.com/is-bridal-makeup-in-india-becoming-too-commercialized/", "https://mjgorgeous.com/10-questions-to-ask-before-hiring-bridal-makeup-artist/", "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "https://mjgorgeous.com/bridal-makeup-artist-is-not-a-professional-makeup-artist-find-out-why/", "https://mjgorgeous.com/attention-makeup-artist-brides-to-be-8-biggest-wedding-makeup-mistakes-you-dont-want-to-make/", "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "https://mjgorgeous.com/how-to-take-care-of-your-skin-during-summer-time/", "https://mjgorgeous.com/category/personal-grooming/page/2/", "https://mjgorgeous.com/castor-oil-benefits/", "https://mjgorgeous.com/category/makeup-services/page/3/", "https://mjgorgeous.com/must-have-bridal-emergency-kit-for-a-stress-free-wedding/", "https://mjgorgeous.com/are-you-doing-your-makeup-wrong-learn-how-to-fix-it/", "https://mjgorgeous.com/why-becoming-makeup-artist-will-change-your-life/", "https://mjgorgeous.com/booking-a-bridal-makeup-artist-for-your-wedding-read-this-before-you-book/", "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "https://mjgorgeous.com/perfect-your-bridal-makeup-for-different-skin-tones/", "https://mjgorgeous.com/make-up-artist-reveals-secrets-to-get-the-best-make-up-from-your-make-up-artist/", "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "https://mjgorgeous.com/why-you-shouldnt-let-makeup-artist-wait/", "https://mjgorgeous.com/category/makeup-services/page/4/", "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "https://mjgorgeous.com/master-the-art-of-makeup-removal/", "https://mjgorgeous.com/neutral-lipstick-magic-your-guide-to-finding-the-perfect-shade-flawless-application-and-stylish-pairings/", "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "https://mjgorgeous.com/get-your-engagement-makeup-look-flawless-approved-hacks/", "https://mjgorgeous.com/makeup-tips-for-glasses-wearers/", "https://mjgorgeous.com/category/personal-grooming/page/3/", "https://mjgorgeous.com/category/makeup-services/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/4/", "https://mjgorgeous.com/category/makeup-services/page/6/", "https://mjgorgeous.com/category/makeup-services/page/7/", "https://mjgorgeous.com/category/makeup-services/page/8/"], "i04": ["https://mjgorgeous.com/privacy-policy/", "https://mjgorgeous.com/contact-us/", "https://mjgorgeous.com/frequently-asked-questions/"], "i05": ["https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/north-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/"], "i06": ["https://mjgorgeous.com/mj-shekhar-bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/sangeet-makeup-bangalore/", "https://mjgorgeous.com/why-brides-look-same-bridal-makeup-bangalore/", "https://mjgorgeous.com/how-long-does-bridal-makeup-last-indian-weddings/", "https://mjgorgeous.com/bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/luxury-bridal-makeup-bangalore/", "https://mjgorgeous.com/nri-bridal-makeup-artist-bangalore-guide/", "https://mjgorgeous.com/model-search/", "https://mjgorgeous.com/airbrush-bridal-makeup-bangalore/", "https://mjgorgeous.com/personal-grooming-courses/", "https://mjgorgeous.com/bridal-reception-makeup-bangalore/", "https://mjgorgeous.com/reception-makeup-artist-near-me/", "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "https://mjgorgeous.com/bridal-makeup-oily-skin-bangalore-humidity-guide/", "https://mjgorgeous.com/how-to-do-simple-party-makeup-bangalore/", "https://mjgorgeous.com/tell-makeup-artist-never-liked-photos/", "https://mjgorgeous.com/how-to-find-the-perfect-makeup-foundation-for-you/", "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "https://mjgorgeous.com/bangalore-humidity-bridal-makeup-tips/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "https://mjgorgeous.com/hd-makeup-vs-airbrush-makeup-which-one-is-better-for-bridal-makeup/", "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "https://mjgorgeous.com/how-to-apply-nude-lipstick-like-a-pro/", "https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/", "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "https://mjgorgeous.com/frequently-asked-questions/", "https://mjgorgeous.com/beauty-burnout-are-we-overwhelmed-by-perfection/", "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "https://mjgorgeous.com/bridal-makeup-matched-lehenga-saree-colour/", "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "https://mjgorgeous.com/everything-you-want-to-know-about-half-sari-function/", "https://mjgorgeous.com/how-to-look-good-in-candid-photos-in-your-wedding/", "https://mjgorgeous.com/makeup-artist-near-me/", "https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/", "https://mjgorgeous.com/what-is-personal-hygiene-grooming/", "https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/", "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "https://mjgorgeous.com/how-to-handle-your-makeup-in-summers/", "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "https://mjgorgeous.com/bridal-makeup-trends-evolving-in-2021-post-pandemic/", "https://mjgorgeous.com/beginners-guide-for-party-makeup/", "https://mjgorgeous.com/how-personal-grooming-can-boost-your-career/", "https://mjgorgeous.com/the-ultimate-guide-to-makeup-tips-for-oily-skin/", "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "https://mjgorgeous.com/is-bangalore-killing-traditional-makeup-with-its-bold-party-looks/", "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "https://mjgorgeous.com/bridal-makeup-tips-for-every-season-expert-tips-from-a-wedding-makeup-artist-in-bangalore/", "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "https://mjgorgeous.com/kannada-wedding-rituals-and-bride-makeup-look/", "https://mjgorgeous.com/makeup-artist-reveals-secret-behind-how-to-make-makeup-last-all-day/", "https://mjgorgeous.com/why-bridal-makeup-is-so-expensive/", "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "https://mjgorgeous.com/is-bridal-makeup-in-india-becoming-too-commercialized/", "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "https://mjgorgeous.com/how-to-take-care-of-your-skin-during-summer-time/", "https://mjgorgeous.com/how-to-cover-your-acnes-with-makeup/", "https://mjgorgeous.com/must-have-bridal-emergency-kit-for-a-stress-free-wedding/", "https://mjgorgeous.com/booking-a-bridal-makeup-artist-for-your-wedding-read-this-before-you-book/", "https://mjgorgeous.com/a-comprehensive-guide-on-why-bridal-makeup-is-worth-the-investment/", "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "https://mjgorgeous.com/make-up-artist-reveals-secrets-to-get-the-best-make-up-from-your-make-up-artist/", "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "https://mjgorgeous.com/5-reasons-why-makeup-artists-are-expensive/", "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "https://mjgorgeous.com/makeup-tips-for-glasses-wearers/"], "i07": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/bridal-makeup-faqs/", "https://mjgorgeous.com/personal-grooming-application/", "https://mjgorgeous.com/about/", "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "https://mjgorgeous.com/castor-oil-benefits/"], "i08": ["https://mjgorgeous.com/blog/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/category/makeup-services/", "https://mjgorgeous.com/blog/page/2/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/category/makeup-services/page/2/", "https://mjgorgeous.com/blog/page/3/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/category/personal-grooming/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/category/personal-grooming/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/makeup-services/page/3/", "https://mjgorgeous.com/blog/page/4/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/", "https://mjgorgeous.com/category/makeup-services/page/4/", "https://mjgorgeous.com/category/personal-grooming/page/3/", "https://mjgorgeous.com/blog/page/5/", "https://mjgorgeous.com/blog/page/6/", "https://mjgorgeous.com/category/makeup-services/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/4/", "https://mjgorgeous.com/blog/page/7/", "https://mjgorgeous.com/blog/page/8/", "https://mjgorgeous.com/category/makeup-services/page/6/", "https://mjgorgeous.com/category/makeup-services/page/7/", "https://mjgorgeous.com/blog/page/9/", "https://mjgorgeous.com/blog/page/10/", "https://mjgorgeous.com/category/makeup-services/page/8/", "https://mjgorgeous.com/blog/page/11/", "https://mjgorgeous.com/blog/page/12/", "https://mjgorgeous.com/blog/page/13/", "https://mjgorgeous.com/blog/page/14/"], "i09": ["https://mjgorgeous.com/"], "i10": ["https://mjgorgeous.com/author/mj-shekhar/", "https://mjgorgeous.com/author/mj-shekhar/page/2/", "https://mjgorgeous.com/author/mj-shekhar/page/3/", "https://mjgorgeous.com/author/mj-shekhar/page/4/", "https://mjgorgeous.com/author/mj-shekhar/page/5/", "https://mjgorgeous.com/author/mj-shekhar/page/6/", "https://mjgorgeous.com/author/mj-shekhar/page/7/", "https://mjgorgeous.com/author/mj-shekhar/page/8/", "https://mjgorgeous.com/author/mj-shekhar/page/9/", "https://mjgorgeous.com/author/mj-shekhar/page/10/", "https://mjgorgeous.com/author/mj-shekhar/page/11/", "https://mjgorgeous.com/author/mj-shekhar/page/12/", "https://mjgorgeous.com/author/mj-shekhar/page/13/", "https://mjgorgeous.com/author/mj-shekhar/page/14/"], "i11": ["https://mjgorgeous.com/wp-content/uploads/2024/07/MJG-PG-2K3-Ver2.pdf", "https://mjgorgeous.com/wp-content/uploads/2025/10/MJG-Beauty-Countdown-Planner.pdf", "https://mjgorgeous.com/wp-content/uploads/2025/10/MJG-Wedding-Week-Checklist.pdf"], "i12": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/eye-makeup-2/", "https://mjgorgeous.com/contact-us/", "https://mjgorgeous.com/gallery/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/"]};
-
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
-      });
-    } catch(e) {}
-  }
-
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
-  };
-
-  // Toggle expandable URL panel
-  window.taToggle = function(iid) {
-    var panel = document.getElementById('ta-panel-' + iid);
-    var arrow = document.getElementById('ta-arrow-' + iid);
-    var isOpen = panel.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
-    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
-    if (!isOpen) {
-      panel.classList.add('open');
-      arrow.classList.add('open');
-      // Populate URLs
-      var container = document.getElementById('ta-urls-' + iid);
-      if (!container.dataset.loaded) {
-        var urls = ALL_URLS[iid] || [];
-        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
-        urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
-        });
-        container.innerHTML = html;
-        container.dataset.loaded = '1';
-      }
-    }
-  };
-
-  window.taCopyUrl = function(btn, url) {
-    navigator.clipboard.writeText(url).then(function() {
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
-    });
-  };
-
-  window.taCopyAll = function(iid) {
-    var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
-      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
-      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
-    });
-  };
-
-  // Filter by category chip
-  var activeCat = 'all';
-  window.taFilter = function(btn) {
-    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    taApplyFilters();
-  };
-
-  window.taApplyFilters = function() {
-    var prio = document.getElementById('ta-prio-filter').value;
-    var stat = document.getElementById('ta-status-filter').value;
-    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
-      var iid = row.dataset.id;
-      var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
-      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
-      if (stat !== 'all') {
-        var sel = row.querySelector('.ta-stat-sel');
-        if (sel && sel.value !== stat) show = false;
-      }
-      row.style.display = show ? '' : 'none';
-      var panel = document.getElementById('ta-panel-' + iid);
-      if (!show && panel) { panel.classList.remove('open'); }
-    });
-  };
-
-  taLoadState();
-})();
-</script>
-
-</div>
-
-
-
-</body>
-</html>
 
 <div id="tab-history" class="section">
   

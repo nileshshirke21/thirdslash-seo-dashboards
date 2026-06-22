@@ -473,156 +473,59 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">190</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">122</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">5,539</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">2,363</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">3,176</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">2</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">4</div><div class="gmb-label">Avg. Rating</div></div>
-      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">122</div><div class="gmb-label">New Reviews</div></div>
+    <div class="gmb-header"><div class="gmb-title">Google Business Profile — May 2026</div></div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Phone Calls</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">190</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Website Clicks</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">122</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">New Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">0</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #f59e0b;">
+        <div class="metric-label" style="text-align:center;">Avg. Rating</div>
+        <div class="metric-value" style="text-align:center;color:#f59e0b;">4.0 ⭐</div>
+      </div>
+    </div>
+    <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
+      <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
+        <div class="metric-label" style="text-align:center;">Profile Views</div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">5,539</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
+        <div class="metric-label" style="text-align:center;">Search Views</div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">2,363</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
+        <div class="metric-label" style="text-align:center;">Map Views</div>
+        <div class="metric-value" style="text-align:center;color:#059669;">3,176</div>
+      </div>
+      <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
+        <div class="metric-label" style="text-align:center;">Total Reviews</div>
+        <div class="metric-value" style="text-align:center;color:#8b5cf6;">122</div>
+      </div>
     </div>
     <div class="chart-card" style="margin-top:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
+      <div class="chart-title">GBP Performance (Last 6 Months)</div>
       <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
-    if(ctx) {
-      new Chart(ctx, {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [6437, 6112, 6742, 7992, 6609, 5539], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [150, 152, 128, 249, 168, 122], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [159, 162, 187, 351, 262, 190], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [6437, 6112, 6742, 7992, 6609, 5539], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [150, 152, 128, 249, 168, 122], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [159, 162, 187, 351, 262, 190], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
   </script>
 </div>
-
-<script>
-(function() {
-  var LS_KEY = "lancers-early-years_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://lancersearlyyears.com/cbse/", "https://lancersearlyyears.com/gseb/", "https://www.facebook.com/lancerarmyschoolofficial/", "https://lancersearlyyears.com/cbse-faculty/", "https://lancersearlyyears.com/early-years/", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersearlyyears.com&text=:%20https%3A%2F%2Flancersearlyyears.com", "https://lancersearlyyears.com/gseb-faculty/", "https://lancersearlyyears.com/achievements/", "https://lancersearlyyears.com/gseb-teachers/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/what-learning-advantages-make-lancers-ey-unique-among-play-schools-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/?amp=1", "https://lancersearlyyears.com/about-us/facilities-at-school/?amp=1", "https://lancersearlyyears.com/events-and-co-curricular-activities/?amp=1", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/?amp=1", "https://lancersearlyyears.com/7-key-benefits-of-play-based-learning-for-toddlers/?amp=1", "https://lancersearlyyears.com/preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-creativity-builds-at-lancers-ey-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-to-compare-preschool-in-surat-for-holistic-development/?amp=1", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/?amp=1", "https://lancersearlyyears.com/gallery/?amp=1", "https://lancersearlyyears.com/about-us/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-encourage-creativity/?amp=1", "https://lancersearlyyears.com/about-us/achievements/?amp=1", "https://lancersearlyyears.com/disclosure-form/?amp=1", "https://lancersearlyyears.com/?amp=1", "https://lancersearlyyears.com/preschool-teacher/?amp=1", "https://lancersearlyyears.com/5-ways-to-choose-best-preschool-in-piplod-surat/?amp=1", "https://lancersearlyyears.com/what-is-preschool-education-gujarat-parents-should-know/?amp=1", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/?amp=1", "https://lancersearlyyears.com/what-children-learn-faster-at-pre-primary-schools-piplod-lancers-ey/?amp=1", "https://lancersearlyyears.com/our-programs/senior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/about-us/admission-procedure/?amp=1", "https://lancersearlyyears.com/blog/?amp=1", "https://lancersearlyyears.com/contact/?amp=1", "https://lancersearlyyears.com/about-us/our-curriculum/?amp=1", "https://lancersearlyyears.com/early-years-faculty/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/?amp=1", "https://lancersearlyyears.com/how-can-lancers-solve-learning-delays-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/?amp=1", "https://lancersearlyyears.com/how-innovations-in-preschool-education-in-gujarat-transform-early-learning-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-builds-strong-foundations-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersearlyyears.com/what-sets-lancers-early-years-apart-as-a-leading-preschool-in-surat-for-young-learners/?amp=1", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersearlyyears.com/how-lancers-preschool-in-surat-addresses-attention-and-focus-challenges/?amp=1", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/?amp=1", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-defines-quality-in-pre-primary-schools-piplod/?amp=1", "https://lancersearlyyears.com/how-lancers-ey-makes-preschool-education-in-gujarat-inclusive/?amp=1", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersearlyyears.com/gseb-parent-zone/", "https://lancersearlyyears.com/how-lancers-early-years-school-integrates-creativity-and-innovation-in-early-education-in-surat/?amp=1", "https://lancersearlyyears.com/preparing-children-for-a-global-future-language-and-cultural-programs-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/why-is-early-childhood-education-at-lancers-early-years-vital-in-surat/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-teach-kids-to-share-and-cooperate/?amp=1", "https://lancersearlyyears.com/importance-of-sports-in-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://lancersearlyyears.com/why-is-language-development-crucial-in-preschool-education-in-gujarat/?amp=1", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersearlyyears.com/the-role-of-play-based-learning-in-developing-social-skills-among-pre-primary-students/?amp=1", "https://lancersearlyyears.com/what-makes-lancers-school-a-top-choice-for-pre-primary-education-in-surat/?amp=1", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersearlyyears.com/importance-of-cbse-school/?amp=1", "https://lancersearlyyears.com/why-lancers-early-years-is-a-leading-preschool-in-surat-for-cultural-learning/?amp=1", "https://lancersearlyyears.com/how-lancers-early-years-integrates-art-and-creativity-in-learning/?amp=1", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersearlyyears.com/when-is-the-right-age-for-pre-nursery-admission-in-surat/?amp=1", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/?amp=1", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/?amp=1", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/?amp=1", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/?amp=1", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/?amp=1", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/?amp=1", "https://lancersearlyyears.com/importance-of-pre-primary-education/?amp=1", "https://lancersearlyyears.com/benefits-of-play-based-learning/?amp=1", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersearlyyears.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersearlyyears.com/what-benefits-do-field-trips-offer-at-lancers-preschools/?amp=1", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/?amp=1", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersearlyyears.com/how-early-years-educators-teach-mindfulness-and-resilience-to-children/?amp=1", "https://lancersearlyyears.com/why-is-school-important/?amp=1", "https://lancersearlyyears.com/how-can-early-years-programs-address-diverse-learning-needs/?amp=1", "https://lancersearlyyears.com/what-safety-measures-are-in-place-at-the-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/why-is-school-important-for/?amp=1", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersearlyyears.com/cbse-parent-zone/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/?amp=1", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/?amp=1", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/?amp=1", "https://lancersearlyyears.com/exploring-pre-primary-schools-building-a-bright-future/?amp=1", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/?amp=1", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/?amp=1", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/?amp=1", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/?amp=1", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/?amp=1", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/?amp=1", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/?amp=1", "https://lancersearlyyears.com/comprehensive-guide-for-choosing-the-best-preschool/?amp=1", "https://lancersearlyyears.com/engaging-preschool-activities-to-foster-learning-and-development-in-young-children/?amp=1", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/?amp=1", "https://lancersearlyyears.com/creating-a-stimulating-learning-environment-in-preschools/?amp=1", "https://lancersearlyyears.com/fostering-social-and-emotional-development-in-preschoolers/?amp=1", "https://lancersearlyyears.com/important-ideas-for-early-learning-for-a-successful-future/?amp=1", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/?amp=1", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/?amp=1", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/?amp=1"], "i02": ["https://lancersearlyyears.com/", "https://lancersearlyyears.com/about-us/achievements/", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/about-us/facilities-at-school/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i03": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i04": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i05": ["https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/admission-procedure/", "https://lancersearlyyears.com/preschool-teacher/", "https://lancersearlyyears.com/blog/", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersearlyyears.com/about-us/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/", "https://lancersearlyyears.com/students-life/", "https://lancersearlyyears.com/events-and-co-curricular-activities/", "https://lancersearlyyears.com/about-us/our-curriculum/", "https://lancersearlyyears.com/disclosure-form/", "https://lancersearlyyears.com/our-programs/", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/", "https://lancersearlyyears.com/blog/page/2/", "https://lancersearlyyears.com/blog/page/10/", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersearlyyears.com/blog/page/3/", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersearlyyears.com/blog/page/9/", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/blog/page/4/", "https://lancersearlyyears.com/blog/page/8/", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/importance-of-cbse-school/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/", "https://lancersearlyyears.com/importance-of-sports-in-education/", "https://lancersearlyyears.com/blog/page/7/", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/blog/page/5/", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersearlyyears.com/benefits-of-play-based-learning/", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/", "https://lancersearlyyears.com/why-is-school-important/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/importance-of-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/", "https://lancersearlyyears.com/blog/page/6/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i06": ["https://lancersearlyyears.com/author/lancehgs/", "https://lancersearlyyears.com/author/lancehgs/page/9/", "https://lancersearlyyears.com/author/lancehgs/page/2/", "https://lancersearlyyears.com/author/lancehgs/?amp=1", "https://lancersearlyyears.com/author/lancersarmyschools/", "https://lancersearlyyears.com/author/lancehgs/page/9/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/", "https://lancersearlyyears.com/author/lancehgs/page/10/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/8/", "https://lancersearlyyears.com/author/lancehgs/page/2/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/7/", "https://lancersearlyyears.com/author/lancersarmyschools/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/", "https://lancersearlyyears.com/author/lancehgs/page/10/", "https://lancersearlyyears.com/author/lancehgs/page/8/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/", "https://lancersearlyyears.com/author/lancehgs/page/7/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/5/", "https://lancersearlyyears.com/author/lancehgs/page/5/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/?amp=1"], "i07": ["https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/NOC-GovtOfGuj.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/SMC.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/PTA.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf"]};
-
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
-      });
-    } catch(e) {}
-  }
-
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
-  };
-
-  // Toggle expandable URL panel
-  window.taToggle = function(iid) {
-    var panel = document.getElementById('ta-panel-' + iid);
-    var arrow = document.getElementById('ta-arrow-' + iid);
-    var isOpen = panel.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
-    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
-    if (!isOpen) {
-      panel.classList.add('open');
-      arrow.classList.add('open');
-      // Populate URLs
-      var container = document.getElementById('ta-urls-' + iid);
-      if (!container.dataset.loaded) {
-        var urls = ALL_URLS[iid] || [];
-        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
-        urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
-        });
-        container.innerHTML = html;
-        container.dataset.loaded = '1';
-      }
-    }
-  };
-
-  window.taCopyUrl = function(btn, url) {
-    navigator.clipboard.writeText(url).then(function() {
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
-    });
-  };
-
-  window.taCopyAll = function(iid) {
-    var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
-      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
-      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
-    });
-  };
-
-  // Filter by category chip
-  var activeCat = 'all';
-  window.taFilter = function(btn) {
-    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    taApplyFilters();
-  };
-
-  window.taApplyFilters = function() {
-    var prio = document.getElementById('ta-prio-filter').value;
-    var stat = document.getElementById('ta-status-filter').value;
-    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
-      var iid = row.dataset.id;
-      var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
-      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
-      if (stat !== 'all') {
-        var sel = row.querySelector('.ta-stat-sel');
-        if (sel && sel.value !== stat) show = false;
-      }
-      row.style.display = show ? '' : 'none';
-      var panel = document.getElementById('ta-panel-' + iid);
-      if (!show && panel) { panel.classList.remove('open'); }
-    });
-  };
-
-  taLoadState();
-})();
-</script>
-
-</div>
-
-
-
-</body>
-</html>
 
 <div id="tab-history" class="section">
   
