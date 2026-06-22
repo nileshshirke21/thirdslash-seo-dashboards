@@ -162,7 +162,6 @@
   <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
   <div class="nav-tab" onclick="showTab('history', this)">History</div>
-  <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
   <div class="nav-tab" onclick="showTab('techaudit', this)">Tech Audit</div>
@@ -426,27 +425,7 @@ new Chart(document.getElementById('chChart'), {
 
 
 <!-- GMB TAB -->
-<div id="tab-gmb" class="section">
-
-  <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
-    <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">118</div><div class="gmb-label">Profile Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">83</div><div class="gmb-label">Search Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">35</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">1</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">0</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🧭</div><div class="gmb-val">55</div><div class="gmb-label">Directions</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">0</div><div class="gmb-label">GMB Posts</div></div>
-      <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">0</div><div class="gmb-label">Avg. Rating</div></div>
-    </div>
-    <div style="margin-bottom:16px;font-size:13px;font-weight:600;color:var(--text);">Total Reviews: <span style="color:var(--accent);font-size:18px;font-weight:800;">0</span></div>
-    <div class="chart-card" style="margin-bottom:16px;">
-      <div class="chart-title">GMB Performance (Last 6 Months)</div>
-      <div class="chart-wrap"><canvas id="gmbChart"></canvas></div>
-    </div>
-  </div>
-  <script>
+<script>
   if(typeof initGmbChart === 'undefined') {
     function initGmbChart() {
       new Chart(document.getElementById('gmbChart'), {
