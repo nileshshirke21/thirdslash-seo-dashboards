@@ -623,6 +623,799 @@ new Chart(document.getElementById('chChart'), {
 
 </body>
 </html>
+
+<div id="tab-history" class="section">
+  
+  <div class="history-wrap">
+    <p style="font-size:12px;color:var(--muted);padding:10px 20px;margin:0;border-bottom:1px solid var(--border);background:var(--card2);">GA4 Historical Data — Last 13 completed months</p>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>Forms</th>
+        </tr>
+      </thead>
+      <tbody><tr><td>Apr-2026</td><td>411</td><td>22</td><td>258</td><td>1</td><td>388</td><td>509</td><td>84.7%</td><td>0</td></tr><tr><td>Mar-2026</td><td>416</td><td>20</td><td>339</td><td>3</td><td>389</td><td>502</td><td>85.1%</td><td>0</td></tr><tr><td>Feb-2026</td><td>416</td><td>31</td><td>324</td><td>3</td><td>389</td><td>502</td><td>85.1%</td><td>0</td></tr><tr><td>Jan-2026</td><td>514</td><td>19</td><td>264</td><td>0</td><td>497</td><td>650</td><td>84.6%</td><td>0</td></tr><tr><td>Dec-2025</td><td>514</td><td>32</td><td>449</td><td>0</td><td>497</td><td>650</td><td>84.6%</td><td>0</td></tr><tr><td>Nov-2025</td><td>410</td><td>32</td><td>343</td><td>0</td><td>392</td><td>511</td><td>76.6%</td><td>0</td></tr><tr><td>Oct-2025</td><td>154</td><td>22</td><td>97</td><td>0</td><td>135</td><td>219</td><td>66.2%</td><td>0</td></tr><tr><td>Sep-2025</td><td>109</td><td>21</td><td>42</td><td>0</td><td>93</td><td>220</td><td>45.0%</td><td>0</td></tr><tr><td>Aug-2025</td><td>116</td><td>21</td><td>27</td><td>0</td><td>96</td><td>329</td><td>51.7%</td><td>0</td></tr><tr><td>Jul-2025</td><td>116</td><td>34</td><td>46</td><td>0</td><td>96</td><td>329</td><td>51.7%</td><td>0</td></tr><tr><td>Jun-2025</td><td>109</td><td>36</td><td>43</td><td>0</td><td>90</td><td>252</td><td>55.0%</td><td>0</td></tr><tr><td>May-2025</td><td>109</td><td>34</td><td>49</td><td>1</td><td>90</td><td>252</td><td>55.0%</td><td>0</td></tr><tr><td>Apr-2025</td><td>82</td><td>17</td><td>26</td><td>0</td><td>66</td><td>158</td><td>47.6%</td><td>0</td></tr></tbody>
+    </table>
+  </div>
+  
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+const months   = ["May-2025", "Jun-2025", "Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026"];
+const sessData = [109, 109, 116, 116, 109, 154, 410, 514, 514, 416, 416, 411];
+const orgData  = [34, 36, 34, 21, 21, 22, 32, 32, 19, 31, 20, 22];
+const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
+const chVals   = [22, 258, 39, 0, 0, 0];
+const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
+const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 1], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
+const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
+const dflt = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { labels: { color: '#64748B', font: { size: 11 } } } },
+  scales: {
+    x: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { display: false } },
+    y: { ticks: { color: '#64748B', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+  }
+};
+new Chart(document.getElementById('sessChart'), {
+  type: 'bar',
+  data: { labels: months, datasets: [
+    { label: 'Sessions', data: sessData, backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 },
+    { label: 'Organic',  data: orgData,  backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth: 1, borderRadius: 4 }
+  ]},
+  options: {...dflt}
+});
+new Chart(document.getElementById('formChart'), {
+  type: 'bar',
+  data: { labels: months, datasets: [{ label: 'Form Submissions', data: formData, backgroundColor: 'rgba(91,57,217,0.6)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 }]},
+  options: {...dflt}
+});
+new Chart(document.getElementById('aiChart'), {
+  type: 'bar',
+  data: { labels: months, datasets: aiLabels.map((label, i) => ({ label, data: aiMonthly[label], backgroundColor: aiColors[i]+'cc', borderColor: aiColors[i], borderWidth: 1 })) },
+  options: { ...dflt, scales: { ...dflt.scales, x: { ...dflt.scales.x, stacked: true }, y: { ...dflt.scales.y, stacked: true } } }
+});
+
+new Chart(document.getElementById('chChart'), {
+  type: 'doughnut',
+  data: { labels: chLabels, datasets: [{ data: chVals, backgroundColor: chColors, borderColor: '#ffffff', borderWidth: 2 }]},
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { color: '#64748B', font: { size: 11 }, boxWidth: 12 } } } }
+});
+</script>
+
+
+<!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">8</td><td style="text-align:center;color:#94a3b8">8</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">8</td><td style="text-align:center;color:#94a3b8">8</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
+          <td class="kw-cell" title="best preschool in adajan surat">best preschool in adajan surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
+          <td class="kw-cell" title="top 10 preschool in surat">top 10 preschool in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">110</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
+          <td class="kw-cell" title="best pre nursery schools in surat">best pre nursery schools in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">170</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="early learning for two year olds">early learning for two year olds</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
+          <td class="kw-cell" title="best preschool in surat">best preschool in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">140</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="early childhood education degree in india">early childhood education degree in india</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">20</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="hills nursery surat fee structure">hills nursery surat fee structure</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">10</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+          <td class="kw-cell" title="play schools in surat">play schools in surat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">NR</td>
+          <td class="vol-cell">320</td>
+          <td class="url-cell"><a href="" target="_blank"></a></td>
+        </tr></tbody></table></div>
+</div>
+
+
+<!-- GMB TAB -->
+
+<div id="tab-tasks" class="section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; May-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#10003; 0 Completed</div>
+      <div style="background:#FEF3C7;color:#92400E;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#8635; 0 In Progress</div>
+      <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; 0 Pending</div>
+    </div>
+  </div>
+  <div class="no-data"><div style="font-size:48px;margin-bottom:16px">&#128203;</div><p style="font-size:15px;font-weight:600;color:#374151;margin-bottom:8px">No tasks recorded yet</p><p style="font-size:13px;color:#6B7280">Your team will update this monthly in Google Sheets.</p></div>
+</div>
+
+
+<!-- LINK BUILDING TAB -->
+
+<div id="tab-linkbuilding" class="section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; May-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 0</div>
+      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 0</div>
+      <div style="background:#f0edff;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 0</div>
+      <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
+    </div>
+  </div>
+  <div class="rank-table-wrap">
+    <div class="rank-table-header" style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
+      <span>All Link Building Activity &mdash; May-2026</span>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
+          <option value="all">All Types</option>
+          <option value="Reddit">Reddit</option>
+          <option value="Quora">Quora</option>
+          <option value="Blog Comment">Blog Comments</option>
+          <option value="Directory">Directories</option>
+        </select>
+        <select id="lbStatus" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
+          <option value="all">All Status</option>
+          <option value="Live">Live</option>
+          <option value="Approved">Approved</option>
+          <option value="Pending">Pending</option>
+          <option value="Not Approved">Not Approved</option>
+        </select>
+      </div>
+    </div>
+    <table class="rank-table" style="min-width:900px;">
+      <thead><tr style="background:#F8FAFC;">
+        <th style="text-align:center;width:40px">Sr.</th>
+        <th style="width:110px">Type</th>
+        <th>URL</th>
+        <th style="width:130px">Anchor Text</th>
+        <th style="width:160px">Linking To</th>
+        <th style="text-align:center;width:70px">Live Link</th>
+        <th style="text-align:center;width:120px">Status</th>
+        <th style="width:130px">Comment</th>
+      </tr></thead>
+      <tbody id="lbBody"><tr><td colspan="8" style="text-align:center;color:#94A3B8;padding:20px;">No link building activity this month</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TECH AUDIT TAB -->
+
+<div id="tab-techaudit" class="section">
+  
+<style>
+/* ── Tech Audit Scoped Styles ── */
+.ta-wrap {
+  --navy:#1B2A4A; --orange:#F4812A; --orange-light:#FEF0E6; --bg:#F5F6F8; --card:#fff; --border:#E4E7ED;
+  --text:#1A1D23; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
+  --blue:#5b39d9; --blue-bg:#f0edff; --blue-border:#BFDBFE;
+  --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: var(--text);
+}
+.ta-banner {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.ta-score-ring {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+.ta-score-ring svg {
+  transform: rotate(-90deg);
+}
+.ta-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ta-score-num .ta-big {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.ta-score-num .ta-of {
+  font-size: 13px;
+  opacity: .6;
+}
+.ta-banner-text h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ta-banner-text p {
+  margin: 0;
+  opacity: .7;
+  font-size: 14px;
+}
+.ta-banner-text .ta-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ta-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ta-metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.ta-metric-card .ta-mc-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ta-metric-card .ta-mc-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
+.ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
+.ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+.ta-legend {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ta-legend span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Filters */
+.ta-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ta-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.ta-chip.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.ta-chip:hover {
+  border-color: var(--navy);
+}
+.ta-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Issue table */
+.ta-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ta-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ta-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ta-table tr:last-child td { border-bottom: none; }
+.ta-table tr.ta-row-issue { cursor: pointer; }
+.ta-table tr.ta-row-issue:hover { background: var(--bg); }
+
+/* Pills */
+.ta-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ta-pill-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.ta-pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ta-pill-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.ta-pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* Priority badges */
+.ta-prio {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ta-prio-high { background: var(--red-bg); color: var(--red); }
+.ta-prio-medium { background: var(--amber-bg); color: var(--amber); }
+.ta-prio-low { background: var(--blue-bg); color: var(--blue); }
+
+/* Source tag */
+.ta-src {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--purple-bg);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  margin-left: 4px;
+}
+
+/* Expandable URL panel */
+.ta-url-panel {
+  display: none;
+}
+.ta-url-panel.open {
+  display: table-row;
+}
+.ta-url-panel td {
+  background: var(--bg);
+  padding: 0;
+}
+.ta-url-inner {
+  padding: 12px 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.ta-url-inner .ta-url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.ta-url-inner .ta-url-item:last-child { border-bottom: none; }
+.ta-url-inner .ta-url-item a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-all;
+}
+.ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
+.ta-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.ta-copy-btn:hover { background: var(--border); }
+
+/* Owner / Status dropdowns in table */
+.ta-table select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Expand arrow */
+.ta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+  margin-right: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.ta-arrow.open {
+  transform: rotate(90deg);
+}
+</style>
+
+<div class="ta-wrap">
+
+  <!-- Health Score Banner -->
+  <div class="ta-banner">
+    <div class="ta-score-ring">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+        <circle cx="64" cy="64" r="54" fill="none" stroke="#DC2626" stroke-width="10"
+                stroke-dasharray="339.3" stroke-dashoffset="156.1"
+                stroke-linecap="round"/>
+      </svg>
+      <div class="ta-score-num">
+        <span class="ta-big">54</span>
+        <span class="ta-of">/ 100</span>
+      </div>
+    </div>
+    <div class="ta-banner-text">
+      <h2>Technical SEO Health</h2>
+      <p>Lancers Early Years &middot; lancersearlyyears.com &middot; Screaming Frog Pro Crawl &middot; 20 Jun 2026 &middot; 294 pages scanned</p>
+      <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="ta-metrics">
+    <div class="ta-metric-card"><div class="ta-mc-val">294</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">168</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">136</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">128</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">32</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">88</div><div class="ta-mc-label">Meta Issues</div></div>
+  </div>
+
+
+  <!-- Filters -->
+  <div class="ta-filters">
+    <button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All Issues</button>
+    <button class="ta-chip" data-cat="errors" onclick="taFilter(this)">Errors</button>
+    <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
+    <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
+    <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
+      <option value="all">All Priorities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="Under Review">Under Review</option>
+      <option value="Completed">Completed</option>
+      <option value="Not Completed">Not Completed</option>
+      <option value="Blocked">Blocked</option>
+      <option value="Waiting for Approval">Waiting for Approval</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <!-- Issue Log Table -->
+  <table class="ta-table" id="ta-issue-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:110px">Owner</th>
+        <th style="width:130px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>128 pages with 3xx redirects </td>
+        <td><span class="ta-pill ta-pill-amber">128</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i01">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i01"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="onpage" data-prio="medium" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>22 pages with titles over 60 characters </td>
+        <td><span class="ta-pill ta-pill-amber">22</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
+        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i02">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i02"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>10 pages with titles below 30 characters </td>
+        <td><span class="ta-pill ta-pill-blue">10</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>10 pages with missing meta descriptions </td>
+        <td><span class="ta-pill ta-pill-amber">10</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
+        <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>78 pages with meta descriptions over 155 characters </td>
+        <td><span class="ta-pill ta-pill-blue">78</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="technical" data-prio="medium" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>22 pages set to noindex </td>
+        <td><span class="ta-pill ta-pill-amber">22</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
+        <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="high" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>12 pages with missing canonical tags </td>
+        <td><span class="ta-pill ta-pill-red">12</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="7">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  var LS_KEY = "lancers-early-years_techaudit_jun_2026";
+  var ALL_URLS = {"i01": ["https://lancersearlyyears.com/cbse/", "https://lancersearlyyears.com/gseb/", "https://www.facebook.com/lancerarmyschoolofficial/", "https://lancersearlyyears.com/cbse-faculty/", "https://lancersearlyyears.com/early-years/", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersearlyyears.com&text=:%20https%3A%2F%2Flancersearlyyears.com", "https://lancersearlyyears.com/gseb-faculty/", "https://lancersearlyyears.com/achievements/", "https://lancersearlyyears.com/gseb-teachers/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/what-learning-advantages-make-lancers-ey-unique-among-play-schools-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/?amp=1", "https://lancersearlyyears.com/about-us/facilities-at-school/?amp=1", "https://lancersearlyyears.com/events-and-co-curricular-activities/?amp=1", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/?amp=1", "https://lancersearlyyears.com/7-key-benefits-of-play-based-learning-for-toddlers/?amp=1", "https://lancersearlyyears.com/preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-creativity-builds-at-lancers-ey-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-to-compare-preschool-in-surat-for-holistic-development/?amp=1", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/?amp=1", "https://lancersearlyyears.com/gallery/?amp=1", "https://lancersearlyyears.com/about-us/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-encourage-creativity/?amp=1", "https://lancersearlyyears.com/about-us/achievements/?amp=1", "https://lancersearlyyears.com/disclosure-form/?amp=1", "https://lancersearlyyears.com/?amp=1", "https://lancersearlyyears.com/preschool-teacher/?amp=1", "https://lancersearlyyears.com/5-ways-to-choose-best-preschool-in-piplod-surat/?amp=1", "https://lancersearlyyears.com/what-is-preschool-education-gujarat-parents-should-know/?amp=1", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/?amp=1", "https://lancersearlyyears.com/what-children-learn-faster-at-pre-primary-schools-piplod-lancers-ey/?amp=1", "https://lancersearlyyears.com/our-programs/senior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/about-us/admission-procedure/?amp=1", "https://lancersearlyyears.com/blog/?amp=1", "https://lancersearlyyears.com/contact/?amp=1", "https://lancersearlyyears.com/about-us/our-curriculum/?amp=1", "https://lancersearlyyears.com/early-years-faculty/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/?amp=1", "https://lancersearlyyears.com/how-can-lancers-solve-learning-delays-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/?amp=1", "https://lancersearlyyears.com/how-innovations-in-preschool-education-in-gujarat-transform-early-learning-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-builds-strong-foundations-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersearlyyears.com/what-sets-lancers-early-years-apart-as-a-leading-preschool-in-surat-for-young-learners/?amp=1", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersearlyyears.com/how-lancers-preschool-in-surat-addresses-attention-and-focus-challenges/?amp=1", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/?amp=1", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-defines-quality-in-pre-primary-schools-piplod/?amp=1", "https://lancersearlyyears.com/how-lancers-ey-makes-preschool-education-in-gujarat-inclusive/?amp=1", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersearlyyears.com/gseb-parent-zone/", "https://lancersearlyyears.com/how-lancers-early-years-school-integrates-creativity-and-innovation-in-early-education-in-surat/?amp=1", "https://lancersearlyyears.com/preparing-children-for-a-global-future-language-and-cultural-programs-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/why-is-early-childhood-education-at-lancers-early-years-vital-in-surat/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-teach-kids-to-share-and-cooperate/?amp=1", "https://lancersearlyyears.com/importance-of-sports-in-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://lancersearlyyears.com/why-is-language-development-crucial-in-preschool-education-in-gujarat/?amp=1", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersearlyyears.com/the-role-of-play-based-learning-in-developing-social-skills-among-pre-primary-students/?amp=1", "https://lancersearlyyears.com/what-makes-lancers-school-a-top-choice-for-pre-primary-education-in-surat/?amp=1", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersearlyyears.com/importance-of-cbse-school/?amp=1", "https://lancersearlyyears.com/why-lancers-early-years-is-a-leading-preschool-in-surat-for-cultural-learning/?amp=1", "https://lancersearlyyears.com/how-lancers-early-years-integrates-art-and-creativity-in-learning/?amp=1", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersearlyyears.com/when-is-the-right-age-for-pre-nursery-admission-in-surat/?amp=1", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/?amp=1", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/?amp=1", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/?amp=1", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/?amp=1", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/?amp=1", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/?amp=1", "https://lancersearlyyears.com/importance-of-pre-primary-education/?amp=1", "https://lancersearlyyears.com/benefits-of-play-based-learning/?amp=1", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersearlyyears.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersearlyyears.com/what-benefits-do-field-trips-offer-at-lancers-preschools/?amp=1", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/?amp=1", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersearlyyears.com/how-early-years-educators-teach-mindfulness-and-resilience-to-children/?amp=1", "https://lancersearlyyears.com/why-is-school-important/?amp=1", "https://lancersearlyyears.com/how-can-early-years-programs-address-diverse-learning-needs/?amp=1", "https://lancersearlyyears.com/what-safety-measures-are-in-place-at-the-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/why-is-school-important-for/?amp=1", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersearlyyears.com/cbse-parent-zone/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/?amp=1", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/?amp=1", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/?amp=1", "https://lancersearlyyears.com/exploring-pre-primary-schools-building-a-bright-future/?amp=1", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/?amp=1", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/?amp=1", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/?amp=1", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/?amp=1", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/?amp=1", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/?amp=1", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/?amp=1", "https://lancersearlyyears.com/comprehensive-guide-for-choosing-the-best-preschool/?amp=1", "https://lancersearlyyears.com/engaging-preschool-activities-to-foster-learning-and-development-in-young-children/?amp=1", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/?amp=1", "https://lancersearlyyears.com/creating-a-stimulating-learning-environment-in-preschools/?amp=1", "https://lancersearlyyears.com/fostering-social-and-emotional-development-in-preschoolers/?amp=1", "https://lancersearlyyears.com/important-ideas-for-early-learning-for-a-successful-future/?amp=1", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/?amp=1", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/?amp=1", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/?amp=1"], "i02": ["https://lancersearlyyears.com/", "https://lancersearlyyears.com/about-us/achievements/", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/about-us/facilities-at-school/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i03": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i04": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i05": ["https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/admission-procedure/", "https://lancersearlyyears.com/preschool-teacher/", "https://lancersearlyyears.com/blog/", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersearlyyears.com/about-us/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/", "https://lancersearlyyears.com/students-life/", "https://lancersearlyyears.com/events-and-co-curricular-activities/", "https://lancersearlyyears.com/about-us/our-curriculum/", "https://lancersearlyyears.com/disclosure-form/", "https://lancersearlyyears.com/our-programs/", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/", "https://lancersearlyyears.com/blog/page/2/", "https://lancersearlyyears.com/blog/page/10/", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersearlyyears.com/blog/page/3/", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersearlyyears.com/blog/page/9/", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/blog/page/4/", "https://lancersearlyyears.com/blog/page/8/", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/importance-of-cbse-school/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/", "https://lancersearlyyears.com/importance-of-sports-in-education/", "https://lancersearlyyears.com/blog/page/7/", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/blog/page/5/", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersearlyyears.com/benefits-of-play-based-learning/", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/", "https://lancersearlyyears.com/why-is-school-important/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/importance-of-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/", "https://lancersearlyyears.com/blog/page/6/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i06": ["https://lancersearlyyears.com/author/lancehgs/", "https://lancersearlyyears.com/author/lancehgs/page/9/", "https://lancersearlyyears.com/author/lancehgs/page/2/", "https://lancersearlyyears.com/author/lancehgs/?amp=1", "https://lancersearlyyears.com/author/lancersarmyschools/", "https://lancersearlyyears.com/author/lancehgs/page/9/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/", "https://lancersearlyyears.com/author/lancehgs/page/10/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/8/", "https://lancersearlyyears.com/author/lancehgs/page/2/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/7/", "https://lancersearlyyears.com/author/lancersarmyschools/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/", "https://lancersearlyyears.com/author/lancehgs/page/10/", "https://lancersearlyyears.com/author/lancehgs/page/8/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/", "https://lancersearlyyears.com/author/lancehgs/page/7/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/5/", "https://lancersearlyyears.com/author/lancehgs/page/5/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/?amp=1"], "i07": ["https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/NOC-GovtOfGuj.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/SMC.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/PTA.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf"]};
+
+  // Restore saved state
+  function taLoadState() {
+    try {
+      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
+      });
+      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+      });
+    } catch(e) {}
+  }
+
+  window.taSaveState = function() {
+    var s = {};
+    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].own = el.value;
+    });
+    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].stat = el.value;
+    });
+    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Toggle expandable URL panel
+  window.taToggle = function(iid) {
+    var panel = document.getElementById('ta-panel-' + iid);
+    var arrow = document.getElementById('ta-arrow-' + iid);
+    var isOpen = panel.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
+    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      arrow.classList.add('open');
+      // Populate URLs
+      var container = document.getElementById('ta-urls-' + iid);
+      if (!container.dataset.loaded) {
+        var urls = ALL_URLS[iid] || [];
+        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
+        urls.forEach(function(u, idx) {
+          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+        });
+        container.innerHTML = html;
+        container.dataset.loaded = '1';
+      }
+    }
+  };
+
+  window.taCopyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  };
+
+  window.taCopyAll = function(iid) {
+    var urls = ALL_URLS[iid] || [];
+    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
+    });
+  };
+
+  // Filter by category chip
+  var activeCat = 'all';
+  window.taFilter = function(btn) {
+    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    taApplyFilters();
+  };
+
+  window.taApplyFilters = function() {
+    var prio = document.getElementById('ta-prio-filter').value;
+    var stat = document.getElementById('ta-status-filter').value;
+    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
+      var iid = row.dataset.id;
+      var show = true;
+      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
+      if (stat !== 'all') {
+        var sel = row.querySelector('.ta-stat-sel');
+        if (sel && sel.value !== stat) show = false;
+      }
+      row.style.display = show ? '' : 'none';
+      var panel = document.getElementById('ta-panel-' + iid);
+      if (!show && panel) { panel.classList.remove('open'); }
+    });
+  };
+
+  taLoadState();
+})();
+</script>
+
+</div>
+
+
+
+</body>
+</html>
+
+
 <script>
 var sortDir = {};
 var taskSortDir = {};
