@@ -2973,53 +2973,35 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
-
   <div class="gmb-section">
     <div class="gmb-header"><div class="gmb-title">Google My Business — May 2026</div></div>
     <div class="gmb-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">20</div><div class="gmb-label">Phone Calls</div></div>
+      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">99</div><div class="gmb-label">Website Clicks</div></div>
       <div class="gmb-card"><div class="gmb-icon">📍</div><div class="gmb-val">12,639</div><div class="gmb-label">Profile Views</div></div>
       <div class="gmb-card"><div class="gmb-icon">🔍</div><div class="gmb-val">593</div><div class="gmb-label">Search Views</div></div>
       <div class="gmb-card"><div class="gmb-icon">🗺️</div><div class="gmb-val">12,046</div><div class="gmb-label">Map Views</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🌐</div><div class="gmb-val">99</div><div class="gmb-label">Website Clicks</div></div>
-      <div class="gmb-card"><div class="gmb-icon">📞</div><div class="gmb-val">20</div><div class="gmb-label">Phone Calls</div></div>
-      <div class="gmb-card"><div class="gmb-icon">🧭</div><div class="gmb-val">533</div><div class="gmb-label">Directions</div></div>
       <div class="gmb-card"><div class="gmb-icon">📝</div><div class="gmb-val">0</div><div class="gmb-label">GMB Posts</div></div>
       <div class="gmb-card"><div class="gmb-icon">⭐</div><div class="gmb-val">4.9</div><div class="gmb-label">Avg. Rating</div></div>
+      <div class="gmb-card"><div class="gmb-icon">💬</div><div class="gmb-val">152</div><div class="gmb-label">New Reviews</div></div>
     </div>
-    <div style="margin-bottom:16px;font-size:13px;font-weight:600;color:var(--text);">Total Reviews: <span style="color:var(--accent);font-size:18px;font-weight:800;">152</span></div>
-    <div class="chart-card" style="margin-bottom:16px;">
+    <div class="chart-card" style="margin-top:16px;">
       <div class="chart-title">GMB Performance (Last 6 Months)</div>
-      <div class="chart-wrap"><canvas id="gmbChart"></canvas></div>
+      <div class="chart-wrap"><canvas id="gmbTrendChart"></canvas></div>
     </div>
   </div>
   <script>
-  if(typeof initGmbChart === 'undefined') {
-    function initGmbChart() {
-      new Chart(document.getElementById('gmbChart'), {
-        type: 'bar',
-        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [6850, 7286, 5945, 6104, 4910, 12639], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-          { label: 'Website Clicks', data: [62, 94, 55, 86, 73, 99], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
-          { label: 'Phone Calls', data: [14, 18, 21, 13, 10, 20], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
-        ]},
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
-          scales: {
-            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
-            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
-          }
-        }
-      });
-    }
-    initGmbChart();
-  }
+  (function() {
+    var ctx = document.getElementById('gmbTrendChart');
+    if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+      { label: 'Profile Views', data: [6850, 7286, 5945, 6104, 4910, 12639], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [62, 94, 55, 86, 73, 99], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Phone Calls', data: [14, 18, 21, 13, 10, 20], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
+    ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
+  })();
   </script>
 </div>
 
-
-<!-- SEO TASKS TAB -->
 <div id="tab-tasks" class="section">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
