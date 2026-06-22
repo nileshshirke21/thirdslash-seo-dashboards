@@ -2998,16 +2998,17 @@ new Chart(document.getElementById('chChart'), {
       new Chart(document.getElementById('gmbChart'), {
         type: 'bar',
         data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
-          { label: 'Profile Views', data: [6850, 7286, 5945, 6104, 4910, 12639], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4 },
-          { label: 'Website Clicks', data: [62, 94, 55, 86, 73, 99], backgroundColor: 'rgba(6,182,212,0.7)', borderColor: '#06b6d4', borderWidth:1, borderRadius:4 },
-          { label: 'Phone Calls', data: [14, 18, 21, 13, 10, 20], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }
+          { label: 'Profile Views', data: [6850, 7286, 5945, 6104, 4910, 12639], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+          { label: 'Website Clicks', data: [62, 94, 55, 86, 73, 99], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+          { label: 'Phone Calls', data: [14, 18, 21, 13, 10, 20], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
         ]},
         options: {
           responsive: true, maintainAspectRatio: false,
           plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
           scales: {
             x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
-            y: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+            y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } },
+            y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } }
           }
         }
       });
