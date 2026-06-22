@@ -4,485 +4,254 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ThirdSlash | SEO Client Dashboards</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:#F8F9FA;color:#111827;min-height:100vh;}
-header{background:#ffffff;border-bottom:1px solid #E5E7EB;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
-.logo{font-size:16px;font-weight:800;letter-spacing:3px;color:#2563EB;}
-.meta{font-size:12px;color:#6B7280;display:flex;gap:16px;align-items:center;}
-.meta-dot{width:6px;height:6px;border-radius:50%;background:#16A34A;display:inline-block;margin-right:4px;}
-.hero{padding:40px 40px 24px;}
-h1{font-size:28px;font-weight:700;margin-bottom:6px;color:#111827;}
-h1 span{color:#2563EB;}
-.subtitle{color:#6B7280;font-size:13px;margin-bottom:32px;}
-.stats{display:flex;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
-.stat{background:#ffffff;border:1px solid #E5E7EB;border-radius:8px;padding:16px 24px;min-width:130px;box-shadow:0 1px 3px rgba(0,0,0,0.04);border-top:3px solid #2563EB;}
-.stat-num{font-size:24px;font-weight:700;color:#2563EB;}
-.stat-label{font-size:11px;color:#6B7280;margin-top:3px;text-transform:uppercase;letter-spacing:1px;}
-.search-wrap{padding:0 40px 20px;}
-.search-box{width:100%;max-width:400px;padding:10px 16px;background:#ffffff;border:1px solid #E5E7EB;border-radius:8px;color:#111827;font-size:13px;outline:none;box-shadow:0 1px 2px rgba(0,0,0,0.04);}
-.search-box:focus{border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,0.1);}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:0 40px 60px;}
-.card{background:#ffffff;border:1px solid #E5E7EB;border-radius:10px;padding:20px;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s,border-color .2s;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
-.card:hover{border-color:#2563EB;transform:translateY(-2px);box-shadow:0 4px 16px rgba(37,99,235,0.1);}
-.card-header{display:flex;flex-direction:column;gap:3px;}
-.card-name{font-size:15px;font-weight:600;color:#111827;}
-.card-domain{font-size:11px;color:#6B7280;}
-.card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#F8F9FA;border-radius:8px;padding:12px;border:1px solid #E5E7EB;}
-.card-stat{text-align:center;}
-.cs-val{font-size:18px;font-weight:700;color:#2563EB;}
-.cs-label{font-size:10px;color:#6B7280;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
-.cs-period{font-size:9px;color:#9CA3AF;margin-top:1px;}
-.card-footer{display:flex;justify-content:space-between;align-items:center;}
-.card-status{font-size:11px;background:#EFF6FF;color:#2563EB;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BFDBFE;}
-.card-cta{font-size:11px;color:#2563EB;font-weight:600;}
-footer{text-align:center;padding:24px;color:#9CA3AF;font-size:12px;border-top:1px solid #E5E7EB;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#eef1f8;color:#0c1118;min-height:100vh;}
+
+/* Nav */
+header{background:#ffffff;border-bottom:1px solid #dce3f2;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-left{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:26px;height:26px;background:linear-gradient(135deg,#5b39d9,#06b6d4);border-radius:7px;flex-shrink:0;}
+.logo-text{font-size:14px;font-weight:800;color:#0c1118;letter-spacing:2px;}
+.live-pill{display:flex;align-items:center;gap:5px;background:#d1fae5;color:#059669;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#059669;}
+
+/* Hero */
+.hero-strip{background:linear-gradient(135deg,#5b39d9,#06b6d4);padding:24px 28px;display:flex;gap:16px;flex-wrap:wrap;}
+.hero-tile{background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:11px;padding:14px 24px;flex:1;min-width:140px;}
+.hero-tile .ht-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.7);font-weight:600;}
+.hero-tile .ht-value{font-size:24px;font-weight:800;color:#fff;margin-top:4px;}
+
+/* Search */
+.search-row{padding:16px 28px;display:flex;align-items:center;gap:12px;}
+.search-box{flex:1;max-width:400px;padding:10px 16px 10px 36px;background:#ffffff;border:1px solid #dce3f2;border-radius:8px;color:#0c1118;font-size:13px;outline:none;font-family:inherit;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%239ca3af' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;}
+.search-box:focus{border-color:#5b39d9;box-shadow:0 0 0 3px rgba(91,57,217,0.1);}
+.sort-btn{padding:8px 16px;background:#ffffff;border:1px solid #dce3f2;border-radius:8px;font-size:12px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;}
+.sort-btn:hover{border-color:#5b39d9;color:#5b39d9;}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 28px 60px;}
+
+/* Card */
+.card{background:#ffffff;border:1px solid #dce3f2;border-radius:11px;padding:18px;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .15s,border-color .2s;display:flex;flex-direction:column;gap:10px;cursor:pointer;}
+.card:hover{border-color:#5b39d9;transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,57,217,0.12);}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;}
+.card-info{display:flex;flex-direction:column;gap:2px;}
+.card-name{font-size:12px;font-weight:700;color:#0c1118;}
+.card-domain{font-size:9px;color:#9ca3af;}
+.card-initials{width:26px;height:26px;background:linear-gradient(135deg,#5b39d9,#06b6d4);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.card-traffic{font-size:26px;font-weight:800;color:#0c1118;}
+.card-traffic-label{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px;}
+.card-sparkline{height:26px;}
+.card-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.chip{background:#f0edff;border-radius:6px;padding:8px;text-align:center;}
+.chip-val{font-size:14px;font-weight:700;color:#5b39d9;}
+.chip-label{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:0.3px;margin-top:2px;}
+.card-cta{display:block;text-align:center;background:#f0edff;color:#5b39d9;font-size:10px;font-weight:700;padding:8px;border-radius:6px;transition:background .15s;}
+.card:hover .card-cta{background:#e4dcff;}
+
+footer{text-align:center;padding:24px;color:#9ca3af;font-size:12px;border-top:1px solid #dce3f2;background:#ffffff;}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:768px){
-  .hero,.search-wrap,.grid{padding-left:16px;padding-right:16px;}
-  header{padding:12px 16px;}
-  .grid{grid-template-columns:1fr;}
+  .grid{grid-template-columns:repeat(2,1fr);padding:0 16px 40px;}
+  .search-row,.hero-strip{padding-left:16px;padding-right:16px;}
+  header{padding:0 16px;}
 }
+@media(max-width:480px){.grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">THIRDSLASH</div>
-<div class="meta">
-  <span><span class="meta-dot"></span>Live Dashboards</span>
-  <span>16 Active Clients</span>
-  <span>Updated: Jun 2026</span>
-</div>
+  <div class="nav-left">
+    <div class="logo-mark"></div>
+    <div class="logo-text">THIRDSLASH</div>
+  </div>
+  <div class="live-pill"><span class="live-dot"></span>16 Live</div>
 </header>
-<div class="hero">
-<h1>SEO Client <span>Dashboards</span></h1>
-<p class="subtitle">Agency Command Center — all client data in one place</p>
-<div class="stats">
-  <div class="stat"><div class="stat-num">16</div><div class="stat-label">Active Clients</div></div>
-  <div class="stat"><div class="stat-num">928</div><div class="stat-label">Keywords Tracked</div></div>
-  <div class="stat"><div class="stat-num">353</div><div class="stat-label">Top 10 Rankings</div></div>
-  <div class="stat"><div class="stat-num">26,846</div><div class="stat-label">SEO+AI Traffic</div></div>
+
+<div class="hero-strip">
+  <div class="hero-tile"><div class="ht-label">Clients</div><div class="ht-value">16</div></div>
+  <div class="hero-tile"><div class="ht-label">Keywords</div><div class="ht-value">928</div></div>
+  <div class="hero-tile"><div class="ht-label">Top 10</div><div class="ht-value">353</div></div>
+  <div class="hero-tile"><div class="ht-label">SEO+AI Traffic</div><div class="ht-value">26,846</div></div>
 </div>
+
+<div class="search-row">
+  <input class="search-box" type="text" placeholder="Search clients..." oninput="filterCards(this.value)">
+  <button class="sort-btn" onclick="toggleSort()">Traffic ↕</button>
 </div>
-<div class="search-wrap">
-  <input class="search-box" type="text" placeholder="🔍 Search client or domain..." oninput="filterCards(this.value)">
-</div>
+
 <div class="grid" id="clientGrid">
-        <a href="asset-thread/" class="card">
-          <div class="card-header">
-            <div class="card-name">Asset Thread</div>
-            <div class="card-domain">assetthread.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">166</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">May-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">52</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">103</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 93 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="hrm-thread/" class="card">
-          <div class="card-header">
-            <div class="card-name">HRM Thread</div>
-            <div class="card-domain">hrmthread.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">6,224</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">39</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">79</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 70 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="lancers-cbse/" class="card">
-          <div class="card-header">
-            <div class="card-name">Lancers CBSE</div>
-            <div class="card-domain">lancerscbse.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">84</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">4</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">17</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 10 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="lancers-early-years/" class="card">
-          <div class="card-header">
-            <div class="card-name">Lancers Early Years</div>
-            <div class="card-domain">lancersearlyyears.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">23</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">8</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#94a3b8;background:#F1F5F9;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #E2E8F0">&bull; No Rankings Yet</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="lancers-army-school/" class="card">
-          <div class="card-header">
-            <div class="card-name">Lancers Army School</div>
-            <div class="card-domain">lancersarmyschools.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">1,077</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">9</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">29</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 9 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="potential-engineering/" class="card">
-          <div class="card-header">
-            <div class="card-name">Potential Engineering</div>
-            <div class="card-domain">potentialengineering.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">2,679</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">103</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">147</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 142 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="estrela-hotels/" class="card">
-          <div class="card-header">
-            <div class="card-name">Estrela Hotels</div>
-            <div class="card-domain">estrelahotels.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">2,521</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">May-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">1</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">40</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 15 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="kelly-powers/" class="card">
-          <div class="card-header">
-            <div class="card-name">Kelly Powers</div>
-            <div class="card-domain">kellypowers.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">1,193</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">15</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#94a3b8;background:#F1F5F9;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #E2E8F0">&bull; No Rankings Yet</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="happylyfe/" class="card">
-          <div class="card-header">
-            <div class="card-name">HappyLyfe</div>
-            <div class="card-domain">happylyfe.in.th</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">2,582</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">May-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">56</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">137</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 98 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="public69/" class="card">
-          <div class="card-header">
-            <div class="card-name">Public69</div>
-            <div class="card-domain">public69.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">5,867</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">May-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">88</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 7 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="ovation-square/" class="card">
-          <div class="card-header">
-            <div class="card-name">Ovation Square</div>
-            <div class="card-domain">ovationsquare.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">1,119</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">15</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 13 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="piovra-group/" class="card">
-          <div class="card-header">
-            <div class="card-name">Piovra Group</div>
-            <div class="card-domain">piovragroup.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">1,337</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">44</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">125</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 116 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="brickroom-la/" class="card">
-          <div class="card-header">
-            <div class="card-name">Brickroom LA</div>
-            <div class="card-domain">brickroomla.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">754</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">9</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">36</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 30 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="mj-gorgeous/" class="card">
-          <div class="card-header">
-            <div class="card-name">MJ Gorgeous</div>
-            <div class="card-domain">mjgorgeous.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">729</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">25</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">72</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 65 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="ez-lifestyle/" class="card">
-          <div class="card-header">
-            <div class="card-name">EZ Lifestyle</div>
-            <div class="card-domain"></div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">322</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">May-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">0</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#94a3b8;background:#F1F5F9;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #E2E8F0">&bull; No Rankings Yet</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
-        <a href="lancers-gseb/" class="card">
-          <div class="card-header">
-            <div class="card-name">Lancers GSEB</div>
-            <div class="card-domain">lancersgseb.com</div>
-          </div>
-          <div class="card-stats">
-            <div class="card-stat">
-              <div class="cs-val">169</div>
-              <div class="cs-label">SEO+AI Traffic</div>
-              <div class="cs-period">Apr-2026</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">11</div>
-              <div class="cs-label">Top 10</div>
-            </div>
-            <div class="card-stat">
-              <div class="cs-val">17</div>
-              <div class="cs-label">Keywords</div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span class="card-status" style="color:#4ade80;background:#F0FDF4;padding:3px 8px;border-radius:20px;font-weight:600;border:1px solid #BBF7D0">&bull; 13 Ranking</span>
-            <span class="card-cta">View Dashboard →</span>
-          </div>
-        </a>
+
+  <a href="hrm-thread/" class="card" data-traffic="6224">
+    <div class="card-head"><div class="card-info"><div class="card-name">HRM Thread</div><div class="card-domain">hrmthread.com</div></div><div class="card-initials">HT</div></div>
+    <div class="card-traffic">6,224</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,20 16,18 32,22 48,14 64,10 80,6" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">39</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">79</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="public69/" class="card" data-traffic="5867">
+    <div class="card-head"><div class="card-info"><div class="card-name">Public69</div><div class="card-domain">public69.com</div></div><div class="card-initials">P6</div></div>
+    <div class="card-traffic">5,867</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,22 16,16 32,12 48,10 64,8 80,4" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">0</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">88</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="potential-engineering/" class="card" data-traffic="2679">
+    <div class="card-head"><div class="card-info"><div class="card-name">Potential Eng.</div><div class="card-domain">potentialengineering.com</div></div><div class="card-initials">PE</div></div>
+    <div class="card-traffic">2,679</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,24 16,20 32,16 48,18 64,12 80,8" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">103</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">147</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="happylyfe/" class="card" data-traffic="2582">
+    <div class="card-head"><div class="card-info"><div class="card-name">HappyLyfe</div><div class="card-domain">happylyfe.in.th</div></div><div class="card-initials">HL</div></div>
+    <div class="card-traffic">2,582</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,18 16,20 32,14 48,12 64,10 80,6" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">56</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">137</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="estrela-hotels/" class="card" data-traffic="2521">
+    <div class="card-head"><div class="card-info"><div class="card-name">Estrela Hotels</div><div class="card-domain">estrelahotels.com</div></div><div class="card-initials">EH</div></div>
+    <div class="card-traffic">2,521</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,20 16,22 32,16 48,10 64,8 80,6" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">1</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">40</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="piovra-group/" class="card" data-traffic="1337">
+    <div class="card-head"><div class="card-info"><div class="card-name">Piovra Group</div><div class="card-domain">piovragroup.com</div></div><div class="card-initials">PG</div></div>
+    <div class="card-traffic">1,337</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,22 16,18 32,20 48,14 64,10 80,8" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">44</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">125</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="kelly-powers/" class="card" data-traffic="1193">
+    <div class="card-head"><div class="card-info"><div class="card-name">Kelly Powers</div><div class="card-domain">kellypowers.com</div></div><div class="card-initials">KP</div></div>
+    <div class="card-traffic">1,193</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,14 16,18 32,20 48,16 64,12 80,8" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">0</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">15</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="ovation-square/" class="card" data-traffic="1119">
+    <div class="card-head"><div class="card-info"><div class="card-name">Ovation Square</div><div class="card-domain">ovationsquare.com</div></div><div class="card-initials">OS</div></div>
+    <div class="card-traffic">1,119</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,20 16,16 32,18 48,14 64,12 80,10" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">0</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">15</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="lancers-army-school/" class="card" data-traffic="1077">
+    <div class="card-head"><div class="card-info"><div class="card-name">Lancers Army</div><div class="card-domain">lancersarmyschools.com</div></div><div class="card-initials">LA</div></div>
+    <div class="card-traffic">1,077</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,22 16,20 32,18 48,16 64,12 80,10" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">9</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">29</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="brickroom-la/" class="card" data-traffic="754">
+    <div class="card-head"><div class="card-info"><div class="card-name">Brickroom LA</div><div class="card-domain">brickroomla.com</div></div><div class="card-initials">BL</div></div>
+    <div class="card-traffic">754</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,18 16,20 32,22 48,16 64,12 80,10" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">9</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">36</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="mj-gorgeous/" class="card" data-traffic="729">
+    <div class="card-head"><div class="card-info"><div class="card-name">MJ Gorgeous</div><div class="card-domain">mjgorgeous.com</div></div><div class="card-initials">MG</div></div>
+    <div class="card-traffic">729</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,16 16,18 32,14 48,12 64,10 80,8" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">25</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">72</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="ez-lifestyle/" class="card" data-traffic="322">
+    <div class="card-head"><div class="card-info"><div class="card-name">EZ Lifestyle</div><div class="card-domain">ezlifestyle.com</div></div><div class="card-initials">EL</div></div>
+    <div class="card-traffic">322</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,20 16,18 32,16 48,18 64,14 80,12" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">0</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">0</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="lancers-gseb/" class="card" data-traffic="169">
+    <div class="card-head"><div class="card-info"><div class="card-name">Lancers GSEB</div><div class="card-domain">lancersgseb.com</div></div><div class="card-initials">LG</div></div>
+    <div class="card-traffic">169</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,22 16,20 32,18 48,16 64,14 80,12" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">11</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">17</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="asset-thread/" class="card" data-traffic="166">
+    <div class="card-head"><div class="card-info"><div class="card-name">Asset Thread</div><div class="card-domain">assetthread.com</div></div><div class="card-initials">AT</div></div>
+    <div class="card-traffic">166</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,18 16,22 32,20 48,16 64,14 80,12" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">52</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">93</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="lancers-cbse/" class="card" data-traffic="84">
+    <div class="card-head"><div class="card-info"><div class="card-name">Lancers CBSE</div><div class="card-domain">lancerscbse.com</div></div><div class="card-initials">LC</div></div>
+    <div class="card-traffic">84</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,20 16,18 32,22 48,20 64,16 80,14" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">4</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">17</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
+  <a href="lancers-early-years/" class="card" data-traffic="23">
+    <div class="card-head"><div class="card-info"><div class="card-name">Lancers Early Yrs</div><div class="card-domain">lancersearlyyears.com</div></div><div class="card-initials">LE</div></div>
+    <div class="card-traffic">23</div>
+    <div class="card-traffic-label">SEO+AI Traffic</div>
+    <svg class="card-sparkline" viewBox="0 0 80 26"><polyline points="0,14 16,16 32,18 48,20 64,22 80,24" fill="none" stroke="#5b39d9" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="card-chips"><div class="chip"><div class="chip-val">0</div><div class="chip-label">Top 10</div></div><div class="chip"><div class="chip-val">8</div><div class="chip-label">KWs</div></div></div>
+    <div class="card-cta">View →</div>
+  </a>
+
 </div>
+
 <footer>ThirdSlash Digital Marketing Agency &mdash; All dashboards auto-update monthly &mdash; Data: GA4 + Ubersuggest</footer>
+
 <script>
 function filterCards(q){
-  q = q.toLowerCase();
+  q=q.toLowerCase();
   document.querySelectorAll('#clientGrid .card').forEach(function(c){
-    var t = c.innerText.toLowerCase();
-    c.style.display = t.includes(q) ? '' : 'none';
+    c.style.display=c.innerText.toLowerCase().includes(q)?'':'none';
   });
 }
+var sortAsc=false;
+function toggleSort(){
+  sortAsc=!sortAsc;
+  var grid=document.getElementById('clientGrid');
+  var cards=Array.from(grid.querySelectorAll('.card'));
+  cards.sort(function(a,b){
+    var av=parseInt(a.dataset.traffic)||0;
+    var bv=parseInt(b.dataset.traffic)||0;
+    return sortAsc?av-bv:bv-av;
+  });
+  cards.forEach(function(c){grid.appendChild(c);});
+}
 </script>
-
-
-
-
-
 </body>
 </html>
