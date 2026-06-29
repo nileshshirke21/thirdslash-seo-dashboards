@@ -158,9 +158,13 @@
   <div class="header-left">
     <h1>Asset Thread</h1>
     <span class="domain-pill">assetthread.com</span>
-    <span class="date-badge">Updated: 20 Jun 2026</span>
+    <span class="date-badge">Updated: 29 Jun 2026</span>
   </div>
-  <div class="header-right">
+  <div class="header-right" style="display:flex;align-items:center;gap:16px;">
+    <button id="pdfBtn" onclick="generatePDF()" style="padding:7px 18px;background:#5b39d9;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
     <svg width="140" height="28" viewBox="0 0 280 56" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,4)"><polygon points="8,48 20,0 32,0 20,48" fill="#E87A2A"/><polygon points="22,48 34,0 46,0 34,48" fill="#E87A2A"/><polygon points="36,48 48,0 60,0 48,48" fill="#E87A2A"/></g><text x="70" y="38" font-family="'Plus Jakarta Sans',sans-serif" font-size="26" font-weight="800" letter-spacing="2"><tspan fill="#6B7280">THIRD</tspan><tspan fill="#E87A2A">SLASH</tspan></text></svg>
   </div>
 </div>
@@ -3075,6 +3079,171 @@ new Chart(document.getElementById('chChart'), {
 
 <script>new Chart(document.getElementById('gmbChart'), {  type: 'bar', data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [{{ label: 'Views', data: [980, 1050, 1100, 1180, 1210, 1240], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }},{{ label: 'Clicks', data: [38, 41, 39, 43, 44, 45], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4 }},{{ label: 'Calls', data: [9, 10, 11, 13, 11, 12], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#D97706', borderWidth:1, borderRadius:4 }}], }}, options: {{...dflt}} }});</script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function generatePDF() {
+  var btn = document.getElementById('pdfBtn');
+  var origText = btn.innerHTML;
+  btn.innerHTML = '⏳ Generating...';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+
+  try {
+    var { jsPDF } = window.jspdf;
+    var pdf = new jsPDF('landscape', 'mm', 'a4');
+    var pageWidth = pdf.internal.pageSize.getWidth();
+    var pageHeight = pdf.internal.pageSize.getHeight();
+    var margin = 5;
+
+    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','metaads'];
+    var sections = [];
+    tabIds.forEach(function(t) {
+      var el = document.getElementById('tab-' + t);
+      if (!el) return;
+      sections.push({ id: t, el: el });
+    });
+
+    var origStates = sections.map(function(s) {
+      return { el: s.el, display: s.el.style.display, cls: s.el.className };
+    });
+
+    var nav = document.querySelector('.nav');
+    var origNavDisplay = nav ? nav.style.display : '';
+    if (nav) nav.style.display = 'none';
+    btn.style.display = 'none';
+
+    var selects = document.querySelectorAll('.ta-select, .ta-chip, #ta-prio-filter, #ta-status-filter');
+    selects.forEach(function(s) { s.setAttribute('data-orig-display', s.style.display); s.style.display = 'none'; });
+
+    var isFirst = true;
+    for (var i = 0; i < sections.length; i++) {
+      var s = sections[i];
+
+      sections.forEach(function(other) {
+        if (other.id === s.id) {
+          other.el.style.display = 'block';
+          other.el.classList.add('active');
+          other.el.style.padding = '16px 28px';
+        } else {
+          other.el.style.display = 'none';
+          other.el.classList.remove('active');
+        }
+      });
+
+      await new Promise(function(r) { setTimeout(r, 500); });
+
+      var canvas = await html2canvas(s.el, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#eef1f8',
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        width: s.el.scrollWidth,
+        height: s.el.scrollHeight
+      });
+
+      var headerCanvas = null;
+      if (i === 0) {
+        var header = document.querySelector('.header');
+        if (header) {
+          headerCanvas = await html2canvas(header, {
+            scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff'
+          });
+        }
+      }
+
+      var imgData = canvas.toDataURL('image/jpeg', 0.92);
+      var contentWidth = pageWidth - (margin * 2);
+
+      if (headerCanvas && i === 0) {
+        var hdrData = headerCanvas.toDataURL('image/jpeg', 0.95);
+        var hdrHeight = (headerCanvas.height * contentWidth) / headerCanvas.width;
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
+
+        if (!isFirst) pdf.addPage();
+        isFirst = false;
+        pdf.addImage(hdrData, 'JPEG', margin, margin, contentWidth, hdrHeight);
+
+        var yPos = margin + hdrHeight + 2;
+        var heightLeft = contentHeight;
+
+        if (contentHeight <= pageHeight - yPos - margin) {
+          pdf.addImage(imgData, 'JPEG', margin, yPos, contentWidth, contentHeight);
+        } else {
+          var pxPerMm = canvas.width / contentWidth;
+          var availFirst = (pageHeight - yPos - margin) * pxPerMm;
+          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
+
+          var sliceCanvas = document.createElement('canvas');
+          sliceCanvas.width = canvas.width;
+          sliceCanvas.height = Math.min(availFirst, canvas.height);
+          sliceCanvas.getContext('2d').drawImage(canvas, 0, 0, canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
+          pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, yPos, contentWidth, sliceCanvas.height / pxPerMm);
+
+          var offset = availFirst;
+          while (offset < canvas.height) {
+            pdf.addPage();
+            var sh = Math.min(pageContentHeightPx, canvas.height - offset);
+            var sc2 = document.createElement('canvas');
+            sc2.width = canvas.width; sc2.height = sh;
+            sc2.getContext('2d').drawImage(canvas, 0, offset, canvas.width, sh, 0, 0, canvas.width, sh);
+            pdf.addImage(sc2.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sh / pxPerMm);
+            offset += pageContentHeightPx;
+          }
+        }
+      } else {
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
+
+        if (contentHeight <= pageHeight - margin * 2) {
+          if (!isFirst) pdf.addPage();
+          isFirst = false;
+          pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
+        } else {
+          var pxPerMm = canvas.width / contentWidth;
+          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
+          var totalPages = Math.ceil(canvas.height / pageContentHeightPx);
+
+          for (var p = 0; p < totalPages; p++) {
+            if (!isFirst) pdf.addPage();
+            isFirst = false;
+            var sliceHeight = Math.min(pageContentHeightPx, canvas.height - p * pageContentHeightPx);
+            var sliceCanvas = document.createElement('canvas');
+            sliceCanvas.width = canvas.width;
+            sliceCanvas.height = sliceHeight;
+            sliceCanvas.getContext('2d').drawImage(canvas, 0, p * pageContentHeightPx, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+            pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sliceHeight / pxPerMm);
+          }
+        }
+      }
+    }
+
+    origStates.forEach(function(s) {
+      s.el.style.display = s.display;
+      s.el.className = s.cls;
+    });
+    if (nav) nav.style.display = origNavDisplay;
+    btn.style.display = '';
+    selects.forEach(function(s) { s.style.display = s.getAttribute('data-orig-display') || ''; });
+
+    var activeTab = document.querySelector('.nav-tab.active');
+    if (activeTab) activeTab.click();
+
+    var clientName = document.querySelector('h1');
+    var filename = (clientName ? clientName.textContent.trim().replace(/\s+/g, '_') : 'dashboard') + '_SEO_Report.pdf';
+    pdf.save(filename);
+
+  } catch(e) {
+    console.error('PDF error:', e);
+    alert('PDF generation failed: ' + e.message);
+  }
+
+  btn.innerHTML = origText;
+  btn.disabled = false;
+  btn.style.opacity = '1';
+}
+</script>
 </body>
 </html>
 
