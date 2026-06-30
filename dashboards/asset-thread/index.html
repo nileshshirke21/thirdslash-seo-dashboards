@@ -3082,55 +3082,6 @@ new Chart(document.getElementById('chChart'), {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-function collectSectionLinks(el) {
-  var links = [];
-  el.querySelectorAll('a[href]').forEach(function(a) {
-    var href = a.getAttribute('href');
-    if (!href || href === '#' || href.startsWith('javascript')) return;
-    var rect = a.getBoundingClientRect();
-    if (rect.width === 0 && rect.height === 0) return;
-    links.push({ href: href, rect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height } });
-  });
-  return links;
-}
-
-function addPdfLinks(pdf, links, sRect, sScrollW, sScrollH, contentWidth, contentHeight, startPage, yStart, margin, pageH) {
-  if (!links.length) return;
-  var savedPage = pdf.internal.getCurrentPageInfo().pageNumber;
-  var firstPageAvail = pageH - yStart - margin;
-  var fullPageH = pageH - margin * 2;
-
-  links.forEach(function(link) {
-    var relX = link.rect.left - sRect.left;
-    var relY = link.rect.top - sRect.top;
-    var relW = Math.max(link.rect.width, 20);
-    var relH = Math.max(link.rect.height, 5);
-
-    var pdfX = margin + (relX / sScrollW) * contentWidth;
-    var pdfW = (relW / sScrollW) * contentWidth;
-    var linkYmm = (relY / sScrollH) * contentHeight;
-    var linkHmm = (relH / sScrollH) * contentHeight;
-
-    var pageNum, localY;
-    if (linkYmm <= firstPageAvail) {
-      pageNum = 0;
-      localY = yStart + linkYmm;
-    } else {
-      var rem = linkYmm - firstPageAvail;
-      pageNum = 1 + Math.floor(rem / fullPageH);
-      localY = margin + (rem % fullPageH);
-    }
-
-    var targetPage = startPage + pageNum;
-    if (targetPage <= pdf.internal.getNumberOfPages()) {
-      pdf.setPage(targetPage);
-      pdf.link(pdfX, localY, pdfW, linkHmm, { url: link.href });
-    }
-  });
-
-  pdf.setPage(savedPage);
-}
-
 async function generatePDF() {
   var btn = document.getElementById('pdfBtn');
   var origText = btn.innerHTML;
@@ -3144,7 +3095,6 @@ async function generatePDF() {
     var pageWidth = pdf.internal.pageSize.getWidth();
     var pageHeight = pdf.internal.pageSize.getHeight();
     var margin = 5;
-    var contentWidth = pageWidth - (margin * 2);
 
     var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','metaads'];
     var sections = [];
@@ -3166,9 +3116,10 @@ async function generatePDF() {
     var selects = document.querySelectorAll('.ta-select, .ta-chip, #ta-prio-filter, #ta-status-filter, #lbType, #lbStatus');
     selects.forEach(function(s) { s.setAttribute('data-orig-display', s.style.display); s.style.display = 'none'; });
 
-    var isFirst = true;
-    var currentPdfPage = 1;
+    // Stores link annotation data to apply after all rendering is done
+    var deferredLinks = [];
 
+    var isFirst = true;
     for (var i = 0; i < sections.length; i++) {
       var s = sections[i];
 
@@ -3185,11 +3136,29 @@ async function generatePDF() {
 
       await new Promise(function(r) { setTimeout(r, 500); });
 
-      // Collect link positions before canvas capture (positions still valid)
-      var sLinks = (s.id === 'tasks' || s.id === 'linkbuilding') ? collectSectionLinks(s.el) : [];
-      var sRect = s.el.getBoundingClientRect();
-      var sScrollW = s.el.scrollWidth;
-      var sScrollH = s.el.scrollHeight;
+      // Collect link positions (as fractions of section size) for tasks/linkbuilding
+      var sectionLinkData = null;
+      if (s.id === 'tasks' || s.id === 'linkbuilding') {
+        var sEl = s.el;
+        var sR = sEl.getBoundingClientRect();
+        var sW = sEl.scrollWidth;
+        var sH = sEl.scrollHeight;
+        var linkFracs = [];
+        sEl.querySelectorAll('a[href]').forEach(function(a) {
+          var href = a.getAttribute('href');
+          if (!href || href === '#' || href.startsWith('javascript')) return;
+          var r = a.getBoundingClientRect();
+          if (r.width < 1 || r.height < 1) return;
+          linkFracs.push({
+            href: href,
+            xF: (r.left - sR.left) / sW,
+            yF: (r.top - sR.top) / sH,
+            wF: Math.max(r.width, 20) / sW,
+            hF: Math.max(r.height, 5) / sH
+          });
+        });
+        sectionLinkData = { fracs: linkFracs };
+      }
 
       var canvas = await html2canvas(s.el, {
         scale: 2,
@@ -3198,8 +3167,8 @@ async function generatePDF() {
         backgroundColor: '#eef1f8',
         scrollX: 0,
         scrollY: -window.scrollY,
-        width: sScrollW,
-        height: sScrollH
+        width: s.el.scrollWidth,
+        height: s.el.scrollHeight
       });
 
       var headerCanvas = null;
@@ -3213,16 +3182,17 @@ async function generatePDF() {
       }
 
       var imgData = canvas.toDataURL('image/jpeg', 0.92);
-      var contentHeight = (canvas.height * contentWidth) / canvas.width;
-      var sectionStartPage = currentPdfPage;
-      var sectionYStart = margin;
+      var contentWidth = pageWidth - (margin * 2);
+      var sectionStartPage, sectionYStart;
 
       if (headerCanvas && i === 0) {
         var hdrData = headerCanvas.toDataURL('image/jpeg', 0.95);
         var hdrHeight = (headerCanvas.height * contentWidth) / headerCanvas.width;
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
 
-        if (!isFirst) { pdf.addPage(); currentPdfPage++; }
+        if (!isFirst) pdf.addPage();
         isFirst = false;
+        sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
         pdf.addImage(hdrData, 'JPEG', margin, margin, contentWidth, hdrHeight);
 
         var yPos = margin + hdrHeight + 2;
@@ -3243,7 +3213,7 @@ async function generatePDF() {
 
           var offset = availFirst;
           while (offset < canvas.height) {
-            pdf.addPage(); currentPdfPage++;
+            pdf.addPage();
             var sh = Math.min(pageContentHeightPx, canvas.height - offset);
             var sc2 = document.createElement('canvas');
             sc2.width = canvas.width; sc2.height = sh;
@@ -3252,19 +3222,35 @@ async function generatePDF() {
             offset += pageContentHeightPx;
           }
         }
+
+        if (sectionLinkData) {
+          sectionLinkData.startPage = sectionStartPage;
+          sectionLinkData.yStart = sectionYStart;
+          sectionLinkData.contentWidth = contentWidth;
+          sectionLinkData.contentHeight = contentHeight;
+          deferredLinks.push(sectionLinkData);
+        }
       } else {
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
+        sectionYStart = margin;
+
         if (contentHeight <= pageHeight - margin * 2) {
-          if (!isFirst) { pdf.addPage(); currentPdfPage++; }
+          if (!isFirst) pdf.addPage();
           isFirst = false;
+          sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
           pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
         } else {
           var pxPerMm = canvas.width / contentWidth;
           var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
           var totalPages = Math.ceil(canvas.height / pageContentHeightPx);
+          sectionStartPage = null;
 
           for (var p = 0; p < totalPages; p++) {
-            if (!isFirst) { pdf.addPage(); currentPdfPage++; }
+            if (!isFirst) pdf.addPage();
             isFirst = false;
+            if (sectionStartPage === null) {
+              sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
+            }
             var sliceHeight = Math.min(pageContentHeightPx, canvas.height - p * pageContentHeightPx);
             var sliceCanvas = document.createElement('canvas');
             sliceCanvas.width = canvas.width;
@@ -3273,15 +3259,50 @@ async function generatePDF() {
             pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sliceHeight / pxPerMm);
           }
         }
-      }
 
-      // Overlay clickable link annotations for tasks and linkbuilding
-      if (sLinks.length) {
-        addPdfLinks(pdf, sLinks, sRect, sScrollW, sScrollH, contentWidth, contentHeight, sectionStartPage, sectionYStart, margin, pageHeight);
+        if (sectionLinkData) {
+          sectionLinkData.startPage = sectionStartPage;
+          sectionLinkData.yStart = sectionYStart;
+          sectionLinkData.contentWidth = contentWidth;
+          sectionLinkData.contentHeight = contentHeight;
+          deferredLinks.push(sectionLinkData);
+        }
       }
-
-      currentPdfPage = pdf.internal.getCurrentPageInfo().pageNumber;
     }
+
+    // Post-process: add all link annotations now that page structure is final
+    var finalPage = pdf.internal.getCurrentPageInfo().pageNumber;
+    var totalPdfPages = pdf.internal.getNumberOfPages();
+
+    deferredLinks.forEach(function(d) {
+      var firstPageAvail = pageHeight - d.yStart - margin;
+      var fullPageH = pageHeight - margin * 2;
+
+      d.fracs.forEach(function(lk) {
+        var pdfX = margin + lk.xF * d.contentWidth;
+        var pdfW = lk.wF * d.contentWidth;
+        var linkYmm = lk.yF * d.contentHeight;
+        var linkHmm = Math.max(lk.hF * d.contentHeight, 2);
+
+        var pageOffset, localY;
+        if (linkYmm <= firstPageAvail) {
+          pageOffset = 0;
+          localY = d.yStart + linkYmm;
+        } else {
+          var rem = linkYmm - firstPageAvail;
+          pageOffset = 1 + Math.floor(rem / fullPageH);
+          localY = margin + (rem % fullPageH);
+        }
+
+        var targetPage = d.startPage + pageOffset;
+        if (targetPage >= 1 && targetPage <= totalPdfPages) {
+          pdf.setPage(targetPage);
+          pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href });
+        }
+      });
+    });
+
+    pdf.setPage(finalPage);
 
     origStates.forEach(function(s) {
       s.el.style.display = s.display;
