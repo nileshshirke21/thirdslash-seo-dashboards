@@ -3297,7 +3297,7 @@ async function generatePDF() {
         var targetPage = d.startPage + pageOffset;
         if (targetPage >= 1 && targetPage <= totalPdfPages) {
           pdf.setPage(targetPage);
-          pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href });
+          pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href, newWindow: true });
         }
       });
     });
