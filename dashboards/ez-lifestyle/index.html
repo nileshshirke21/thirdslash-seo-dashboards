@@ -810,11 +810,10 @@ async function generatePDF() {
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div>
       <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; Jun-2026</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Quora, Blog Comments &amp; Directories by ThirdSlash</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
       <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 0</div>
-      <div style="background:#F5F3FF;border:1px solid #DDD6FE;color:#6D28D9;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Quora: 0</div>
       <div style="background:#f0edff;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 0</div>
       <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
     </div>
@@ -826,7 +825,6 @@ async function generatePDF() {
         <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
           <option value="all">All Types</option>
           <option value="Reddit">Reddit</option>
-          <option value="Quora">Quora</option>
           <option value="Blog Comment">Blog Comments</option>
           <option value="Directory">Directories</option>
         </select>
@@ -842,7 +840,7 @@ async function generatePDF() {
     <table class="rank-table" style="min-width:900px;">
       <thead><tr style="background:#F8FAFC;">
         <th style="text-align:center;width:40px">Sr.</th>
-        <th style="width:110px">Type</th>
+        <th style="text-align:center;width:130px">Type</th>
         <th>URL</th>
         <th style="width:130px">Anchor Text</th>
         <th style="width:160px">Linking To</th>
