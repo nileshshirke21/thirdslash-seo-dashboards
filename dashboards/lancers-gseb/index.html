@@ -399,159 +399,66 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">11</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#4ade80">+2</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">4</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">17</td><td style="text-align:center;color:#94a3b8">17</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">5</td><td style="text-align:center;color:#94a3b8">5</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">6</td><td style="text-align:center;color:#94a3b8">6</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="gseb schools piplod">gseb schools piplod</td>
+          <td class="kw-cell" title="top gseb schools in surat">top gseb schools in surat</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://lancersgseb.com/gseb-school-in-surat/" target="_blank">https://lancersgseb.com/gseb-school-in-surat/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="best gseb schools in gujarat">best gseb schools in gujarat</td>
+          <td class="kw-cell" title="top 10 gseb schools in surat">top 10 gseb schools in surat</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
           <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://lancersgseb.com/gseb-school-in-surat/" target="_blank">https://lancersgseb.com/gseb-school-in-surat/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="top gseb schools">top gseb schools</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">19</td>
-          <td class="move-cell up">▲ +17</td>
-          <td class="vol-cell">0</td>
+          <td class="kw-cell" title="gseb schools in surat">gseb schools in surat</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">20</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best gseb schools in surat">best gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
+          <td class="kw-cell" title="gseb near surat city gujarat">gseb near surat city gujarat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell flat">&mdash;</td>
           <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="best gseb schools">best gseb schools</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">100</td>
-          <td class="move-cell up">▲ +98</td>
-          <td class="vol-cell">0</td>
+          <td class="kw-cell" title="gseb near surat gujarat">gseb near surat gujarat</td>
+          <td class="rank-cell rank-up" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
-          <td class="kw-cell" title="gseb schools dumas road">gseb schools dumas road</td>
-          <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
-          <td class="kw-cell" title="top gseb schools in surat">top gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">5</td>
-          <td class="move-cell up">▲ +3</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
-          <td class="kw-cell" title="gujarat board schools in surat">gujarat board schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">6</td>
-          <td class="move-cell up">▲ +2</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
-          <td class="kw-cell" title="gseb schools in surat">gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">5</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">30</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="gseb schools surat">gseb schools surat</td>
-          <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell down">▼ -1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
-          <td class="kw-cell" title="gseb schools gujarat">gseb schools gujarat</td>
-          <td class="rank-cell rank-flat" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">9</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
-          <td class="kw-cell" title="gseb education">gseb education</td>
-          <td class="rank-cell rank-up" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">19</td>
-          <td class="move-cell up">▲ +8</td>
-          <td class="vol-cell">20</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
-          <td class="kw-cell" title="gseb english medium schools">gseb english medium schools</td>
-          <td class="rank-cell rank-flat" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">23</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="gseb school near me">gseb school near me</td>
+          <td class="kw-cell" title="gujarat higher secondary board">gujarat higher secondary board</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="gseb board">gseb board</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">6600</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
-          <td class="kw-cell" title="gseb english medium schools in gujarat">gseb english medium schools in gujarat</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
-          <td class="kw-cell" title="gseb schools">gseb schools</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">110</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">260</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
         </tr></tbody></table></div>
 </div>
 
@@ -680,159 +587,66 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Current</th><th style="text-align:center">Previous</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">11</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#4ade80">+2</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">4</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">17</td><td style="text-align:center;color:#94a3b8">17</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings<span class="period">Last Updated: 2026-06-11</span></div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Current &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Previous &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">5</td><td style="text-align:center;color:#94a3b8">5</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">1</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">6</td><td style="text-align:center;color:#94a3b8">6</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="gseb schools piplod">gseb schools piplod</td>
+          <td class="kw-cell" title="top gseb schools in surat">top gseb schools in surat</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="rank-cell" style="text-align:center">4</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://lancersgseb.com/gseb-school-in-surat/" target="_blank">https://lancersgseb.com/gseb-school-in-surat/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="best gseb schools in gujarat">best gseb schools in gujarat</td>
+          <td class="kw-cell" title="top 10 gseb schools in surat">top 10 gseb schools in surat</td>
           <td class="rank-cell rank-up" style="text-align:center">2</td>
           <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://lancersgseb.com/gseb-school-in-surat/" target="_blank">https://lancersgseb.com/gseb-school-in-surat/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="top gseb schools">top gseb schools</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">19</td>
-          <td class="move-cell up">▲ +17</td>
-          <td class="vol-cell">0</td>
+          <td class="kw-cell" title="gseb schools in surat">gseb schools in surat</td>
+          <td class="rank-cell rank-up" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">20</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best gseb schools in surat">best gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell up">▲ +1</td>
+          <td class="kw-cell" title="gseb near surat city gujarat">gseb near surat city gujarat</td>
+          <td class="rank-cell rank-flat" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">5</td>
+          <td class="move-cell flat">&mdash;</td>
           <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="best gseb schools">best gseb schools</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">100</td>
-          <td class="move-cell up">▲ +98</td>
-          <td class="vol-cell">0</td>
+          <td class="kw-cell" title="gseb near surat gujarat">gseb near surat gujarat</td>
+          <td class="rank-cell rank-up" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
-          <td class="kw-cell" title="gseb schools dumas road">gseb schools dumas road</td>
-          <td class="rank-cell rank-flat" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">2</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
-          <td class="kw-cell" title="top gseb schools in surat">top gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">2</td>
-          <td class="rank-cell" style="text-align:center">5</td>
-          <td class="move-cell up">▲ +3</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
-          <td class="kw-cell" title="gujarat board schools in surat">gujarat board schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">6</td>
-          <td class="move-cell up">▲ +2</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
-          <td class="kw-cell" title="gseb schools in surat">gseb schools in surat</td>
-          <td class="rank-cell rank-up" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">5</td>
-          <td class="move-cell up">▲ +1</td>
-          <td class="vol-cell">30</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="gseb schools surat">gseb schools surat</td>
-          <td class="rank-cell rank-down" style="text-align:center">4</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="move-cell down">▼ -1</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
-          <td class="kw-cell" title="gseb schools gujarat">gseb schools gujarat</td>
-          <td class="rank-cell rank-flat" style="text-align:center">9</td>
-          <td class="rank-cell" style="text-align:center">9</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
-          <td class="kw-cell" title="gseb education">gseb education</td>
-          <td class="rank-cell rank-up" style="text-align:center">11</td>
-          <td class="rank-cell" style="text-align:center">19</td>
-          <td class="move-cell up">▲ +8</td>
-          <td class="vol-cell">20</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
-          <td class="kw-cell" title="gseb english medium schools">gseb english medium schools</td>
-          <td class="rank-cell rank-flat" style="text-align:center">23</td>
-          <td class="rank-cell" style="text-align:center">23</td>
-          <td class="move-cell flat">—</td>
-          <td class="vol-cell">10</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="gseb school near me">gseb school near me</td>
+          <td class="kw-cell" title="gujarat higher secondary board">gujarat higher secondary board</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="gseb board">gseb board</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">6600</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
-          <td class="kw-cell" title="gseb english medium schools in gujarat">gseb english medium schools in gujarat</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">0</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
-          <td class="kw-cell" title="gseb schools">gseb schools</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">110</td>
-          <td class="url-cell"><a href="https://lancersgseb.com/" target="_blank">https://lancersgseb.com/</a></td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">260</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
         </tr></tbody></table></div>
 </div>
 

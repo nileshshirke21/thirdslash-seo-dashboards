@@ -398,156 +398,536 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">7</td><td style="text-align:center;color:#94a3b8">10</td><td style="text-align:center"><span style="color:#f87171">-3</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">11</td><td style="text-align:center;color:#94a3b8">7</td><td style="text-align:center"><span style="color:#4ade80">+4</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">13</td><td style="text-align:center;color:#94a3b8">14</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">5</td><td style="text-align:center;color:#94a3b8">5</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">17</td><td style="text-align:center;color:#94a3b8">17</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">53</td><td style="text-align:center;color:#94a3b8">53</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="best self help books to read">best self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="nutritionist san francisco bay area">nutritionist san francisco bay area</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">50</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="good self help books to read">good self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="pantry makeover health coach">pantry makeover health coach</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/pantry-makeover-health-coach" target="_blank">https://www.kellyepowers.com/pantry-makeover-health-coach</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="best self development books to read">best self development books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="san francisco dietitian">san francisco dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best books of all time self help">best books of all time self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
+          <td class="kw-cell" title="dietitian san francisco">dietitian san francisco</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">&#9660; -2</td>
+          <td class="vol-cell">50</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="best books to read for self improvement">best books to read for self improvement</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="nutritionist san francisco">nutritionist san francisco</td>
+          <td class="rank-cell rank-flat" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">90</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
-          <td class="kw-cell" title="spiritual coach">spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
+          <td class="kw-cell" title="registered dietitian san francisco">registered dietitian san francisco</td>
+          <td class="rank-cell rank-down" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">&#9660; -4</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
-          <td class="kw-cell" title="men's self help books">men's self help books</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
+          <td class="kw-cell" title="nutritionist bay area">nutritionist bay area</td>
+          <td class="rank-cell rank-down" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell down">&#9660; -2</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
-          <td class="kw-cell" title="great self help books to read">great self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="san diego dietitian">san diego dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
-          <td class="kw-cell" title="life spiritual coach">life spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
+          <td class="kw-cell" title="registered dietitian los angeles">registered dietitian los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">100</td>
+          <td class="move-cell up">&#9650; +89</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="life and spiritual coach">life and spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="los angeles dietitian">los angeles dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
-          <td class="kw-cell" title="best self help novels">best self help novels</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">9900</td>
+          <td class="kw-cell" title="nutrition coaching services">nutrition coaching services</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">17</td>
+          <td class="move-cell up">&#9650; +5</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
-          <td class="kw-cell" title="best self improvement books to read">best self improvement books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="dietician san diego">dietician san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">&#9650; +3</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
-          <td class="kw-cell" title="good books to read self help">good books to read self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="family dietitian">family dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">21</td>
+          <td class="move-cell up">&#9650; +7</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="spiritual life coaching">spiritual life coaching</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="registered dietitian san diego">registered dietitian san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">17</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="top self help books to read">top self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="personal nutritionist">personal nutritionist</td>
+          <td class="rank-cell rank-flat" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
+          <td class="kw-cell" title="family nutrition counseling">family nutrition counseling</td>
+          <td class="rank-cell rank-up" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">39</td>
+          <td class="move-cell up">&#9650; +23</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="nutritionist in san diego">nutritionist in san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">19</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
+          <td class="kw-cell" title="nutritionist los angeles">nutritionist los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">&#9660; -4</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+          <td class="kw-cell" title="registered dietitian for weight loss">registered dietitian for weight loss</td>
+          <td class="rank-cell rank-up" style="text-align:center">23</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">&#9650; +6</td>
+          <td class="vol-cell">320</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
+          <td class="kw-cell" title="dietitian for weight loss">dietitian for weight loss</td>
+          <td class="rank-cell rank-up" style="text-align:center">24</td>
+          <td class="rank-cell" style="text-align:center">30</td>
+          <td class="move-cell up">&#9650; +6</td>
+          <td class="vol-cell">110</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
+          <td class="kw-cell" title="family nutritionist">family nutritionist</td>
+          <td class="rank-cell rank-flat" style="text-align:center">25</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/family-nutritionist" target="_blank">https://www.kellyepowers.com/family-nutritionist</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
+          <td class="kw-cell" title="personal nutritionist online">personal nutritionist online</td>
+          <td class="rank-cell rank-up" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
+          <td class="kw-cell" title="nutritionist california">nutritionist california</td>
+          <td class="rank-cell rank-down" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+          <td class="kw-cell" title="california dietitian">california dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell up">&#9650; +4</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
+          <td class="kw-cell" title="weight loss dietitian">weight loss dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">29</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">&#9660; -23</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
+          <td class="kw-cell" title="healthy pantry makeover">healthy pantry makeover</td>
+          <td class="rank-cell rank-down" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell down">&#9660; -29</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/blog/how-to-stock-a-healthy-pantry-a-step-by-step-guide" target="_blank">https://www.kellyepowers.com/blog/how-to-stock-a-healthy-pantry-a-step-by-step-guide</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
+          <td class="kw-cell" title="certified nutritionist california">certified nutritionist california</td>
+          <td class="rank-cell rank-down" style="text-align:center">38</td>
+          <td class="rank-cell" style="text-align:center">37</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
+          <td class="kw-cell" title="virtual nutrition coaching">virtual nutrition coaching</td>
+          <td class="rank-cell rank-down" style="text-align:center">41</td>
+          <td class="rank-cell" style="text-align:center">38</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
+          <td class="kw-cell" title="women's health dietitian">women's health dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">46</td>
+          <td class="rank-cell" style="text-align:center">49</td>
+          <td class="move-cell up">&#9650; +3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
+          <td class="kw-cell" title="women's health nutritionist">women's health nutritionist</td>
+          <td class="rank-cell rank-down" style="text-align:center">48</td>
+          <td class="rank-cell" style="text-align:center">24</td>
+          <td class="move-cell down">&#9660; -24</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
+          <td class="kw-cell" title="consult nutritionist online">consult nutritionist online</td>
+          <td class="rank-cell rank-down" style="text-align:center">49</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell down">&#9660; -17</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
+          <td class="kw-cell" title="online nutritionist">online nutritionist</td>
+          <td class="rank-cell rank-down" style="text-align:center">62</td>
+          <td class="rank-cell" style="text-align:center">46</td>
+          <td class="move-cell down">&#9660; -16</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
+          <td class="kw-cell" title="virtual nutrition counseling">virtual nutrition counseling</td>
+          <td class="rank-cell rank-down" style="text-align:center">66</td>
+          <td class="rank-cell" style="text-align:center">63</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
+          <td class="kw-cell" title="eating disorder coach">eating disorder coach</td>
+          <td class="rank-cell rank-down" style="text-align:center">81</td>
+          <td class="rank-cell" style="text-align:center">76</td>
+          <td class="move-cell down">&#9660; -5</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/eating-disorder-recovery-counseling" target="_blank">https://www.kellyepowers.com/eating-disorder-recovery-counseling</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
+          <td class="kw-cell" title="eating disorder recovery coach">eating disorder recovery coach</td>
+          <td class="rank-cell rank-down" style="text-align:center">83</td>
+          <td class="rank-cell" style="text-align:center">76</td>
+          <td class="move-cell down">&#9660; -7</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/eating-disorder-recovery-counseling" target="_blank">https://www.kellyepowers.com/eating-disorder-recovery-counseling</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
+          <td class="kw-cell" title="personalized nutrition coaching">personalized nutrition coaching</td>
+          <td class="rank-cell rank-down" style="text-align:center">83</td>
+          <td class="rank-cell" style="text-align:center">74</td>
+          <td class="move-cell down">&#9660; -9</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/nutrition-coaching" target="_blank">https://www.kellyepowers.com/nutrition-coaching</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
+          <td class="kw-cell" title="best glp 1 for weight loss">best glp 1 for weight loss</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">50</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
+          <td class="kw-cell" title="nutrition coaching">nutrition coaching</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">20</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
+          <td class="kw-cell" title="glp 1 diet plan">glp 1 diet plan</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
+          <td class="kw-cell" title="women's health nutrition">women's health nutrition</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
+          <td class="kw-cell" title="intuitive eating nutritionists">intuitive eating nutritionists</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
+          <td class="kw-cell" title="nutrition coach online">nutrition coach online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
+          <td class="kw-cell" title="registered dietitian california">registered dietitian california</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
+          <td class="kw-cell" title="glp 1 nutrition support">glp 1 nutrition support</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
+          <td class="kw-cell" title="glp 1 weight loss program">glp 1 weight loss program</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
+          <td class="kw-cell" title="glp 1 support">glp 1 support</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
+          <td class="kw-cell" title="get glp 1 online">get glp 1 online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
+          <td class="kw-cell" title="intuitive eating dietitian">intuitive eating dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
+          <td class="kw-cell" title="eating disorder treatment online">eating disorder treatment online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
+          <td class="kw-cell" title="virtual eating disorder treatment">virtual eating disorder treatment</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
+          <td class="kw-cell" title="eating disorder dietitian">eating disorder dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
+          <td class="kw-cell" title="intuitive eating registered dietitian">intuitive eating registered dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
+          <td class="kw-cell" title="1 on 1 nutrition coaching">1 on 1 nutrition coaching</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
         </tr></tbody></table></div>
 </div>
 
@@ -676,156 +1056,536 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center"><span style="color:#94a3b8">—</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">15</td><td style="text-align:center;color:#94a3b8">15</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
+<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Jun 26</th><th style="text-align:center">May 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">7</td><td style="text-align:center;color:#94a3b8">10</td><td style="text-align:center"><span style="color:#f87171">-3</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">11</td><td style="text-align:center;color:#94a3b8">7</td><td style="text-align:center"><span style="color:#4ade80">+4</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">13</td><td style="text-align:center;color:#94a3b8">14</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">5</td><td style="text-align:center;color:#94a3b8">5</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">17</td><td style="text-align:center;color:#94a3b8">17</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">53</td><td style="text-align:center;color:#94a3b8">53</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Jun 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">May 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Apr 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="best self help books to read">best self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="nutritionist san francisco bay area">nutritionist san francisco bay area</td>
+          <td class="rank-cell rank-up" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">50</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="good self help books to read">good self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="pantry makeover health coach">pantry makeover health coach</td>
+          <td class="rank-cell rank-flat" style="text-align:center">1</td>
+          <td class="rank-cell" style="text-align:center">1</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/pantry-makeover-health-coach" target="_blank">https://www.kellyepowers.com/pantry-makeover-health-coach</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="best self development books to read">best self development books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="san francisco dietitian">san francisco dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">4</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best books of all time self help">best books of all time self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
+          <td class="kw-cell" title="dietitian san francisco">dietitian san francisco</td>
+          <td class="rank-cell rank-down" style="text-align:center">5</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="move-cell down">&#9660; -2</td>
+          <td class="vol-cell">50</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="best books to read for self improvement">best books to read for self improvement</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="nutritionist san francisco">nutritionist san francisco</td>
+          <td class="rank-cell rank-flat" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">90</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
-          <td class="kw-cell" title="spiritual coach">spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1900</td>
+          <td class="kw-cell" title="registered dietitian san francisco">registered dietitian san francisco</td>
+          <td class="rank-cell rank-down" style="text-align:center">6</td>
+          <td class="rank-cell" style="text-align:center">2</td>
+          <td class="move-cell down">&#9660; -4</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
-          <td class="kw-cell" title="men's self help books">men's self help books</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
+          <td class="kw-cell" title="nutritionist bay area">nutritionist bay area</td>
+          <td class="rank-cell rank-down" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="move-cell down">&#9660; -2</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
-          <td class="kw-cell" title="great self help books to read">great self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="san diego dietitian">san diego dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
-          <td class="kw-cell" title="life spiritual coach">life spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">1000</td>
+          <td class="kw-cell" title="registered dietitian los angeles">registered dietitian los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">100</td>
+          <td class="move-cell up">&#9650; +89</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="life and spiritual coach">life and spiritual coach</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="los angeles dietitian">los angeles dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">11</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
-          <td class="kw-cell" title="best self help novels">best self help novels</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">9900</td>
+          <td class="kw-cell" title="nutrition coaching services">nutrition coaching services</td>
+          <td class="rank-cell rank-up" style="text-align:center">12</td>
+          <td class="rank-cell" style="text-align:center">17</td>
+          <td class="move-cell up">&#9650; +5</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
-          <td class="kw-cell" title="best self improvement books to read">best self improvement books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="dietician san diego">dietician san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">13</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">&#9650; +3</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
-          <td class="kw-cell" title="good books to read self help">good books to read self help</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">720</td>
+          <td class="kw-cell" title="family dietitian">family dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">14</td>
+          <td class="rank-cell" style="text-align:center">21</td>
+          <td class="move-cell up">&#9650; +7</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="spiritual life coaching">spiritual life coaching</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="registered dietitian san diego">registered dietitian san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">17</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
         </tr>
         <tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="top self help books to read">top self help books to read</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">NR</td>
-          <td class="vol-cell">880</td>
+          <td class="kw-cell" title="personal nutritionist">personal nutritionist</td>
+          <td class="rank-cell rank-flat" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell"><a href="" target="_blank"></a></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
+          <td class="kw-cell" title="family nutrition counseling">family nutrition counseling</td>
+          <td class="rank-cell rank-up" style="text-align:center">16</td>
+          <td class="rank-cell" style="text-align:center">39</td>
+          <td class="move-cell up">&#9650; +23</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="nutritionist in san diego">nutritionist in san diego</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">19</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-diego-dietitian" target="_blank">https://www.kellyepowers.com/san-diego-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
+          <td class="kw-cell" title="nutritionist los angeles">nutritionist los angeles</td>
+          <td class="rank-cell rank-down" style="text-align:center">20</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell down">&#9660; -4</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/los-angeles-dietitian" target="_blank">https://www.kellyepowers.com/los-angeles-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+          <td class="kw-cell" title="registered dietitian for weight loss">registered dietitian for weight loss</td>
+          <td class="rank-cell rank-up" style="text-align:center">23</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">&#9650; +6</td>
+          <td class="vol-cell">320</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
+          <td class="kw-cell" title="dietitian for weight loss">dietitian for weight loss</td>
+          <td class="rank-cell rank-up" style="text-align:center">24</td>
+          <td class="rank-cell" style="text-align:center">30</td>
+          <td class="move-cell up">&#9650; +6</td>
+          <td class="vol-cell">110</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
+          <td class="kw-cell" title="family nutritionist">family nutritionist</td>
+          <td class="rank-cell rank-flat" style="text-align:center">25</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/family-nutritionist" target="_blank">https://www.kellyepowers.com/family-nutritionist</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
+          <td class="kw-cell" title="personal nutritionist online">personal nutritionist online</td>
+          <td class="rank-cell rank-up" style="text-align:center">27</td>
+          <td class="rank-cell" style="text-align:center">29</td>
+          <td class="move-cell up">&#9650; +2</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
+          <td class="kw-cell" title="nutritionist california">nutritionist california</td>
+          <td class="rank-cell rank-down" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">25</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+          <td class="kw-cell" title="california dietitian">california dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">28</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell up">&#9650; +4</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
+          <td class="kw-cell" title="weight loss dietitian">weight loss dietitian</td>
+          <td class="rank-cell rank-down" style="text-align:center">29</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="move-cell down">&#9660; -23</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
+          <td class="kw-cell" title="healthy pantry makeover">healthy pantry makeover</td>
+          <td class="rank-cell rank-down" style="text-align:center">36</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell down">&#9660; -29</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/blog/how-to-stock-a-healthy-pantry-a-step-by-step-guide" target="_blank">https://www.kellyepowers.com/blog/how-to-stock-a-healthy-pantry-a-step-by-step-guide</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
+          <td class="kw-cell" title="certified nutritionist california">certified nutritionist california</td>
+          <td class="rank-cell rank-down" style="text-align:center">38</td>
+          <td class="rank-cell" style="text-align:center">37</td>
+          <td class="move-cell down">&#9660; -1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
+          <td class="kw-cell" title="virtual nutrition coaching">virtual nutrition coaching</td>
+          <td class="rank-cell rank-down" style="text-align:center">41</td>
+          <td class="rank-cell" style="text-align:center">38</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
+          <td class="kw-cell" title="women's health dietitian">women's health dietitian</td>
+          <td class="rank-cell rank-up" style="text-align:center">46</td>
+          <td class="rank-cell" style="text-align:center">49</td>
+          <td class="move-cell up">&#9650; +3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">30</td>
+          <td class="kw-cell" title="women's health nutritionist">women's health nutritionist</td>
+          <td class="rank-cell rank-down" style="text-align:center">48</td>
+          <td class="rank-cell" style="text-align:center">24</td>
+          <td class="move-cell down">&#9660; -24</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/san-francisco-dietitian" target="_blank">https://www.kellyepowers.com/san-francisco-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">31</td>
+          <td class="kw-cell" title="consult nutritionist online">consult nutritionist online</td>
+          <td class="rank-cell rank-down" style="text-align:center">49</td>
+          <td class="rank-cell" style="text-align:center">32</td>
+          <td class="move-cell down">&#9660; -17</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">32</td>
+          <td class="kw-cell" title="online nutritionist">online nutritionist</td>
+          <td class="rank-cell rank-down" style="text-align:center">62</td>
+          <td class="rank-cell" style="text-align:center">46</td>
+          <td class="move-cell down">&#9660; -16</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">33</td>
+          <td class="kw-cell" title="virtual nutrition counseling">virtual nutrition counseling</td>
+          <td class="rank-cell rank-down" style="text-align:center">66</td>
+          <td class="rank-cell" style="text-align:center">63</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/california-dietitian" target="_blank">https://www.kellyepowers.com/california-dietitian</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">34</td>
+          <td class="kw-cell" title="eating disorder coach">eating disorder coach</td>
+          <td class="rank-cell rank-down" style="text-align:center">81</td>
+          <td class="rank-cell" style="text-align:center">76</td>
+          <td class="move-cell down">&#9660; -5</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/eating-disorder-recovery-counseling" target="_blank">https://www.kellyepowers.com/eating-disorder-recovery-counseling</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">35</td>
+          <td class="kw-cell" title="eating disorder recovery coach">eating disorder recovery coach</td>
+          <td class="rank-cell rank-down" style="text-align:center">83</td>
+          <td class="rank-cell" style="text-align:center">76</td>
+          <td class="move-cell down">&#9660; -7</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/eating-disorder-recovery-counseling" target="_blank">https://www.kellyepowers.com/eating-disorder-recovery-counseling</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">36</td>
+          <td class="kw-cell" title="personalized nutrition coaching">personalized nutrition coaching</td>
+          <td class="rank-cell rank-down" style="text-align:center">83</td>
+          <td class="rank-cell" style="text-align:center">74</td>
+          <td class="move-cell down">&#9660; -9</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell"><a href="https://www.kellyepowers.com/nutrition-coaching" target="_blank">https://www.kellyepowers.com/nutrition-coaching</a></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">37</td>
+          <td class="kw-cell" title="best glp 1 for weight loss">best glp 1 for weight loss</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">50</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">38</td>
+          <td class="kw-cell" title="nutrition coaching">nutrition coaching</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">20</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">39</td>
+          <td class="kw-cell" title="glp 1 diet plan">glp 1 diet plan</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">40</td>
+          <td class="kw-cell" title="women's health nutrition">women's health nutrition</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">41</td>
+          <td class="kw-cell" title="intuitive eating nutritionists">intuitive eating nutritionists</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">42</td>
+          <td class="kw-cell" title="nutrition coach online">nutrition coach online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">43</td>
+          <td class="kw-cell" title="registered dietitian california">registered dietitian california</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">44</td>
+          <td class="kw-cell" title="glp 1 nutrition support">glp 1 nutrition support</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">45</td>
+          <td class="kw-cell" title="glp 1 weight loss program">glp 1 weight loss program</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">46</td>
+          <td class="kw-cell" title="glp 1 support">glp 1 support</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">47</td>
+          <td class="kw-cell" title="get glp 1 online">get glp 1 online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">48</td>
+          <td class="kw-cell" title="intuitive eating dietitian">intuitive eating dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">49</td>
+          <td class="kw-cell" title="eating disorder treatment online">eating disorder treatment online</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">50</td>
+          <td class="kw-cell" title="virtual eating disorder treatment">virtual eating disorder treatment</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">51</td>
+          <td class="kw-cell" title="eating disorder dietitian">eating disorder dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">52</td>
+          <td class="kw-cell" title="intuitive eating registered dietitian">intuitive eating registered dietitian</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">53</td>
+          <td class="kw-cell" title="1 on 1 nutrition coaching">1 on 1 nutrition coaching</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
         </tr></tbody></table></div>
 </div>
 
