@@ -170,6 +170,7 @@
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
   <div class="nav-tab" onclick="showTab('techaudit', this)">Tech Audit</div>
+  <div class="nav-tab" onclick="showTab('googleads', this)">Google Ads</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -2789,6 +2790,197 @@ async function generatePDF() {
 </body>
 </html>
 
+<div id="tab-googleads" class="section">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+    <div style="font-size:16px;font-weight:700;color:var(--text)">Google Ads Performance</div>
+    <div style="font-size:12px;color:var(--muted);background:var(--card);padding:6px 14px;border-radius:8px;border:1px solid var(--border)">Jun 2026 vs May 2026</div>
+  </div>
+
+  <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="metric-card" style="border-left-color:#4285F4">
+      <div class="metric-label">Ad Spend</div>
+      <div class="metric-value" style="font-size:24px">&#8377;5,009</div>
+      <span class="delta neg">&#9650; 0.1% <span style="font-size:10px;color:var(--muted);font-weight:400">vs &#8377;5,004</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#34A853">
+      <div class="metric-label">Impressions</div>
+      <div class="metric-value" style="font-size:24px">34,169</div>
+      <span class="delta pos">&#9650; 71.6% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 19,911</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#FBBC05">
+      <div class="metric-label">Clicks</div>
+      <div class="metric-value" style="font-size:24px">1,157</div>
+      <span class="delta pos">&#9650; 99.1% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 581</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#EA4335">
+      <div class="metric-label">CTR</div>
+      <div class="metric-value" style="font-size:24px">3.39%</div>
+      <span class="delta pos">&#9650; 16.0% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 2.92%</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#34A853">
+      <div class="metric-label">Conversions</div>
+      <div class="metric-value" style="font-size:24px">0</div>
+      
+    </div>
+    <div class="metric-card" style="border-left-color:#4285F4">
+      <div class="metric-label">Cost / Conversion</div>
+      <div class="metric-value" style="font-size:24px">&#8377;172.71</div>
+      
+    </div>
+    <div class="metric-card" style="border-left-color:#FBBC05">
+      <div class="metric-label">Avg CPC</div>
+      <div class="metric-value" style="font-size:24px">&#8377;4.33</div>
+      <span class="delta pos">&#9660; 49.7% <span style="font-size:10px;color:var(--muted);font-weight:400">vs &#8377;8.61</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#EA4335">
+      <div class="metric-label">All Conversions</div>
+      <div class="metric-value" style="font-size:24px">29.0</div>
+      <span class="delta pos">&#9650; 383.3% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 6.0</span></span>
+    </div>
+  </div>
+
+  <!-- Google Ads Charts -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Cost & Avg CPC Over Time</div>
+      <div class="chart-wrap"><canvas id="gaCostChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Clicks & CTR Over Time</div>
+      <div class="chart-wrap"><canvas id="gaClicksChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Cost by City</div>
+      <div class="chart-wrap"><canvas id="gaCampPieChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Campaign Table -->
+  <div class="rank-table-wrap" style="margin-bottom:24px">
+    <div class="rank-table-header">
+      <span>Campaign Performance</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table" id="gaCampTable">
+      <thead>
+        <tr>
+          <th style="cursor:pointer" onclick="sortGaTable('gaCampBody',0)">Campaign</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',1)">Cost</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',2)">Impr.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',3)">Clicks</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',4)">CTR</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',5)">Avg CPC</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',6)">Conv.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',7)">Cost/Conv</th>
+        </tr>
+      </thead>
+      <tbody id="gaCampBody">
+        <tr><td class="kw-cell">TS - Bridal Makeup</td><td style="text-align:right">&#8377;5,009</td><td style="text-align:right">34,167</td><td style="text-align:right">1,157</td><td style="text-align:right">3.39%</td><td style="text-align:right">&#8377;4.33</td><td style="text-align:right">0</td><td style="text-align:right">-</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Table 2 -->
+  <div class="rank-table-wrap" style="margin-bottom:24px">
+    <div class="rank-table-header">
+      <span>Top Search Keywords</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table" id="gaKwTable">
+      <thead>
+        <tr>
+          <th style="cursor:pointer" onclick="sortGaTable('gaKwBody',0)">Keyword</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',1)">Cost</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',2)">Clicks</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',3)">CTR</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',4)">Conv.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',5)">Cost/Conv</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',6)">1st Pos %</th>
+        </tr>
+      </thead>
+      <tbody id="gaKwBody">
+        <tr><td class="kw-cell">bridal makeup artist near me</td><td style="text-align:right">&#8377;1,498</td><td style="text-align:right">215</td><td style="text-align:right">4.11%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">13.33%</td></tr>
+        <tr><td class="kw-cell">bridal makeup services in bangalore</td><td style="text-align:right">&#8377;969</td><td style="text-align:right">121</td><td style="text-align:right">4.25%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">15.04%</td></tr>
+        <tr><td class="kw-cell">wedding makeup artists</td><td style="text-align:right">&#8377;466</td><td style="text-align:right">114</td><td style="text-align:right">2.02%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">25.00%</td></tr>
+        <tr><td class="kw-cell">bridal makeup services near me</td><td style="text-align:right">&#8377;418</td><td style="text-align:right">71</td><td style="text-align:right">2.59%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">15.89%</td></tr>
+        <tr><td class="kw-cell">bridal makeup services</td><td style="text-align:right">&#8377;320</td><td style="text-align:right">55</td><td style="text-align:right">2.25%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">0.00%</td></tr>
+        <tr><td class="kw-cell">"bridal makeup services"</td><td style="text-align:right">&#8377;207</td><td style="text-align:right">52</td><td style="text-align:right">2.48%</td><td style="text-align:right">0</td><td style="text-align:right">-</td><td style="text-align:right">14.12%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Top Cities Table -->
+  <div class="rank-table-wrap">
+    <div class="rank-table-header">
+      <span>Performance by City</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th style="text-align:right">Cost</th>
+          <th style="text-align:right">Impr.</th>
+          <th style="text-align:right">Clicks</th>
+          <th style="text-align:right">CTR</th>
+          <th style="text-align:right">Avg CPC</th>
+          <th style="text-align:right">Conv.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="kw-cell">Bengaluru</td><td style="text-align:right">&#8377;3,381</td><td style="text-align:right">15,805</td><td style="text-align:right">626</td><td style="text-align:right">3.96%</td><td style="text-align:right">&#8377;5.40</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Chennai</td><td style="text-align:right">&#8377;783</td><td style="text-align:right">9,375</td><td style="text-align:right">287</td><td style="text-align:right">3.06%</td><td style="text-align:right">&#8377;2.73</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Coimbatore</td><td style="text-align:right">&#8377;182</td><td style="text-align:right">2,649</td><td style="text-align:right">77</td><td style="text-align:right">2.91%</td><td style="text-align:right">&#8377;2.37</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Mysuru</td><td style="text-align:right">&#8377;73</td><td style="text-align:right">754</td><td style="text-align:right">25</td><td style="text-align:right">3.32%</td><td style="text-align:right">&#8377;2.93</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Vijayawada</td><td style="text-align:right">&#8377;46</td><td style="text-align:right">818</td><td style="text-align:right">22</td><td style="text-align:right">2.69%</td><td style="text-align:right">&#8377;2.10</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Salem</td><td style="text-align:right">&#8377;44</td><td style="text-align:right">541</td><td style="text-align:right">14</td><td style="text-align:right">2.59%</td><td style="text-align:right">&#8377;3.13</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Hosur</td><td style="text-align:right">&#8377;70</td><td style="text-align:right">144</td><td style="text-align:right">11</td><td style="text-align:right">7.64%</td><td style="text-align:right">&#8377;6.39</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Hoskote</td><td style="text-align:right">&#8377;59</td><td style="text-align:right">50</td><td style="text-align:right">9</td><td style="text-align:right">18.00%</td><td style="text-align:right">&#8377;6.55</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Vellore</td><td style="text-align:right">&#8377;10</td><td style="text-align:right">62</td><td style="text-align:right">4</td><td style="text-align:right">6.45%</td><td style="text-align:right">&#8377;2.47</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Anantapur</td><td style="text-align:right">&#8377;7</td><td style="text-align:right">154</td><td style="text-align:right">4</td><td style="text-align:right">2.60%</td><td style="text-align:right">&#8377;1.85</td><td style="text-align:right">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GOOGLE ADS CHARTS SCRIPT -->
+<script>
+var _gaChartsDone_mjgorgeous = false;
+function initGaCharts() {
+  if (_gaChartsDone_mjgorgeous) return;
+  _gaChartsDone_mjgorgeous = true;
+  var gaDays = ["Jun 1", "Jun 2", "Jun 3", "Jun 4", "Jun 5", "Jun 6", "Jun 7", "Jun 8", "Jun 9", "Jun 10", "Jun 11", "Jun 12", "Jun 13", "Jun 14", "Jun 15", "Jun 16", "Jun 17", "Jun 18", "Jun 19", "Jun 20", "Jun 21", "Jun 22", "Jun 23", "Jun 24", "Jun 25", "Jun 26", "Jun 27", "Jun 28", "Jun 29", "Jun 30"];
+  var gaCostData = [552.958963, 489.85622, 471.43255, 566.782688, 500.916201, 508.026167, 535.219946, 552.019392, 571.812203, 249.695091, 7.591809, 0.262754, 2.123766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var gaCpcData = [4.157586187969925, 5.566547954545455, 6.932831617647059, 5.966133557894737, 7.589639409090909, 5.029962049504951, 3.90671493430657, 3.3254180240963858, 3.642115942675159, 1.8774066992481202, 1.0845441428571427, 0.262754, 0.42475319999999994, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var gaClicksData = [133, 88, 68, 95, 66, 101, 137, 166, 157, 133, 7, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var gaCtrData = [2.9490022172949004, 3.0855539971949506, 2.7309236947791167, 3.3216783216783217, 3.741496598639456, 3.434206052363142, 3.86350817822899, 3.5379369138959933, 2.8035714285714284, 4.84340859431901, 7.368421052631578, 20, 7.462686567164178, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  var gaConvData = [];
+  var gaConvRateData = [];
+
+  new Chart(document.getElementById('gaCostChart'),{type:'bar',data:{labels:gaDays,datasets:[{label:'Cost (INR)',data:gaCostData,backgroundColor:'rgba(66,133,244,0.7)',borderRadius:4,yAxisID:'y'},{label:'Avg CPC (INR)',data:gaCpcData,type:'line',borderColor:'#EA4335',backgroundColor:'transparent',tension:0.3,pointRadius:3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{position:'left',grid:{display:false},ticks:{font:{size:10},callback:function(v){return '₹'+v}}},y1:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:function(v){return '₹'+v}}}}}});
+
+  new Chart(document.getElementById('gaClicksChart'),{type:'bar',data:{labels:gaDays,datasets:[{label:'Clicks',data:gaClicksData,backgroundColor:'rgba(52,168,83,0.7)',borderRadius:4,yAxisID:'y'},{label:'CTR %',data:gaCtrData,type:'line',borderColor:'#FBBC05',backgroundColor:'transparent',tension:0.3,pointRadius:3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{position:'left',grid:{display:false},ticks:{font:{size:10}}},y1:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:function(v){return v+'%'}}}}}});
+
+  new Chart(document.getElementById('gaCampPieChart'),{type:'doughnut',data:{labels:["Bengaluru", "Chennai", "Coimbatore", "Mysuru", "Vijayawada", "Salem"],datasets:[{data:[3381.33, 783.32, 182.29, 73.22, 46.15, 43.77],backgroundColor:["#4285F4", "#34A853", "#FBBC05", "#EA4335", "#9C27B0", "#00BCD4"],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12}}}}});
+}
+
+var gaSortDir_mjgorgeous = {};
+function sortGaTable(tbodyId,col){
+  var tbody=document.getElementById(tbodyId); if(!tbody) return;
+  var rows=Array.from(tbody.querySelectorAll('tr'));
+  var asc=!gaSortDir_mjgorgeous[tbodyId+'_'+col]; gaSortDir_mjgorgeous={}; gaSortDir_mjgorgeous[tbodyId+'_'+col]=asc;
+  rows.sort(function(a,b){
+    var av=a.cells[col]?a.cells[col].innerText.trim().replace(/[^\d.-]/g,''):'';
+    var bv=b.cells[col]?b.cells[col].innerText.trim().replace(/[^\d.-]/g,''):'';
+    var an=parseFloat(av),bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return asc?an-bn:bn-an;
+    return asc?(a.cells[col]||{innerText:''}).innerText.localeCompare((b.cells[col]||{innerText:''}).innerText):(b.cells[col]||{innerText:''}).innerText.localeCompare((a.cells[col]||{innerText:''}).innerText);
+  });
+  rows.forEach(function(r){tbody.appendChild(r);});
+}
+</script>
+
+
 
 <script>
 var sortDir = {};
@@ -2801,6 +2993,7 @@ function showTab(name, el) {
   document.getElementById('tab-' + name).classList.add('active');
   if(el) el.classList.add('active');
   if(name === 'gmb' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }
+  if(name === 'googleads' && typeof initGaCharts === 'function') { initGaCharts(); }
 }
 function sortTable(col) {
   var tbody = document.getElementById('rankTableBody');

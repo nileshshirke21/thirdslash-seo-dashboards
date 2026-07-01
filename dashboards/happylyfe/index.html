@@ -170,6 +170,7 @@
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
   <div class="nav-tab" onclick="showTab('techaudit', this)">Tech Audit</div>
+  <div class="nav-tab" onclick="showTab('googleads', this)">Google Ads</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -2378,6 +2379,200 @@ async function generatePDF() {
 </body>
 </html>
 
+<div id="tab-googleads" class="section">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+    <div style="font-size:16px;font-weight:700;color:var(--text)">Google Ads Performance</div>
+    <div style="font-size:12px;color:var(--muted);background:var(--card);padding:6px 14px;border-radius:8px;border:1px solid var(--border)">Jun 2026 vs May 2026</div>
+  </div>
+
+  <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="metric-card" style="border-left-color:#4285F4">
+      <div class="metric-label">Ad Spend</div>
+      <div class="metric-value" style="font-size:24px">&#3647;25,585</div>
+      <span class="delta neg">&#9650; 17.6% <span style="font-size:10px;color:var(--muted);font-weight:400">vs &#3647;21,762</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#34A853">
+      <div class="metric-label">Impressions</div>
+      <div class="metric-value" style="font-size:24px">755,554</div>
+      <span class="delta pos">&#9650; 16.8% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 647,149</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#FBBC05">
+      <div class="metric-label">Clicks</div>
+      <div class="metric-value" style="font-size:24px">12,170</div>
+      <span class="delta pos">&#9650; 15.8% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 10,505</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#EA4335">
+      <div class="metric-label">CTR</div>
+      <div class="metric-value" style="font-size:24px">1.61%</div>
+      <span class="delta neg">&#9660; 0.8% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 1.62%</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#34A853">
+      <div class="metric-label">Conversions</div>
+      <div class="metric-value" style="font-size:24px">2,403.2</div>
+      <span class="delta pos">&#9650; 179.2% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 860.7</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#4285F4">
+      <div class="metric-label">Cost / Conversion</div>
+      <div class="metric-value" style="font-size:24px">&#3647;10.65</div>
+      <span class="delta pos">&#9660; 57.9% <span style="font-size:10px;color:var(--muted);font-weight:400">vs &#3647;25.28</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#FBBC05">
+      <div class="metric-label">Avg CPC</div>
+      <div class="metric-value" style="font-size:24px">&#3647;2.10</div>
+      <span class="delta neg">&#9650; 1.5% <span style="font-size:10px;color:var(--muted);font-weight:400">vs &#3647;2.07</span></span>
+    </div>
+    <div class="metric-card" style="border-left-color:#EA4335">
+      <div class="metric-label">All Conversions</div>
+      <div class="metric-value" style="font-size:24px">17,415.2</div>
+      <span class="delta pos">&#9650; 28.4% <span style="font-size:10px;color:var(--muted);font-weight:400">vs 13,566.0</span></span>
+    </div>
+  </div>
+
+  <!-- Google Ads Charts -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Cost & Avg CPC Over Time</div>
+      <div class="chart-wrap"><canvas id="gaCostChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Clicks & CTR Over Time</div>
+      <div class="chart-wrap"><canvas id="gaClicksChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Conversions & Conversion Rate</div>
+      <div class="chart-wrap"><canvas id="gaConvChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Cost by Campaign</div>
+      <div class="chart-wrap"><canvas id="gaCampPieChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Campaign Table -->
+  <div class="rank-table-wrap" style="margin-bottom:24px">
+    <div class="rank-table-header">
+      <span>Campaign Performance</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table" id="gaCampTable">
+      <thead>
+        <tr>
+          <th style="cursor:pointer" onclick="sortGaTable('gaCampBody',0)">Campaign</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',1)">Cost</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',2)">Impr.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',3)">Clicks</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',4)">CTR</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',5)">Avg CPC</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',6)">Conv.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',7)">Cost/Conv</th>
+        </tr>
+      </thead>
+      <tbody id="gaCampBody">
+        <tr><td class="kw-cell">ONLINE CWD Sales-Shopping-11</td><td style="text-align:right">&#3647;7,295</td><td style="text-align:right">589,788</td><td style="text-align:right">5,961</td><td style="text-align:right">1.01%</td><td style="text-align:right">&#3647;1.22</td><td style="text-align:right">0</td><td style="text-align:right">-</td></tr>
+        <tr><td class="kw-cell">TS - Local Store Visits</td><td style="text-align:right">&#3647;15,200</td><td style="text-align:right">117,409</td><td style="text-align:right">5,389</td><td style="text-align:right">4.59%</td><td style="text-align:right">&#3647;2.82</td><td style="text-align:right">2,403.0</td><td style="text-align:right">&#3647;6.33</td></tr>
+        <tr><td class="kw-cell">TS - High Value Products PMax</td><td style="text-align:right">&#3647;2,035</td><td style="text-align:right">30,629</td><td style="text-align:right">622</td><td style="text-align:right">2.03%</td><td style="text-align:right">&#3647;3.27</td><td style="text-align:right">0</td><td style="text-align:right">-</td></tr>
+        <tr><td class="kw-cell">TS - Remarketing RLSA</td><td style="text-align:right">&#3647;1,054</td><td style="text-align:right">17,728</td><td style="text-align:right">198</td><td style="text-align:right">1.12%</td><td style="text-align:right">&#3647;5.33</td><td style="text-align:right">0</td><td style="text-align:right">-</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Table 2 -->
+  <div class="rank-table-wrap" style="margin-bottom:24px">
+    <div class="rank-table-header">
+      <span>Campaigns by Type</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table" id="gaKwTable">
+      <thead>
+        <tr>
+          <th style="cursor:pointer" onclick="sortGaTable('gaKwBody',0)">Campaign Type</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',1)">Cost</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',2)">Impr.</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',3)">Clicks</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',4)">CTR</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',5)">Conversions</th>
+        </tr>
+      </thead>
+      <tbody id="gaKwBody">
+        <tr><td class="kw-cell">Shopping</td><td style="text-align:right">&#3647;8,350</td><td style="text-align:right">607,516</td><td style="text-align:right">6,159</td><td style="text-align:right">1.01%</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Performance Max</td><td style="text-align:right">&#3647;17,235</td><td style="text-align:right">148,038</td><td style="text-align:right">6,011</td><td style="text-align:right">4.06%</td><td style="text-align:right">2,403.1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Top Cities Table -->
+  <div class="rank-table-wrap">
+    <div class="rank-table-header">
+      <span>Performance by City</span>
+      <span class="period">Jun 2026</span>
+    </div>
+    <table class="rank-table">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th style="text-align:right">Cost</th>
+          <th style="text-align:right">Impr.</th>
+          <th style="text-align:right">Clicks</th>
+          <th style="text-align:right">CTR</th>
+          <th style="text-align:right">Avg CPC</th>
+          <th style="text-align:right">Conv.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="kw-cell">Bangkok</td><td style="text-align:right">&#3647;17,116</td><td style="text-align:right">425,275</td><td style="text-align:right">7,817</td><td style="text-align:right">1.84%</td><td style="text-align:right">&#3647;2.19</td><td style="text-align:right">1,755.1</td></tr>
+        <tr><td class="kw-cell">Pattaya City</td><td style="text-align:right">&#3647;261</td><td style="text-align:right">20,026</td><td style="text-align:right">205</td><td style="text-align:right">1.02%</td><td style="text-align:right">&#3647;1.27</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Koh Samui</td><td style="text-align:right">&#3647;207</td><td style="text-align:right">15,975</td><td style="text-align:right">167</td><td style="text-align:right">1.05%</td><td style="text-align:right">&#3647;1.24</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Pakkret</td><td style="text-align:right">&#3647;352</td><td style="text-align:right">9,397</td><td style="text-align:right">148</td><td style="text-align:right">1.57%</td><td style="text-align:right">&#3647;2.38</td><td style="text-align:right">46.0</td></tr>
+        <tr><td class="kw-cell">Nonthaburi</td><td style="text-align:right">&#3647;331</td><td style="text-align:right">10,993</td><td style="text-align:right">143</td><td style="text-align:right">1.30%</td><td style="text-align:right">&#3647;2.31</td><td style="text-align:right">34.0</td></tr>
+        <tr><td class="kw-cell">Phuket</td><td style="text-align:right">&#3647;125</td><td style="text-align:right">7,599</td><td style="text-align:right">100</td><td style="text-align:right">1.32%</td><td style="text-align:right">&#3647;1.25</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Rangsit</td><td style="text-align:right">&#3647;236</td><td style="text-align:right">4,542</td><td style="text-align:right">83</td><td style="text-align:right">1.83%</td><td style="text-align:right">&#3647;2.85</td><td style="text-align:right">39.0</td></tr>
+        <tr><td class="kw-cell">Hua Hin</td><td style="text-align:right">&#3647;104</td><td style="text-align:right">7,790</td><td style="text-align:right">81</td><td style="text-align:right">1.04%</td><td style="text-align:right">&#3647;1.29</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Mueang Chiang Rai</td><td style="text-align:right">&#3647;87</td><td style="text-align:right">6,273</td><td style="text-align:right">75</td><td style="text-align:right">1.20%</td><td style="text-align:right">&#3647;1.16</td><td style="text-align:right">0</td></tr>
+        <tr><td class="kw-cell">Nakhon Pathom</td><td style="text-align:right">&#3647;91</td><td style="text-align:right">6,382</td><td style="text-align:right">73</td><td style="text-align:right">1.14%</td><td style="text-align:right">&#3647;1.24</td><td style="text-align:right">0</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- GOOGLE ADS CHARTS SCRIPT -->
+<script>
+var _gaChartsDone_happylyfe = false;
+function initGaCharts() {
+  if (_gaChartsDone_happylyfe) return;
+  _gaChartsDone_happylyfe = true;
+  var gaDays = ["Jun 1", "Jun 2", "Jun 3", "Jun 4", "Jun 5", "Jun 6", "Jun 7", "Jun 8", "Jun 9", "Jun 10", "Jun 11", "Jun 12", "Jun 13", "Jun 14", "Jun 15", "Jun 16", "Jun 17", "Jun 18", "Jun 19", "Jun 20", "Jun 21", "Jun 22", "Jun 23", "Jun 24", "Jun 25", "Jun 26", "Jun 27", "Jun 28", "Jun 29", "Jun 30"];
+  var gaCostData = [672.422034, 932.033166, 618.43998, 895.4351, 783.390441, 769.938003, 812.781077, 747.775831, 963.26869, 771.411775, 977.843594, 1044.086809, 970.237545, 774.34118, 834.702944, 1081.174221, 902.871912, 950.375169, 996.310143, 858.753243, 962.786406, 696.904686, 1019.338827, 794.952219, 984.429694, 817.622829, 840.4152, 644.690048, 549.429943, 917.162908];
+  var gaCpcData = [1.710997541984733, 2.262216422330097, 1.9949676774193548, 2.368875925925926, 2.0190475283505154, 2.1210413305785125, 1.894594585081585, 1.9834902679045094, 2.2665145647058824, 1.9431027078085643, 2.3008084564705884, 2.096559857429719, 1.678611669550173, 1.893254718826406, 1.9873879619047619, 2.257148686847599, 2.2403769528535977, 2.2467498085106383, 2.4007473325301207, 2.0349602914691944, 2.203172553775744, 1.9911562457142857, 2.306196441176471, 2.208200608333333, 2.3721197445783133, 1.970175491566265, 1.9187561643835618, 1.7957940055710309, 2.0733205396226415, 2.658443211594203];
+  var gaClicksData = [393, 412, 310, 378, 388, 363, 429, 377, 425, 397, 425, 498, 578, 409, 420, 479, 403, 423, 415, 422, 437, 350, 442, 360, 415, 415, 438, 359, 265, 345];
+  var gaCtrData = [1.58301780391525, 1.958640361302591, 1.539454735064806, 1.4714469228074274, 1.5048675483845946, 1.7446051809487193, 1.716549295774648, 1.5022912930862722, 1.4307355664029624, 1.3977888881064713, 1.331787415392329, 1.6711970200342294, 1.739758600969208, 1.5828173374613006, 1.572798082684242, 1.669105861035612, 1.384641814121285, 1.511092058728968, 1.617114133187858, 1.614137086903305, 1.6207395319511924, 1.3171759747102214, 1.5115762114838753, 1.539514197742046, 1.6339869281045754, 1.6309687561406956, 1.8552247024439834, 2.3298072555000324, 1.896650443744632, 2.4627025483617673];
+  var gaConvData = [66, 84, 66, 85, 86, 96, 93.023593, 71, 77, 61, 102, 72, 77, 98, 63, 91, 78.121018, 92, 92, 87, 95.006763, 64, 96, 75, 89, 92, 116, 113, 26, 0];
+  var gaConvRateData = [16.624685138539043, 20.388349514563107, 21.221864951768488, 22.486772486772487, 21.994884910485936, 26.44628099173554, 21.683821212121213, 18.68421052631579, 18.07511737089202, 15.365239294710328, 21.70212765957447, 9.045226130653267, 11.095100864553315, 21.973094170403588, 14.788732394366196, 18.958333333333332, 19.384867990074444, 20.175438596491226, 20.956719817767656, 20.61611374407583, 21.740678032036612, 18.285714285714285, 12.198221092757308, 18.84422110552764, 20.36613272311213, 21.749408983451538, 26.126126126126128, 30.95890410958904, 9.252669039145907, 0];
+
+  new Chart(document.getElementById('gaCostChart'),{type:'bar',data:{labels:gaDays,datasets:[{label:'Cost (THB)',data:gaCostData,backgroundColor:'rgba(66,133,244,0.7)',borderRadius:4,yAxisID:'y'},{label:'Avg CPC (THB)',data:gaCpcData,type:'line',borderColor:'#EA4335',backgroundColor:'transparent',tension:0.3,pointRadius:3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{position:'left',grid:{display:false},ticks:{font:{size:10},callback:function(v){return '฿'+v}}},y1:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:function(v){return '฿'+v}}}}}});
+
+  new Chart(document.getElementById('gaClicksChart'),{type:'bar',data:{labels:gaDays,datasets:[{label:'Clicks',data:gaClicksData,backgroundColor:'rgba(52,168,83,0.7)',borderRadius:4,yAxisID:'y'},{label:'CTR %',data:gaCtrData,type:'line',borderColor:'#FBBC05',backgroundColor:'transparent',tension:0.3,pointRadius:3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{position:'left',grid:{display:false},ticks:{font:{size:10}}},y1:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:function(v){return v+'%'}}}}}});
+
+  new Chart(document.getElementById('gaConvChart'),{type:'bar',data:{labels:gaDays,datasets:[{label:'Conversions',data:gaConvData,backgroundColor:'rgba(234,67,53,0.7)',borderRadius:4,yAxisID:'y'},{label:'Conv Rate %',data:gaConvRateData,type:'line',borderColor:'#4285F4',backgroundColor:'transparent',tension:0.3,pointRadius:3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11}}}},scales:{y:{position:'left',grid:{display:false},ticks:{font:{size:10}}},y1:{position:'right',grid:{display:false},ticks:{font:{size:10},callback:function(v){return v+'%'}}}}}});
+
+  new Chart(document.getElementById('gaCampPieChart'),{type:'doughnut',data:{labels:["ONLINE CWD Sales-Shopping-11", "TS - Local Store Visits", "TS - High Value Products PMax", "TS - Remarketing RLSA"],datasets:[{data:[7295.46, 15200.47, 2034.91, 1054.49],backgroundColor:["#4285F4", "#34A853", "#FBBC05", "#EA4335"],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},padding:12}}}}});
+}
+
+var gaSortDir_happylyfe = {};
+function sortGaTable(tbodyId,col){
+  var tbody=document.getElementById(tbodyId); if(!tbody) return;
+  var rows=Array.from(tbody.querySelectorAll('tr'));
+  var asc=!gaSortDir_happylyfe[tbodyId+'_'+col]; gaSortDir_happylyfe={}; gaSortDir_happylyfe[tbodyId+'_'+col]=asc;
+  rows.sort(function(a,b){
+    var av=a.cells[col]?a.cells[col].innerText.trim().replace(/[^\d.-]/g,''):'';
+    var bv=b.cells[col]?b.cells[col].innerText.trim().replace(/[^\d.-]/g,''):'';
+    var an=parseFloat(av),bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return asc?an-bn:bn-an;
+    return asc?(a.cells[col]||{innerText:''}).innerText.localeCompare((b.cells[col]||{innerText:''}).innerText):(b.cells[col]||{innerText:''}).innerText.localeCompare((a.cells[col]||{innerText:''}).innerText);
+  });
+  rows.forEach(function(r){tbody.appendChild(r);});
+}
+</script>
+
 <div id="tab-history" class="section">
   
   <div class="history-wrap">
@@ -3696,6 +3891,7 @@ function showTab(name, el) {
   document.getElementById('tab-' + name).classList.add('active');
   if(el) el.classList.add('active');
   if(name === 'gmb' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }
+  if(name === 'googleads' && typeof initGaCharts === 'function') { initGaCharts(); }
 }
 function sortTable(col) {
   var tbody = document.getElementById('rankTableBody');
