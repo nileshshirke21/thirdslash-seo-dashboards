@@ -219,10 +219,16 @@
       <span class="delta pos">▲ 240.2%</span>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Form Submissions</div>
+      <div class="metric-label">Purchases</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">0</div>
-      <span class="delta pos">▲ 0%</span>
+      <div class="metric-value">37</div>
+      <span class="delta neg">▼ 17.8%</span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Organic Revenue</div>
+      <div class="period-label">Jun-2026 vs May-2026</div>
+      <div class="metric-value">$16,109</div>
+      <span class="delta neg">▼ 15.3%</span>
     </div>
   </div>
 
@@ -232,7 +238,7 @@
       <div class="chart-wrap"><canvas id="sessChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">Form Submissions</div>
+      <div class="chart-title">Purchases</div>
       <div class="chart-wrap"><canvas id="formChart"></canvas></div>
     </div>
     <div class="chart-card">
@@ -355,7 +361,7 @@
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [5971, 7867, 8505, 14865, 26923, 26923, 10126, 14324, 15382, 15382, 14324, 26208];
 const orgData  = [5049, 3964, 3520, 1739, 2048, 2243, 2849, 2866, 2871, 2362, 2425, 5056];
-const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const formData = [20, 13, 12, 24, 24, 30, 29, 37, 40, 34, 45, 37];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [5056, 12333, 130, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
@@ -380,7 +386,7 @@ new Chart(document.getElementById('sessChart'), {
 });
 new Chart(document.getElementById('formChart'), {
   type: 'bar',
-  data: { labels: months, datasets: [{ label: 'Form Submissions', data: formData, backgroundColor: 'rgba(91,57,217,0.6)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 }]},
+  data: { labels: months, datasets: [{ label: 'Purchases', data: formData, backgroundColor: 'rgba(91,57,217,0.6)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 }]},
   options: {...dflt}
 });
 new Chart(document.getElementById('aiChart'), {
@@ -4293,7 +4299,7 @@ function sortGaTable(tbodyId,col){
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>May-2026</td><td>14,324</td><td>2,425</td><td>3,625</td><td>157</td><td>12,430</td><td>19,682</td><td>70.4%</td><td>0</td></tr><tr><td>Apr-2026</td><td>15,382</td><td>2,362</td><td>2,780</td><td>207</td><td>11,104</td><td>21,581</td><td>70.0%</td><td>0</td></tr><tr><td>Mar-2026</td><td>15,382</td><td>2,871</td><td>2,474</td><td>165</td><td>11,104</td><td>21,581</td><td>70.0%</td><td>0</td></tr><tr><td>Feb-2026</td><td>14,324</td><td>2,866</td><td>2,320</td><td>205</td><td>10,827</td><td>21,719</td><td>67.7%</td><td>0</td></tr><tr><td>Jan-2026</td><td>10,126</td><td>2,849</td><td>2,419</td><td>207</td><td>7,881</td><td>15,650</td><td>66.9%</td><td>0</td></tr><tr><td>Dec-2025</td><td>26,923</td><td>2,243</td><td>4,516</td><td>212</td><td>24,911</td><td>28,914</td><td>85.3%</td><td>0</td></tr><tr><td>Nov-2025</td><td>26,923</td><td>2,048</td><td>23,263</td><td>253</td><td>24,911</td><td>28,914</td><td>85.3%</td><td>0</td></tr><tr><td>Oct-2025</td><td>14,865</td><td>1,739</td><td>11,505</td><td>151</td><td>13,915</td><td>19,024</td><td>80.8%</td><td>0</td></tr><tr><td>Sep-2025</td><td>8,505</td><td>3,520</td><td>3,774</td><td>102</td><td>7,453</td><td>22,327</td><td>51.6%</td><td>0</td></tr><tr><td>Aug-2025</td><td>7,867</td><td>3,964</td><td>1,943</td><td>137</td><td>6,622</td><td>27,624</td><td>43.2%</td><td>0</td></tr><tr><td>Jul-2025</td><td>5,971</td><td>5,049</td><td>666</td><td>141</td><td>5,156</td><td>25,491</td><td>17.5%</td><td>0</td></tr><tr><td>Jun-2025</td><td>5,110</td><td>4,028</td><td>686</td><td>71</td><td>4,458</td><td>23,204</td><td>17.4%</td><td>0</td></tr><tr><td>May-2025</td><td>6,119</td><td>4,250</td><td>556</td><td>32</td><td>5,490</td><td>26,130</td><td>19.4%</td><td>0</td></tr></tbody>
+      <tbody><tr><td>May-2026</td><td>14,324</td><td>2,425</td><td>3,625</td><td>157</td><td>12,430</td><td>19,682</td><td>70.4%</td><td>45</td></tr><tr><td>Apr-2026</td><td>15,382</td><td>2,362</td><td>2,780</td><td>207</td><td>11,104</td><td>21,581</td><td>70.0%</td><td>34</td></tr><tr><td>Mar-2026</td><td>15,382</td><td>2,871</td><td>2,474</td><td>165</td><td>11,104</td><td>21,581</td><td>70.0%</td><td>40</td></tr><tr><td>Feb-2026</td><td>14,324</td><td>2,866</td><td>2,320</td><td>205</td><td>10,827</td><td>21,719</td><td>67.7%</td><td>37</td></tr><tr><td>Jan-2026</td><td>10,126</td><td>2,849</td><td>2,419</td><td>207</td><td>7,881</td><td>15,650</td><td>66.9%</td><td>29</td></tr><tr><td>Dec-2025</td><td>26,923</td><td>2,243</td><td>4,516</td><td>212</td><td>24,911</td><td>28,914</td><td>85.3%</td><td>30</td></tr><tr><td>Nov-2025</td><td>26,923</td><td>2,048</td><td>23,263</td><td>253</td><td>24,911</td><td>28,914</td><td>85.3%</td><td>24</td></tr><tr><td>Oct-2025</td><td>14,865</td><td>1,739</td><td>11,505</td><td>151</td><td>13,915</td><td>19,024</td><td>80.8%</td><td>24</td></tr><tr><td>Sep-2025</td><td>8,505</td><td>3,520</td><td>3,774</td><td>102</td><td>7,453</td><td>22,327</td><td>51.6%</td><td>12</td></tr><tr><td>Aug-2025</td><td>7,867</td><td>3,964</td><td>1,943</td><td>137</td><td>6,622</td><td>27,624</td><td>43.2%</td><td>13</td></tr><tr><td>Jul-2025</td><td>5,971</td><td>5,049</td><td>666</td><td>141</td><td>5,156</td><td>25,491</td><td>17.5%</td><td>20</td></tr><tr><td>Jun-2025</td><td>5,110</td><td>4,028</td><td>686</td><td>71</td><td>4,458</td><td>23,204</td><td>17.4%</td><td>12</td></tr><tr><td>May-2025</td><td>6,119</td><td>4,250</td><td>556</td><td>32</td><td>5,490</td><td>26,130</td><td>19.4%</td><td>0</td></tr></tbody>
     </table>
   </div>
   
@@ -4304,7 +4310,7 @@ function sortGaTable(tbodyId,col){
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [5971, 7867, 8505, 14865, 26923, 26923, 10126, 14324, 15382, 15382, 14324, 26208];
 const orgData  = [5049, 3964, 3520, 1739, 2048, 2243, 2849, 2866, 2871, 2362, 2425, 5056];
-const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+const formData = [20, 13, 12, 24, 24, 30, 29, 37, 40, 34, 45, 37];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [5056, 12333, 130, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
@@ -4329,7 +4335,7 @@ new Chart(document.getElementById('sessChart'), {
 });
 new Chart(document.getElementById('formChart'), {
   type: 'bar',
-  data: { labels: months, datasets: [{ label: 'Form Submissions', data: formData, backgroundColor: 'rgba(91,57,217,0.6)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 }]},
+  data: { labels: months, datasets: [{ label: 'Purchases', data: formData, backgroundColor: 'rgba(91,57,217,0.6)', borderColor: '#5b39d9', borderWidth: 1, borderRadius: 4 }]},
   options: {...dflt}
 });
 new Chart(document.getElementById('aiChart'), {
