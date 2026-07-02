@@ -793,7 +793,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
       {d_bounce}
     </div>
     <div class="metric-card">
-      <div class="metric-label">Avg Duration (sec)</div>
+      <div class="metric-label">Total Avg Duration (Sec)</div>
       <div class="period-label">{latest.get("Month","—")} vs {prev.get("Month","—")}</div>
       <div class="metric-value">{avg_dur:,}</div>
       {d_dur}
