@@ -190,14 +190,14 @@
     <div class="metric-card">
       <div class="metric-label">Total Sessions</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">4,321</div>
-      <span class="delta pos">▲ 0.0%</span>
+      <div class="metric-value">4,226</div>
+      <span class="delta neg">▼ 2.2%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Total Pageviews</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">5,973</div>
-      <span class="delta pos">▲ 0.0%</span>
+      <div class="metric-value">6,337</div>
+      <span class="delta pos">▲ 6.1%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Organic Engagement Rate</div>
@@ -353,11 +353,11 @@
 
 <script>
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [3803, 3606, 3794, 3794, 3798, 3853, 3853, 4286, 4286, 3973, 4321, 4321];
+const sessData = [3803, 3606, 3794, 3794, 3798, 3853, 3853, 4286, 4286, 3973, 4321, 4226];
 const orgData  = [2573, 2458, 2865, 2633, 2472, 2368, 2468, 2877, 2675, 2591, 2508, 2549];
 const formData = [43, 25, 46, 44, 39, 36, 32, 22, 50, 28, 26, 33];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [2549, 1588, 51, 0, 0, 0];
+const chVals   = [2549, 1588, 51, 4, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
 const aiMonthly = {"ChatGPT": [58, 49, 27, 43, 52, 78, 46, 35, 40, 38, 42, 46], "Gemini": [5, 8, 1, 8, 8, 13, 28, 11, 30, 19, 14, 9], "Claude": [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 4, 0], "Perplexity": [7, 12, 13, 22, 17, 6, 16, 8, 8, 9, 5, 4], "Copilot": [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
@@ -2962,7 +2962,7 @@ new Chart(document.getElementById('chChart'), {
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>4,321</td><td>2,549</td><td>1,588</td><td>59</td><td>3,302</td><td>5,973</td><td>52.2%</td><td>33</td></tr><tr><td>May-2026</td><td>4,321</td><td>2,508</td><td>1,592</td><td>65</td><td>3,302</td><td>5,973</td><td>52.2%</td><td>26</td></tr><tr><td>Apr-2026</td><td>3,973</td><td>2,591</td><td>983</td><td>66</td><td>3,021</td><td>5,937</td><td>48.0%</td><td>28</td></tr><tr><td>Mar-2026</td><td>4,286</td><td>2,675</td><td>1,080</td><td>79</td><td>3,345</td><td>6,104</td><td>52.6%</td><td>50</td></tr><tr><td>Feb-2026</td><td>4,286</td><td>2,877</td><td>1,284</td><td>55</td><td>3,345</td><td>6,104</td><td>52.5%</td><td>22</td></tr><tr><td>Jan-2026</td><td>3,853</td><td>2,468</td><td>1,120</td><td>90</td><td>2,967</td><td>5,339</td><td>49.4%</td><td>32</td></tr><tr><td>Dec-2025</td><td>3,853</td><td>2,368</td><td>1,062</td><td>97</td><td>2,967</td><td>5,339</td><td>50.3%</td><td>36</td></tr><tr><td>Nov-2025</td><td>3,798</td><td>2,472</td><td>1,162</td><td>77</td><td>2,969</td><td>5,513</td><td>49.7%</td><td>39</td></tr><tr><td>Oct-2025</td><td>3,794</td><td>2,633</td><td>805</td><td>74</td><td>2,754</td><td>5,729</td><td>50.6%</td><td>44</td></tr><tr><td>Sep-2025</td><td>3,794</td><td>2,865</td><td>832</td><td>42</td><td>2,754</td><td>5,729</td><td>48.0%</td><td>46</td></tr><tr><td>Aug-2025</td><td>3,606</td><td>2,458</td><td>711</td><td>70</td><td>2,588</td><td>5,348</td><td>46.0%</td><td>25</td></tr><tr><td>Jul-2025</td><td>3,803</td><td>2,573</td><td>846</td><td>72</td><td>2,738</td><td>6,299</td><td>46.3%</td><td>43</td></tr><tr><td>Jun-2025</td><td>4,386</td><td>3,115</td><td>586</td><td>68</td><td>3,106</td><td>7,093</td><td>53.2%</td><td>47</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>4,226</td><td>2,549</td><td>1,588</td><td>59</td><td>3,358</td><td>6,337</td><td>52.2%</td><td>33</td></tr><tr><td>May-2026</td><td>4,321</td><td>2,508</td><td>1,592</td><td>65</td><td>3,302</td><td>5,973</td><td>52.2%</td><td>26</td></tr><tr><td>Apr-2026</td><td>3,973</td><td>2,591</td><td>983</td><td>66</td><td>3,021</td><td>5,937</td><td>48.0%</td><td>28</td></tr><tr><td>Mar-2026</td><td>4,286</td><td>2,675</td><td>1,080</td><td>79</td><td>3,345</td><td>6,104</td><td>52.6%</td><td>50</td></tr><tr><td>Feb-2026</td><td>4,286</td><td>2,877</td><td>1,284</td><td>55</td><td>3,345</td><td>6,104</td><td>52.5%</td><td>22</td></tr><tr><td>Jan-2026</td><td>3,853</td><td>2,468</td><td>1,120</td><td>90</td><td>2,967</td><td>5,339</td><td>49.4%</td><td>32</td></tr><tr><td>Dec-2025</td><td>3,853</td><td>2,368</td><td>1,062</td><td>97</td><td>2,967</td><td>5,339</td><td>50.3%</td><td>36</td></tr><tr><td>Nov-2025</td><td>3,798</td><td>2,472</td><td>1,162</td><td>77</td><td>2,969</td><td>5,513</td><td>49.7%</td><td>39</td></tr><tr><td>Oct-2025</td><td>3,794</td><td>2,633</td><td>805</td><td>74</td><td>2,754</td><td>5,729</td><td>50.6%</td><td>44</td></tr><tr><td>Sep-2025</td><td>3,794</td><td>2,865</td><td>832</td><td>42</td><td>2,754</td><td>5,729</td><td>48.0%</td><td>46</td></tr><tr><td>Aug-2025</td><td>3,606</td><td>2,458</td><td>711</td><td>70</td><td>2,588</td><td>5,348</td><td>46.0%</td><td>25</td></tr><tr><td>Jul-2025</td><td>3,803</td><td>2,573</td><td>846</td><td>72</td><td>2,738</td><td>6,299</td><td>46.3%</td><td>43</td></tr><tr><td>Jun-2025</td><td>4,386</td><td>3,115</td><td>586</td><td>68</td><td>3,106</td><td>7,093</td><td>53.2%</td><td>47</td></tr></tbody>
     </table>
   </div>
   
@@ -2971,11 +2971,11 @@ new Chart(document.getElementById('chChart'), {
 <script>
 
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [3803, 3606, 3794, 3794, 3798, 3853, 3853, 4286, 4286, 3973, 4321, 4321];
+const sessData = [3803, 3606, 3794, 3794, 3798, 3853, 3853, 4286, 4286, 3973, 4321, 4226];
 const orgData  = [2573, 2458, 2865, 2633, 2472, 2368, 2468, 2877, 2675, 2591, 2508, 2549];
 const formData = [43, 25, 46, 44, 39, 36, 32, 22, 50, 28, 26, 33];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [2549, 1588, 51, 0, 0, 0];
+const chVals   = [2549, 1588, 51, 4, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
 const aiMonthly = {"ChatGPT": [58, 49, 27, 43, 52, 78, 46, 35, 40, 38, 42, 46], "Gemini": [5, 8, 1, 8, 8, 13, 28, 11, 30, 19, 14, 9], "Claude": [1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 4, 0], "Perplexity": [7, 12, 13, 22, 17, 6, 16, 8, 8, 9, 5, 4], "Copilot": [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];

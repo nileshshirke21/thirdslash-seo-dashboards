@@ -189,14 +189,14 @@
     <div class="metric-card">
       <div class="metric-label">Total Sessions</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">1,446</div>
-      <span class="delta neg">▼ 10.9%</span>
+      <div class="metric-value">1,112</div>
+      <span class="delta neg">▼ 31.5%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Total Pageviews</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">2,013</div>
-      <span class="delta neg">▼ 14.8%</span>
+      <div class="metric-value">1,684</div>
+      <span class="delta neg">▼ 28.7%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Organic Engagement Rate</div>
@@ -207,8 +207,8 @@
     <div class="metric-card">
       <div class="metric-label">Total Avg Duration (Sec)</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">96</div>
-      <span class="delta neg">▼ 13.5%</span>
+      <div class="metric-value">111</div>
+      <span class="delta pos">▲ 15.6%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Direct Sessions</div>
@@ -352,11 +352,11 @@
 
 <script>
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [1112, 991, 1299, 1925, 2869, 2869, 2686, 478, 1691, 1691, 1623, 1446];
+const sessData = [1112, 991, 1299, 1925, 2869, 2869, 2686, 478, 1691, 1691, 1623, 1112];
 const orgData  = [646, 683, 787, 836, 783, 668, 129, 0, 737, 699, 568, 410];
 const formData = [0, 0, 0, 0, 0, 0, 0, 0, 22, 30, 19, 25];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [410, 609, 20, 0, 0, 0];
+const chVals   = [410, 609, 20, 9, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
 const aiMonthly = {"ChatGPT": [18, 19, 48, 59, 21, 31, 10, 0, 35, 45, 33, 28], "Gemini": [1, 0, 0, 1, 0, 2, 0, 0, 2, 1, 1, 2], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 5, 0], "Perplexity": [1, 0, 0, 2, 1, 0, 1, 0, 3, 0, 0, 1], "Copilot": [0, 1, 0, 1, 2, 1, 0, 0, 2, 2, 4, 4]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
@@ -771,7 +771,7 @@ new Chart(document.getElementById('chChart'), {
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>1,446</td><td>410</td><td>609</td><td>35</td><td>1,242</td><td>2,013</td><td>71.0%</td><td>25</td></tr><tr><td>May-2026</td><td>1,623</td><td>568</td><td>817</td><td>43</td><td>1,337</td><td>2,363</td><td>65.1%</td><td>19</td></tr><tr><td>Apr-2026</td><td>1,691</td><td>699</td><td>860</td><td>51</td><td>1,446</td><td>2,380</td><td>63.1%</td><td>30</td></tr><tr><td>Mar-2026</td><td>1,691</td><td>737</td><td>881</td><td>47</td><td>1,446</td><td>2,380</td><td>62.7%</td><td>22</td></tr><tr><td>Feb-2026</td><td>478</td><td>0</td><td>0</td><td>0</td><td>445</td><td>593</td><td>0.0%</td><td>0</td></tr><tr><td>Jan-2026</td><td>2,686</td><td>129</td><td>331</td><td>11</td><td>2,523</td><td>3,268</td><td>63.6%</td><td>0</td></tr><tr><td>Dec-2025</td><td>2,869</td><td>668</td><td>1,963</td><td>34</td><td>2,676</td><td>3,532</td><td>67.5%</td><td>0</td></tr><tr><td>Nov-2025</td><td>2,869</td><td>783</td><td>1,997</td><td>24</td><td>2,676</td><td>3,532</td><td>60.0%</td><td>0</td></tr><tr><td>Oct-2025</td><td>1,925</td><td>836</td><td>972</td><td>63</td><td>1,678</td><td>2,827</td><td>64.1%</td><td>0</td></tr><tr><td>Sep-2025</td><td>1,299</td><td>787</td><td>426</td><td>48</td><td>1,052</td><td>2,083</td><td>62.5%</td><td>0</td></tr><tr><td>Aug-2025</td><td>991</td><td>683</td><td>234</td><td>20</td><td>839</td><td>1,700</td><td>65.6%</td><td>0</td></tr><tr><td>Jul-2025</td><td>1,112</td><td>646</td><td>303</td><td>20</td><td>868</td><td>2,059</td><td>68.3%</td><td>0</td></tr><tr><td>Jun-2025</td><td>1,112</td><td>725</td><td>331</td><td>16</td><td>868</td><td>2,059</td><td>67.6%</td><td>0</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>1,112</td><td>410</td><td>609</td><td>35</td><td>974</td><td>1,684</td><td>71.0%</td><td>25</td></tr><tr><td>May-2026</td><td>1,623</td><td>568</td><td>817</td><td>43</td><td>1,337</td><td>2,363</td><td>65.1%</td><td>19</td></tr><tr><td>Apr-2026</td><td>1,691</td><td>699</td><td>860</td><td>51</td><td>1,446</td><td>2,380</td><td>63.1%</td><td>30</td></tr><tr><td>Mar-2026</td><td>1,691</td><td>737</td><td>881</td><td>47</td><td>1,446</td><td>2,380</td><td>62.7%</td><td>22</td></tr><tr><td>Feb-2026</td><td>478</td><td>0</td><td>0</td><td>0</td><td>445</td><td>593</td><td>0.0%</td><td>0</td></tr><tr><td>Jan-2026</td><td>2,686</td><td>129</td><td>331</td><td>11</td><td>2,523</td><td>3,268</td><td>63.6%</td><td>0</td></tr><tr><td>Dec-2025</td><td>2,869</td><td>668</td><td>1,963</td><td>34</td><td>2,676</td><td>3,532</td><td>67.5%</td><td>0</td></tr><tr><td>Nov-2025</td><td>2,869</td><td>783</td><td>1,997</td><td>24</td><td>2,676</td><td>3,532</td><td>60.0%</td><td>0</td></tr><tr><td>Oct-2025</td><td>1,925</td><td>836</td><td>972</td><td>63</td><td>1,678</td><td>2,827</td><td>64.1%</td><td>0</td></tr><tr><td>Sep-2025</td><td>1,299</td><td>787</td><td>426</td><td>48</td><td>1,052</td><td>2,083</td><td>62.5%</td><td>0</td></tr><tr><td>Aug-2025</td><td>991</td><td>683</td><td>234</td><td>20</td><td>839</td><td>1,700</td><td>65.6%</td><td>0</td></tr><tr><td>Jul-2025</td><td>1,112</td><td>646</td><td>303</td><td>20</td><td>868</td><td>2,059</td><td>68.3%</td><td>0</td></tr><tr><td>Jun-2025</td><td>1,112</td><td>725</td><td>331</td><td>16</td><td>868</td><td>2,059</td><td>67.6%</td><td>0</td></tr></tbody>
     </table>
   </div>
   
@@ -780,11 +780,11 @@ new Chart(document.getElementById('chChart'), {
 <script>
 
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [1112, 991, 1299, 1925, 2869, 2869, 2686, 478, 1691, 1691, 1623, 1446];
+const sessData = [1112, 991, 1299, 1925, 2869, 2869, 2686, 478, 1691, 1691, 1623, 1112];
 const orgData  = [646, 683, 787, 836, 783, 668, 129, 0, 737, 699, 568, 410];
 const formData = [0, 0, 0, 0, 0, 0, 0, 0, 22, 30, 19, 25];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [410, 609, 20, 0, 0, 0];
+const chVals   = [410, 609, 20, 9, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
 const aiMonthly = {"ChatGPT": [18, 19, 48, 59, 21, 31, 10, 0, 35, 45, 33, 28], "Gemini": [1, 0, 0, 1, 0, 2, 0, 0, 2, 1, 1, 2], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 5, 3, 5, 0], "Perplexity": [1, 0, 0, 2, 1, 0, 1, 0, 3, 0, 0, 1], "Copilot": [0, 1, 0, 1, 2, 1, 0, 0, 2, 2, 4, 4]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
