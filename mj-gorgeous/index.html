@@ -165,12 +165,13 @@
 <div class="nav">
   <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)">History</div>
+  <div class="nav-tab" onclick="showTab('history', this)">GA History</div>
   <div class="nav-tab" onclick="showTab('gmb', this)">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
   <div class="nav-tab" onclick="showTab('techaudit', this)">Tech Audit</div>
   <div class="nav-tab" onclick="showTab('googleads', this)">Google Ads</div>
+  <div class="nav-tab" onclick="showTab('googleadshistory', this)">Google Ads History</div>
 </div>
 
 <!-- OVERVIEW TAB -->
@@ -1016,7 +1017,25 @@ new Chart(document.getElementById('chChart'), {
       <tbody><tr><td>Jun-2026</td><td>3,801</td><td>668</td><td>600</td><td>49</td><td>3,452</td><td>4,886</td><td>56.7%</td><td>24</td></tr><tr><td>May-2026</td><td>2,746</td><td>684</td><td>542</td><td>65</td><td>2,475</td><td>3,562</td><td>52.8%</td><td>18</td></tr><tr><td>Apr-2026</td><td>2,151</td><td>592</td><td>483</td><td>70</td><td>1,618</td><td>4,776</td><td>56.8%</td><td>27</td></tr><tr><td>Mar-2026</td><td>2,151</td><td>878</td><td>759</td><td>81</td><td>1,618</td><td>4,776</td><td>59.6%</td><td>17</td></tr><tr><td>Feb-2026</td><td>1,454</td><td>535</td><td>361</td><td>48</td><td>1,172</td><td>2,542</td><td>71.4%</td><td>10</td></tr><tr><td>Jan-2026</td><td>1,511</td><td>610</td><td>497</td><td>53</td><td>1,336</td><td>2,444</td><td>65.7%</td><td>8</td></tr><tr><td>Dec-2025</td><td>2,400</td><td>635</td><td>737</td><td>23</td><td>2,162</td><td>3,418</td><td>69.8%</td><td>8</td></tr><tr><td>Nov-2025</td><td>6,958</td><td>1,185</td><td>761</td><td>40</td><td>6,775</td><td>9,841</td><td>61.1%</td><td>11</td></tr><tr><td>Oct-2025</td><td>6,958</td><td>1,414</td><td>678</td><td>37</td><td>6,775</td><td>9,841</td><td>63.3%</td><td>16</td></tr><tr><td>Sep-2025</td><td>6,084</td><td>1,545</td><td>590</td><td>31</td><td>5,691</td><td>9,408</td><td>59.5%</td><td>18</td></tr><tr><td>Aug-2025</td><td>7,370</td><td>1,466</td><td>447</td><td>29</td><td>6,857</td><td>10,031</td><td>63.0%</td><td>32</td></tr><tr><td>Jul-2025</td><td>7,370</td><td>1,705</td><td>1,837</td><td>32</td><td>6,857</td><td>10,031</td><td>63.4%</td><td>31</td></tr><tr><td>Jun-2025</td><td>6,192</td><td>1,987</td><td>516</td><td>24</td><td>5,687</td><td>7,443</td><td>64.2%</td><td>49</td></tr></tbody>
     </table>
   </div>
-  
+
+</div>
+
+<!-- GOOGLE ADS HISTORY TAB -->
+<div id="tab-googleadshistory" class="section">
+
+  <div class="history-wrap">
+    <p style="font-size:12px;color:var(--muted);padding:10px 20px;margin:0;border-bottom:1px solid var(--border);background:var(--card2);">Google Ads Historical Data — Last 13 completed months</p>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Month</th><th>Spend</th><th>Impressions</th><th>Clicks</th>
+          <th>CTR</th><th>Avg CPC</th><th>Conversions</th><th>Cost/Conv</th>
+        </tr>
+      </thead>
+      <tbody><tr><td>Jun-2026</td><td>&#8377;5,009</td><td>34,169</td><td>1,157</td><td>3.39%</td><td>&#8377;4.33</td><td>0</td><td>&mdash;</td></tr><tr><td>May-2026</td><td>&#8377;5,004</td><td>19,911</td><td>581</td><td>2.92%</td><td>&#8377;8.61</td><td>0</td><td>&mdash;</td></tr><tr><td>Apr-2026</td><td>&#8377;29</td><td>94</td><td>10</td><td>10.64%</td><td>&#8377;2.88</td><td>0</td><td>&mdash;</td></tr><tr><td>Mar-2026</td><td>&#8377;118</td><td>204</td><td>29</td><td>14.22%</td><td>&#8377;4.06</td><td>0</td><td>&mdash;</td></tr><tr><td>Feb-2026</td><td>&#8377;11</td><td>142</td><td>16</td><td>11.27%</td><td>&#8377;0.69</td><td>0</td><td>&mdash;</td></tr><tr><td>Jan-2026</td><td>&#8377;675</td><td>638</td><td>52</td><td>8.15%</td><td>&#8377;12.97</td><td>0</td><td>&mdash;</td></tr><tr><td>Dec-2025</td><td>&#8377;79</td><td>77</td><td>12</td><td>15.58%</td><td>&#8377;6.60</td><td>0</td><td>&mdash;</td></tr><tr><td>Nov-2025</td><td>&#8377;163</td><td>18,821</td><td>1,245</td><td>6.61%</td><td>&#8377;0.13</td><td>0</td><td>&mdash;</td></tr><tr><td>Oct-2025</td><td>&#8377;5,023</td><td>102,052</td><td>10,046</td><td>9.84%</td><td>&#8377;0.50</td><td>0</td><td>&mdash;</td></tr><tr><td>Sep-2025</td><td>&#8377;5,991</td><td>73,789</td><td>10,379</td><td>14.07%</td><td>&#8377;0.58</td><td>0</td><td>&mdash;</td></tr><tr><td>Aug-2025</td><td>&#8377;4,748</td><td>64,453</td><td>8,510</td><td>13.20%</td><td>&#8377;0.56</td><td>0</td><td>&mdash;</td></tr><tr><td>Jul-2025</td><td>&#8377;6,040</td><td>92,547</td><td>10,107</td><td>10.92%</td><td>&#8377;0.60</td><td>0</td><td>&mdash;</td></tr><tr><td>Jun-2025</td><td>&#8377;6,241</td><td>130,489</td><td>8,618</td><td>6.60%</td><td>&#8377;0.72</td><td>2</td><td>&#8377;3,120.57</td></tr></tbody>
+    </table>
+  </div>
+
 </div>
 
 <script>
@@ -2337,7 +2356,7 @@ async function generatePDF() {
     var pageHeight = pdf.internal.pageSize.getHeight();
     var margin = 5;
 
-    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','metaads'];
+    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','googleadshistory','metaads'];
     var sections = [];
     tabIds.forEach(function(t) {
       var el = document.getElementById('tab-' + t);

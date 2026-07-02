@@ -752,7 +752,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
 <div class="nav">
   <div class="nav-tab active" onclick="showTab('overview', this)\">Overview</div>
   <div class="nav-tab" onclick="showTab('rankings', this)\">Rankings</div>
-  <div class="nav-tab" onclick="showTab('history', this)\">History</div>
+  <div class="nav-tab" onclick="showTab('history', this)\">GA History</div>
   <div class="nav-tab" onclick="showTab('gmb', this)\">GMB</div>
   <div class="nav-tab" onclick="showTab('tasks', this)\">SEO Tasks</div>
   <div class="nav-tab" onclick="showTab('linkbuilding', this)\">Link Building</div>
