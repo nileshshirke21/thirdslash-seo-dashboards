@@ -781,7 +781,7 @@ def build_html(client_name, ga4_rows, rank_rows, gmb_rows=[], tasks_rows=[], lb_
       {d_sessions}
     </div>
     <div class="metric-card">
-      <div class="metric-label">Pageviews</div>
+      <div class="metric-label">Total Pageviews</div>
       <div class="period-label">{latest.get("Month","—")} vs {prev.get("Month","—")}</div>
       <div class="metric-value">{pageviews:,}</div>
       {d_pv}
