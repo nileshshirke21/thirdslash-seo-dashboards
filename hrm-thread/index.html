@@ -352,7 +352,7 @@
 
 <script>
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [18831, 15260, 11412, 7071, 12465, 14958, 15451, 15451, 14570, 14773, 14773, 13120];
+const sessData = [15260, 11412, 6789, 7071, 12465, 14958, 15451, 14570, 12311, 14773, 11142, 13120];
 const orgData  = [3934, 3476, 2529, 2815, 3693, 4565, 5336, 5493, 4598, 5349, 4597, 4984];
 const formData = [312, 303, 256, 304, 387, 70, 85, 73, 50, 99, 96, 69];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
@@ -2563,7 +2563,7 @@ async function generatePDF() {
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>13,120</td><td>4,984</td><td>4,521</td><td>40</td><td>10,808</td><td>18,899</td><td>53.8%</td><td>69</td></tr><tr><td>May-2026</td><td>14,773</td><td>4,597</td><td>3,099</td><td>74</td><td>12,732</td><td>21,286</td><td>54.1%</td><td>96</td></tr><tr><td>Apr-2026</td><td>14,773</td><td>5,349</td><td>4,011</td><td>49</td><td>12,732</td><td>21,286</td><td>56.0%</td><td>99</td></tr><tr><td>Mar-2026</td><td>14,570</td><td>4,598</td><td>3,927</td><td>56</td><td>12,158</td><td>20,991</td><td>56.1%</td><td>50</td></tr><tr><td>Feb-2026</td><td>15,451</td><td>5,493</td><td>5,468</td><td>52</td><td>12,273</td><td>24,902</td><td>57.7%</td><td>73</td></tr><tr><td>Jan-2026</td><td>15,451</td><td>5,336</td><td>5,020</td><td>49</td><td>12,273</td><td>24,902</td><td>59.6%</td><td>85</td></tr><tr><td>Dec-2025</td><td>14,958</td><td>4,565</td><td>4,994</td><td>74</td><td>12,304</td><td>24,161</td><td>59.1%</td><td>70</td></tr><tr><td>Nov-2025</td><td>12,465</td><td>3,693</td><td>3,387</td><td>39</td><td>10,412</td><td>21,523</td><td>58.5%</td><td>387</td></tr><tr><td>Oct-2025</td><td>7,071</td><td>2,815</td><td>2,487</td><td>30</td><td>5,604</td><td>12,033</td><td>59.6%</td><td>304</td></tr><tr><td>Sep-2025</td><td>11,412</td><td>2,529</td><td>2,040</td><td>36</td><td>9,482</td><td>18,527</td><td>59.4%</td><td>256</td></tr><tr><td>Aug-2025</td><td>15,260</td><td>3,476</td><td>1,365</td><td>57</td><td>12,264</td><td>24,107</td><td>57.7%</td><td>303</td></tr><tr><td>Jul-2025</td><td>18,831</td><td>3,934</td><td>1,566</td><td>42</td><td>15,443</td><td>28,039</td><td>59.0%</td><td>312</td></tr><tr><td>Jun-2025</td><td>18,831</td><td>3,729</td><td>1,840</td><td>35</td><td>15,443</td><td>28,039</td><td>55.1%</td><td>242</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>13,120</td><td>4,984</td><td>4,521</td><td>40</td><td>10,808</td><td>18,899</td><td>53.8%</td><td>69</td></tr><tr><td>May-2026</td><td>11,142</td><td>4,597</td><td>3,099</td><td>74</td><td>9,283</td><td>17,228</td><td>54.1%</td><td>96</td></tr><tr><td>Apr-2026</td><td>14,773</td><td>5,349</td><td>4,011</td><td>49</td><td>12,732</td><td>21,286</td><td>56.0%</td><td>99</td></tr><tr><td>Mar-2026</td><td>12,311</td><td>4,598</td><td>3,927</td><td>56</td><td>10,189</td><td>16,985</td><td>56.1%</td><td>50</td></tr><tr><td>Feb-2026</td><td>14,570</td><td>5,493</td><td>5,468</td><td>52</td><td>12,158</td><td>20,991</td><td>57.7%</td><td>73</td></tr><tr><td>Jan-2026</td><td>15,451</td><td>5,336</td><td>5,020</td><td>49</td><td>12,273</td><td>24,902</td><td>59.6%</td><td>85</td></tr><tr><td>Dec-2025</td><td>14,958</td><td>4,565</td><td>4,994</td><td>74</td><td>12,304</td><td>24,161</td><td>59.1%</td><td>70</td></tr><tr><td>Nov-2025</td><td>12,465</td><td>3,693</td><td>3,387</td><td>39</td><td>10,412</td><td>21,523</td><td>58.5%</td><td>387</td></tr><tr><td>Oct-2025</td><td>7,071</td><td>2,815</td><td>2,487</td><td>30</td><td>5,604</td><td>12,033</td><td>59.6%</td><td>304</td></tr><tr><td>Sep-2025</td><td>6,789</td><td>2,529</td><td>2,040</td><td>36</td><td>5,441</td><td>12,268</td><td>59.4%</td><td>256</td></tr><tr><td>Aug-2025</td><td>11,412</td><td>3,476</td><td>1,365</td><td>57</td><td>9,482</td><td>18,527</td><td>57.7%</td><td>303</td></tr><tr><td>Jul-2025</td><td>15,260</td><td>3,934</td><td>1,566</td><td>42</td><td>12,264</td><td>24,107</td><td>59.0%</td><td>312</td></tr><tr><td>Jun-2025</td><td>18,831</td><td>3,729</td><td>1,840</td><td>35</td><td>15,443</td><td>28,039</td><td>55.1%</td><td>242</td></tr></tbody>
     </table>
   </div>
   
@@ -2572,7 +2572,7 @@ async function generatePDF() {
 <script>
 
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
-const sessData = [18831, 15260, 11412, 7071, 12465, 14958, 15451, 15451, 14570, 14773, 14773, 13120];
+const sessData = [15260, 11412, 6789, 7071, 12465, 14958, 15451, 14570, 12311, 14773, 11142, 13120];
 const orgData  = [3934, 3476, 2529, 2815, 3693, 4565, 5336, 5493, 4598, 5349, 4597, 4984];
 const formData = [312, 303, 256, 304, 387, 70, 85, 73, 50, 99, 96, 69];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
