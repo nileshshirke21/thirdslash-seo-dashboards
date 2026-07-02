@@ -183,8 +183,8 @@
     <div class="metric-card">
       <div class="metric-label">Organic Sessions</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">7,660</div>
-      <span class="delta pos">▲ 31.0%</span>
+      <div class="metric-value">7,614</div>
+      <span class="delta pos">▲ 30.7%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Total Sessions</div>
@@ -199,10 +199,10 @@
       <span class="delta pos">▲ 0.0%</span>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Bounce Rate</div>
+      <div class="metric-label">Organic Engagement Rate</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">33.8%</div>
-      <span class="delta pos">▲ 0.0%</span>
+      <div class="metric-value">79.2%</div>
+      <span class="delta neg">▼ 0.4%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Avg Duration (sec)</div>
@@ -219,8 +219,8 @@
     <div class="metric-card">
       <div class="metric-label">Form Submissions</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">1,992</div>
-      <span class="delta pos">▲ 29.6%</span>
+      <div class="metric-value">1,125</div>
+      <span class="delta pos">▲ 51.2%</span>
     </div>
   </div>
 
@@ -353,12 +353,12 @@
 <script>
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [2031, 16948, 16948, 19070, 19070, 16657, 16657, 13494, 15035, 16227, 17310, 17310];
-const orgData  = [317, 1157, 1574, 2368, 3138, 3460, 4251, 3499, 4420, 4726, 5847, 7660];
-const formData = [693, 1794, 1653, 2156, 2593, 1638, 2426, 1201, 1409, 1642, 1537, 1992];
+const orgData  = [313, 1107, 1551, 2345, 3038, 3389, 4073, 3466, 4383, 4694, 5826, 7614];
+const formData = [341, 318, 469, 743, 874, 520, 873, 549, 605, 638, 744, 1125];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [7660, 7577, 205, 0, 0, 0];
+const chVals   = [7614, 7617, 205, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 8, 23, 20, 20], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 8, 23, 20, 20], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
@@ -1559,11 +1559,11 @@ async function generatePDF() {
       <thead>
         <tr>
           <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
-          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Organic Eng %</th>
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>17,310</td><td>7,660</td><td>7,577</td><td>20</td><td>11,291</td><td>100,506</td><td>33.8%</td><td>1,992</td></tr><tr><td>May-2026</td><td>17,310</td><td>5,847</td><td>11,177</td><td>20</td><td>11,291</td><td>100,506</td><td>33.8%</td><td>1,537</td></tr><tr><td>Apr-2026</td><td>16,227</td><td>4,726</td><td>11,472</td><td>23</td><td>9,790</td><td>104,224</td><td>33.0%</td><td>1,642</td></tr><tr><td>Mar-2026</td><td>15,035</td><td>4,420</td><td>9,549</td><td>8</td><td>9,998</td><td>93,222</td><td>36.0%</td><td>1,409</td></tr><tr><td>Feb-2026</td><td>13,494</td><td>3,499</td><td>5,985</td><td>0</td><td>8,402</td><td>98,463</td><td>33.0%</td><td>1,201</td></tr><tr><td>Jan-2026</td><td>16,657</td><td>4,251</td><td>9,033</td><td>0</td><td>11,683</td><td>113,218</td><td>40.9%</td><td>2,426</td></tr><tr><td>Dec-2025</td><td>16,657</td><td>3,460</td><td>8,404</td><td>0</td><td>11,683</td><td>113,218</td><td>40.9%</td><td>1,638</td></tr><tr><td>Nov-2025</td><td>19,070</td><td>3,138</td><td>6,676</td><td>0</td><td>14,273</td><td>90,352</td><td>52.1%</td><td>2,593</td></tr><tr><td>Oct-2025</td><td>19,070</td><td>2,368</td><td>7,888</td><td>0</td><td>14,273</td><td>90,352</td><td>52.1%</td><td>2,156</td></tr><tr><td>Sep-2025</td><td>16,948</td><td>1,574</td><td>7,353</td><td>0</td><td>12,502</td><td>68,603</td><td>51.1%</td><td>1,653</td></tr><tr><td>Aug-2025</td><td>16,948</td><td>1,157</td><td>7,610</td><td>0</td><td>12,502</td><td>68,603</td><td>51.1%</td><td>1,794</td></tr><tr><td>Jul-2025</td><td>2,031</td><td>317</td><td>1,674</td><td>0</td><td>1,363</td><td>13,053</td><td>34.8%</td><td>693</td></tr><tr><td>Jun-2025</td><td>323</td><td>96</td><td>217</td><td>0</td><td>145</td><td>1,872</td><td>34.1%</td><td>182</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>17,310</td><td>7,614</td><td>7,577</td><td>20</td><td>11,291</td><td>100,506</td><td>79.2%</td><td>1,125</td></tr><tr><td>May-2026</td><td>17,310</td><td>5,826</td><td>11,177</td><td>20</td><td>11,291</td><td>100,506</td><td>79.5%</td><td>744</td></tr><tr><td>Apr-2026</td><td>16,227</td><td>4,694</td><td>11,472</td><td>23</td><td>9,790</td><td>104,224</td><td>78.6%</td><td>638</td></tr><tr><td>Mar-2026</td><td>15,035</td><td>4,383</td><td>9,549</td><td>8</td><td>9,998</td><td>93,222</td><td>79.2%</td><td>605</td></tr><tr><td>Feb-2026</td><td>13,494</td><td>3,466</td><td>5,985</td><td>0</td><td>8,402</td><td>98,463</td><td>78.8%</td><td>549</td></tr><tr><td>Jan-2026</td><td>16,657</td><td>4,073</td><td>9,033</td><td>1</td><td>11,683</td><td>113,218</td><td>80.3%</td><td>873</td></tr><tr><td>Dec-2025</td><td>16,657</td><td>3,389</td><td>8,404</td><td>0</td><td>11,683</td><td>113,218</td><td>79.3%</td><td>520</td></tr><tr><td>Nov-2025</td><td>19,070</td><td>3,038</td><td>6,676</td><td>0</td><td>14,273</td><td>90,352</td><td>76.6%</td><td>874</td></tr><tr><td>Oct-2025</td><td>19,070</td><td>2,345</td><td>7,888</td><td>0</td><td>14,273</td><td>90,352</td><td>79.1%</td><td>743</td></tr><tr><td>Sep-2025</td><td>16,948</td><td>1,551</td><td>7,353</td><td>0</td><td>12,502</td><td>68,603</td><td>79.8%</td><td>469</td></tr><tr><td>Aug-2025</td><td>16,948</td><td>1,107</td><td>7,610</td><td>0</td><td>12,502</td><td>68,603</td><td>79.1%</td><td>318</td></tr><tr><td>Jul-2025</td><td>2,031</td><td>313</td><td>1,674</td><td>0</td><td>1,363</td><td>13,053</td><td>78.3%</td><td>341</td></tr><tr><td>Jun-2025</td><td>323</td><td>95</td><td>217</td><td>0</td><td>145</td><td>1,872</td><td>80.0%</td><td>90</td></tr></tbody>
     </table>
   </div>
   
@@ -1573,12 +1573,12 @@ async function generatePDF() {
 
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [2031, 16948, 16948, 19070, 19070, 16657, 16657, 13494, 15035, 16227, 17310, 17310];
-const orgData  = [317, 1157, 1574, 2368, 3138, 3460, 4251, 3499, 4420, 4726, 5847, 7660];
-const formData = [693, 1794, 1653, 2156, 2593, 1638, 2426, 1201, 1409, 1642, 1537, 1992];
+const orgData  = [313, 1107, 1551, 2345, 3038, 3389, 4073, 3466, 4383, 4694, 5826, 7614];
+const formData = [341, 318, 469, 743, 874, 520, 873, 549, 605, 638, 744, 1125];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
-const chVals   = [7660, 7577, 205, 0, 0, 0];
+const chVals   = [7614, 7617, 205, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 8, 23, 20, 20], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiMonthly = {"ChatGPT": [0, 0, 0, 0, 0, 0, 0, 0, 8, 23, 20, 20], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {

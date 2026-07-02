@@ -200,10 +200,10 @@
       <span class="delta pos">▲ 0.0%</span>
     </div>
     <div class="metric-card">
-      <div class="metric-label">Bounce Rate</div>
+      <div class="metric-label">Organic Engagement Rate</div>
       <div class="period-label">Jun-2026 vs May-2026</div>
-      <div class="metric-value">74.3%</div>
-      <span class="delta pos">▲ 0.0%</span>
+      <div class="metric-value">48.1%</div>
+      <span class="delta neg">▼ 21.1%</span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Avg Duration (sec)</div>
@@ -354,12 +354,12 @@
 <script>
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [321, 244, 276, 276, 449, 449, 420, 477, 514, 514, 669, 669];
-const orgData  = [53, 67, 64, 34, 49, 39, 45, 44, 76, 84, 59, 54];
+const orgData  = [53, 67, 64, 34, 49, 39, 45, 43, 76, 83, 59, 54];
 const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [54, 309, 107, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [1, 1, 2, 1, 0, 1, 0, 0, 1, 0, 1, 1], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiMonthly = {"ChatGPT": [1, 1, 2, 1, 0, 1, 0, 0, 1, 0, 1, 1], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
@@ -588,11 +588,11 @@ new Chart(document.getElementById('chChart'), {
       <thead>
         <tr>
           <th>Month</th><th>Sessions</th><th>Organic</th><th>Direct</th>
-          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Bounce %</th>
+          <th>AI Traffic</th><th>Users</th><th>Pageviews</th><th>Organic Eng %</th>
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>669</td><td>54</td><td>309</td><td>1</td><td>595</td><td>1,199</td><td>74.3%</td><td>0</td></tr><tr><td>May-2026</td><td>669</td><td>59</td><td>480</td><td>1</td><td>595</td><td>1,199</td><td>74.3%</td><td>0</td></tr><tr><td>Apr-2026</td><td>514</td><td>84</td><td>230</td><td>0</td><td>434</td><td>890</td><td>60.7%</td><td>0</td></tr><tr><td>Mar-2026</td><td>514</td><td>76</td><td>240</td><td>1</td><td>434</td><td>890</td><td>60.7%</td><td>0</td></tr><tr><td>Feb-2026</td><td>477</td><td>44</td><td>252</td><td>0</td><td>420</td><td>747</td><td>69.0%</td><td>0</td></tr><tr><td>Jan-2026</td><td>420</td><td>45</td><td>219</td><td>0</td><td>372</td><td>760</td><td>60.2%</td><td>0</td></tr><tr><td>Dec-2025</td><td>449</td><td>39</td><td>199</td><td>1</td><td>407</td><td>740</td><td>54.3%</td><td>0</td></tr><tr><td>Nov-2025</td><td>449</td><td>49</td><td>247</td><td>0</td><td>407</td><td>740</td><td>54.3%</td><td>0</td></tr><tr><td>Oct-2025</td><td>276</td><td>34</td><td>100</td><td>1</td><td>229</td><td>722</td><td>34.1%</td><td>0</td></tr><tr><td>Sep-2025</td><td>276</td><td>64</td><td>53</td><td>4</td><td>229</td><td>722</td><td>34.1%</td><td>0</td></tr><tr><td>Aug-2025</td><td>244</td><td>67</td><td>33</td><td>1</td><td>188</td><td>602</td><td>43.0%</td><td>0</td></tr><tr><td>Jul-2025</td><td>321</td><td>53</td><td>53</td><td>1</td><td>246</td><td>921</td><td>43.6%</td><td>0</td></tr><tr><td>Jun-2025</td><td>321</td><td>69</td><td>114</td><td>0</td><td>246</td><td>921</td><td>43.6%</td><td>0</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>669</td><td>54</td><td>309</td><td>1</td><td>595</td><td>1,199</td><td>48.1%</td><td>0</td></tr><tr><td>May-2026</td><td>669</td><td>59</td><td>480</td><td>1</td><td>595</td><td>1,199</td><td>61.0%</td><td>0</td></tr><tr><td>Apr-2026</td><td>514</td><td>83</td><td>230</td><td>0</td><td>434</td><td>890</td><td>47.0%</td><td>0</td></tr><tr><td>Mar-2026</td><td>514</td><td>76</td><td>240</td><td>1</td><td>434</td><td>890</td><td>53.9%</td><td>0</td></tr><tr><td>Feb-2026</td><td>477</td><td>43</td><td>252</td><td>0</td><td>420</td><td>747</td><td>65.1%</td><td>0</td></tr><tr><td>Jan-2026</td><td>420</td><td>45</td><td>219</td><td>0</td><td>372</td><td>760</td><td>66.7%</td><td>0</td></tr><tr><td>Dec-2025</td><td>449</td><td>39</td><td>199</td><td>1</td><td>407</td><td>740</td><td>76.9%</td><td>0</td></tr><tr><td>Nov-2025</td><td>449</td><td>49</td><td>247</td><td>1</td><td>407</td><td>740</td><td>61.2%</td><td>0</td></tr><tr><td>Oct-2025</td><td>276</td><td>34</td><td>100</td><td>1</td><td>229</td><td>722</td><td>70.6%</td><td>0</td></tr><tr><td>Sep-2025</td><td>276</td><td>64</td><td>53</td><td>5</td><td>229</td><td>722</td><td>59.4%</td><td>0</td></tr><tr><td>Aug-2025</td><td>244</td><td>67</td><td>33</td><td>1</td><td>188</td><td>602</td><td>53.7%</td><td>0</td></tr><tr><td>Jul-2025</td><td>321</td><td>53</td><td>53</td><td>1</td><td>246</td><td>921</td><td>54.7%</td><td>0</td></tr><tr><td>Jun-2025</td><td>321</td><td>66</td><td>114</td><td>0</td><td>246</td><td>921</td><td>65.2%</td><td>0</td></tr></tbody>
     </table>
   </div>
   
@@ -602,12 +602,12 @@ new Chart(document.getElementById('chChart'), {
 
 const months   = ["Jul-2025", "Aug-2025", "Sep-2025", "Oct-2025", "Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026"];
 const sessData = [321, 244, 276, 276, 449, 449, 420, 477, 514, 514, 669, 669];
-const orgData  = [53, 67, 64, 34, 49, 39, 45, 44, 76, 84, 59, 54];
+const orgData  = [53, 67, 64, 34, 49, 39, 45, 43, 76, 83, 59, 54];
 const formData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [54, 309, 107, 0, 0, 0];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
-const aiMonthly = {"ChatGPT": [1, 1, 2, 1, 0, 1, 0, 0, 1, 0, 1, 1], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
+const aiMonthly = {"ChatGPT": [1, 1, 2, 1, 0, 1, 0, 0, 1, 0, 1, 1], "Gemini": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Claude": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Perplexity": [0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Copilot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]};
 const aiLabels  = ["ChatGPT", "Gemini", "Claude", "Perplexity", "Copilot"];
 const aiColors  = ['#F48024','#A855F7','#6366F1','#4285F4'];
 const dflt = {
