@@ -3735,7 +3735,7 @@ new Chart(document.getElementById('chChart'), {
 </div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;"><button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All</button><button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button><button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button><button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button></div>
 <div style="display:flex;gap:10px;margin-bottom:16px;"><select id="ta-prio-filter" onchange="taApplyFilters()" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:#fff;"><option value="all">All Priorities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select><select id="ta-status-filter" onchange="taApplyFilters()" style="padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;background:#fff;"><option value="all">All Statuses</option><option value="Under Review">Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option></select></div>
-<div class="ta-table-wrap"><table class="ta-table"><thead><tr><th style="min-width:280px">Issue</th><th>Count</th><th>Priority</th><th style="min-width:200px">Why It Matters</th><th style="min-width:200px">How to Fix</th><th>Owner</th><th>Status</th></tr></thead><tbody>
+<div class="ta-table-wrap"><table class="ta-table"><thead><tr><th style="min-width:280px;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th><th style="cursor:pointer" onclick="taSortTable(1)">Count &#8645;</th><th style="cursor:pointer" onclick="taSortTable(2)">Priority &#8645;</th><th style="min-width:200px;cursor:pointer" onclick="taSortTable(3)">Why It Matters &#8645;</th><th style="min-width:200px;cursor:pointer" onclick="taSortTable(4)">How to Fix &#8645;</th><th style="cursor:pointer" onclick="taSortTable(5)">Owner &#8645;</th><th style="cursor:pointer" onclick="taSortTable(6)">Status &#8645;</th></tr></thead><tbody>
       <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="high" onclick="taToggle('i01')">
         <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>30 pages with 4xx client errors </td>
         <td><span class="ta-pill ta-pill-red">30</span></td>
@@ -3828,6 +3828,32 @@ new Chart(document.getElementById('chChart'), {
   var activeCat = 'all';
   window.taFilter = function(btn) { document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); }); btn.classList.add('active'); activeCat = btn.dataset.cat; taApplyFilters(); };
   window.taApplyFilters = function() { var prio = document.getElementById('ta-prio-filter').value; var stat = document.getElementById('ta-status-filter').value; document.querySelectorAll('.ta-row-issue').forEach(function(row) { var iid = row.dataset.id; var show = true; if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false; if (prio !== 'all' && row.dataset.prio !== prio) show = false; if (stat !== 'all') { var sel = row.querySelector('.ta-stat-sel'); if (sel && sel.value !== stat) show = false; } row.style.display = show ? '' : 'none'; var panel = document.getElementById('ta-panel-' + iid); if (!show && panel) { panel.classList.remove('open'); } }); };
+  // Sort issue table by column, keeping each issue row paired with its URL panel
+  var taSortDir = {};
+  window.taSortTable = function(col) {
+    var tbody = document.querySelector('.ta-table tbody');
+    if (!tbody) return;
+    var pairs = Array.from(tbody.querySelectorAll('tr.ta-row-issue')).map(function(row) {
+      var panel = row.nextElementSibling;
+      if (!panel || !panel.classList.contains('ta-url-panel')) panel = null;
+      return { row: row, panel: panel };
+    });
+    var asc = !taSortDir[col]; taSortDir = {}; taSortDir[col] = asc;
+    var prioOrder = { high: 3, medium: 2, low: 1 };
+    pairs.sort(function(a, b) {
+      var av, bv;
+      if (col === 2) { av = prioOrder[a.row.dataset.prio] || 0; bv = prioOrder[b.row.dataset.prio] || 0; }
+      else if (col === 1) { av = parseFloat((a.row.cells[1].innerText || '').replace(/[^\d.-]/g, '')) || 0; bv = parseFloat((b.row.cells[1].innerText || '').replace(/[^\d.-]/g, '')) || 0; }
+      else if (col === 5) { av = (a.row.querySelector('.ta-own-sel') || {}).value || ''; bv = (b.row.querySelector('.ta-own-sel') || {}).value || ''; }
+      else if (col === 6) { av = (a.row.querySelector('.ta-stat-sel') || {}).value || ''; bv = (b.row.querySelector('.ta-stat-sel') || {}).value || ''; }
+      else { av = (a.row.cells[col] || {}).innerText || ''; bv = (b.row.cells[col] || {}).innerText || ''; }
+      if (typeof av === 'number') return asc ? av - bv : bv - av;
+      av = String(av).trim().toLowerCase(); bv = String(bv).trim().toLowerCase();
+      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
+    pairs.forEach(function(p) { tbody.appendChild(p.row); if (p.panel) tbody.appendChild(p.panel); });
+  };
+
   taLoadState();
 })();
 </script>
@@ -4172,14 +4198,14 @@ async function generatePDF() {
     <table class="rank-table" id="gaCampTable">
       <thead>
         <tr>
-          <th style="cursor:pointer" onclick="sortGaTable('gaCampBody',0)">Campaign</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',1)">Cost</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',2)">Impr.</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',3)">Clicks</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',4)">CTR</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',5)">Avg CPC</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',6)">Conv.</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',7)">Cost/Conv</th>
+          <th style="cursor:pointer" onclick="sortGaTable('gaCampBody',0)">Campaign &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',1)">Cost &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',2)">Impr. &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',3)">Clicks &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',4)">CTR &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',5)">Avg CPC &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',6)">Conv. &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCampBody',7)">Cost/Conv &#8645;</th>
         </tr>
       </thead>
       <tbody id="gaCampBody">
@@ -4200,12 +4226,12 @@ async function generatePDF() {
     <table class="rank-table" id="gaKwTable">
       <thead>
         <tr>
-          <th style="cursor:pointer" onclick="sortGaTable('gaKwBody',0)">Campaign Type</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',1)">Cost</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',2)">Impr.</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',3)">Clicks</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',4)">CTR</th>
-          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',5)">Conversions</th>
+          <th style="cursor:pointer" onclick="sortGaTable('gaKwBody',0)">Campaign Type &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',1)">Cost &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',2)">Impr. &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',3)">Clicks &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',4)">CTR &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaKwBody',5)">Conversions &#8645;</th>
         </tr>
       </thead>
       <tbody id="gaKwBody">
@@ -4224,16 +4250,16 @@ async function generatePDF() {
     <table class="rank-table">
       <thead>
         <tr>
-          <th>City</th>
-          <th style="text-align:right">Cost</th>
-          <th style="text-align:right">Impr.</th>
-          <th style="text-align:right">Clicks</th>
-          <th style="text-align:right">CTR</th>
-          <th style="text-align:right">Avg CPC</th>
-          <th style="text-align:right">Conv.</th>
-        </tr>
+          <th style="cursor:pointer" onclick="sortGaTable('gaCityBody',0)">City &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',1)">Cost &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',2)">Impr. &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',3)">Clicks &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',4)">CTR &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',5)">Avg CPC &#8645;</th>
+          <th style="cursor:pointer;text-align:right" onclick="sortGaTable('gaCityBody',6)">Conv. &#8645;</th>
+          </tr>
       </thead>
-      <tbody>
+      <tbody id="gaCityBody">
         <tr><td class="kw-cell">Bangkok</td><td style="text-align:right">&#3647;17,116</td><td style="text-align:right">425,275</td><td style="text-align:right">7,817</td><td style="text-align:right">1.84%</td><td style="text-align:right">&#3647;2.19</td><td style="text-align:right">1,755.1</td></tr>
         <tr><td class="kw-cell">Pattaya City</td><td style="text-align:right">&#3647;261</td><td style="text-align:right">20,026</td><td style="text-align:right">205</td><td style="text-align:right">1.02%</td><td style="text-align:right">&#3647;1.27</td><td style="text-align:right">0</td></tr>
         <tr><td class="kw-cell">Koh Samui</td><td style="text-align:right">&#3647;207</td><td style="text-align:right">15,975</td><td style="text-align:right">167</td><td style="text-align:right">1.05%</td><td style="text-align:right">&#3647;1.24</td><td style="text-align:right">0</td></tr>

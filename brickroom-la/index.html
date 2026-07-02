@@ -1550,13 +1550,13 @@ new Chart(document.getElementById('chChart'), {
   <table class="ta-table" id="ta-issue-table">
     <thead>
       <tr>
-        <th style="width:28%">Issue</th>
-        <th style="width:60px">Count</th>
-        <th style="width:80px">Priority</th>
-        <th style="width:22%">What This Means</th>
-        <th style="width:22%">How to Fix It</th>
-        <th style="width:110px">Owner</th>
-        <th style="width:130px">Status</th>
+        <th style="width:28%;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th>
+        <th style="width:60px;cursor:pointer" onclick="taSortTable(1)">Count &#8645;</th>
+        <th style="width:80px;cursor:pointer" onclick="taSortTable(2)">Priority &#8645;</th>
+        <th style="width:22%;cursor:pointer" onclick="taSortTable(3)">What This Means &#8645;</th>
+        <th style="width:22%;cursor:pointer" onclick="taSortTable(4)">How to Fix It &#8645;</th>
+        <th style="width:110px;cursor:pointer" onclick="taSortTable(5)">Owner &#8645;</th>
+        <th style="width:130px;cursor:pointer" onclick="taSortTable(6)">Status &#8645;</th>
       </tr>
     </thead>
     <tbody>
@@ -1772,6 +1772,32 @@ new Chart(document.getElementById('chChart'), {
       var panel = document.getElementById('ta-panel-' + iid);
       if (!show && panel) { panel.classList.remove('open'); }
     });
+  };
+
+  // Sort issue table by column, keeping each issue row paired with its URL panel
+  var taSortDir = {};
+  window.taSortTable = function(col) {
+    var tbody = document.querySelector('.ta-table tbody');
+    if (!tbody) return;
+    var pairs = Array.from(tbody.querySelectorAll('tr.ta-row-issue')).map(function(row) {
+      var panel = row.nextElementSibling;
+      if (!panel || !panel.classList.contains('ta-url-panel')) panel = null;
+      return { row: row, panel: panel };
+    });
+    var asc = !taSortDir[col]; taSortDir = {}; taSortDir[col] = asc;
+    var prioOrder = { high: 3, medium: 2, low: 1 };
+    pairs.sort(function(a, b) {
+      var av, bv;
+      if (col === 2) { av = prioOrder[a.row.dataset.prio] || 0; bv = prioOrder[b.row.dataset.prio] || 0; }
+      else if (col === 1) { av = parseFloat((a.row.cells[1].innerText || '').replace(/[^\d.-]/g, '')) || 0; bv = parseFloat((b.row.cells[1].innerText || '').replace(/[^\d.-]/g, '')) || 0; }
+      else if (col === 5) { av = (a.row.querySelector('.ta-own-sel') || {}).value || ''; bv = (b.row.querySelector('.ta-own-sel') || {}).value || ''; }
+      else if (col === 6) { av = (a.row.querySelector('.ta-stat-sel') || {}).value || ''; bv = (b.row.querySelector('.ta-stat-sel') || {}).value || ''; }
+      else { av = (a.row.cells[col] || {}).innerText || ''; bv = (b.row.cells[col] || {}).innerText || ''; }
+      if (typeof av === 'number') return asc ? av - bv : bv - av;
+      av = String(av).trim().toLowerCase(); bv = String(bv).trim().toLowerCase();
+      return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
+    pairs.forEach(function(p) { tbody.appendChild(p.row); if (p.panel) tbody.appendChild(p.panel); });
   };
 
   taLoadState();
