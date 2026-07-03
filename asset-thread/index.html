@@ -1299,7 +1299,7 @@ new Chart(document.getElementById('chChart'), {
           <th>Forms</th>
         </tr>
       </thead>
-      <tbody><tr><td>Jun-2026</td><td>1,306</td><td>116</td><td>380</td><td>0</td><td>1,078</td><td>1,858</td><td>64.7%</td><td>9</td></tr><tr><td>May-2026</td><td>1,540</td><td>162</td><td>415</td><td>1</td><td>1,268</td><td>2,131</td><td>58.6%</td><td>9</td></tr><tr><td>Apr-2026</td><td>2,252</td><td>144</td><td>420</td><td>8</td><td>1,797</td><td>3,466</td><td>54.2%</td><td>7</td></tr><tr><td>Mar-2026</td><td>1,384</td><td>97</td><td>488</td><td>3</td><td>1,145</td><td>1,982</td><td>62.9%</td><td>6</td></tr><tr><td>Feb-2026</td><td>1,677</td><td>127</td><td>535</td><td>1</td><td>1,344</td><td>2,448</td><td>61.4%</td><td>8</td></tr><tr><td>Jan-2026</td><td>1,445</td><td>143</td><td>466</td><td>6</td><td>1,162</td><td>2,184</td><td>62.2%</td><td>6</td></tr><tr><td>Dec-2025</td><td>1,702</td><td>135</td><td>709</td><td>2</td><td>1,437</td><td>2,348</td><td>58.5%</td><td>12</td></tr><tr><td>Nov-2025</td><td>2,550</td><td>101</td><td>520</td><td>12</td><td>2,154</td><td>3,547</td><td>55.4%</td><td>7</td></tr><tr><td>Oct-2025</td><td>668</td><td>117</td><td>196</td><td>0</td><td>515</td><td>986</td><td>54.7%</td><td>10</td></tr><tr><td>Sep-2025</td><td>654</td><td>77</td><td>171</td><td>3</td><td>494</td><td>959</td><td>59.7%</td><td>2</td></tr><tr><td>Aug-2025</td><td>1,205</td><td>151</td><td>217</td><td>2</td><td>1,097</td><td>3,932</td><td>64.2%</td><td>3</td></tr><tr><td>Jul-2025</td><td>2,135</td><td>159</td><td>424</td><td>4</td><td>1,710</td><td>2,903</td><td>59.1%</td><td>5</td></tr><tr><td>Jun-2025</td><td>1,607</td><td>114</td><td>471</td><td>2</td><td>1,344</td><td>2,034</td><td>64.0%</td><td>3</td></tr></tbody>
+      <tbody><tr><td>Jun-2026</td><td>1,306</td><td>116</td><td>380</td><td>0</td><td>1,080</td><td>1,858</td><td>64.7%</td><td>9</td></tr><tr><td>May-2026</td><td>1,540</td><td>162</td><td>415</td><td>1</td><td>1,268</td><td>2,131</td><td>58.6%</td><td>9</td></tr><tr><td>Apr-2026</td><td>2,252</td><td>144</td><td>420</td><td>8</td><td>1,797</td><td>3,466</td><td>54.2%</td><td>7</td></tr><tr><td>Mar-2026</td><td>1,384</td><td>97</td><td>488</td><td>3</td><td>1,145</td><td>1,982</td><td>62.9%</td><td>6</td></tr><tr><td>Feb-2026</td><td>1,677</td><td>127</td><td>535</td><td>1</td><td>1,344</td><td>2,448</td><td>61.4%</td><td>8</td></tr><tr><td>Jan-2026</td><td>1,445</td><td>143</td><td>466</td><td>6</td><td>1,162</td><td>2,184</td><td>62.2%</td><td>6</td></tr><tr><td>Dec-2025</td><td>1,702</td><td>135</td><td>709</td><td>2</td><td>1,437</td><td>2,348</td><td>58.5%</td><td>12</td></tr><tr><td>Nov-2025</td><td>2,550</td><td>101</td><td>520</td><td>12</td><td>2,154</td><td>3,547</td><td>55.4%</td><td>7</td></tr><tr><td>Oct-2025</td><td>668</td><td>117</td><td>196</td><td>0</td><td>515</td><td>986</td><td>54.7%</td><td>10</td></tr><tr><td>Sep-2025</td><td>654</td><td>77</td><td>171</td><td>3</td><td>494</td><td>959</td><td>59.7%</td><td>2</td></tr><tr><td>Aug-2025</td><td>1,205</td><td>151</td><td>217</td><td>2</td><td>1,097</td><td>3,932</td><td>64.2%</td><td>3</td></tr><tr><td>Jul-2025</td><td>2,135</td><td>159</td><td>424</td><td>4</td><td>1,710</td><td>2,903</td><td>59.1%</td><td>5</td></tr><tr><td>Jun-2025</td><td>1,607</td><td>114</td><td>471</td><td>2</td><td>1,344</td><td>2,034</td><td>64.0%</td><td>3</td></tr></tbody>
     </table>
   </div>
   
@@ -2874,6 +2874,62 @@ new Chart(document.getElementById('chChart'), {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
+// Temporarily replaces the tall single-column Rankings table with 3
+// side-by-side mini-tables (sorted by Volume descending, filled
+// column-major like a reference list) so it fits legibly on one PDF
+// page. Returns a restore() function that puts the live view back
+// exactly as it was — this never touches what a user actually sees
+// outside of PDF generation.
+function reflowRankingsForPDF(sectionEl) {
+  var wrap = sectionEl.querySelector('.rank-table-wrap');
+  var origTable = wrap ? wrap.querySelector('#rankTable') : null;
+  if (!wrap || !origTable) return function() {};
+
+  var tbody = origTable.querySelector('#rankTableBody');
+  var rows = Array.from(tbody.querySelectorAll('tr')).filter(function(r) {
+    return r.style.display !== 'none';
+  });
+
+  function parseVolume(row) {
+    var cell = row.cells[5];
+    var n = parseFloat((cell ? cell.textContent : '').replace(/[^\d.-]/g, ''));
+    return isNaN(n) ? -1 : n;
+  }
+  rows.sort(function(a, b) { return parseVolume(b) - parseVolume(a); });
+
+  var COLS = 3;
+  var perCol = Math.ceil(rows.length / COLS);
+  var container = document.createElement('div');
+  container.style.cssText = 'display:flex; gap:14px; align-items:flex-start;';
+
+  var theadHTML = origTable.querySelector('thead').outerHTML;
+  for (var c = 0; c < COLS; c++) {
+    var chunk = rows.slice(c * perCol, (c + 1) * perCol);
+    if (!chunk.length) continue;
+    var miniTable = document.createElement('table');
+    miniTable.className = 'rank-table';
+    miniTable.style.cssText = 'flex:1; font-size:10px;';
+    miniTable.innerHTML = theadHTML + '<tbody></tbody>';
+    var miniBody = miniTable.querySelector('tbody');
+    chunk.forEach(function(r) {
+      var rc = r.cloneNode(true);
+      // Sr. column no longer means "position" once re-sorted by volume —
+      // relabel it as a plain running count for this reflowed view.
+      if (rc.cells[0]) rc.cells[0].textContent = (miniBody.children.length + 1);
+      miniBody.appendChild(rc);
+    });
+    container.appendChild(miniTable);
+  }
+
+  wrap.insertBefore(container, origTable);
+  origTable.style.display = 'none';
+
+  return function restore() {
+    container.remove();
+    origTable.style.display = '';
+  };
+}
+
 async function generatePDF() {
   var btn = document.getElementById('pdfBtn');
   var origText = btn.innerHTML;
@@ -2888,7 +2944,12 @@ async function generatePDF() {
     var pageHeight = pdf.internal.pageSize.getHeight();
     var margin = 5;
 
-    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','metaads'];
+    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','googleadshistory','metaads'];
+    var tabLabels = {
+      overview: 'Overview', rankings: 'Rankings', history: 'GA History', gmb: 'GMB',
+      tasks: 'SEO Tasks', linkbuilding: 'Link Building', techaudit: 'Tech Audit',
+      googleads: 'Google Ads', googleadshistory: 'Google Ads History', metaads: 'Meta Ads'
+    };
     var sections = [];
     tabIds.forEach(function(t) {
       var el = document.getElementById('tab-' + t);
@@ -2904,6 +2965,17 @@ async function generatePDF() {
     var origNavDisplay = nav ? nav.style.display : '';
     if (nav) nav.style.display = 'none';
     btn.style.display = 'none';
+
+    // Force the "desktop" (>1100px) grid layout regardless of actual viewport
+    // width, so tabs render shorter/wider instead of the narrow mobile-style
+    // stacked layout — makes the one-page-per-tab scaling far more legible.
+    var pdfLayoutStyle = document.createElement('style');
+    pdfLayoutStyle.textContent = '.metrics-grid{grid-template-columns:repeat(4,1fr) !important;}' +
+      '.charts-grid{grid-template-columns:repeat(2,1fr) !important;}' +
+      '.rank-summary{grid-template-columns:repeat(4,1fr) !important;}' +
+      '.gmb-grid{grid-template-columns:repeat(7,1fr) !important;}' +
+      '#tab-linkbuilding td{white-space:nowrap !important;word-break:normal !important;}';
+    document.head.appendChild(pdfLayoutStyle);
 
     var selects = document.querySelectorAll('.ta-select, .ta-chip, #ta-prio-filter, #ta-status-filter, #lbType, #lbStatus');
     selects.forEach(function(s) { s.setAttribute('data-orig-display', s.style.display); s.style.display = 'none'; });
@@ -2952,6 +3024,16 @@ async function generatePDF() {
         sectionLinkData = { fracs: linkFracs };
       }
 
+      // Rankings has too many rows to stay legible in a single tall column
+      // scaled to one page. For PDF export only, temporarily reflow the
+      // keyword table into 3 side-by-side columns (sorted by Volume desc,
+      // filled top-to-bottom then left-to-right like a reference list).
+      // Restored to the normal single-column live view right after capture.
+      var restoreRankings = null;
+      if (s.id === 'rankings') {
+        restoreRankings = reflowRankingsForPDF(s.el);
+      }
+
       var canvas = await html2canvas(s.el, {
         scale: 2,
         useCORS: true,
@@ -2962,6 +3044,8 @@ async function generatePDF() {
         width: s.el.scrollWidth,
         height: s.el.scrollHeight
       });
+
+      if (restoreRankings) restoreRankings();
 
       var headerCanvas = null;
       if (i === 0) {
@@ -2975,127 +3059,65 @@ async function generatePDF() {
 
       var imgData = canvas.toDataURL('image/jpeg', 0.92);
       var contentWidth = pageWidth - (margin * 2);
-      var sectionStartPage, sectionYStart;
 
+      // Every tab gets exactly one page: client header (first tab only) +
+      // a bold tab-name headline, then the tab's full content scaled down
+      // (never sliced) to fit whatever vertical space remains.
+      if (!isFirst) pdf.addPage();
+      isFirst = false;
+      var sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
+
+      var yPos = margin;
       if (headerCanvas && i === 0) {
         var hdrData = headerCanvas.toDataURL('image/jpeg', 0.95);
         var hdrHeight = (headerCanvas.height * contentWidth) / headerCanvas.width;
-        var contentHeight = (canvas.height * contentWidth) / canvas.width;
-
-        if (!isFirst) pdf.addPage();
-        isFirst = false;
-        sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
         pdf.addImage(hdrData, 'JPEG', margin, margin, contentWidth, hdrHeight);
+        yPos = margin + hdrHeight + 2;
+      }
 
-        var yPos = margin + hdrHeight + 2;
-        sectionYStart = yPos;
+      pdf.setFont(undefined, 'bold');
+      pdf.setFontSize(13);
+      pdf.setTextColor(91, 57, 217);
+      pdf.text(tabLabels[s.id] || s.id, margin, yPos + 5);
+      pdf.setTextColor(0, 0, 0);
+      pdf.setFont(undefined, 'normal');
+      yPos += 9;
+      var sectionYStart = yPos;
 
-        if (contentHeight <= pageHeight - yPos - margin) {
-          pdf.addImage(imgData, 'JPEG', margin, yPos, contentWidth, contentHeight);
-        } else {
-          var pxPerMm = canvas.width / contentWidth;
-          var availFirst = (pageHeight - yPos - margin) * pxPerMm;
-          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
+      var availWidth = contentWidth;
+      var availHeight = pageHeight - yPos - margin;
+      var fitScale = Math.min(availWidth / canvas.width, availHeight / canvas.height);
+      var drawW = canvas.width * fitScale;
+      var drawH = canvas.height * fitScale;
+      pdf.addImage(imgData, 'JPEG', margin, yPos, drawW, drawH);
 
-          var sliceCanvas = document.createElement('canvas');
-          sliceCanvas.width = canvas.width;
-          sliceCanvas.height = Math.min(availFirst, canvas.height);
-          sliceCanvas.getContext('2d').drawImage(canvas, 0, 0, canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
-          pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, yPos, contentWidth, sliceCanvas.height / pxPerMm);
-
-          var offset = availFirst;
-          while (offset < canvas.height) {
-            pdf.addPage();
-            var sh = Math.min(pageContentHeightPx, canvas.height - offset);
-            var sc2 = document.createElement('canvas');
-            sc2.width = canvas.width; sc2.height = sh;
-            sc2.getContext('2d').drawImage(canvas, 0, offset, canvas.width, sh, 0, 0, canvas.width, sh);
-            pdf.addImage(sc2.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sh / pxPerMm);
-            offset += pageContentHeightPx;
-          }
-        }
-
-        if (sectionLinkData) {
-          sectionLinkData.startPage = sectionStartPage;
-          sectionLinkData.yStart = sectionYStart;
-          sectionLinkData.contentWidth = contentWidth;
-          sectionLinkData.contentHeight = contentHeight;
-          deferredLinks.push(sectionLinkData);
-        }
-      } else {
-        var contentHeight = (canvas.height * contentWidth) / canvas.width;
-        sectionYStart = margin;
-
-        if (contentHeight <= pageHeight - margin * 2) {
-          if (!isFirst) pdf.addPage();
-          isFirst = false;
-          sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
-          pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
-        } else {
-          var pxPerMm = canvas.width / contentWidth;
-          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
-          var totalPages = Math.ceil(canvas.height / pageContentHeightPx);
-          sectionStartPage = null;
-
-          for (var p = 0; p < totalPages; p++) {
-            if (!isFirst) pdf.addPage();
-            isFirst = false;
-            if (sectionStartPage === null) {
-              sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
-            }
-            var sliceHeight = Math.min(pageContentHeightPx, canvas.height - p * pageContentHeightPx);
-            var sliceCanvas = document.createElement('canvas');
-            sliceCanvas.width = canvas.width;
-            sliceCanvas.height = sliceHeight;
-            sliceCanvas.getContext('2d').drawImage(canvas, 0, p * pageContentHeightPx, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
-            pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sliceHeight / pxPerMm);
-          }
-        }
-
-        if (sectionLinkData) {
-          sectionLinkData.startPage = sectionStartPage;
-          sectionLinkData.yStart = sectionYStart;
-          sectionLinkData.contentWidth = contentWidth;
-          sectionLinkData.contentHeight = contentHeight;
-          deferredLinks.push(sectionLinkData);
-        }
+      if (sectionLinkData) {
+        sectionLinkData.startPage = sectionStartPage;
+        sectionLinkData.yStart = sectionYStart;
+        sectionLinkData.contentWidth = drawW;
+        sectionLinkData.contentHeight = drawH;
+        deferredLinks.push(sectionLinkData);
       }
     }
 
     // Post-process: add all link annotations now that page structure is final
+    // (every tab is a single page now, so no cross-page offset math needed)
     var finalPage = pdf.internal.getCurrentPageInfo().pageNumber;
-    var totalPdfPages = pdf.internal.getNumberOfPages();
 
     deferredLinks.forEach(function(d) {
-      var firstPageAvail = pageHeight - d.yStart - margin;
-      var fullPageH = pageHeight - margin * 2;
-
       d.fracs.forEach(function(lk) {
         var pdfX = margin + lk.xF * d.contentWidth;
         var pdfW = lk.wF * d.contentWidth;
-        var linkYmm = lk.yF * d.contentHeight;
+        var localY = d.yStart + lk.yF * d.contentHeight;
         var linkHmm = Math.max(lk.hF * d.contentHeight, 2);
-
-        var pageOffset, localY;
-        if (linkYmm <= firstPageAvail) {
-          pageOffset = 0;
-          localY = d.yStart + linkYmm;
-        } else {
-          var rem = linkYmm - firstPageAvail;
-          pageOffset = 1 + Math.floor(rem / fullPageH);
-          localY = margin + (rem % fullPageH);
-        }
-
-        var targetPage = d.startPage + pageOffset;
-        if (targetPage >= 1 && targetPage <= totalPdfPages) {
-          pdf.setPage(targetPage);
-          pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href, newWindow: true });
-        }
+        pdf.setPage(d.startPage);
+        pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href, newWindow: true });
       });
     });
 
     pdf.setPage(finalPage);
 
+    pdfLayoutStyle.remove();
     origStates.forEach(function(s) {
       s.el.style.display = s.display;
       s.el.className = s.cls;
