@@ -17,7 +17,7 @@
     --positive-bg: #d1fae5; --negative-bg: #fee2e2;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { overflow-x: hidden; max-width: 100%; }
+  html, body { overflow-x: hidden; max-width: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
   .header { background: #ffffff; border-bottom: 1px solid var(--border); padding: 0 28px; height: 58px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
   .header-left { display: flex; align-items: center; gap: 10px; }
@@ -65,6 +65,7 @@
   .rank-table-header .period { font-size: 11px; color: var(--muted); font-weight: 400; }
   .rank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .rank-table th { padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 2px solid var(--border); background: #F8FAFC; }
+  #rankTable th { position: sticky; top: 104px; z-index: 5; }
   .rank-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .rank-table tr:last-child td { border-bottom: none; }
   .rank-table tr:hover td { background: #f0edff; }
@@ -107,7 +108,7 @@
     .section { padding: 16px 12px; }
     .metrics-grid { grid-template-columns: 1fr 1fr !important; gap: 10px; }
     .charts-grid { grid-template-columns: 1fr; }
-    .ai-grid { grid-template-columns: 1fr 1fr; }
+    .ai-grid { grid-template-columns: 1fr 1fr !important; }
     .gmb-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
     .rank-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .rank-bucket-wrap { overflow-x: auto; }
@@ -124,7 +125,7 @@
   @media (max-width: 480px) {
     .metrics-grid { grid-template-columns: 1fr !important; }
     .gmb-grid { grid-template-columns: 1fr 1fr !important; }
-    .ai-grid { grid-template-columns: 1fr 1fr; }
+    .ai-grid { grid-template-columns: 1fr 1fr !important; }
     .header-right { display: none; }
   }
   .gmb-section { margin-bottom: 28px; }
@@ -140,7 +141,7 @@
   .no-data p { font-size: 14px; }
   @media (max-width: 1100px) {
     .metrics-grid { grid-template-columns: repeat(2,1fr) !important; }
-    .ai-grid { grid-template-columns: repeat(2,1fr); }
+    .ai-grid { grid-template-columns: repeat(2,1fr) !important; }
     .rank-summary { grid-template-columns: repeat(2,1fr); }
     .charts-grid { grid-template-columns: 1fr; }
   }
@@ -470,7 +471,7 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 <div id="tab-gmb" class="section">
   <div class="gmb-section">
-    <div class="gmb-header"><div class="gmb-title">Google Business Profile — June 2026</div></div>
+    <div class="gmb-header" style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;padding:14px 20px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;"><span class="gmb-title" style="color:#fff;">Google Business Profile</span><span style="font-size:12px;opacity:0.85;font-weight:500;">June 2026</span></div>
     <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
       <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
         <div class="metric-label" style="text-align:center;">Phone Calls</div>
@@ -658,11 +659,12 @@ new Chart(document.getElementById('chChart'), {
 <!-- GMB TAB -->
 
 <div id="tab-tasks" class="section">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
-    <div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);">SEO Work Done &mdash; Jun-2026</div>
-      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Delivered by ThirdSlash Digital Marketing Agency</div>
-    </div>
+  <div style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;padding:14px 20px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <span style="font-size:16px;font-weight:700;">SEO Work Done</span>
+    <span style="font-size:12px;opacity:0.85;font-weight:500;">Jun-2026</span>
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Delivered by ThirdSlash Digital Marketing Agency</div>
+  <div style="display:flex;align-items:center;justify-content:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
     <div style="display:flex;gap:10px;flex-wrap:wrap;">
       <div style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#10003; 9 Completed</div>
       <div style="background:#FEF3C7;color:#92400E;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#8635; 0 In Progress</div>
@@ -875,13 +877,18 @@ new Chart(document.getElementById('chChart'), {
 }
 
 /* Issue table */
+.ta-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
 .ta-table {
   width: 100%;
+  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--card);
-  border-radius: 10px;
-  border: 1px solid var(--border);
   overflow: hidden;
 }
 .ta-table th {
@@ -1075,7 +1082,7 @@ new Chart(document.getElementById('chChart'), {
   </div>
 
   <!-- Issue Log Table -->
-  <table class="ta-table" id="ta-issue-table">
+  <div class="ta-table-wrap"><table class="ta-table" id="ta-issue-table">
     <thead>
       <tr>
         <th style="width:28%;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th>
@@ -1201,7 +1208,7 @@ new Chart(document.getElementById('chChart'), {
         </td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
 </div>
 
 <script>
@@ -1393,6 +1400,25 @@ async function generatePDF() {
 
       await new Promise(function(r) { setTimeout(r, 500); });
 
+      // GMB/Google Ads/Meta Ads charts are lazily created only when the
+      // user actually clicks that tab (via showTab's init calls) - since
+      // generatePDF() sets display directly and skips showTab(), those
+      // charts would otherwise never get created and export as blank.
+      if (s.id === 'gmb' && typeof _gmbDone !== 'undefined' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }
+      if (s.id === 'googleads' && typeof initGaCharts === 'function') { initGaCharts(); }
+      if (s.id === 'metaads' && typeof initMetaCharts === 'function') { initMetaCharts(); }
+
+      // Charts created while their tab was hidden (0x0 canvas) never
+      // auto-redraw just because the tab becomes visible later - force
+      // a resize/redraw on every chart in this section before capture.
+      if (window.Chart && Chart.instances) {
+        await new Promise(function(r) { setTimeout(r, 150); });
+        Object.values(Chart.instances).forEach(function(ch) {
+          if (s.el.contains(ch.canvas)) { ch.resize(); ch.update('none'); }
+        });
+        await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
+      }
+
       // Collect link positions (as fractions of section size) for tasks/linkbuilding
       var sectionLinkData = null;
       if (s.id === 'tasks' || s.id === 'linkbuilding') {
@@ -1573,7 +1599,10 @@ async function generatePDF() {
     if (activeTab) activeTab.click();
 
     var clientName = document.querySelector('h1');
-    var filename = (clientName ? clientName.textContent.trim().replace(/\s+/g, '_') : 'dashboard') + '_SEO_Report.pdf';
+    var periodEl = document.querySelector('.period-label');
+    var periodMatch = periodEl ? periodEl.textContent.match(/([A-Za-z]{3})-(\d{4})/) : null;
+    var monYY = periodMatch ? ('_' + periodMatch[1] + '_' + periodMatch[2].slice(-2)) : '';
+    var filename = (clientName ? clientName.textContent.trim().replace(/\s+/g, '_') : 'dashboard') + '_SEO_Report' + monYY + '.pdf';
     pdf.save(filename);
 
   } catch(e) {
