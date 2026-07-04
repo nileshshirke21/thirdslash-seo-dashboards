@@ -4158,6 +4158,27 @@ async function generatePDF() {
 }
 
 </script>
+
+<script>
+// The colored header bar above rank-table/history-style tables is a
+// plain flex div, independent of the table's own rendered width. When
+// table content (e.g. long URLs) forces the table wider than the
+// container, the header bar doesn't grow with it, leaving a blank gap
+// at the end. Keep them in sync explicitly rather than relying on both
+// happening to compute the same width.
+function syncRankHeaders() {
+  document.querySelectorAll('.rank-table-wrap').forEach(function(wrap) {
+    var header = wrap.querySelector(':scope > .rank-table-header');
+    var table = wrap.querySelector(':scope > table');
+    if (!header || !table) return;
+    var w = table.scrollWidth;
+    if (w > 0) header.style.minWidth = w + 'px';
+  });
+}
+window.addEventListener('load', syncRankHeaders);
+window.addEventListener('resize', syncRankHeaders);
+setTimeout(syncRankHeaders, 300);
+</script>
 </body>
 </html>
 
@@ -7398,6 +7419,7 @@ function showTab(name, el) {
   document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active');});
   document.getElementById('tab-' + name).classList.add('active');
   if(el) el.classList.add('active');
+  syncRankHeaders();
   if(name === 'gmb' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }
   if(name === 'googleads' && typeof initGaCharts === 'function') { initGaCharts(); }
 }
