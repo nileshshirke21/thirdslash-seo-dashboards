@@ -6211,6 +6211,11 @@ async function generatePDF() {
     tabIds.forEach(function(t) {
       var el = document.getElementById('tab-' + t);
       if (!el) return;
+      // Skip tabs that only contain a "coming soon"/no-data placeholder
+      // (e.g. GMB not applicable for this client) - nothing worth exporting.
+      var onlyPlaceholder = el.querySelector('.no-data') &&
+        el.textContent.trim() === el.querySelector('.no-data').textContent.trim();
+      if (onlyPlaceholder) return;
       sections.push({ id: t, el: el });
     });
 
