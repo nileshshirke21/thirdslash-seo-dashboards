@@ -1565,7 +1565,7 @@ new Chart(document.getElementById('chChart'), {
 <!-- TECH AUDIT TAB -->
 
 <div id="tab-techaudit" class="section">
-  
+
 <style>
 /* ── Tech Audit Scoped Styles ── */
 .ta-wrap {
@@ -1574,9 +1574,9 @@ new Chart(document.getElementById('chChart'), {
   --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
   --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
   --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
-  --blue:#5b39d9; --blue-bg:#f0edff; --blue-border:#BFDBFE;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
   --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
 }
 .ta-banner {
@@ -1715,18 +1715,13 @@ new Chart(document.getElementById('chChart'), {
 }
 
 /* Issue table */
-.ta-table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
 .ta-table {
   width: 100%;
-  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
   overflow: hidden;
 }
 .ta-table th {
@@ -1788,6 +1783,11 @@ new Chart(document.getElementById('chChart'), {
   border: 1px solid var(--purple-border);
   margin-left: 4px;
 }
+.ta-src-gsc {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
 
 /* Expandable URL panel */
 .ta-url-panel {
@@ -1804,13 +1804,11 @@ new Chart(document.getElementById('chChart'), {
   padding: 12px 20px;
   max-height: 300px;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 .ta-url-inner .ta-url-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
   padding: 6px 0;
   border-bottom: 1px solid var(--border);
   font-size: 12px;
@@ -1819,8 +1817,7 @@ new Chart(document.getElementById('chChart'), {
 .ta-url-inner .ta-url-item a {
   color: var(--blue);
   text-decoration: none;
-  overflow-wrap: anywhere;
-  min-width: 0;
+  word-break: break-all;
 }
 .ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
 .ta-copy-btn {
@@ -1867,31 +1864,33 @@ new Chart(document.getElementById('chChart'), {
       <svg width="128" height="128" viewBox="0 0 128 128">
         <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
         <circle cx="64" cy="64" r="54" fill="none" stroke="#DC2626" stroke-width="10"
-                stroke-dasharray="339.3" stroke-dashoffset="237.5"
+                stroke-dasharray="339.3" stroke-dashoffset="271.4"
                 stroke-linecap="round"/>
       </svg>
       <div class="ta-score-num">
-        <span class="ta-big">40</span>
+        <span class="ta-big">20</span>
         <span class="ta-of">/ 100</span>
       </div>
     </div>
     <div class="ta-banner-text">
       <h2>Technical SEO Health</h2>
-      <p>MJ Gorgeous &middot; mjgorgeous.com &middot; Screaming Frog Pro Crawl &middot; 1 Jul 2026 &middot; 329 pages scanned</p>
+      <p>MJ Gorgeous &middot; mjgorgeous.com &middot; Screaming Frog Pro Crawl &middot; 06 Jul 2026 &middot; 338 pages scanned</p>
       <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
     </div>
   </div>
 
   <!-- Metric Cards -->
   <div class="ta-metrics">
-    <div class="ta-metric-card"><div class="ta-mc-val">329</div><div class="ta-mc-label">Total HTML Pages</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">89</div><div class="ta-mc-label">200 OK</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">89</div><div class="ta-mc-label">Indexable</div></div>
-    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">73</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card"><div class="ta-mc-val">338</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">275</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">244</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-red"><div class="ta-mc-val">33</div><div class="ta-mc-label">404 Errors</div></div>
     <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">159</div><div class="ta-mc-label">Redirects (3xx)</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">159</div><div class="ta-mc-label">Title Issues</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">159</div><div class="ta-mc-label">Meta Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">32</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">5</div><div class="ta-mc-label">Broken Resources</div></div>
+    
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">52</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">99</div><div class="ta-mc-label">Meta Issues</div></div>
   </div>
 
 
@@ -1902,6 +1901,8 @@ new Chart(document.getElementById('chChart'), {
     <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
     <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
     <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <button class="ta-chip" data-cat="sf" onclick="taFilter(this)">SF</button>
+    
     <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
       <option value="all">All Priorities</option>
       <option value="high">High</option>
@@ -1910,230 +1911,228 @@ new Chart(document.getElementById('chChart'), {
     </select>
     <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
       <option value="all">All Statuses</option>
-      <option value="Under Review">Under Review</option>
-      <option value="Completed">Completed</option>
-      <option value="Not Completed">Not Completed</option>
-      <option value="Blocked">Blocked</option>
-      <option value="Waiting for Approval">Waiting for Approval</option>
-      <option value="Rejected">Rejected</option>
+      <option value="Not Started">Not Started</option><option value="In Progress">In Progress</option><option value="Need Developer's Help">Need Developer's Help</option><option value="In Review">In Review</option><option value="Changes Done">Changes Done</option><option value="Not Possible">Not Possible</option>
     </select>
   </div>
 
   <!-- Issue Log Table -->
-  <div class="ta-table-wrap"><table class="ta-table" id="ta-issue-table">
+  <table class="ta-table" id="ta-issue-table">
     <thead>
       <tr>
-        <th style="width:28%;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th>
-        <th style="width:60px;cursor:pointer" onclick="taSortTable(1)">Count &#8645;</th>
-        <th style="width:80px;cursor:pointer" onclick="taSortTable(2)">Priority &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(3)">What This Means &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(4)">How to Fix It &#8645;</th>
-        <th style="width:110px;cursor:pointer" onclick="taSortTable(5)">Owner &#8645;</th>
-        <th style="width:130px;cursor:pointer" onclick="taSortTable(6)">Status &#8645;</th>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:150px">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" onclick="taToggle('i01')">
-        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>36 pages returning 404 errors </td>
-        <td><span class="ta-pill ta-pill-red">35</span></td>
+      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" data-src="SF" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>33 pages returning 404 errors <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">33</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
         <td>These pages return a 404 Not Found status. Search engines will deindex them and users hitting these URLs get a dead end.</td>
         <td>Set up 301 redirects to the most relevant live page. If the content was removed intentionally, ensure proper 410 Gone status and update internal links.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i01">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i01"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" onclick="taToggle('i02')">
-        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>27 pages with 3xx redirects </td>
-        <td><span class="ta-pill ta-pill-amber">27</span></td>
+      <tr class="ta-row-issue" data-id="i09" data-cat="onpage" data-prio="high" data-src="SF" onclick="taToggle('i09')">
+        <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>39 pages with missing H1 tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">39</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>The H1 tag is the primary heading signal for search engines. Missing H1s weaken topical relevance and hurt rankings.</td>
+        <td>Add a single, unique H1 tag to each page that includes the primary keyword and clearly describes the page topic.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i09" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i09">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i09"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i12" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i12')">
+        <td><span class="ta-arrow" id="ta-arrow-i12">&#9654;</span>3 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">3</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i12" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i12">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i12"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>32 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">32</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
         <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i02">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i02"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="medium" onclick="taToggle('i03')">
-        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>93 pages with titles over 60 characters </td>
-        <td><span class="ta-pill ta-pill-amber">93</span></td>
+      <tr class="ta-row-issue" data-id="i03" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>5 broken resources (scripts, images, stylesheets) <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">5</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
-        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
-        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td>These are broken JavaScript, CSS, image, or font files referenced from your site's shared template — usually the same broken reference loading on every page, not a broken content link. Can hurt Core Web Vitals and cause console errors.</td>
+        <td>Update or remove the broken resource reference in your theme/plugin code. Since it's loaded from a shared template, fixing it once resolves it site-wide.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i03">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i03"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="low" onclick="taToggle('i04')">
-        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>3 pages with titles below 30 characters </td>
-        <td><span class="ta-pill ta-pill-blue">3</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
-        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>49 pages with titles over 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">49</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Titles longer than 70 characters get truncated in Google search results, reducing click-through rates.</td>
+        <td>Rewrite titles to be under 70 characters while keeping the primary keyword near the front. Remove filler words.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i04">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i04"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="medium" onclick="taToggle('i05')">
-        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>11 pages with missing meta descriptions </td>
+      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>11 pages with missing meta descriptions <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">11</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
         <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i05">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i05"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="low" onclick="taToggle('i06')">
-        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>78 pages with meta descriptions over 155 characters </td>
-        <td><span class="ta-pill ta-pill-blue">78</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
-        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i06">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i06"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i07" data-cat="onpage" data-prio="low" onclick="taToggle('i07')">
-        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>8 pages with meta descriptions below 70 characters </td>
-        <td><span class="ta-pill ta-pill-blue">8</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short meta descriptions waste valuable SERP real estate and miss the chance to persuade users to click.</td>
-        <td>Expand meta descriptions to at least 70 characters with a compelling summary and call to action.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i07">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i07"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i08" data-cat="onpage" data-prio="high" onclick="taToggle('i08')">
-        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>38 pages with missing H1 tags </td>
-        <td><span class="ta-pill ta-pill-red">38</span></td>
-        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
-        <td>The H1 tag is the primary heading signal for search engines. Missing H1s weaken topical relevance and hurt rankings.</td>
-        <td>Add a single, unique H1 tag to each page that includes the primary keyword and clearly describes the page topic.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i08" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i08">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i08"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i09" data-cat="onpage" data-prio="medium" onclick="taToggle('i09')">
-        <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>1 pages with duplicate H1 tags </td>
+      <tr class="ta-row-issue" data-id="i10" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i10')">
+        <td><span class="ta-arrow" id="ta-arrow-i10">&#9654;</span>1 pages with duplicate H1 tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">1</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Multiple H1 tags on a page dilute the heading hierarchy and confuse search engines about the primary topic.</td>
         <td>Ensure each page has exactly one H1 tag. Demote additional H1s to H2 or H3 as appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i09" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i09" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i10" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
-      <tr class="ta-url-panel" id="ta-panel-i09">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i09"></div>
+      <tr class="ta-url-panel" id="ta-panel-i10">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i10"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i10" data-cat="technical" data-prio="medium" onclick="taToggle('i10')">
-        <td><span class="ta-arrow" id="ta-arrow-i10">&#9654;</span>14 pages set to noindex </td>
+      <tr class="ta-row-issue" data-id="i11" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i11')">
+        <td><span class="ta-arrow" id="ta-arrow-i11">&#9654;</span>14 pages set to noindex <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">14</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
         <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i10" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i10" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i10">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i10"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i11" data-cat="technical" data-prio="high" onclick="taToggle('i11')">
-        <td><span class="ta-arrow" id="ta-arrow-i11">&#9654;</span>0 pages with missing canonical tags </td>
-        <td><span class="ta-pill ta-pill-red">0</span></td>
-        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
-        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
-        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i11" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i11" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i11" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i11">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i11"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i12" data-cat="content" data-prio="medium" onclick="taToggle('i12')">
-        <td><span class="ta-arrow" id="ta-arrow-i12">&#9654;</span>13 pages with thin / low content </td>
+      <tr class="ta-row-issue" data-id="i13" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i13')">
+        <td><span class="ta-arrow" id="ta-arrow-i13">&#9654;</span>13 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">13</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
         <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i12" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i12" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i13" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
-      <tr class="ta-url-panel" id="ta-panel-i12">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i12"></div>
+      <tr class="ta-url-panel" id="ta-panel-i13">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i13"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>3 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">3</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i07" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>80 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">80</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i08" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i08')">
+        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>8 pages with meta descriptions below 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">8</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short meta descriptions waste valuable SERP real estate and miss the chance to persuade users to click.</td>
+        <td>Expand meta descriptions to at least 70 characters with a compelling summary and call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i08">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i08"></div>
         </td>
       </tr>
     </tbody>
-  </table></div>
+  </table>
 </div>
 
 <script>
 (function() {
-  var LS_KEY = "mj-gorgeous_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://mjgorgeous.com/bridal-makeup-near-me-book-the-best-bridal-makeup-artist-in-bangalore/", "https://mjgorgeous.com/party-makeup-near-me-flawless-looks-for-every-celebration/", "https://mjgorgeous.com/fashion-makeup-services/", "https://mjgorgeous.com/portfolio", "https://mjgorgeous.com/decoding-makeup-products/", "https://mjgorgeous.com/north-vs-south-indian-bridal-makeup-whats-stealing-the-spotlight-in-bangalore-right-now/", "https://mjgorgeous.com/how-long-bridal-makeup-takes-india-3-hour-timeline/", "https://mjgorgeous.com/airbrush_makeup_worth_it_indian_brides/", "https://mjgorgeous.com/high-definition-makeup-get-a-flawless-finish/", "https://mjgorgeous.com/why-it-is-a-great-idea-to-choose-professional-makeup-artistry-as-a-career-in-2022/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist-for-your-wedding/", "https://mjgorgeous.com/how-to-become-a-successful-makeup-artist-in-india/", "https://mjgorgeous.com/makeup-artist-courses-guide/", "https://mjgorgeous.com/what-is-difference-between-beautician-and-makeup-artist/", "https://mjgorgeous.com/mjg-pixel-professional-photography-bangalore/", "https://mjgorgeous.com/5-essential-questions-makeup-artists-must-ask-their-clients-before-bridal-makeup/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist/", "https://mjgorgeous.com/south-indian-tamil-wedding-bridal-makeup-artist-guide/", "https://mjgorgeous.com/searching-for-a-makeup-academy-here-is-your-complete-honest-guide/", "https://mjgorgeous.com/bridal-makeup-course/", "https://mjgorgeous.com/how-much-does-a-makeup-artist-earn-in-india/", "https://mjgorgeous.com/how-to-build-a-professional-makeup-kit-effectively-and-efficiently/", "https://mjgorgeous.com/why-only-buying-expensive-makeup-products-wont-make-you-a-successful-makeup-artist/", "https://mjgorgeous.com/qualities-of-a-good-makeup-artist/", "https://mjgorgeous.com/why-is-professional-makeup-academy-so-important/", "https://mjgorgeous.com/want-to-be-a-premium-makeup-artist-here-a-reality-check/", "https://mjgorgeous.com/super-guide-for-makeup-beginners-everything-you-need-to-know-about-your-makeup/", "https://mjgorgeous.com/how-to-build-a-standout-professional-makeup-artist-portfolio-a-step-by-step-guide/", "https://mjgorgeous.com/essential-makeup-brushes-every-kit-needs-a-comprehensive-guid/", "https://mjgorgeous.com/why-do-you-need-to-become-a-certified-makeup-artist/", "https://mjgorgeous.com/how-much-does-it-cost-to-learn-makeup/", "https://mjgorgeous.com/makeup-artist-guide-for-right-wedding-look/", "https://mjgorgeous.com/blog/bride-skincare-tips", "https://mjgorgeous.com/is-it-easy-to-get-a-job-as-a-full-time-makeup-artist-in-india-we-have-an-answer-for-you/", "https://mjgorgeous.com/how-covid-19-pandemic-will-not-impact-makeup-artist/"], "i02": ["https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20an%20enquiry%3F", "https://mjgorgeous.com/sangeet-makeup-services/", "https://mjgorgeous.com/party-makeup-services/", "https://mjgorgeous.com/makeup-artist-near-me-book-the-best-makeup-services-near-you/", "https://mjgorgeous.com/muhurtham-makeup-services/", "https://mjgorgeous.com/bridesmaid-makeup-services/", "https://wa.me/919686455376", "https://mjgorgeous.com/reception-makeup-services/", "https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20a%20bridal%20enquiry%3F", "https://mjgorgeous.com/mjg-bridal-makeover-request-form/", "https://mjgorgeous.com/haldi-mehendi-makeup-services/", "https://mjgorgeous.com/bridal-makeup-services/", "https://mjgorgeous.com/contact/", "https://mjgorgeous.com/dont-make-these-two-mistakes-for-your-sangeet-makeup-look-expert-advise/", "http://www.mjgorgeous.com/", "https://mjgorgeous.com/party-makeup-services-2/", "https://mjgorgeous.com/about-mj-shekhar/", "https://mjgorgeous.com/professional-makeup-artist-course/", "https://www.mjgorgeous.com/", "https://mjgorgeous.com/dos-and-donts-for-hiring-a-bridal-make-up-artist-for-your-indian-wedding/", "https://mjgorgeous.com/how-a-professional-makeup-photographer-can-elevate-your-makeup-skills/", "https://www.mjgorgeous.com/blog/bridal-makeup-artist-bangalore", "https://mjgorgeous.com/mjg-wedding-toolkit/", "https://www.mjgorgeous.com/blog/bride-skincare-tips", "https://mjgorgeous.com/makeup-courses-bangalore/", "https://mjgorgeous.com/cocktail-party-makeup-services/", "http://mjgorgeous.com/"], "i03": ["https://mjgorgeous.com/north-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/how-long-does-bridal-makeup-last-indian-weddings/", "https://mjgorgeous.com/personal-grooming-application/", "https://mjgorgeous.com/luxury-bridal-makeup-bangalore/", "https://mjgorgeous.com/about/", "https://mjgorgeous.com/personal-grooming-courses/", "https://mjgorgeous.com/gallery/", "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "https://mjgorgeous.com/bridal-makeup-oily-skin-bangalore-humidity-guide/", "https://mjgorgeous.com/how-to-do-simple-party-makeup-bangalore/", "https://mjgorgeous.com/ultimate-guide-to-choosing-the-best-bridal-makeup-artist-in-bangalore/", "https://mjgorgeous.com/how-to-find-the-perfect-makeup-foundation-for-you/", "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "https://mjgorgeous.com/hd-makeup-vs-airbrush-makeup-which-one-is-better-for-bridal-makeup/", "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "https://mjgorgeous.com/7-steps-to-get-your-perfect-winged-liner-watch-the-video-for-easy-steps/", "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "https://mjgorgeous.com/makeup-tips-for-different-skin-types/", "https://mjgorgeous.com/impact-of-personal-grooming-on-self-confidence/", "https://mjgorgeous.com/how-to-apply-nude-lipstick-like-a-pro/", "https://mjgorgeous.com/how-long-does-bridal-makeup-take-in-real-weddings/", "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "https://mjgorgeous.com/beauty-burnout-are-we-overwhelmed-by-perfection/", "https://mjgorgeous.com/natural-bridal-makeup-not-painted-wedding-photos/", "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "https://mjgorgeous.com/everything-you-want-to-know-about-half-sari-function/", "https://mjgorgeous.com/bridal-makeup-trial-complete-guide-for-brides-makeup-artists/", "https://mjgorgeous.com/why-you-should-choose-airbrush-makeup-for-your-wedding/", "https://mjgorgeous.com/north-indian-vs-south-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/summer-reception-makeup-looks-that-actually-stay-put-no-melting-no-smudging/", "https://mjgorgeous.com/5-personal-grooming-tips-you-must-not-ignore-as-a-woman/", "https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/", "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "https://mjgorgeous.com/category/makeup-services/page/2/", "https://mjgorgeous.com/bridal-makeup-trends-evolving-in-2021-post-pandemic/", "https://mjgorgeous.com/what-sets-bridal-makeup-services-in-bangalore-apart-from-other-cities/", "https://mjgorgeous.com/bridal-makeup-magic-the-perfect-look-for-every-wedding-theme-in-bangalore/", "https://mjgorgeous.com/the-dynamic-connection-between-makeup-artists-and-wedding-photographers/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/bangalores-fashion-culture-is-redefining-personal-grooming-courses-heres-how/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "https://mjgorgeous.com/is-bangalore-killing-traditional-makeup-with-its-bold-party-looks/", "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "https://mjgorgeous.com/career-as-a-makeup-artist-scope-qualification-and-salary-in-india/", "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "https://mjgorgeous.com/how-to-avoid-the-most-common-bridal-makeup-mistakes/", "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "https://mjgorgeous.com/is-bridal-makeup-in-india-becoming-too-commercialized/", "https://mjgorgeous.com/10-questions-to-ask-before-hiring-bridal-makeup-artist/", "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "https://mjgorgeous.com/bridal-makeup-artist-is-not-a-professional-makeup-artist-find-out-why/", "https://mjgorgeous.com/attention-makeup-artist-brides-to-be-8-biggest-wedding-makeup-mistakes-you-dont-want-to-make/", "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "https://mjgorgeous.com/how-to-take-care-of-your-skin-during-summer-time/", "https://mjgorgeous.com/category/personal-grooming/page/2/", "https://mjgorgeous.com/castor-oil-benefits/", "https://mjgorgeous.com/category/makeup-services/page/3/", "https://mjgorgeous.com/must-have-bridal-emergency-kit-for-a-stress-free-wedding/", "https://mjgorgeous.com/are-you-doing-your-makeup-wrong-learn-how-to-fix-it/", "https://mjgorgeous.com/why-becoming-makeup-artist-will-change-your-life/", "https://mjgorgeous.com/booking-a-bridal-makeup-artist-for-your-wedding-read-this-before-you-book/", "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "https://mjgorgeous.com/perfect-your-bridal-makeup-for-different-skin-tones/", "https://mjgorgeous.com/make-up-artist-reveals-secrets-to-get-the-best-make-up-from-your-make-up-artist/", "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "https://mjgorgeous.com/why-you-shouldnt-let-makeup-artist-wait/", "https://mjgorgeous.com/category/makeup-services/page/4/", "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "https://mjgorgeous.com/master-the-art-of-makeup-removal/", "https://mjgorgeous.com/neutral-lipstick-magic-your-guide-to-finding-the-perfect-shade-flawless-application-and-stylish-pairings/", "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "https://mjgorgeous.com/get-your-engagement-makeup-look-flawless-approved-hacks/", "https://mjgorgeous.com/makeup-tips-for-glasses-wearers/", "https://mjgorgeous.com/category/personal-grooming/page/3/", "https://mjgorgeous.com/category/makeup-services/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/4/", "https://mjgorgeous.com/category/makeup-services/page/6/", "https://mjgorgeous.com/category/makeup-services/page/7/", "https://mjgorgeous.com/category/makeup-services/page/8/"], "i04": ["https://mjgorgeous.com/privacy-policy/", "https://mjgorgeous.com/contact-us/", "https://mjgorgeous.com/frequently-asked-questions/"], "i05": ["https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/north-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/"], "i06": ["https://mjgorgeous.com/mj-shekhar-bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/sangeet-makeup-bangalore/", "https://mjgorgeous.com/why-brides-look-same-bridal-makeup-bangalore/", "https://mjgorgeous.com/how-long-does-bridal-makeup-last-indian-weddings/", "https://mjgorgeous.com/bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/luxury-bridal-makeup-bangalore/", "https://mjgorgeous.com/nri-bridal-makeup-artist-bangalore-guide/", "https://mjgorgeous.com/model-search/", "https://mjgorgeous.com/airbrush-bridal-makeup-bangalore/", "https://mjgorgeous.com/personal-grooming-courses/", "https://mjgorgeous.com/bridal-reception-makeup-bangalore/", "https://mjgorgeous.com/reception-makeup-artist-near-me/", "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "https://mjgorgeous.com/bridal-makeup-oily-skin-bangalore-humidity-guide/", "https://mjgorgeous.com/how-to-do-simple-party-makeup-bangalore/", "https://mjgorgeous.com/tell-makeup-artist-never-liked-photos/", "https://mjgorgeous.com/how-to-find-the-perfect-makeup-foundation-for-you/", "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "https://mjgorgeous.com/bangalore-humidity-bridal-makeup-tips/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "https://mjgorgeous.com/hd-makeup-vs-airbrush-makeup-which-one-is-better-for-bridal-makeup/", "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "https://mjgorgeous.com/how-to-apply-nude-lipstick-like-a-pro/", "https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/", "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "https://mjgorgeous.com/frequently-asked-questions/", "https://mjgorgeous.com/beauty-burnout-are-we-overwhelmed-by-perfection/", "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "https://mjgorgeous.com/bridal-makeup-matched-lehenga-saree-colour/", "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "https://mjgorgeous.com/everything-you-want-to-know-about-half-sari-function/", "https://mjgorgeous.com/how-to-look-good-in-candid-photos-in-your-wedding/", "https://mjgorgeous.com/makeup-artist-near-me/", "https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/", "https://mjgorgeous.com/what-is-personal-hygiene-grooming/", "https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/", "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "https://mjgorgeous.com/how-to-handle-your-makeup-in-summers/", "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "https://mjgorgeous.com/bridal-makeup-trends-evolving-in-2021-post-pandemic/", "https://mjgorgeous.com/beginners-guide-for-party-makeup/", "https://mjgorgeous.com/how-personal-grooming-can-boost-your-career/", "https://mjgorgeous.com/the-ultimate-guide-to-makeup-tips-for-oily-skin/", "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "https://mjgorgeous.com/is-bangalore-killing-traditional-makeup-with-its-bold-party-looks/", "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "https://mjgorgeous.com/bridal-makeup-tips-for-every-season-expert-tips-from-a-wedding-makeup-artist-in-bangalore/", "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "https://mjgorgeous.com/kannada-wedding-rituals-and-bride-makeup-look/", "https://mjgorgeous.com/makeup-artist-reveals-secret-behind-how-to-make-makeup-last-all-day/", "https://mjgorgeous.com/why-bridal-makeup-is-so-expensive/", "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "https://mjgorgeous.com/is-bridal-makeup-in-india-becoming-too-commercialized/", "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "https://mjgorgeous.com/how-to-take-care-of-your-skin-during-summer-time/", "https://mjgorgeous.com/how-to-cover-your-acnes-with-makeup/", "https://mjgorgeous.com/must-have-bridal-emergency-kit-for-a-stress-free-wedding/", "https://mjgorgeous.com/booking-a-bridal-makeup-artist-for-your-wedding-read-this-before-you-book/", "https://mjgorgeous.com/a-comprehensive-guide-on-why-bridal-makeup-is-worth-the-investment/", "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "https://mjgorgeous.com/make-up-artist-reveals-secrets-to-get-the-best-make-up-from-your-make-up-artist/", "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "https://mjgorgeous.com/5-reasons-why-makeup-artists-are-expensive/", "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "https://mjgorgeous.com/makeup-tips-for-glasses-wearers/"], "i07": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/bridal-makeup-faqs/", "https://mjgorgeous.com/personal-grooming-application/", "https://mjgorgeous.com/about/", "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "https://mjgorgeous.com/castor-oil-benefits/"], "i08": ["https://mjgorgeous.com/blog/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/category/makeup-services/", "https://mjgorgeous.com/blog/page/2/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/category/makeup-services/page/2/", "https://mjgorgeous.com/blog/page/3/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/category/personal-grooming/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/category/personal-grooming/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/makeup-services/page/3/", "https://mjgorgeous.com/blog/page/4/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/", "https://mjgorgeous.com/category/makeup-services/page/4/", "https://mjgorgeous.com/category/personal-grooming/page/3/", "https://mjgorgeous.com/blog/page/5/", "https://mjgorgeous.com/blog/page/6/", "https://mjgorgeous.com/category/makeup-services/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/4/", "https://mjgorgeous.com/blog/page/7/", "https://mjgorgeous.com/blog/page/8/", "https://mjgorgeous.com/category/makeup-services/page/6/", "https://mjgorgeous.com/category/makeup-services/page/7/", "https://mjgorgeous.com/blog/page/9/", "https://mjgorgeous.com/blog/page/10/", "https://mjgorgeous.com/category/makeup-services/page/8/", "https://mjgorgeous.com/blog/page/11/", "https://mjgorgeous.com/blog/page/12/", "https://mjgorgeous.com/blog/page/13/", "https://mjgorgeous.com/blog/page/14/"], "i09": ["https://mjgorgeous.com/"], "i10": ["https://mjgorgeous.com/author/mj-shekhar/", "https://mjgorgeous.com/author/mj-shekhar/page/2/", "https://mjgorgeous.com/author/mj-shekhar/page/3/", "https://mjgorgeous.com/author/mj-shekhar/page/4/", "https://mjgorgeous.com/author/mj-shekhar/page/5/", "https://mjgorgeous.com/author/mj-shekhar/page/6/", "https://mjgorgeous.com/author/mj-shekhar/page/7/", "https://mjgorgeous.com/author/mj-shekhar/page/8/", "https://mjgorgeous.com/author/mj-shekhar/page/9/", "https://mjgorgeous.com/author/mj-shekhar/page/10/", "https://mjgorgeous.com/author/mj-shekhar/page/11/", "https://mjgorgeous.com/author/mj-shekhar/page/12/", "https://mjgorgeous.com/author/mj-shekhar/page/13/", "https://mjgorgeous.com/author/mj-shekhar/page/14/"], "i11": [], "i12": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/eye-makeup-2/", "https://mjgorgeous.com/contact-us/", "https://mjgorgeous.com/gallery/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/"]};
+  var LS_KEY = "mj-gorgeous_techaudit_jul_2026";
+  var ALL_URLS = {"i01": ["https://mjgorgeous.com/bridal-makeup-near-me-book-the-best-bridal-makeup-artist-in-bangalore/", "https://mjgorgeous.com/party-makeup-near-me-flawless-looks-for-every-celebration/", "https://mjgorgeous.com/fashion-makeup-services/", "https://mjgorgeous.com/portfolio", "https://mjgorgeous.com/decoding-makeup-products/", "https://mjgorgeous.com/north-vs-south-indian-bridal-makeup-whats-stealing-the-spotlight-in-bangalore-right-now/", "https://mjgorgeous.com/how-long-bridal-makeup-takes-india-3-hour-timeline/", "https://mjgorgeous.com/airbrush_makeup_worth_it_indian_brides/", "https://mjgorgeous.com/high-definition-makeup-get-a-flawless-finish/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist-for-your-wedding/", "https://mjgorgeous.com/how-to-become-a-successful-makeup-artist-in-india/", "https://mjgorgeous.com/want-to-be-a-premium-makeup-artist-here-a-reality-check/", "https://mjgorgeous.com/makeup-artist-courses-guide/", "https://mjgorgeous.com/what-is-difference-between-beautician-and-makeup-artist/", "https://mjgorgeous.com/mjg-pixel-professional-photography-bangalore/", "https://mjgorgeous.com/how-to-choose-best-bridal-makeup-artist/", "https://mjgorgeous.com/south-indian-tamil-wedding-bridal-makeup-artist-guide/", "https://mjgorgeous.com/searching-for-a-makeup-academy-here-is-your-complete-honest-guide/", "https://mjgorgeous.com/bridal-makeup-course/", "https://mjgorgeous.com/why-it-is-a-great-idea-to-choose-professional-makeup-artistry-as-a-career-in-2022/", "https://mjgorgeous.com/how-much-does-a-makeup-artist-earn-in-india/", "https://mjgorgeous.com/how-to-build-a-professional-makeup-kit-effectively-and-efficiently/", "https://mjgorgeous.com/why-only-buying-expensive-makeup-products-wont-make-you-a-successful-makeup-artist/", "https://mjgorgeous.com/qualities-of-a-good-makeup-artist/", "https://mjgorgeous.com/why-is-professional-makeup-academy-so-important/", "https://mjgorgeous.com/super-guide-for-makeup-beginners-everything-you-need-to-know-about-your-makeup/", "https://mjgorgeous.com/essential-makeup-brushes-every-kit-needs-a-comprehensive-guid/", "https://mjgorgeous.com/why-do-you-need-to-become-a-certified-makeup-artist/", "https://mjgorgeous.com/5-essential-questions-makeup-artists-must-ask-their-clients-before-bridal-makeup/", "https://mjgorgeous.com/how-much-does-it-cost-to-learn-makeup/", "https://mjgorgeous.com/makeup-artist-guide-for-right-wedding-look/", "https://mjgorgeous.com/is-it-easy-to-get-a-job-as-a-full-time-makeup-artist-in-india-we-have-an-answer-for-you/", "https://mjgorgeous.com/how-covid-19-pandemic-will-not-impact-makeup-artist/"], "i02": ["https://mjgorgeous.com/sangeet-makeup-services/", "http://mjgorgeous.com/terms-conditions/", "https://mjgorgeous.com/party-makeup-services/", "https://mjgorgeous.com/makeup-artist-near-me-book-the-best-makeup-services-near-you/", "https://mjgorgeous.com/muhurtham-makeup-services/", "http://mjgorgeous.com/", "https://mjgorgeous.com/bridesmaid-makeup-services/", "https://mjgorgeous.com/reception-makeup-services/", "http://mjgorgeous.com/privacy-policy/", "https://mjgorgeous.com/mjg-bridal-makeover-request-form/", "https://mjgorgeous.com/haldi-mehendi-makeup-services/", "https://mjgorgeous.com/bridal-makeup-services/", "https://mjgorgeous.com/contact/", "https://mjgorgeous.com/dont-make-these-two-mistakes-for-your-sangeet-makeup-look-expert-advise/", "https://mjgorgeous.com/mj-shekhar/", "http://www.mjgorgeous.com/", "https://mjgorgeous.com/party-makeup-services-2/", "https://mjgorgeous.com/about-mj-shekhar/", "https://mjgorgeous.com/professional-makeup-artist-course/", "https://mjgorgeous.com/bridal-makeup/", "https://www.mjgorgeous.com/", "https://mjgorgeous.com/dos-and-donts-for-hiring-a-bridal-make-up-artist-for-your-indian-wedding/", "https://mjgorgeous.com/how-a-professional-makeup-photographer-can-elevate-your-makeup-skills/", "https://mjgorgeous.com/makeup-courses-bangalore/", "https://www.mjgorgeous.com/blog/bridal-makeup-artist-bangalore", "https://mjgorgeous.com/mjg-wedding-toolkit/", "https://www.mjgorgeous.com/blog/bride-skincare-tips", "https://mjgorgeous.com/cocktail-party-makeup-services/", "https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20an%20enquiry%3F", "https://wa.me/919686455376", "https://wa.me/919686455376?text=Hello%20MJ%20Gorgeous%20Team%2C%20I%20found%20you%20on%20mjgorgeous.com%20and%20would%20like%20to%20make%20an%20enquiry.", "https://wa.me/919686455376?text=Hello%20Team%2C%20I%20found%20your%20contact%20on%20mjgorgeous.com.%20Could%20you%20please%20assist%20me%20with%20a%20bridal%20enquiry%3F"], "i03": [{"url": "http://mjgorgeous.com/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 2 pages (e.g. https://mjgorgeous.com/bridal-makeup/)"}, {"url": "https://mjgorgeous.com/how-to-build-a-standout-professional-makeup-artist-portfolio-a-step-by-step-guide/", "label": "HTTP Redirect broken \u00b7 404 \u00b7 Internal \u00b7 found on 1 page (e.g. https://mjgorgeous.com/how-a-professional-makeup-photographer-can-elevate-your-makeup-skills/)"}, {"url": "https://mjgorgeous.com/blog/bride-skincare-tips", "label": "HTTP Redirect broken \u00b7 404 \u00b7 Internal \u00b7 found on 1 page (e.g. https://www.mjgorgeous.com/blog/bride-skincare-tips)"}, {"url": "https://mjgorgeous.com/party-makeup-services/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. https://mjgorgeous.com/party-makeup-services-2/)"}, {"url": "https://www.mjgorgeous.com/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. http://www.mjgorgeous.com/)"}], "i04": [{"url": "https://mjgorgeous.com/bridal-makeup-dusky-skin-bangalore/", "label": "77 chars: \u201cBridal Makeup for Dusky Skin in Bangalore: Stop the Ash, Stop the Fairer Face\u201d"}, {"url": "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "label": "73 chars: \u201cBook Best & Premium Makeup Artists for Your Bridal Makeover | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/about/", "label": "82 chars: \u201cAbout MJ Shekhar | MJ Gorgeous Makeup Studio Bangalore - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "label": "80 chars: \u201cIs Your Makeup Camera Ready? Must Read Tips To Get The Best Photos | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/ultimate-guide-to-choosing-the-best-bridal-makeup-artist-in-bangalore/", "label": "76 chars: \u201cUltimate Guide: Choose the Best Bridal Makeup Artist Bangalore - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "label": "101 chars: \u201cWhy Spending On Professional Makeup Artist Is Worth for your Bridal Make-Up Experience! | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "label": "75 chars: \u201c6 Steps To Achieve No Makeup Look: Demystified! - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/7-steps-to-get-your-perfect-winged-liner-watch-the-video-for-easy-steps/", "label": "87 chars: \u201c7 Steps to Get Your Perfect Winged Eyeliner : Watch Video for Easy Steps! | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "label": "131 chars: \u201cThe Truth About Bridal Makeup and Skin Allergies: How Bangalore Brides Can Avoid a Wedding Day Disaster - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "label": "90 chars: \u201cLove natural makeup? Here\u2019s the 2026 guide that actually helps - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/how-long-does-bridal-makeup-take-in-real-weddings/", "label": "113 chars: \u201cHow long does bridal makeup take in real weddings - the timeline that prevents delays - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "label": "84 chars: \u201cHow Can Bridal Makeup Services Help you Achieve Your Dream Bridal Look - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/natural-bridal-makeup-not-painted-wedding-photos/", "label": "73 chars: \u201cNatural Bridal Makeup: Look Like You, Not a Painted Version | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "label": "74 chars: \u201cEverything That A Bride Needs To Know About Muhurtham Makeup | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "label": "72 chars: \u201cWhy Bridal Makeup is Shifting from Heavy to Natural Beauty - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "label": "71 chars: \u201cWhat If I Cry on My Wedding Day? A Bridal Makeup Artist\u2019s Honest Answer\u201d"}, {"url": "https://mjgorgeous.com/bridal-makeup-trial-complete-guide-for-brides-makeup-artists/", "label": "77 chars: \u201cBridal Makeup Trial: Complete Guide for Brides & Makeup Artists | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/why-you-should-choose-airbrush-makeup-for-your-wedding/", "label": "85 chars: \u201cWhy You Should Choose Airbrush Makeup for Your Wedding - MJ Gorgeous Makeup & Academy\u201d"}, {"url": "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "label": "79 chars: \u201cPlanning A Wedding? Here Are Must Known Tips For The Brides To Be | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "label": "79 chars: \u201cMakeup Artists Reacts To New Challenges Due To Corona & Lockdowns | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "label": "76 chars: \u201cWhy Hire a Bridal Makeup Artist in Bangalore for Your Big Day? - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/what-sets-bridal-makeup-services-in-bangalore-apart-from-other-cities/", "label": "98 chars: \u201cWhat Sets Bridal Makeup Services in Bangalore Apart From Other Cities? - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "label": "72 chars: \u201cSouth Indian Bridal Makeup: Kohl Eyes & Jasmine Gajra 2026 | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/the-dynamic-connection-between-makeup-artists-and-wedding-photographers/", "label": "72 chars: \u201cMakeup Artists & Wedding Photographers: Unity and Friction - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "label": "73 chars: \u201cBridal Makeup Concerns Archives - Page 2 of 2 - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "label": "87 chars: \u201cMust-Have Skincare Routine That you Don\u2019t Want After a Crazy Party Night! - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "label": "110 chars: \u201cClassic vs. Modern Bridal Makeup For Reception Styles: Which One is Right for You? - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "label": "95 chars: \u201cSelecting the Perfect Bridal Makeup Artist: A Step-by-Step Guide - MJ Gorgeous Makeup & Academy\u201d"}, {"url": "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "label": "72 chars: \u201cSangeet Makeup Mistakes That Ruin Wedding Photos | MJ Gorgeous Bangalore\u201d"}, {"url": "https://mjgorgeous.com/career-as-a-makeup-artist-scope-qualification-and-salary-in-india/", "label": "93 chars: \u201cCareer as a Makeup Artist: Scope, Qualification & Makeup Artist Salary in India | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "label": "78 chars: \u201cHow Bridal Makeup Services Ensure a Perfect Finish - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/ultimate-guide-to-choosing-the-best-bridal-makeup-artist-in-bangalore/?utm_source=chatgpt.com", "label": "76 chars: \u201cUltimate Guide: Choose the Best Bridal Makeup Artist Bangalore - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/get-your-engagement-makeup-look-flawless-approved-hacks/", "label": "73 chars: \u201cGet your Engagement Makeup look flawless : Approved Hacks ! - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "label": "76 chars: \u201cGet A Classy Professional Look With These 5 Office Makeup Tips | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/bangalores-fashion-culture-is-redefining-personal-grooming-courses-heres-how/", "label": "78 chars: \u201cBangalore\u2019s Fashion Culture Is Redefining Personal Grooming Courses\u2014Here\u2019s How\u201d"}, {"url": "https://mjgorgeous.com/bridal-makeup-artist-is-not-a-professional-makeup-artist-find-out-why/", "label": "86 chars: \u201cBridal Makeup Artist is Not a Professional Makeup Artist : Find out Why? | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/attention-makeup-artist-brides-to-be-8-biggest-wedding-makeup-mistakes-you-dont-want-to-make/", "label": "90 chars: \u201c8 Biggest Wedding Makeup Mistakes Makeup Artist & Brides Don\u2019t Want To Make! | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "label": "87 chars: \u201cWhy your wedding is not complete without a Makeup Artist - MJ Gorgeous Makeup & Academy\u201d"}, {"url": "https://mjgorgeous.com/castor-oil-benefits/", "label": "81 chars: \u201cCastor Oil Benefits you cannot imagine : Wonder oil ! - MJ Gorgeous Makeup Studio\u201d"}, {"url": "https://mjgorgeous.com/why-becoming-makeup-artist-will-change-your-life/", "label": "74 chars: \u201c5 Reasons Why becoming a Makeup Artist will change your life | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "label": "77 chars: \u201cHiring a Bridal Makeup Artist for Your Indian Wedding \u2014 MJ Gorgeous Bangalore\u201d"}, {"url": "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "label": "105 chars: \u201cWhat To Expect If You Are Getting Your Bridal Makeup Done From A Professional Makeup Artist | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "label": "82 chars: \u201cLifestyle Changes to Make in Your 30s and 40s for Optimal Well-Being - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "label": "90 chars: \u201cGetting Your Bridal Makeup? 5 Things Not to Expect from Bridal Makeup Artist | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "label": "89 chars: \u201cDisappearing Wedding Trends in India: What\u2019s Fading and What\u2019s Here to Stay - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "label": "80 chars: \u201cWhy Experience Over Saving Money Is Crucial for Your Bridal Makeup - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "label": "82 chars: \u201cHow to Get Immune & Healthier with these Spices in Less than 30 Days - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "label": "94 chars: \u201cLooking for Bridal Makeup? Getting Your Perfect Makeup Artist Can Be A Nightmare | MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "label": "78 chars: \u201cBridal Makeup In A Beauty Parlor Is No Longer A Cool Thing To Do | MJ Gorgeous\u201d"}], "i05": [{"url": "https://mjgorgeous.com/contact-us/", "label": "24 chars: \u201cContact Us - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/frequently-asked-questions/", "label": "17 chars: \u201cFAQ - MJ Gorgeous\u201d"}, {"url": "https://mjgorgeous.com/privacy-policy/", "label": "28 chars: \u201cPrivacy Policy - MJ Gorgeous\u201d"}], "i06": ["https://mjgorgeous.com/north-indian-bridal-makeup-bangalore/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/"], "i07": ["https://mjgorgeous.com/mj-shekhar-bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/bridal-makeup-dusky-skin-bangalore/", "https://mjgorgeous.com/sangeet-makeup-bangalore/", "https://mjgorgeous.com/book-bridal-makeup-bangalore/", "https://mjgorgeous.com/bridal-makeup-artist-bangalore/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/bridal-makeup-brides-who-dont-wear-makeup/", "https://mjgorgeous.com/luxury-bridal-makeup-bangalore/", "https://mjgorgeous.com/model-search/", "https://mjgorgeous.com/airbrush-bridal-makeup-bangalore/", "https://mjgorgeous.com/personal-grooming-courses/", "https://mjgorgeous.com/bridal-reception-makeup-bangalore/", "https://mjgorgeous.com/reception-makeup-artist-near-me/", "https://mjgorgeous.com/is-your-makeup-camera-ready-must-read-tips-to-get-the-best-photos/", "https://mjgorgeous.com/bridal-makeup-oily-skin-bangalore-humidity-guide/", "https://mjgorgeous.com/tell-makeup-artist-never-liked-photos/", "https://mjgorgeous.com/how-to-find-the-perfect-makeup-foundation-for-you/", "https://mjgorgeous.com/bangalore-humidity-bridal-makeup-tips/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/how-long-does-bridal-makeup-last-indian-weddings/", "https://mjgorgeous.com/why-spending-on-your-professional-makeup-artist-is-so-worth-for-your-bridal-make-up-experience/", "https://mjgorgeous.com/hd-makeup-vs-airbrush-makeup-which-one-is-better-for-bridal-makeup/", "https://mjgorgeous.com/6-steps-to-achieve-no-makeup-look/", "https://mjgorgeous.com/the-truth-about-bridal-makeup-and-skin-allergies-how-bangalore-brides-can-avoid-a-wedding-day-disaster/", "https://mjgorgeous.com/how-to-apply-nude-lipstick-like-a-pro/", "https://mjgorgeous.com/nri-bridal-makeup-artist-bangalore-guide/", "https://mjgorgeous.com/how-can-bridal-makeup-services-help-you-achieve-your-dream-bridal-look/", "https://mjgorgeous.com/frequently-asked-questions/", "https://mjgorgeous.com/beauty-burnout-are-we-overwhelmed-by-perfection/", "https://mjgorgeous.com/everything-that-a-bride-needs-to-know-about-muhurtham-makeup/", "https://mjgorgeous.com/why-bridal-makeup-is-shifting-from-heavy-to-natural-beauty/", "https://mjgorgeous.com/crying-on-wedding-day-bridal-makeup-tips/", "https://mjgorgeous.com/why-brides-look-same-bridal-makeup-bangalore/", "https://mjgorgeous.com/makeup-artist-near-me/", "https://mjgorgeous.com/how-to-do-simple-party-makeup-bangalore/", "https://mjgorgeous.com/what-is-personal-hygiene-grooming/", "https://mjgorgeous.com/how-to-get-perfect-bridal-reception-makeup-look/", "https://mjgorgeous.com/planning-a-wedding-here-are-must-know-tips-for-the-brides-to-be/", "https://mjgorgeous.com/how-to-cover-your-acnes-with-makeup/", "https://mjgorgeous.com/makeup-artists-reacts-to-new-challenges-due-to-corona-lockdowns/", "https://mjgorgeous.com/how-to-handle-your-makeup-in-summers/", "https://mjgorgeous.com/why-hiring-a-professional-bridal-makeup-artist-in-bangalore-is-a-must-for-your-big-day/", "https://mjgorgeous.com/bridal-makeup-trends-evolving-in-2021-post-pandemic/", "https://mjgorgeous.com/south-indian-bridal-makeup-look-guide/", "https://mjgorgeous.com/bridal-makeup-matched-lehenga-saree-colour/", "https://mjgorgeous.com/everything-you-want-to-know-about-half-sari-function/", "https://mjgorgeous.com/how-to-look-good-in-candid-photos-in-your-wedding/", "https://mjgorgeous.com/beginners-guide-for-party-makeup/", "https://mjgorgeous.com/how-personal-grooming-can-boost-your-career/", "https://mjgorgeous.com/the-ultimate-guide-to-makeup-tips-for-oily-skin/", "https://mjgorgeous.com/must-have-skin-care-routine-after-party-night/", "https://mjgorgeous.com/is-bangalore-killing-traditional-makeup-with-its-bold-party-looks/", "https://mjgorgeous.com/classic-vs-modern-bridal-makeup-for-reception-styles-which-one-is-right-for-you/", "https://mjgorgeous.com/selecting-the-perfect-bridal-makeup-artist-a-step-by-step-guide/", "https://mjgorgeous.com/sangeet-makeup-mistakes-brides-must-avoid/", "https://mjgorgeous.com/bridal-makeup-tips-for-every-season-expert-tips-from-a-wedding-makeup-artist-in-bangalore/", "https://mjgorgeous.com/kannada-wedding-rituals-and-bride-makeup-look/", "https://mjgorgeous.com/how-much-bridal-makeup-can-cost-in-india/", "https://mjgorgeous.com/makeup-artist-reveals-secret-behind-how-to-make-makeup-last-all-day/", "https://mjgorgeous.com/why-bridal-makeup-is-so-expensive/", "https://mjgorgeous.com/get-a-classy-professional-look-with-these-5-office-makeup-tips/", "https://mjgorgeous.com/is-bridal-makeup-in-india-becoming-too-commercialized/", "https://mjgorgeous.com/bridal-makeup-cost-in-bangalore-how-much-should-you-budget/", "https://mjgorgeous.com/why-your-wedding-is-not-complete-without-a-makeup-artist/", "https://mjgorgeous.com/how-to-take-care-of-your-skin-during-summer-time/", "https://mjgorgeous.com/must-have-bridal-emergency-kit-for-a-stress-free-wedding/", "https://mjgorgeous.com/booking-a-bridal-makeup-artist-for-your-wedding-read-this-before-you-book/", "https://mjgorgeous.com/a-comprehensive-guide-on-why-bridal-makeup-is-worth-the-investment/", "https://mjgorgeous.com/how-to-hire-bridal-makeup-artist-indian-wedding/", "https://mjgorgeous.com/make-up-artist-reveals-secrets-to-get-the-best-make-up-from-your-make-up-artist/", "https://mjgorgeous.com/what-to-expect-if-you-are-getting-your-bridal-makeup-done-from-a-professional-makeup-artist/", "https://mjgorgeous.com/lifestyle-changes-to-make-in-your-30s-and-40s-for-optimal-well-being/", "https://mjgorgeous.com/getting-your-bridal-makeup-5-things-not-to-expect-from-bridal-makeup-artist/", "https://mjgorgeous.com/disappearing-wedding-trends-in-india-whats-fading-and-whats-here-to-stay/", "https://mjgorgeous.com/choosing-experience-over-cost-saving-for-your-bridal-makeup/", "https://mjgorgeous.com/how-to-get-immune-healthier-with-these-spices-in-less-than-30-days/", "https://mjgorgeous.com/looking-for-bridal-makeup-getting-your-perfect-makeup-artist-can-be-a-nightmare-here-is-what-you-should-do-instead/", "https://mjgorgeous.com/bridal-makeup-in-a-beauty-parlor-is-no-longer-a-cool-thing-to-do/", "https://mjgorgeous.com/makeup-tips-for-glasses-wearers/", "https://mjgorgeous.com/5-reasons-why-makeup-artists-are-expensive/"], "i08": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/bridal-makeup-faqs/", "https://mjgorgeous.com/personal-grooming-application/", "https://mjgorgeous.com/about/", "https://mjgorgeous.com/love-natural-makeup-heres-what-you-must-know/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/how-bridal-makeup-services-ensure-a-perfect-finish/", "https://mjgorgeous.com/castor-oil-benefits/"], "i09": ["https://mjgorgeous.com/blog/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/category/bridal-makeup-concerns/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/category/makeup-services/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/blog/page/2/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/", "https://mjgorgeous.com/blog/page/3/", "https://mjgorgeous.com/category/weddings-traditions/", "https://mjgorgeous.com/category/makeup-services/page/2/", "https://mjgorgeous.com/category/bridal-makeup-concerns/page/2/", "https://mjgorgeous.com/category/wellness-self-care/", "https://mjgorgeous.com/category/personal-grooming/", "https://mjgorgeous.com/tag/bridal-makeup-faqs/page/2/", "https://mjgorgeous.com/category/personal-grooming/page/2/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/makeup-services/page/3/", "https://mjgorgeous.com/blog/page/4/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/", "https://mjgorgeous.com/category/makeup-services/page/4/", "https://mjgorgeous.com/blog/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/3/", "https://mjgorgeous.com/blog/page/6/", "https://mjgorgeous.com/category/makeup-services/page/5/", "https://mjgorgeous.com/category/personal-grooming/page/4/", "https://mjgorgeous.com/blog/page/7/", "https://mjgorgeous.com/category/makeup-services/page/6/", "https://mjgorgeous.com/blog/page/8/", "https://mjgorgeous.com/category/makeup-services/page/7/", "https://mjgorgeous.com/blog/page/9/", "https://mjgorgeous.com/category/makeup-services/page/8/", "https://mjgorgeous.com/category/makeup-services/page/9/", "https://mjgorgeous.com/blog/page/10/", "https://mjgorgeous.com/blog/page/11/", "https://mjgorgeous.com/blog/page/12/", "https://mjgorgeous.com/blog/page/13/", "https://mjgorgeous.com/blog/page/14/"], "i10": ["https://mjgorgeous.com/"], "i11": ["https://mjgorgeous.com/author/mj-shekhar/", "https://mjgorgeous.com/author/mj-shekhar/page/2/", "https://mjgorgeous.com/author/mj-shekhar/page/3/", "https://mjgorgeous.com/author/mj-shekhar/page/4/", "https://mjgorgeous.com/author/mj-shekhar/page/5/", "https://mjgorgeous.com/author/mj-shekhar/page/6/", "https://mjgorgeous.com/author/mj-shekhar/page/7/", "https://mjgorgeous.com/author/mj-shekhar/page/8/", "https://mjgorgeous.com/author/mj-shekhar/page/9/", "https://mjgorgeous.com/author/mj-shekhar/page/10/", "https://mjgorgeous.com/author/mj-shekhar/page/11/", "https://mjgorgeous.com/author/mj-shekhar/page/12/", "https://mjgorgeous.com/author/mj-shekhar/page/13/", "https://mjgorgeous.com/author/mj-shekhar/page/14/"], "i12": ["https://mjgorgeous.com/wp-content/uploads/2024/07/MJG-PG-2K3-Ver2.pdf", "https://mjgorgeous.com/wp-content/uploads/2025/10/MJG-Beauty-Countdown-Planner.pdf", "https://mjgorgeous.com/wp-content/uploads/2025/10/MJG-Wedding-Week-Checklist.pdf"], "i13": ["https://mjgorgeous.com/party-makeup-request-form/", "https://mjgorgeous.com/mjg-bridal-photos/", "https://mjgorgeous.com/eye-makeup-2/", "https://mjgorgeous.com/author/admin/", "https://mjgorgeous.com/contact-us/", "https://mjgorgeous.com/gallery/", "https://mjgorgeous.com/north-indian-bridal-photos/", "https://mjgorgeous.com/south-indian-bridal-photos/", "https://mjgorgeous.com/mjs-creative-fashion-makeup/", "https://mjgorgeous.com/tag/bridal-case-studies/", "https://mjgorgeous.com/category/bridal-case-studies/", "https://mjgorgeous.com/category/uncategorized/", "https://mjgorgeous.com/category/makeup-services/page/9/"]};
 
   // Restore saved state
   function taLoadState() {
     try {
       var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
       document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+        if (s[el.dataset.id] && s[el.dataset.id].stat) {
+          el.value = s[el.dataset.id].stat;
+          taUpdateStatColor(el);
+        }
       });
     } catch(e) {}
   }
 
   window.taSaveState = function() {
     var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
     document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
       if (!s[el.dataset.id]) s[el.dataset.id] = {};
       s[el.dataset.id].stat = el.value;
     });
     localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Recolor the select to match the currently chosen status (same colors as the
+  // internal Google Sheet's Status dropdown/conditional formatting)
+  window.taUpdateStatColor = function(sel) {
+    var opt = sel.options[sel.selectedIndex];
+    sel.style.background = (opt && opt.dataset.color) || '';
   };
 
   // Toggle expandable URL panel
@@ -2153,7 +2152,16 @@ new Chart(document.getElementById('chChart'), {
         var urls = ALL_URLS[iid] || [];
         var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
         urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+          var isRich = (typeof u === 'object' && u !== null);
+          var url = isRich ? u.url : u;
+          html += '<div class="ta-url-item" style="flex-direction:column;align-items:flex-start;gap:2px;">'
+            + '<div style="display:flex;width:100%;align-items:center">'
+            + '<span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span>'
+            + '<a href="' + url + '" target="_blank" rel="noopener" style="flex:1">' + url + '</a>'
+            + '<button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + url.replace(/'/g, "\\'") + '\')">Copy</button>'
+            + '</div>'
+            + (isRich ? '<div style="margin-left:36px;font-size:11px;color:#9CA3AF">' + u.label + '</div>' : '')
+            + '</div>';
         });
         container.innerHTML = html;
         container.dataset.loaded = '1';
@@ -2170,7 +2178,8 @@ new Chart(document.getElementById('chChart'), {
 
   window.taCopyAll = function(iid) {
     var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+    var text = urls.map(function(u) { return (typeof u === 'object' && u !== null) ? u.url : u; }).join('\n');
+    navigator.clipboard.writeText(text).then(function() {
       var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
       if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
     });
@@ -2191,7 +2200,13 @@ new Chart(document.getElementById('chChart'), {
     document.querySelectorAll('.ta-row-issue').forEach(function(row) {
       var iid = row.dataset.id;
       var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      // SF spans every category (errors/onpage/content/technical), so it filters by
+      // source tag instead of category — GSC already has its own dedicated category.
+      if (activeCat === 'sf') {
+        if (row.dataset.src !== 'SF') show = false;
+      } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
+        show = false;
+      }
       if (prio !== 'all' && row.dataset.prio !== prio) show = false;
       if (stat !== 'all') {
         var sel = row.querySelector('.ta-stat-sel');
@@ -2203,8 +2218,6 @@ new Chart(document.getElementById('chChart'), {
     });
   };
 
-  // Sort issue table by column, keeping each issue row paired with its URL panel
-  
   taLoadState();
 })();
 </script>
