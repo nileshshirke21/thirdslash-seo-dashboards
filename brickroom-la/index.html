@@ -1400,6 +1400,7 @@ new Chart(document.getElementById('chChart'), {
     <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
     <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
     <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <button class="ta-chip" data-cat="sf" onclick="taFilter(this)">SF</button>
     <button class="ta-chip" data-cat="gsc" onclick="taFilter(this)">GSC</button>
     <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
       <option value="all">All Priorities</option>
@@ -1426,7 +1427,7 @@ new Chart(document.getElementById('chChart'), {
       </tr>
     </thead>
     <tbody>
-      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" onclick="taToggle('i01')">
+      <tr class="ta-row-issue" data-id="i01" data-cat="errors" data-prio="high" data-src="SF" onclick="taToggle('i01')">
         <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>34 pages returning 404 errors <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-red">34</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1439,7 +1440,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i01"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i05" data-cat="gsc" data-prio="high" onclick="taToggle('i05')">
+      <tr class="ta-row-issue" data-id="i05" data-cat="gsc" data-prio="high" data-src="GSC" onclick="taToggle('i05')">
         <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>10 pages Google has seen return a 404 <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-red">10</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1452,7 +1453,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i05"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i07" data-cat="gsc" data-prio="high" onclick="taToggle('i07')">
+      <tr class="ta-row-issue" data-id="i07" data-cat="gsc" data-prio="high" data-src="GSC" onclick="taToggle('i07')">
         <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>1 pages blocked by another 4xx error <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-red">1</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1465,7 +1466,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i07"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i08" data-cat="gsc" data-prio="high" onclick="taToggle('i08')">
+      <tr class="ta-row-issue" data-id="i08" data-cat="gsc" data-prio="high" data-src="GSC" onclick="taToggle('i08')">
         <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>1 pages blocked by robots.txt <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-red">1</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1478,7 +1479,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i08"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i10" data-cat="gsc" data-prio="high" onclick="taToggle('i10')">
+      <tr class="ta-row-issue" data-id="i10" data-cat="gsc" data-prio="high" data-src="GSC" onclick="taToggle('i10')">
         <td><span class="ta-arrow" id="ta-arrow-i10">&#9654;</span>115 pages crawled by Google but not indexed <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-red">115</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1491,7 +1492,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i10"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i14" data-cat="onpage" data-prio="high" onclick="taToggle('i14')">
+      <tr class="ta-row-issue" data-id="i14" data-cat="onpage" data-prio="high" data-src="SF" onclick="taToggle('i14')">
         <td><span class="ta-arrow" id="ta-arrow-i14">&#9654;</span>196 pages with missing H1 tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-red">196</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1504,7 +1505,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i14"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i16" data-cat="technical" data-prio="high" onclick="taToggle('i16')">
+      <tr class="ta-row-issue" data-id="i16" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i16')">
         <td><span class="ta-arrow" id="ta-arrow-i16">&#9654;</span>1 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-red">1</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
@@ -1517,7 +1518,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i16"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" onclick="taToggle('i02')">
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i02')">
         <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>50 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">50</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1530,7 +1531,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i02"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i03" data-cat="technical" data-prio="medium" onclick="taToggle('i03')">
+      <tr class="ta-row-issue" data-id="i03" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i03')">
         <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>8 broken resources (scripts, images, stylesheets) <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">8</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1543,7 +1544,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i03"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i04" data-cat="gsc" data-prio="medium" onclick="taToggle('i04')">
+      <tr class="ta-row-issue" data-id="i04" data-cat="gsc" data-prio="medium" data-src="GSC" onclick="taToggle('i04')">
         <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>24 pages Google found via a redirect, not indexed directly <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-amber">24</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1556,7 +1557,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i04"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i06" data-cat="gsc" data-prio="medium" onclick="taToggle('i06')">
+      <tr class="ta-row-issue" data-id="i06" data-cat="gsc" data-prio="medium" data-src="GSC" onclick="taToggle('i06')">
         <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>3 pages excluded by a noindex tag <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-amber">3</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1569,7 +1570,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i06"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i11" data-cat="gsc" data-prio="medium" onclick="taToggle('i11')">
+      <tr class="ta-row-issue" data-id="i11" data-cat="gsc" data-prio="medium" data-src="GSC" onclick="taToggle('i11')">
         <td><span class="ta-arrow" id="ta-arrow-i11">&#9654;</span>17 pages discovered but not yet crawled <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-amber">17</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1582,7 +1583,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i11"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i12" data-cat="onpage" data-prio="medium" onclick="taToggle('i12')">
+      <tr class="ta-row-issue" data-id="i12" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i12')">
         <td><span class="ta-arrow" id="ta-arrow-i12">&#9654;</span>4 pages with titles over 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">4</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1595,7 +1596,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i12"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i15" data-cat="onpage" data-prio="medium" onclick="taToggle('i15')">
+      <tr class="ta-row-issue" data-id="i15" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i15')">
         <td><span class="ta-arrow" id="ta-arrow-i15">&#9654;</span>1 pages with duplicate H1 tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">1</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1608,7 +1609,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i15"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i17" data-cat="content" data-prio="medium" onclick="taToggle('i17')">
+      <tr class="ta-row-issue" data-id="i17" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i17')">
         <td><span class="ta-arrow" id="ta-arrow-i17">&#9654;</span>5 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">5</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
@@ -1621,7 +1622,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i17"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i09" data-cat="gsc" data-prio="low" onclick="taToggle('i09')">
+      <tr class="ta-row-issue" data-id="i09" data-cat="gsc" data-prio="low" data-src="GSC" onclick="taToggle('i09')">
         <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>1 pages correctly canonicalized elsewhere <span class="ta-src ta-src-gsc" title="Source: Google Search Console">GSC</span></td>
         <td><span class="ta-pill ta-pill-blue">1</span></td>
         <td><span class="ta-prio ta-prio-low">LOW</span></td>
@@ -1634,7 +1635,7 @@ new Chart(document.getElementById('chChart'), {
           <div class="ta-url-inner" id="ta-urls-i09"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i13" data-cat="onpage" data-prio="low" onclick="taToggle('i13')">
+      <tr class="ta-row-issue" data-id="i13" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i13')">
         <td><span class="ta-arrow" id="ta-arrow-i13">&#9654;</span>111 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-blue">111</span></td>
         <td><span class="ta-prio ta-prio-low">LOW</span></td>
@@ -1750,7 +1751,13 @@ new Chart(document.getElementById('chChart'), {
     document.querySelectorAll('.ta-row-issue').forEach(function(row) {
       var iid = row.dataset.id;
       var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      // SF spans every category (errors/onpage/content/technical), so it filters by
+      // source tag instead of category — GSC already has its own dedicated category.
+      if (activeCat === 'sf') {
+        if (row.dataset.src !== 'SF') show = false;
+      } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
+        show = false;
+      }
       if (prio !== 'all' && row.dataset.prio !== prio) show = false;
       if (stat !== 'all') {
         var sel = row.querySelector('.ta-stat-sel');
@@ -1766,6 +1773,7 @@ new Chart(document.getElementById('chChart'), {
 })();
 </script>
 
+</div>
 </div>
 
 
