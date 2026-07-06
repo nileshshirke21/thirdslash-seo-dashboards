@@ -666,7 +666,7 @@ new Chart(document.getElementById('chChart'), {
 <!-- TECH AUDIT TAB -->
 
 <div id="tab-techaudit" class="section">
-  
+
 <style>
 /* ── Tech Audit Scoped Styles ── */
 .ta-wrap {
@@ -675,9 +675,9 @@ new Chart(document.getElementById('chChart'), {
   --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
   --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
   --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
-  --blue:#5b39d9; --blue-bg:#f0edff; --blue-border:#BFDBFE;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
   --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
 }
 .ta-banner {
@@ -816,18 +816,13 @@ new Chart(document.getElementById('chChart'), {
 }
 
 /* Issue table */
-.ta-table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
 .ta-table {
   width: 100%;
-  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
   overflow: hidden;
 }
 .ta-table th {
@@ -889,6 +884,11 @@ new Chart(document.getElementById('chChart'), {
   border: 1px solid var(--purple-border);
   margin-left: 4px;
 }
+.ta-src-gsc {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
 
 /* Expandable URL panel */
 .ta-url-panel {
@@ -905,13 +905,11 @@ new Chart(document.getElementById('chChart'), {
   padding: 12px 20px;
   max-height: 300px;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 .ta-url-inner .ta-url-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
   padding: 6px 0;
   border-bottom: 1px solid var(--border);
   font-size: 12px;
@@ -920,8 +918,7 @@ new Chart(document.getElementById('chChart'), {
 .ta-url-inner .ta-url-item a {
   color: var(--blue);
   text-decoration: none;
-  overflow-wrap: anywhere;
-  min-width: 0;
+  word-break: break-all;
 }
 .ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
 .ta-copy-btn {
@@ -968,17 +965,17 @@ new Chart(document.getElementById('chChart'), {
       <svg width="128" height="128" viewBox="0 0 128 128">
         <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
         <circle cx="64" cy="64" r="54" fill="none" stroke="#DC2626" stroke-width="10"
-                stroke-dasharray="339.3" stroke-dashoffset="156.1"
+                stroke-dasharray="339.3" stroke-dashoffset="173.0"
                 stroke-linecap="round"/>
       </svg>
       <div class="ta-score-num">
-        <span class="ta-big">47</span>
+        <span class="ta-big">49</span>
         <span class="ta-of">/ 100</span>
       </div>
     </div>
     <div class="ta-banner-text">
       <h2>Technical SEO Health</h2>
-      <p>Lancers Army School &middot; lancersarmyschools.com &middot; Screaming Frog Pro Crawl &middot; 1 Jul 2026 &middot; 219 pages scanned</p>
+      <p>Lancers Army School &middot; lancersarmyschools.com &middot; Screaming Frog Pro Crawl &middot; 06 Jul 2026 &middot; 219 pages scanned</p>
       <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
     </div>
   </div>
@@ -986,13 +983,15 @@ new Chart(document.getElementById('chChart'), {
   <!-- Metric Cards -->
   <div class="ta-metrics">
     <div class="ta-metric-card"><div class="ta-mc-val">219</div><div class="ta-mc-label">Total HTML Pages</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">67</div><div class="ta-mc-label">200 OK</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">67</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">119</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">92</div><div class="ta-mc-label">Indexable</div></div>
     <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">404 Errors</div></div>
     <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">154</div><div class="ta-mc-label">Redirects (3xx)</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">154</div><div class="ta-mc-label">Title Issues</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">154</div><div class="ta-mc-label">Meta Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">99</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">6</div><div class="ta-mc-label">Broken Resources</div></div>
+    
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">50</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">61</div><div class="ta-mc-label">Meta Issues</div></div>
   </div>
 
 
@@ -1003,6 +1002,8 @@ new Chart(document.getElementById('chChart'), {
     <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
     <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
     <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <button class="ta-chip" data-cat="sf" onclick="taFilter(this)">SF</button>
+    
     <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
       <option value="all">All Priorities</option>
       <option value="high">High</option>
@@ -1011,188 +1012,189 @@ new Chart(document.getElementById('chChart'), {
     </select>
     <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
       <option value="all">All Statuses</option>
-      <option value="Under Review">Under Review</option>
-      <option value="Completed">Completed</option>
-      <option value="Not Completed">Not Completed</option>
-      <option value="Blocked">Blocked</option>
-      <option value="Waiting for Approval">Waiting for Approval</option>
-      <option value="Rejected">Rejected</option>
+      <option value="Not Started">Not Started</option><option value="In Progress">In Progress</option><option value="Need Developer's Help">Need Developer's Help</option><option value="In Review">In Review</option><option value="Changes Done">Changes Done</option><option value="Not Possible">Not Possible</option>
     </select>
   </div>
 
   <!-- Issue Log Table -->
-  <div class="ta-table-wrap"><table class="ta-table" id="ta-issue-table">
+  <table class="ta-table" id="ta-issue-table">
     <thead>
       <tr>
-        <th style="width:28%;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th>
-        <th style="width:60px;cursor:pointer" onclick="taSortTable(1)">Count &#8645;</th>
-        <th style="width:80px;cursor:pointer" onclick="taSortTable(2)">Priority &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(3)">What This Means &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(4)">How to Fix It &#8645;</th>
-        <th style="width:110px;cursor:pointer" onclick="taSortTable(5)">Owner &#8645;</th>
-        <th style="width:130px;cursor:pointer" onclick="taSortTable(6)">Status &#8645;</th>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:150px">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" onclick="taToggle('i01')">
-        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>89 pages with 3xx redirects </td>
-        <td><span class="ta-pill ta-pill-amber">89</span></td>
+      <tr class="ta-row-issue" data-id="i09" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i09')">
+        <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>12 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">12</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i09" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i09">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i09"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>99 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">99</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
         <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i01">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i01"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i02" data-cat="onpage" data-prio="medium" onclick="taToggle('i02')">
-        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>35 pages with titles over 60 characters </td>
-        <td><span class="ta-pill ta-pill-amber">35</span></td>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>6 broken resources (scripts, images, stylesheets) <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">6</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
-        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
-        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td>These are broken JavaScript, CSS, image, or font files referenced from your site's shared template — usually the same broken reference loading on every page, not a broken content link. Can hurt Core Web Vitals and cause console errors.</td>
+        <td>Update or remove the broken resource reference in your theme/plugin code. Since it's loaded from a shared template, fixing it once resolves it site-wide.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i02">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i02"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" onclick="taToggle('i03')">
-        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>17 pages with titles below 30 characters </td>
-        <td><span class="ta-pill ta-pill-blue">17</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
-        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>24 pages with titles over 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">24</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Titles longer than 70 characters get truncated in Google search results, reducing click-through rates.</td>
+        <td>Rewrite titles to be under 70 characters while keeping the primary keyword near the front. Remove filler words.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i03">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i03"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" onclick="taToggle('i04')">
-        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>11 pages with missing meta descriptions </td>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>11 pages with missing meta descriptions <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">11</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
         <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i04">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i04"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" onclick="taToggle('i05')">
-        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>50 pages with meta descriptions over 155 characters </td>
-        <td><span class="ta-pill ta-pill-blue">50</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
-        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i05">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i05"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="medium" onclick="taToggle('i06')">
-        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>2 pages with duplicate H1 tags </td>
+      <tr class="ta-row-issue" data-id="i07" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>2 pages with duplicate H1 tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">2</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Multiple H1 tags on a page dilute the heading hierarchy and confuse search engines about the primary topic.</td>
         <td>Ensure each page has exactly one H1 tag. Demote additional H1s to H2 or H3 as appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
-      <tr class="ta-url-panel" id="ta-panel-i06">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i06"></div>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="medium" onclick="taToggle('i07')">
-        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>16 pages set to noindex </td>
+      <tr class="ta-row-issue" data-id="i08" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i08')">
+        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>16 pages set to noindex <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">16</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
         <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i07">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i07"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i08" data-cat="technical" data-prio="high" onclick="taToggle('i08')">
-        <td><span class="ta-arrow" id="ta-arrow-i08">&#9654;</span>0 pages with missing canonical tags </td>
-        <td><span class="ta-pill ta-pill-red">0</span></td>
-        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
-        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
-        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i08" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i08" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i08">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i08"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i09" data-cat="content" data-prio="medium" onclick="taToggle('i09')">
-        <td><span class="ta-arrow" id="ta-arrow-i09">&#9654;</span>1 pages with thin / low content </td>
+      <tr class="ta-row-issue" data-id="i10" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i10')">
+        <td><span class="ta-arrow" id="ta-arrow-i10">&#9654;</span>1 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">1</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
         <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i09" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i09" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i10" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
-      <tr class="ta-url-panel" id="ta-panel-i09">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i09"></div>
+      <tr class="ta-url-panel" id="ta-panel-i10">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i10"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>26 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">26</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>50 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">50</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
         </td>
       </tr>
     </tbody>
-  </table></div>
+  </table>
 </div>
 
 <script>
 (function() {
-  var LS_KEY = "lancers-army-school_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://lancersarmyschools.com/cbse-faculty/", "http://lancersarmyschools.com/", "https://www.facebook.com/lancerarmyschoolofficial/", "https://lancersarmyschools.com/early-years/", "https://lancersarmyschools.com/gseb-faculty/", "https://lancersarmyschools.com/cbse/", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersarmyschools.com&text=:%20https%3A%2F%2Flancersarmyschools.com", "https://lancersarmyschools.com/contact/?amp=1", "http://lancersarmyschools.com/?amp=1", "https://lancersarmyschools.com/achievements/?amp=1", "https://lancersarmyschools.com/why-study-skills-matter-at-surat-top-school-lancers-army-school/?amp=1", "https://lancersarmyschools.com/about-us/?amp=1", "https://lancersarmyschools.com/how-schools-in-surat-gujarat-support-summer-learning-activities/?amp=1", "https://lancersarmyschools.com/7-signs-your-child-needs-a-structured-cbse-school/?amp=1", "https://lancersarmyschools.com/future-ready-education-at-lancer-army-school/?amp=1", "https://lancersarmyschools.com/?amp=1", "https://lancersarmyschools.com/preschool-teacher/", "https://lancersarmyschools.com/5-factors-to-compare-when-choosing-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/early-years-faculty/", "https://lancersarmyschools.com/gallery/?amp=1", "https://lancersarmyschools.com/disclosure-form/?amp=1", "https://lancersarmyschools.com/who-benefits-most-from-enrolling-in-top-schools-in-surat-like-lancers-army-school/?amp=1", "https://lancersarmyschools.com/blog/?amp=1", "https://lancersarmyschools.com/preschool-in-surat/", "https://lancersarmyschools.com/what-value-parents-see-in-lancers-army-school-best-school-in-surat/?amp=1", "https://lancersarmyschools.com/gseb-teachers/", "https://lancersarmyschools.com/5-ways-discipline-focused-schools-build-student-personality-surat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-prepares-students-for-exams-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/students-life/?amp=1", "https://lancersarmyschools.com/strong-extracurriculars-at-lancers-army-school-gujarat/?amp=1", "https://lancersarmyschools.com/why-lancers-army-school-ranks-among-best-schools-in-surat-for-education/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-builds-learning-excellence-as-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/what-teaching-methods-make-lancers-army-school-the-best-school-in-gujarat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-supports-gujarat-higher-secondary-board-students-in-shaping-their-future/?amp=1", "https://lancersarmyschools.com/how-lancers-gujarat-top-school-reduces-exam-stress-effectively-for-students/?amp=1", "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersarmyschools.com/why-is-lancers-army-school-among-surat-top-schools-for-value-based-education/?amp=1", "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersarmyschools.com/what-makes-lancers-army-the-best-school-in-surat-for-students-development/?amp=1", "https://lancersarmyschools.com/how-lancers-army-redefines-modern-education-in-gujarats-top-schools/?amp=1", "https://lancersarmyschools.com/what-makes-these-top-schools-in-surat-stand-out-for-academic-excellence/?amp=1", "https://lancersarmyschools.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersarmyschools.com/how-lancers-among-top-schools-in-surat-helps-students-overcome-stage-fright/?amp=1", "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersarmyschools.com/why-should-parents-consider-gseb-best-schools-in-gujarat-for-quality-education-in-2025/?amp=1", "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersarmyschools.com/importance-of-holistic-education/?amp=1", "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersarmyschools.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersarmyschools.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersarmyschools.com/5-ways-parents-can-get-involved-in-schools/?amp=1", "https://lancersarmyschools.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersarmyschools.com/tips-for-managing-your-study-time/?amp=1", "https://lancersarmyschools.com/advantages-of-cbse-over-state-boards/?amp=1", "https://lancersarmyschools.com/cbse-parent-zone/", "https://lancersarmyschools.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersarmyschools.com/how-to-choose-between-cbse-and-gseb-curriculum-in-surat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-builds-future-leaders-through-discipline-and-academics/?amp=1", "https://lancersarmyschools.com/why-gujarat-higher-secondary-board-stream-selection-impacts-future-careers/?amp=1", "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersarmyschools.com/the-role-of-teachers-in-education/?amp=1", "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/?amp=1", "https://lancersarmyschools.com/importance-of-sports-in-education/?amp=1", "https://lancersarmyschools.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersarmyschools.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersarmyschools.com/gseb-parent-zone/", "https://lancersarmyschools.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersarmyschools.com/cbse-board-vs-state-board-which-is-better/?amp=1", "https://lancersarmyschools.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersarmyschools.com/benefits-of-play-based-learning/?amp=1", "https://lancersarmyschools.com/importance-of-cbse-school/?amp=1", "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersarmyschools.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/?amp=1", "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersarmyschools.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersarmyschools.com/why-is-school-important/?amp=1", "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/?amp=1", "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1"], "i02": ["https://lancersarmyschools.com/", "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersarmyschools.com/students-life/", "https://lancersarmyschools.com/about-us/", "https://lancersarmyschools.com/what-are-some-features-of-a-smart-classroom/", "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/", "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/", "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/", "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersarmyschools.com/everything-you-need-to-know-about-cbse-board/", "https://lancersarmyschools.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/", "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersarmyschools.com/why-is-counselling-important-in-schools/", "https://lancersarmyschools.com/importance-of-communication-skills-for-students/", "https://lancersarmyschools.com/5-ways-parents-can-get-involved-in-schools/", "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersarmyschools.com/what-is-accessible-learning-and-its-advantages/", "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersarmyschools.com/cbse-board-vs-state-board-which-is-better/", "https://lancersarmyschools.com/is-value-education-necessary-in-schools/", "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/", "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersarmyschools.com/tips-to-create-better-classroom-management/"], "i03": ["https://lancersarmyschools.com/gallery/", "https://lancersarmyschools.com/blog/", "https://lancersarmyschools.com/blog/page/2/", "https://lancersarmyschools.com/blog/page/7/", "https://lancersarmyschools.com/category/blog/", "https://lancersarmyschools.com/category/blog/page/7/", "https://lancersarmyschools.com/blog/page/6/", "https://lancersarmyschools.com/category/blog/page/2/", "https://lancersarmyschools.com/blog/page/3/", "https://lancersarmyschools.com/category/blog/page/3/", "https://lancersarmyschools.com/category/blog/page/6/", "https://lancersarmyschools.com/category/events/", "https://lancersarmyschools.com/blog/page/4/", "https://lancersarmyschools.com/blog/page/5/", "https://lancersarmyschools.com/category/events/page/2/", "https://lancersarmyschools.com/category/blog/page/5/", "https://lancersarmyschools.com/category/blog/page/4/"], "i04": ["https://lancersarmyschools.com/category/blog/", "https://lancersarmyschools.com/category/blog/page/7/", "https://lancersarmyschools.com/category/blog/page/2/", "https://lancersarmyschools.com/category/services/", "https://lancersarmyschools.com/category/blog/page/3/", "https://lancersarmyschools.com/category/blog/page/6/", "https://lancersarmyschools.com/category/events/", "https://lancersarmyschools.com/category/services/page/2/", "https://lancersarmyschools.com/category/events/page/2/", "https://lancersarmyschools.com/category/blog/page/5/", "https://lancersarmyschools.com/category/blog/page/4/"], "i05": ["https://lancersarmyschools.com/", "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersarmyschools.com/students-life/", "https://lancersarmyschools.com/disclosure-form/", "https://lancersarmyschools.com/achievements/", "https://lancersarmyschools.com/about-us/", "https://lancersarmyschools.com/what-are-some-features-of-a-smart-classroom/", "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersarmyschools.com/strong-extracurriculars-at-lancers-army-school-gujarat/", "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/", "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/", "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/", "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersarmyschools.com/what-teaching-methods-make-lancers-army-school-the-best-school-in-gujarat/", "https://lancersarmyschools.com/everything-you-need-to-know-about-cbse-board/", "https://lancersarmyschools.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersarmyschools.com/advantages-of-cbse-over-state-boards/", "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersarmyschools.com/tips-for-finding-perfect-preschool/", "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/", "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersarmyschools.com/the-role-of-teachers-in-education/", "https://lancersarmyschools.com/why-is-counselling-important-in-schools/", "https://lancersarmyschools.com/tips-for-managing-your-study-time/", "https://lancersarmyschools.com/importance-of-communication-skills-for-students/", "https://lancersarmyschools.com/benefits-of-play-based-learning/", "https://lancersarmyschools.com/5-ways-parents-can-get-involved-in-schools/", "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersarmyschools.com/why-is-school-important/", "https://lancersarmyschools.com/importance-of-holistic-education/", "https://lancersarmyschools.com/importance-of-sports-in-education/", "https://lancersarmyschools.com/what-is-accessible-learning-and-its-advantages/", "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersarmyschools.com/tips-for-studying-for-board-exams/", "https://lancersarmyschools.com/cbse-board-vs-state-board-which-is-better/", "https://lancersarmyschools.com/is-value-education-necessary-in-schools/", "https://lancersarmyschools.com/tips-for-better-parent-teacher-relationships/", "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/", "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersarmyschools.com/tips-to-create-better-classroom-management/", "https://lancersarmyschools.com/importance-of-cbse-school/"], "i06": ["https://lancersarmyschools.com/blog/", "https://lancersarmyschools.com/category/blog/"], "i07": ["https://lancersarmyschools.com/author/lancehgs/", "https://lancersarmyschools.com/author/lancehgs/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/7/", "https://lancersarmyschools.com/author/lancehgs/page/2/", "https://lancersarmyschools.com/author/lancehgs/page/7/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/2/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/3/", "https://lancersarmyschools.com/author/lancersarmyschools/", "https://lancersarmyschools.com/author/lancehgs/page/6/", "https://lancersarmyschools.com/author/lancersarmyschools/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/5/", "https://lancersarmyschools.com/author/lancehgs/page/6/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/3/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/4/", "https://lancersarmyschools.com/author/lancehgs/page/5/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/4/?amp=1"], "i08": [], "i09": ["https://lancersarmyschools.com/gallery/"]};
+  var LS_KEY = "lancers-army-school_techaudit_jul_2026";
+  var ALL_URLS = {"i01": ["https://lancersarmyschools.com/cbse-faculty/", "http://lancersarmyschools.com/", "http://lancersarmyschools.com/wp-content/uploads/2021/06/SMC.pdf", "http://lancersarmyschools.com/wp-content/uploads/2021/06/PTA.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersarmyschools.com/early-years/", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancersarmyschools.com/gseb-faculty/", "http://lancersarmyschools.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancersarmyschools.com/cbse/", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf", "http://lancersarmyschools.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersarmyschools.com/contact/?amp=1", "http://lancersarmyschools.com/?amp=1", "https://lancersarmyschools.com/achievements/?amp=1", "https://lancersarmyschools.com/why-study-skills-matter-at-surat-top-school-lancers-army-school/?amp=1", "https://lancersarmyschools.com/about-us/?amp=1", "https://lancersarmyschools.com/how-schools-in-surat-gujarat-support-summer-learning-activities/?amp=1", "https://lancersarmyschools.com/future-ready-education-at-lancer-army-school/?amp=1", "https://lancersarmyschools.com/7-signs-your-child-needs-a-structured-cbse-school/?amp=1", "https://lancersarmyschools.com/?amp=1", "https://lancersarmyschools.com/5-factors-to-compare-when-choosing-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/preschool-teacher/", "https://lancersarmyschools.com/early-years-faculty/", "https://lancersarmyschools.com/who-benefits-most-from-enrolling-in-top-schools-in-surat-like-lancers-army-school/?amp=1", "https://lancersarmyschools.com/gallery/?amp=1", "https://lancersarmyschools.com/disclosure-form/?amp=1", "https://lancersarmyschools.com/preschool-in-surat/", "https://lancersarmyschools.com/what-value-parents-see-in-lancers-army-school-best-school-in-surat/?amp=1", "https://lancersarmyschools.com/blog/?amp=1", "https://lancersarmyschools.com/gseb-teachers/", "https://lancersarmyschools.com/5-ways-discipline-focused-schools-build-student-personality-surat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-prepares-students-for-exams-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/students-life/?amp=1", "https://lancersarmyschools.com/strong-extracurriculars-at-lancers-army-school-gujarat/?amp=1", "https://lancersarmyschools.com/why-lancers-army-school-ranks-among-best-schools-in-surat-for-education/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-builds-learning-excellence-as-gujarat-top-school/?amp=1", "https://lancersarmyschools.com/what-teaching-methods-make-lancers-army-school-the-best-school-in-gujarat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-school-supports-gujarat-higher-secondary-board-students-in-shaping-their-future/?amp=1", "https://lancersarmyschools.com/why-is-lancers-army-school-among-surat-top-schools-for-value-based-education/?amp=1", "https://lancersarmyschools.com/how-lancers-gujarat-top-school-reduces-exam-stress-effectively-for-students/?amp=1", "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersarmyschools.com/how-lancers-army-redefines-modern-education-in-gujarats-top-schools/?amp=1", "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersarmyschools.com/what-makes-lancers-army-the-best-school-in-surat-for-students-development/?amp=1", "https://lancersarmyschools.com/what-makes-these-top-schools-in-surat-stand-out-for-academic-excellence/?amp=1", "https://lancersarmyschools.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersarmyschools.com/how-lancers-among-top-schools-in-surat-helps-students-overcome-stage-fright/?amp=1", "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersarmyschools.com/why-should-parents-consider-gseb-best-schools-in-gujarat-for-quality-education-in-2025/?amp=1", "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersarmyschools.com/importance-of-holistic-education/?amp=1", "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersarmyschools.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersarmyschools.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersarmyschools.com/5-ways-parents-can-get-involved-in-schools/?amp=1", "https://lancersarmyschools.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersarmyschools.com/tips-for-managing-your-study-time/?amp=1", "https://lancersarmyschools.com/advantages-of-cbse-over-state-boards/?amp=1", "https://lancersarmyschools.com/cbse-parent-zone/", "https://lancersarmyschools.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersarmyschools.com/how-to-choose-between-cbse-and-gseb-curriculum-in-surat/?amp=1", "https://lancersarmyschools.com/how-lancers-army-builds-future-leaders-through-discipline-and-academics/?amp=1", "https://lancersarmyschools.com/why-gujarat-higher-secondary-board-stream-selection-impacts-future-careers/?amp=1", "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersarmyschools.com/the-role-of-teachers-in-education/?amp=1", "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersarmyschools.com/importance-of-sports-in-education/?amp=1", "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/?amp=1", "https://lancersarmyschools.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersarmyschools.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersarmyschools.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersarmyschools.com/gseb-parent-zone/", "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersarmyschools.com/cbse-board-vs-state-board-which-is-better/?amp=1", "https://lancersarmyschools.com/benefits-of-play-based-learning/?amp=1", "https://lancersarmyschools.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersarmyschools.com/importance-of-cbse-school/?amp=1", "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersarmyschools.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/?amp=1", "https://lancersarmyschools.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersarmyschools.com/why-is-school-important/?amp=1", "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/?amp=1", "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersarmyschools.com&text=:%20https%3A%2F%2Flancersarmyschools.com"], "i02": [{"url": "http://lancersarmyschools.com/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-15-at-11.46.17.jpg", "label": "Image broken \u00b7 302 \u00b7 Internal \u00b7 found on 138 pages (e.g. https://lancersarmyschools.com/)"}, {"url": "http://lancersarmyschools.com/wp-content/uploads/2021/02/Lancer_Logo_450.png", "label": "Image broken \u00b7 302 \u00b7 Internal \u00b7 found on 138 pages (e.g. https://lancersarmyschools.com/)"}, {"url": "https://lancersarmyschools.com/?amp=1", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. http://lancersarmyschools.com/?amp=1)"}, {"url": "https://lancersarmyschools.com/preschool-teacher/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. https://lancersarmyschools.com/early-years-faculty/)"}, {"url": "https://lancersarmyschools.com/preschool-in-surat/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. https://lancersarmyschools.com/early-years/)"}, {"url": "https://lancersarmyschools.com/gseb-teachers/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. https://lancersarmyschools.com/gseb-faculty/)"}], "i03": [{"url": "https://lancersarmyschools.com/", "label": "75 chars: \u201cLancers Army Schools: Top School in Surat for Primary & Secondary Education\u201d"}, {"url": "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/", "label": "80 chars: \u201cTips For Improving Quality Of Education In Primary Schools | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/", "label": "86 chars: \u201cImportance & Benefits of Extracurricular Activities for Students | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/students-life/", "label": "85 chars: \u201cStudent's Life - Extracurricular Daily Activities for Students | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "label": "85 chars: \u201cWhy There Is A Growing Need for Pre-Primary Education in India? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/", "label": "82 chars: \u201cSmart Classroom And its Role in Delivering Quality Education | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/", "label": "88 chars: \u201cPrimary Education: Its Role & Importance in Children's Development | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/", "label": "88 chars: \u201cWhy Has the Government Made Primary Education Compulsory in India? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "label": "88 chars: \u201cWhat Are Some Reasons Why Early Childhood Educators Are Essential? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/", "label": "74 chars: \u201cHow to Make Education More Personalized for Children | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/", "label": "80 chars: \u201cUltimate Guide To Choosing The Right School For Your Child | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/", "label": "76 chars: \u201cKey Principles In Early Education For A Bright Future | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "label": "92 chars: \u201cAgile Education \u2013 How To Remain Updated & Ensure Continuous Innovation | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "label": "80 chars: \u201cWhat is Holistic Learning & How Can it Benefit Your Child? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/", "label": "81 chars: \u201cWhat Are Some Best Extracurricular Activities for Students? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "label": "80 chars: \u201cA Complete Guide On How to Choose Preschool For Your Child | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/", "label": "77 chars: \u201cReasons To Choose CBSE School Education For Your Child | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "label": "85 chars: \u201cKey Features An Ideal School of CBSE board in India Should Have | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "label": "98 chars: \u201cEverything You Need To Know About Theoretical Learning vs Practical Learning | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "label": "90 chars: \u201cComplete Guide About Humanities Stream Subjects, Benefits, and Scope | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/", "label": "71 chars: \u201cWhat Life Skills Are Important To Teach In School - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/", "label": "79 chars: \u201cWhy is Technology Important In Early Childhood Education? | Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/", "label": "93 chars: \u201cThe Importance of Character Building & Values Education In CBSE Schools - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/", "label": "90 chars: \u201cThe Importance Of A Good School Environment For Creative Development | Lancers Army School\u201d"}], "i04": [{"url": "https://lancersarmyschools.com/gallery/", "label": "29 chars: \u201cGallery - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/blog/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/2/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/7/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/7/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/6/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/2/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/3/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/7/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/3/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/2/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/6/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/events/", "label": "28 chars: \u201cEvents - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/4/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/blog/page/5/", "label": "27 chars: \u201cBlog | Lancers Army Schools\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/6/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/events/page/2/", "label": "28 chars: \u201cEvents - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/events/?amp=1", "label": "28 chars: \u201cEvents - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/3/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/5/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/4/", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/events/page/2/?amp=1", "label": "28 chars: \u201cEvents - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/4/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}, {"url": "https://lancersarmyschools.com/category/blog/page/5/?amp=1", "label": "26 chars: \u201cBlog - Lancers Army School\u201d"}], "i05": ["https://lancersarmyschools.com/category/blog/", "https://lancersarmyschools.com/category/blog/page/7/", "https://lancersarmyschools.com/category/blog/page/2/", "https://lancersarmyschools.com/category/services/", "https://lancersarmyschools.com/category/blog/page/3/", "https://lancersarmyschools.com/category/blog/page/6/", "https://lancersarmyschools.com/category/events/", "https://lancersarmyschools.com/category/services/page/2/", "https://lancersarmyschools.com/category/events/page/2/", "https://lancersarmyschools.com/category/blog/page/5/", "https://lancersarmyschools.com/category/blog/page/4/"], "i06": ["https://lancersarmyschools.com/", "https://lancersarmyschools.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersarmyschools.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersarmyschools.com/students-life/", "https://lancersarmyschools.com/disclosure-form/", "https://lancersarmyschools.com/achievements/", "https://lancersarmyschools.com/about-us/", "https://lancersarmyschools.com/what-are-some-features-of-a-smart-classroom/", "https://lancersarmyschools.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersarmyschools.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersarmyschools.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersarmyschools.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersarmyschools.com/strong-extracurriculars-at-lancers-army-school-gujarat/", "https://lancersarmyschools.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersarmyschools.com/how-to-make-education-more-personalized-for-children/", "https://lancersarmyschools.com/ultimate-guide-to-choosing-the-right-school-for-your-child/", "https://lancersarmyschools.com/key-principles-in-early-education-for-a-bright-future/", "https://lancersarmyschools.com/what-teaching-methods-make-lancers-army-school-the-best-school-in-gujarat/", "https://lancersarmyschools.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersarmyschools.com/everything-you-need-to-know-about-cbse-board/", "https://lancersarmyschools.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersarmyschools.com/advantages-of-cbse-over-state-boards/", "https://lancersarmyschools.com/tips-for-finding-perfect-preschool/", "https://lancersarmyschools.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersarmyschools.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersarmyschools.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersarmyschools.com/reasons-to-choose-cbse-school-education-for-your-child/", "https://lancersarmyschools.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersarmyschools.com/the-role-of-teachers-in-education/", "https://lancersarmyschools.com/why-is-counselling-important-in-schools/", "https://lancersarmyschools.com/tips-for-managing-your-study-time/", "https://lancersarmyschools.com/importance-of-communication-skills-for-students/", "https://lancersarmyschools.com/benefits-of-play-based-learning/", "https://lancersarmyschools.com/5-ways-parents-can-get-involved-in-schools/", "https://lancersarmyschools.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersarmyschools.com/importance-of-holistic-education/", "https://lancersarmyschools.com/why-is-school-important/", "https://lancersarmyschools.com/importance-of-sports-in-education/", "https://lancersarmyschools.com/what-is-accessible-learning-and-its-advantages/", "https://lancersarmyschools.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersarmyschools.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersarmyschools.com/tips-for-studying-for-board-exams/", "https://lancersarmyschools.com/cbse-board-vs-state-board-which-is-better/", "https://lancersarmyschools.com/is-value-education-necessary-in-schools/", "https://lancersarmyschools.com/tips-for-better-parent-teacher-relationships/", "https://lancersarmyschools.com/why-is-technology-important-in-early-childhood-education/", "https://lancersarmyschools.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersarmyschools.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersarmyschools.com/tips-to-create-better-classroom-management/", "https://lancersarmyschools.com/importance-of-cbse-school/"], "i07": ["https://lancersarmyschools.com/blog/", "https://lancersarmyschools.com/category/blog/"], "i08": ["https://lancersarmyschools.com/author/lancehgs/", "https://lancersarmyschools.com/author/lancehgs/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/7/", "https://lancersarmyschools.com/author/lancehgs/page/2/", "https://lancersarmyschools.com/author/lancehgs/page/7/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/2/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/3/", "https://lancersarmyschools.com/author/lancersarmyschools/", "https://lancersarmyschools.com/author/lancehgs/page/6/", "https://lancersarmyschools.com/author/lancersarmyschools/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/6/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/5/", "https://lancersarmyschools.com/author/lancehgs/page/3/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/4/", "https://lancersarmyschools.com/author/lancehgs/page/5/?amp=1", "https://lancersarmyschools.com/author/lancehgs/page/4/?amp=1"], "i09": ["https://lancersarmyschools.com/wp-content/uploads/2021/06/NOC-GovtOfGuj.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancersarmyschools.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "https://lancersarmyschools.com/wp-content/uploads/2021/06/SMC.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf", "https://lancersarmyschools.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "https://lancersarmyschools.com/wp-content/uploads/2021/06/PTA.pdf"], "i10": ["https://lancersarmyschools.com/gallery/"]};
 
   // Restore saved state
   function taLoadState() {
     try {
       var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
       document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+        if (s[el.dataset.id] && s[el.dataset.id].stat) {
+          el.value = s[el.dataset.id].stat;
+          taUpdateStatColor(el);
+        }
       });
     } catch(e) {}
   }
 
   window.taSaveState = function() {
     var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
     document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
       if (!s[el.dataset.id]) s[el.dataset.id] = {};
       s[el.dataset.id].stat = el.value;
     });
     localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Recolor the select to match the currently chosen status (same colors as the
+  // internal Google Sheet's Status dropdown/conditional formatting)
+  window.taUpdateStatColor = function(sel) {
+    var opt = sel.options[sel.selectedIndex];
+    sel.style.background = (opt && opt.dataset.color) || '';
   };
 
   // Toggle expandable URL panel
@@ -1212,7 +1214,16 @@ new Chart(document.getElementById('chChart'), {
         var urls = ALL_URLS[iid] || [];
         var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
         urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+          var isRich = (typeof u === 'object' && u !== null);
+          var url = isRich ? u.url : u;
+          html += '<div class="ta-url-item" style="flex-direction:column;align-items:flex-start;gap:2px;">'
+            + '<div style="display:flex;width:100%;align-items:center">'
+            + '<span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span>'
+            + '<a href="' + url + '" target="_blank" rel="noopener" style="flex:1">' + url + '</a>'
+            + '<button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + url.replace(/'/g, "\\'") + '\')">Copy</button>'
+            + '</div>'
+            + (isRich ? '<div style="margin-left:36px;font-size:11px;color:#9CA3AF">' + u.label + '</div>' : '')
+            + '</div>';
         });
         container.innerHTML = html;
         container.dataset.loaded = '1';
@@ -1229,7 +1240,8 @@ new Chart(document.getElementById('chChart'), {
 
   window.taCopyAll = function(iid) {
     var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+    var text = urls.map(function(u) { return (typeof u === 'object' && u !== null) ? u.url : u; }).join('\n');
+    navigator.clipboard.writeText(text).then(function() {
       var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
       if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
     });
@@ -1250,7 +1262,13 @@ new Chart(document.getElementById('chChart'), {
     document.querySelectorAll('.ta-row-issue').forEach(function(row) {
       var iid = row.dataset.id;
       var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      // SF spans every category (errors/onpage/content/technical), so it filters by
+      // source tag instead of category — GSC already has its own dedicated category.
+      if (activeCat === 'sf') {
+        if (row.dataset.src !== 'SF') show = false;
+      } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
+        show = false;
+      }
       if (prio !== 'all' && row.dataset.prio !== prio) show = false;
       if (stat !== 'all') {
         var sel = row.querySelector('.ta-stat-sel');
@@ -1262,8 +1280,6 @@ new Chart(document.getElementById('chChart'), {
     });
   };
 
-  // Sort issue table by column, keeping each issue row paired with its URL panel
-  
   taLoadState();
 })();
 </script>
