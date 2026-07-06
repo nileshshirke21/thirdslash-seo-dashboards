@@ -605,7 +605,7 @@ new Chart(document.getElementById('chChart'), {
 <!-- TECH AUDIT TAB -->
 
 <div id="tab-techaudit" class="section">
-  
+
 <style>
 /* ── Tech Audit Scoped Styles ── */
 .ta-wrap {
@@ -614,9 +614,9 @@ new Chart(document.getElementById('chChart'), {
   --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
   --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
   --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
-  --blue:#5b39d9; --blue-bg:#f0edff; --blue-border:#BFDBFE;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
   --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text);
 }
 .ta-banner {
@@ -755,18 +755,13 @@ new Chart(document.getElementById('chChart'), {
 }
 
 /* Issue table */
-.ta-table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-}
 .ta-table {
   width: 100%;
-  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
   overflow: hidden;
 }
 .ta-table th {
@@ -828,6 +823,11 @@ new Chart(document.getElementById('chChart'), {
   border: 1px solid var(--purple-border);
   margin-left: 4px;
 }
+.ta-src-gsc {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
 
 /* Expandable URL panel */
 .ta-url-panel {
@@ -844,13 +844,11 @@ new Chart(document.getElementById('chChart'), {
   padding: 12px 20px;
   max-height: 300px;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 .ta-url-inner .ta-url-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
   padding: 6px 0;
   border-bottom: 1px solid var(--border);
   font-size: 12px;
@@ -859,8 +857,7 @@ new Chart(document.getElementById('chChart'), {
 .ta-url-inner .ta-url-item a {
   color: var(--blue);
   text-decoration: none;
-  overflow-wrap: anywhere;
-  min-width: 0;
+  word-break: break-all;
 }
 .ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
 .ta-copy-btn {
@@ -911,13 +908,13 @@ new Chart(document.getElementById('chChart'), {
                 stroke-linecap="round"/>
       </svg>
       <div class="ta-score-num">
-        <span class="ta-big">40</span>
+        <span class="ta-big">54</span>
         <span class="ta-of">/ 100</span>
       </div>
     </div>
     <div class="ta-banner-text">
       <h2>Technical SEO Health</h2>
-      <p>Lancers Early Years &middot; lancersearlyyears.com &middot; Screaming Frog Pro Crawl &middot; 1 Jul 2026 &middot; 294 pages scanned</p>
+      <p>Lancers Early Years &middot; lancersearlyyears.com &middot; Screaming Frog Pro Crawl &middot; 06 Jul 2026 &middot; 294 pages scanned</p>
       <span class="ta-label" style="background:#DC2626;color:#fff">Critical</span>
     </div>
   </div>
@@ -925,13 +922,15 @@ new Chart(document.getElementById('chChart'), {
   <!-- Metric Cards -->
   <div class="ta-metrics">
     <div class="ta-metric-card"><div class="ta-mc-val">294</div><div class="ta-mc-label">Total HTML Pages</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">88</div><div class="ta-mc-label">200 OK</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">88</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">168</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">136</div><div class="ta-mc-label">Indexable</div></div>
     <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">404 Errors</div></div>
     <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">182</div><div class="ta-mc-label">Redirects (3xx)</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">182</div><div class="ta-mc-label">Title Issues</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">182</div><div class="ta-mc-label">Meta Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">127</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">1</div><div class="ta-mc-label">Broken Resources</div></div>
+    
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">20</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">88</div><div class="ta-mc-label">Meta Issues</div></div>
   </div>
 
 
@@ -942,6 +941,8 @@ new Chart(document.getElementById('chChart'), {
     <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
     <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
     <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <button class="ta-chip" data-cat="sf" onclick="taFilter(this)">SF</button>
+    
     <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
       <option value="all">All Priorities</option>
       <option value="high">High</option>
@@ -950,160 +951,150 @@ new Chart(document.getElementById('chChart'), {
     </select>
     <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
       <option value="all">All Statuses</option>
-      <option value="Under Review">Under Review</option>
-      <option value="Completed">Completed</option>
-      <option value="Not Completed">Not Completed</option>
-      <option value="Blocked">Blocked</option>
-      <option value="Waiting for Approval">Waiting for Approval</option>
-      <option value="Rejected">Rejected</option>
+      <option value="Not Started">Not Started</option><option value="In Progress">In Progress</option><option value="Need Developer's Help">Need Developer's Help</option><option value="In Review">In Review</option><option value="Changes Done">Changes Done</option><option value="Not Possible">Not Possible</option>
     </select>
   </div>
 
   <!-- Issue Log Table -->
-  <div class="ta-table-wrap"><table class="ta-table" id="ta-issue-table">
+  <table class="ta-table" id="ta-issue-table">
     <thead>
       <tr>
-        <th style="width:28%;cursor:pointer" onclick="taSortTable(0)">Issue &#8645;</th>
-        <th style="width:60px;cursor:pointer" onclick="taSortTable(1)">Count &#8645;</th>
-        <th style="width:80px;cursor:pointer" onclick="taSortTable(2)">Priority &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(3)">What This Means &#8645;</th>
-        <th style="width:22%;cursor:pointer" onclick="taSortTable(4)">How to Fix It &#8645;</th>
-        <th style="width:110px;cursor:pointer" onclick="taSortTable(5)">Owner &#8645;</th>
-        <th style="width:130px;cursor:pointer" onclick="taSortTable(6)">Status &#8645;</th>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:150px">Status</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" onclick="taToggle('i01')">
-        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>128 pages with 3xx redirects </td>
-        <td><span class="ta-pill ta-pill-amber">128</span></td>
+      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i07')">
+        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>12 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">12</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i07">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i07"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>127 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">127</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
         <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i01" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i01">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i01"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i02" data-cat="onpage" data-prio="medium" onclick="taToggle('i02')">
-        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>22 pages with titles over 60 characters </td>
-        <td><span class="ta-pill ta-pill-amber">22</span></td>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>1 broken resources (scripts, images, stylesheets) <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
-        <td>Titles longer than 60 characters get truncated in Google search results, reducing click-through rates.</td>
-        <td>Rewrite titles to be under 60 characters while keeping the primary keyword near the front. Remove filler words.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i02" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td>These are broken JavaScript, CSS, image, or font files referenced from your site's shared template — usually the same broken reference loading on every page, not a broken content link. Can hurt Core Web Vitals and cause console errors.</td>
+        <td>Update or remove the broken resource reference in your theme/plugin code. Since it's loaded from a shared template, fixing it once resolves it site-wide.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i02">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i02"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" onclick="taToggle('i03')">
-        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>10 pages with titles below 30 characters </td>
-        <td><span class="ta-pill ta-pill-blue">10</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
-        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i03" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i03">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i03"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" onclick="taToggle('i04')">
-        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>10 pages with missing meta descriptions </td>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="medium" data-src="SF" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>10 pages with missing meta descriptions <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">10</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>Missing meta descriptions mean Google auto-generates the snippet. This often results in less compelling search result listings.</td>
         <td>Write unique meta descriptions (70-155 characters) for each page that include the target keyword and a clear call to action.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i04" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i04">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i04"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" onclick="taToggle('i05')">
-        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>78 pages with meta descriptions over 155 characters </td>
-        <td><span class="ta-pill ta-pill-blue">78</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
-        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i05" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i05">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i05"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i06" data-cat="technical" data-prio="medium" onclick="taToggle('i06')">
-        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>22 pages set to noindex </td>
+      <tr class="ta-row-issue" data-id="i06" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>22 pages set to noindex <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-amber">22</span></td>
         <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
         <td>These pages are explicitly blocked from appearing in search results. Verify this is intentional for each page.</td>
         <td>Review each noindexed page. If it should be indexed, remove the noindex directive. Common false positives: staging tags left on production pages.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i06" onchange="taSaveState()"><option value="ThirdSlash" selected>ThirdSlash</option><option value="Client">Client</option><option value="Developer">Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i06">
-        <td colspan="7">
+        <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i06"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i07" data-cat="technical" data-prio="high" onclick="taToggle('i07')">
-        <td><span class="ta-arrow" id="ta-arrow-i07">&#9654;</span>0 pages with missing canonical tags </td>
-        <td><span class="ta-pill ta-pill-red">0</span></td>
-        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
-        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
-        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-own-sel" data-id="i07" onchange="taSaveState()"><option value="ThirdSlash">ThirdSlash</option><option value="Client">Client</option><option value="Developer" selected>Developer</option></select></td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i07" onchange="taSaveState()"><option value="Under Review" selected>Under Review</option><option value="Completed">Completed</option><option value="Not Completed">Not Completed</option><option value="Blocked">Blocked</option><option value="Waiting for Approval">Waiting for Approval</option><option value="Rejected">Rejected</option></select></td>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>20 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">20</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
       </tr>
-      <tr class="ta-url-panel" id="ta-panel-i07">
-        <td colspan="7">
-          <div class="ta-url-inner" id="ta-urls-i07"></div>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>78 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">78</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
         </td>
       </tr>
     </tbody>
-  </table></div>
+  </table>
 </div>
 
 <script>
 (function() {
-  var LS_KEY = "lancers-early-years_techaudit_jun_2026";
-  var ALL_URLS = {"i01": ["https://lancersearlyyears.com/cbse/", "https://lancersearlyyears.com/gseb/", "https://www.facebook.com/lancerarmyschoolofficial/", "https://lancersearlyyears.com/cbse-faculty/", "https://lancersearlyyears.com/early-years/", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersearlyyears.com&text=:%20https%3A%2F%2Flancersearlyyears.com", "https://lancersearlyyears.com/gseb-faculty/", "https://lancersearlyyears.com/achievements/", "https://lancersearlyyears.com/gseb-teachers/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/what-learning-advantages-make-lancers-ey-unique-among-play-schools-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/?amp=1", "https://lancersearlyyears.com/about-us/facilities-at-school/?amp=1", "https://lancersearlyyears.com/events-and-co-curricular-activities/?amp=1", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/?amp=1", "https://lancersearlyyears.com/7-key-benefits-of-play-based-learning-for-toddlers/?amp=1", "https://lancersearlyyears.com/preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-creativity-builds-at-lancers-ey-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-to-compare-preschool-in-surat-for-holistic-development/?amp=1", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/?amp=1", "https://lancersearlyyears.com/gallery/?amp=1", "https://lancersearlyyears.com/about-us/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-encourage-creativity/?amp=1", "https://lancersearlyyears.com/about-us/achievements/?amp=1", "https://lancersearlyyears.com/disclosure-form/?amp=1", "https://lancersearlyyears.com/?amp=1", "https://lancersearlyyears.com/preschool-teacher/?amp=1", "https://lancersearlyyears.com/5-ways-to-choose-best-preschool-in-piplod-surat/?amp=1", "https://lancersearlyyears.com/what-is-preschool-education-gujarat-parents-should-know/?amp=1", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/?amp=1", "https://lancersearlyyears.com/what-children-learn-faster-at-pre-primary-schools-piplod-lancers-ey/?amp=1", "https://lancersearlyyears.com/our-programs/senior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/about-us/admission-procedure/?amp=1", "https://lancersearlyyears.com/blog/?amp=1", "https://lancersearlyyears.com/contact/?amp=1", "https://lancersearlyyears.com/about-us/our-curriculum/?amp=1", "https://lancersearlyyears.com/early-years-faculty/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/?amp=1", "https://lancersearlyyears.com/how-can-lancers-solve-learning-delays-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/?amp=1", "https://lancersearlyyears.com/how-innovations-in-preschool-education-in-gujarat-transform-early-learning-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-builds-strong-foundations-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersearlyyears.com/what-sets-lancers-early-years-apart-as-a-leading-preschool-in-surat-for-young-learners/?amp=1", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersearlyyears.com/how-lancers-preschool-in-surat-addresses-attention-and-focus-challenges/?amp=1", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/?amp=1", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-defines-quality-in-pre-primary-schools-piplod/?amp=1", "https://lancersearlyyears.com/how-lancers-ey-makes-preschool-education-in-gujarat-inclusive/?amp=1", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersearlyyears.com/gseb-parent-zone/", "https://lancersearlyyears.com/how-lancers-early-years-school-integrates-creativity-and-innovation-in-early-education-in-surat/?amp=1", "https://lancersearlyyears.com/preparing-children-for-a-global-future-language-and-cultural-programs-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/why-is-early-childhood-education-at-lancers-early-years-vital-in-surat/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-teach-kids-to-share-and-cooperate/?amp=1", "https://lancersearlyyears.com/importance-of-sports-in-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://lancersearlyyears.com/why-is-language-development-crucial-in-preschool-education-in-gujarat/?amp=1", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersearlyyears.com/the-role-of-play-based-learning-in-developing-social-skills-among-pre-primary-students/?amp=1", "https://lancersearlyyears.com/what-makes-lancers-school-a-top-choice-for-pre-primary-education-in-surat/?amp=1", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersearlyyears.com/importance-of-cbse-school/?amp=1", "https://lancersearlyyears.com/why-lancers-early-years-is-a-leading-preschool-in-surat-for-cultural-learning/?amp=1", "https://lancersearlyyears.com/how-lancers-early-years-integrates-art-and-creativity-in-learning/?amp=1", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersearlyyears.com/when-is-the-right-age-for-pre-nursery-admission-in-surat/?amp=1", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/?amp=1", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/?amp=1", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/?amp=1", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/?amp=1", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/?amp=1", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/?amp=1", "https://lancersearlyyears.com/importance-of-pre-primary-education/?amp=1", "https://lancersearlyyears.com/benefits-of-play-based-learning/?amp=1", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersearlyyears.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersearlyyears.com/what-benefits-do-field-trips-offer-at-lancers-preschools/?amp=1", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/?amp=1", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersearlyyears.com/how-early-years-educators-teach-mindfulness-and-resilience-to-children/?amp=1", "https://lancersearlyyears.com/why-is-school-important/?amp=1", "https://lancersearlyyears.com/how-can-early-years-programs-address-diverse-learning-needs/?amp=1", "https://lancersearlyyears.com/what-safety-measures-are-in-place-at-the-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/why-is-school-important-for/?amp=1", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersearlyyears.com/cbse-parent-zone/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/?amp=1", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/?amp=1", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/?amp=1", "https://lancersearlyyears.com/exploring-pre-primary-schools-building-a-bright-future/?amp=1", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/?amp=1", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/?amp=1", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/?amp=1", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/?amp=1", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/?amp=1", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/?amp=1", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/?amp=1", "https://lancersearlyyears.com/comprehensive-guide-for-choosing-the-best-preschool/?amp=1", "https://lancersearlyyears.com/engaging-preschool-activities-to-foster-learning-and-development-in-young-children/?amp=1", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/?amp=1", "https://lancersearlyyears.com/creating-a-stimulating-learning-environment-in-preschools/?amp=1", "https://lancersearlyyears.com/fostering-social-and-emotional-development-in-preschoolers/?amp=1", "https://lancersearlyyears.com/important-ideas-for-early-learning-for-a-successful-future/?amp=1", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/?amp=1", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/?amp=1", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/?amp=1"], "i02": ["https://lancersearlyyears.com/", "https://lancersearlyyears.com/about-us/achievements/", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/about-us/facilities-at-school/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i03": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i04": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i05": ["https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/admission-procedure/", "https://lancersearlyyears.com/preschool-teacher/", "https://lancersearlyyears.com/blog/", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersearlyyears.com/about-us/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/", "https://lancersearlyyears.com/students-life/", "https://lancersearlyyears.com/events-and-co-curricular-activities/", "https://lancersearlyyears.com/about-us/our-curriculum/", "https://lancersearlyyears.com/disclosure-form/", "https://lancersearlyyears.com/our-programs/", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/", "https://lancersearlyyears.com/blog/page/2/", "https://lancersearlyyears.com/blog/page/10/", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersearlyyears.com/blog/page/3/", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersearlyyears.com/blog/page/9/", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/blog/page/4/", "https://lancersearlyyears.com/blog/page/8/", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/importance-of-cbse-school/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/", "https://lancersearlyyears.com/importance-of-sports-in-education/", "https://lancersearlyyears.com/blog/page/7/", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/blog/page/5/", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersearlyyears.com/benefits-of-play-based-learning/", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/", "https://lancersearlyyears.com/why-is-school-important/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/importance-of-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/", "https://lancersearlyyears.com/blog/page/6/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i06": ["https://lancersearlyyears.com/author/lancehgs/", "https://lancersearlyyears.com/author/lancehgs/page/9/", "https://lancersearlyyears.com/author/lancehgs/page/2/", "https://lancersearlyyears.com/author/lancehgs/?amp=1", "https://lancersearlyyears.com/author/lancersarmyschools/", "https://lancersearlyyears.com/author/lancehgs/page/9/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/", "https://lancersearlyyears.com/author/lancehgs/page/10/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/8/", "https://lancersearlyyears.com/author/lancehgs/page/2/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/7/", "https://lancersearlyyears.com/author/lancersarmyschools/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/", "https://lancersearlyyears.com/author/lancehgs/page/10/", "https://lancersearlyyears.com/author/lancehgs/page/8/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/", "https://lancersearlyyears.com/author/lancehgs/page/7/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/5/", "https://lancersearlyyears.com/author/lancehgs/page/5/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/?amp=1"], "i07": []};
+  var LS_KEY = "lancers-early-years_techaudit_jul_2026";
+  var ALL_URLS = {"i01": ["https://lancersearlyyears.com/cbse/", "https://lancersearlyyears.com/gseb/", "https://lancersearlyyears.com/cbse-faculty/", "https://lancersearlyyears.com/early-years/", "https://lancersearlyyears.com/gseb-faculty/", "https://lancersearlyyears.com/achievements/", "https://lancersearlyyears.com/gseb-teachers/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/what-learning-advantages-make-lancers-ey-unique-among-play-schools-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/our-programs/?amp=1", "https://lancersearlyyears.com/about-us/facilities-at-school/?amp=1", "https://lancersearlyyears.com/events-and-co-curricular-activities/?amp=1", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/?amp=1", "https://lancersearlyyears.com/how-to-compare-preschool-in-surat-for-holistic-development/?amp=1", "https://lancersearlyyears.com/7-key-benefits-of-play-based-learning-for-toddlers/?amp=1", "https://lancersearlyyears.com/preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-creativity-builds-at-lancers-ey-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/?amp=1", "https://lancersearlyyears.com/gallery/?amp=1", "https://lancersearlyyears.com/about-us/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-encourage-creativity/?amp=1", "https://lancersearlyyears.com/disclosure-form/?amp=1", "https://lancersearlyyears.com/about-us/achievements/?amp=1", "https://lancersearlyyears.com/?amp=1", "https://lancersearlyyears.com/preschool-teacher/?amp=1", "https://lancersearlyyears.com/5-ways-to-choose-best-preschool-in-piplod-surat/?amp=1", "https://lancersearlyyears.com/what-is-preschool-education-gujarat-parents-should-know/?amp=1", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/?amp=1", "https://lancersearlyyears.com/what-children-learn-faster-at-pre-primary-schools-piplod-lancers-ey/?amp=1", "https://lancersearlyyears.com/our-programs/senior-kg-school-in-surat/?amp=1", "https://lancersearlyyears.com/about-us/admission-procedure/?amp=1", "https://lancersearlyyears.com/blog/?amp=1", "https://lancersearlyyears.com/contact/?amp=1", "https://lancersearlyyears.com/about-us/our-curriculum/?amp=1", "https://lancersearlyyears.com/early-years-faculty/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/?amp=1", "https://lancersearlyyears.com/how-can-lancers-solve-learning-delays-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/?amp=1", "https://lancersearlyyears.com/how-innovations-in-preschool-education-in-gujarat-transform-early-learning-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/?amp=1", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/?amp=1", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-builds-strong-foundations-in-preschool-education-gujarat/?amp=1", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/?amp=1", "https://lancersearlyyears.com/what-sets-lancers-early-years-apart-as-a-leading-preschool-in-surat-for-young-learners/?amp=1", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/?amp=1", "https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/?amp=1", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/?amp=1", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/?amp=1", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/?amp=1", "https://lancersearlyyears.com/how-lancers-preschool-in-surat-addresses-attention-and-focus-challenges/?amp=1", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/?amp=1", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/?amp=1", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/?amp=1", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/?amp=1", "https://lancersearlyyears.com/why-lancers-ey-defines-quality-in-pre-primary-schools-piplod/?amp=1", "https://lancersearlyyears.com/how-lancers-ey-makes-preschool-education-in-gujarat-inclusive/?amp=1", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/?amp=1", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/?amp=1", "https://lancersearlyyears.com/gseb-parent-zone/", "https://lancersearlyyears.com/how-lancers-early-years-school-integrates-creativity-and-innovation-in-early-education-in-surat/?amp=1", "https://lancersearlyyears.com/why-is-early-childhood-education-at-lancers-early-years-vital-in-surat/?amp=1", "https://lancersearlyyears.com/preparing-children-for-a-global-future-language-and-cultural-programs-at-lancers-early-years/?amp=1", "https://lancersearlyyears.com/how-preschools-in-surat-teach-kids-to-share-and-cooperate/?amp=1", "https://lancersearlyyears.com/importance-of-sports-in-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/?amp=1", "https://lancersearlyyears.com/why-is-language-development-crucial-in-preschool-education-in-gujarat/?amp=1", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/?amp=1", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/?amp=1", "https://lancersearlyyears.com/the-role-of-play-based-learning-in-developing-social-skills-among-pre-primary-students/?amp=1", "https://lancersearlyyears.com/what-makes-lancers-school-a-top-choice-for-pre-primary-education-in-surat/?amp=1", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/?amp=1", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/?amp=1", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/?amp=1", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/?amp=1", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/?amp=1", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/?amp=1", "https://lancersearlyyears.com/importance-of-cbse-school/?amp=1", "https://lancersearlyyears.com/why-lancers-early-years-is-a-leading-preschool-in-surat-for-cultural-learning/?amp=1", "https://lancersearlyyears.com/how-lancers-early-years-integrates-art-and-creativity-in-learning/?amp=1", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/?amp=1", "https://lancersearlyyears.com/when-is-the-right-age-for-pre-nursery-admission-in-surat/?amp=1", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/?amp=1", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/?amp=1", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/?amp=1", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/?amp=1", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/?amp=1", "https://lancersearlyyears.com/importance-of-pre-primary-education/?amp=1", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/?amp=1", "https://lancersearlyyears.com/benefits-of-play-based-learning/?amp=1", "https://lancersearlyyears.com/tips-for-finding-perfect-preschool/?amp=1", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/?amp=1", "https://lancersearlyyears.com/what-benefits-do-field-trips-offer-at-lancers-preschools/?amp=1", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/?amp=1", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/?amp=1", "https://lancersearlyyears.com/how-early-years-educators-teach-mindfulness-and-resilience-to-children/?amp=1", "https://lancersearlyyears.com/why-is-school-important/?amp=1", "https://lancersearlyyears.com/how-can-early-years-programs-address-diverse-learning-needs/?amp=1", "https://lancersearlyyears.com/why-is-school-important-for/?amp=1", "https://lancersearlyyears.com/what-safety-measures-are-in-place-at-the-best-preschool-in-surat/?amp=1", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/?amp=1", "https://lancersearlyyears.com/cbse-parent-zone/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/?amp=1", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/?amp=1", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/?amp=1", "https://lancersearlyyears.com/exploring-pre-primary-schools-building-a-bright-future/?amp=1", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/?amp=1", "https://lancersearlyyears.com/unleash-your-preschoolers-potential-with-outdoor-learning/?amp=1", "https://lancersearlyyears.com/transformative-power-of-prioritizing-child-development/?amp=1", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/?amp=1", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/?amp=1", "https://lancersearlyyears.com/the-importance-of-parent-teacher-collaboration-in-preschool-education/?amp=1", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/?amp=1", "https://lancersearlyyears.com/engaging-preschool-activities-to-foster-learning-and-development-in-young-children/?amp=1", "https://lancersearlyyears.com/comprehensive-guide-for-choosing-the-best-preschool/?amp=1", "https://lancersearlyyears.com/parent-teacher-communication-building-a-strong-foundation/?amp=1", "https://lancersearlyyears.com/how-can-storytelling-method-make-learning-fun-and-interesting/?amp=1", "https://lancersearlyyears.com/creating-a-stimulating-learning-environment-in-preschools/?amp=1", "https://lancersearlyyears.com/fostering-social-and-emotional-development-in-preschoolers/?amp=1", "https://lancersearlyyears.com/important-ideas-for-early-learning-for-a-successful-future/?amp=1", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/?amp=1", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/?amp=1", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/?amp=1", "https://twitter.com/intent/tweet?source=https%3A%2F%2Flancersearlyyears.com&text=:%20https%3A%2F%2Flancersearlyyears.com"], "i02": [{"url": "https://lancersearlyyears.com/gseb-teachers/", "label": "HTTP Redirect broken \u00b7 301 \u00b7 Internal \u00b7 found on 1 page (e.g. https://lancersearlyyears.com/gseb/)"}], "i03": [{"url": "https://lancersearlyyears.com/category/blogs/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/2/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/10/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/3/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/10/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/9/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/2/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/9/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/3/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/8/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/4/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/7/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/8/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/5/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/4/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/5/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/6/", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/7/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}, {"url": "https://lancersearlyyears.com/category/blogs/page/6/?amp=1", "label": "27 chars: \u201cBlogs - Lancers Early Years\u201d"}], "i04": ["https://lancersearlyyears.com/category/blogs/", "https://lancersearlyyears.com/category/blogs/page/2/", "https://lancersearlyyears.com/category/blogs/page/10/", "https://lancersearlyyears.com/category/blogs/page/3/", "https://lancersearlyyears.com/category/blogs/page/9/", "https://lancersearlyyears.com/category/blogs/page/8/", "https://lancersearlyyears.com/category/blogs/page/4/", "https://lancersearlyyears.com/category/blogs/page/7/", "https://lancersearlyyears.com/category/blogs/page/5/", "https://lancersearlyyears.com/category/blogs/page/6/"], "i05": ["https://lancersearlyyears.com/what-is-the-importance-of-extracurricular-activities-for-students/", "https://lancersearlyyears.com/preschool-in-surat/", "https://lancersearlyyears.com/about-us/admission-procedure/", "https://lancersearlyyears.com/preschool-teacher/", "https://lancersearlyyears.com/tips-for-improving-quality-of-education-in-primary-schools/", "https://lancersearlyyears.com/about-us/", "https://lancersearlyyears.com/blog/", "https://lancersearlyyears.com/about-us/school-guidelines-and-policy/", "https://lancersearlyyears.com/students-life/", "https://lancersearlyyears.com/our-programs/nursery-school-in-surat/", "https://lancersearlyyears.com/events-and-co-curricular-activities/", "https://lancersearlyyears.com/about-us/our-curriculum/", "https://lancersearlyyears.com/disclosure-form/", "https://lancersearlyyears.com/our-programs/junior-kg-school-in-surat/", "https://lancersearlyyears.com/our-programs/", "https://lancersearlyyears.com/our-programs/playgroup-school-in-surat/", "https://lancersearlyyears.com/what-are-some-reasons-why-early-childhood-educators-are-essential/", "https://lancersearlyyears.com/why-children-enjoy-interactive-classrooms-at-lancers-ey-preschool-in-surat/", "https://lancersearlyyears.com/why-there-is-a-growing-need-for-pre-primary-education-in-india/", "https://lancersearlyyears.com/what-are-some-features-of-a-smart-classroom/", "https://lancersearlyyears.com/smart-classroom-and-its-role-in-delivering-quality-education/", "https://lancersearlyyears.com/role-and-importance-of-primary-education-in-child-development/", "https://lancersearlyyears.com/how-surat-play-schools-build-social-skills/", "https://lancersearlyyears.com/how-teacher-training-boosts-quality-in-play-schools-in-surat-like-lancers-ey/", "https://lancersearlyyears.com/blog/page/2/", "https://lancersearlyyears.com/blog/page/10/", "https://lancersearlyyears.com/why-choosing-a-preschool-in-surat-like-lancers-ey-benefits-early-development/", "https://lancersearlyyears.com/why-has-the-government-made-primary-education-compulsory-in-india/", "https://lancersearlyyears.com/blog/page/3/", "https://lancersearlyyears.com/why-is-cbse-board-school-best-for-your-child/", "https://lancersearlyyears.com/a-complete-guide-on-how-to-choose-preschool-for-your-child/", "https://lancersearlyyears.com/blog/page/9/", "https://lancersearlyyears.com/everything-you-need-to-know-about-cbse-board/", "https://lancersearlyyears.com/why-the-best-pre-primary-schools-like-lancers-ey-build-lifelong-learning-habits/", "https://lancersearlyyears.com/agile-education-how-to-remain-updated-ensure-continuous-innovation/", "https://lancersearlyyears.com/how-to-make-education-more-personalized-for-children/", "https://lancersearlyyears.com/why-is-preschool-education-in-gujarat-a-strong-foundation-for-kids/", "https://lancersearlyyears.com/what-are-some-best-extracurricular-activities-for-students/", "https://lancersearlyyears.com/everything-you-need-to-know-about-theoretical-learning-vs-practical-learning/", "https://lancersearlyyears.com/tips-for-better-parent-teacher-relationships/", "https://lancersearlyyears.com/how-the-best-pre-primary-schools-encourage-emotional-growth/", "https://lancersearlyyears.com/blog/page/4/", "https://lancersearlyyears.com/blog/page/8/", "https://lancersearlyyears.com/what-is-accessible-learning-and-its-advantages/", "https://lancersearlyyears.com/why-is-counselling-important-in-schools/", "https://lancersearlyyears.com/importance-of-cbse-school/", "https://lancersearlyyears.com/tips-to-create-better-classroom-management/", "https://lancersearlyyears.com/complete-guide-about-humanities-stream-subjects-benefits-and-scope/", "https://lancersearlyyears.com/what-is-holistic-learning-and-how-can-it-benefit-your-child/", "https://lancersearlyyears.com/the-impact-of-pre-primary-education-on-a-childs-brain-development/", "https://lancersearlyyears.com/importance-of-sports-in-education/", "https://lancersearlyyears.com/blog/page/7/", "https://lancersearlyyears.com/why-is-technology-important-in-early-childhood-education/", "https://lancersearlyyears.com/the-importance-of-character-building-values-education-in-cbse-schools/", "https://lancersearlyyears.com/how-does-pre-school-education-handle-separation-anxiety-in-children/", "https://lancersearlyyears.com/how-is-outdoor-learning-integrated-into-early-childhood-programs/", "https://lancersearlyyears.com/is-value-education-necessary-in-schools/", "https://lancersearlyyears.com/how-are-life-skills-incorporated-into-the-lancers-ey-educational-model/", "https://lancersearlyyears.com/blog/page/5/", "https://lancersearlyyears.com/how-do-children-develop-confidence-through-discovery/", "https://lancersearlyyears.com/the-importance-of-a-good-school-environment-for-creative-development/", "https://lancersearlyyears.com/benefits-of-play-based-learning/", "https://lancersearlyyears.com/tips-for-studying-for-board-exams/", "https://lancersearlyyears.com/what-life-skills-are-important-to-teach-in-school/", "https://lancersearlyyears.com/importance-of-communication-skills-for-students/", "https://lancersearlyyears.com/key-features-an-ideal-school-of-cbse-board-in-india-should-have/", "https://lancersearlyyears.com/how-do-early-years-programs-introduce-environmental-awareness-to-children/", "https://lancersearlyyears.com/why-is-school-important/", "https://lancersearlyyears.com/smart-classroom-for-pre-primary-education/", "https://lancersearlyyears.com/importance-of-pre-primary-education/", "https://lancersearlyyears.com/the-importance-of-play-in-early-childhood-development/", "https://lancersearlyyears.com/importance-of-preschool-education-for-early-childhood-development/", "https://lancersearlyyears.com/choosing-the-right-pre-primary-school-in-piplod/", "https://lancersearlyyears.com/choosing-the-right-preschool-what-parents-should-look/", "https://lancersearlyyears.com/which-life-skills-should-be-taught-in-schools/", "https://lancersearlyyears.com/blog/page/6/", "https://lancersearlyyears.com/key-considerations-when-choosing-pre-primary-schools-in-surat/", "https://lancersearlyyears.com/need-of-smart-classroom-for-pre-primary/"], "i06": ["https://lancersearlyyears.com/author/lancehgs/", "https://lancersearlyyears.com/author/lancehgs/page/9/", "https://lancersearlyyears.com/author/lancehgs/page/2/", "https://lancersearlyyears.com/author/lancehgs/?amp=1", "https://lancersearlyyears.com/author/lancersarmyschools/", "https://lancersearlyyears.com/author/lancehgs/page/3/", "https://lancersearlyyears.com/author/lancehgs/page/9/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/10/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/8/", "https://lancersearlyyears.com/author/lancehgs/page/2/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/3/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/7/", "https://lancersearlyyears.com/author/lancersarmyschools/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/10/", "https://lancersearlyyears.com/author/lancehgs/page/4/", "https://lancersearlyyears.com/author/lancehgs/page/8/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/", "https://lancersearlyyears.com/author/lancehgs/page/7/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/4/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/5/", "https://lancersearlyyears.com/author/lancehgs/page/5/?amp=1", "https://lancersearlyyears.com/author/lancehgs/page/6/?amp=1"], "i07": ["https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-BOARD-EXAM-PASS-PERCENTAGE-FOR-LAST-3-YEARS.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-2-Annual-Academic-Calendar-2023-24.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-7-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-5-Building-Safety.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/NOC-GovtOfGuj.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/RTE-REGISTRATION.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-Extension-of-General-Affiliation-up-to-Secondart-Senior-Secondary-Level.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-8-Water-Health-Sanitation.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/Point-1-FEES-STRUCTURE.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/SMC.pdf", "https://lancersearlyyears.com/wp-content/uploads/2023/05/point-6-Fire-Safety-Certificate.pdf", "https://lancersearlyyears.com/wp-content/uploads/2021/06/PTA.pdf"]};
 
   // Restore saved state
   function taLoadState() {
     try {
       var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].own) el.value = s[el.dataset.id].own;
-      });
       document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) el.value = s[el.dataset.id].stat;
+        if (s[el.dataset.id] && s[el.dataset.id].stat) {
+          el.value = s[el.dataset.id].stat;
+          taUpdateStatColor(el);
+        }
       });
     } catch(e) {}
   }
 
   window.taSaveState = function() {
     var s = {};
-    document.querySelectorAll('.ta-own-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].own = el.value;
-    });
     document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
       if (!s[el.dataset.id]) s[el.dataset.id] = {};
       s[el.dataset.id].stat = el.value;
     });
     localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Recolor the select to match the currently chosen status (same colors as the
+  // internal Google Sheet's Status dropdown/conditional formatting)
+  window.taUpdateStatColor = function(sel) {
+    var opt = sel.options[sel.selectedIndex];
+    sel.style.background = (opt && opt.dataset.color) || '';
   };
 
   // Toggle expandable URL panel
@@ -1123,7 +1114,16 @@ new Chart(document.getElementById('chChart'), {
         var urls = ALL_URLS[iid] || [];
         var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
         urls.forEach(function(u, idx) {
-          html += '<div class="ta-url-item"><span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span><a href="' + u + '" target="_blank" rel="noopener" style="flex:1">' + u + '</a><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + u.replace(/'/g, "\\'") + '\')">Copy</button></div>';
+          var isRich = (typeof u === 'object' && u !== null);
+          var url = isRich ? u.url : u;
+          html += '<div class="ta-url-item" style="flex-direction:column;align-items:flex-start;gap:2px;">'
+            + '<div style="display:flex;width:100%;align-items:center">'
+            + '<span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span>'
+            + '<a href="' + url + '" target="_blank" rel="noopener" style="flex:1">' + url + '</a>'
+            + '<button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + url.replace(/'/g, "\\'") + '\')">Copy</button>'
+            + '</div>'
+            + (isRich ? '<div style="margin-left:36px;font-size:11px;color:#9CA3AF">' + u.label + '</div>' : '')
+            + '</div>';
         });
         container.innerHTML = html;
         container.dataset.loaded = '1';
@@ -1140,7 +1140,8 @@ new Chart(document.getElementById('chChart'), {
 
   window.taCopyAll = function(iid) {
     var urls = ALL_URLS[iid] || [];
-    navigator.clipboard.writeText(urls.join('\n')).then(function() {
+    var text = urls.map(function(u) { return (typeof u === 'object' && u !== null) ? u.url : u; }).join('\n');
+    navigator.clipboard.writeText(text).then(function() {
       var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
       if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
     });
@@ -1161,7 +1162,13 @@ new Chart(document.getElementById('chChart'), {
     document.querySelectorAll('.ta-row-issue').forEach(function(row) {
       var iid = row.dataset.id;
       var show = true;
-      if (activeCat !== 'all' && row.dataset.cat !== activeCat) show = false;
+      // SF spans every category (errors/onpage/content/technical), so it filters by
+      // source tag instead of category — GSC already has its own dedicated category.
+      if (activeCat === 'sf') {
+        if (row.dataset.src !== 'SF') show = false;
+      } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
+        show = false;
+      }
       if (prio !== 'all' && row.dataset.prio !== prio) show = false;
       if (stat !== 'all') {
         var sel = row.querySelector('.ta-stat-sel');
@@ -1173,8 +1180,6 @@ new Chart(document.getElementById('chChart'), {
     });
   };
 
-  // Sort issue table by column, keeping each issue row paired with its URL panel
-  
   taLoadState();
 })();
 </script>
