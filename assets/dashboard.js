@@ -47,6 +47,28 @@ function filterLB() {
   });
 }
 
+function populateLBTypeFilter() {
+  var body = document.getElementById('lbBody');
+  var sel = document.getElementById('lbType');
+  if (!body || !sel) return;
+  var known = [
+    ['Reddit', 'Reddit'],
+    ['Blog Comment', 'Blog Comment'],
+    ['Guest Posting', 'Guest Posting'],
+    ['Directory', 'Directories']
+  ];
+  var present = {};
+  body.querySelectorAll('tr[data-type]').forEach(function(r){ present[r.getAttribute('data-type')] = true; });
+  var current = sel.value;
+  var opts = '<option value="all">All Types</option>';
+  known.forEach(function(pair){
+    if (present[pair[0]]) opts += '<option value="' + pair[0] + '">' + pair[1] + '</option>';
+  });
+  sel.innerHTML = opts;
+  if (sel.querySelector('option[value="' + current + '"]')) sel.value = current;
+}
+document.addEventListener('DOMContentLoaded', populateLBTypeFilter);
+
 function sortLBTable(col) {
   var tbody=document.getElementById('lbBody');
   if(!tbody) return;
