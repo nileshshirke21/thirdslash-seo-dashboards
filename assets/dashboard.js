@@ -120,3 +120,12 @@ window.taSortTable = function(col) {
     });
     pairs.forEach(function(p) { tbody.appendChild(p.row); if (p.panel) tbody.appendChild(p.panel); });
   }
+
+function toggleMonthPanel(id, headerEl) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var arrow = headerEl.querySelector('.month-toggle-arrow');
+  var isHidden = el.style.display === 'none' || el.style.display === '';
+  el.style.display = isHidden ? 'block' : 'none';
+  if (arrow) arrow.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
+}
