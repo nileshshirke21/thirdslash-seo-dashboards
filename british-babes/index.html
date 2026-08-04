@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Babes — SEO Dashboard | ThirdSlash</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="../assets/dashboard.css">
+<script>
+function toggleMonthPanel(id, headerEl) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var arrow = headerEl.querySelector('.month-toggle-arrow');
+  var isHidden = el.style.display === 'none' || el.style.display === '';
+  el.style.display = isHidden ? 'block' : 'none';
+  if (arrow) arrow.style.transform = isHidden ? 'rotate(90deg)' : 'rotate(0deg)';
+}
+</script>
+
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>British Babes</h1>
+    <span class="domain-pill">britishbabes.com</span>
+    <span class="date-badge">Updated: 1st August 2026</span>
+  </div>
+  <div class="header-right" style="display:flex;align-items:center;gap:16px;">
+    <button id="pdfBtn" onclick="generatePDF()" style="padding:7px 18px;background:#5b39d9;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download PDF
+    </button>
+    <svg width="140" height="28" viewBox="0 0 280 56" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0,4)"><polygon points="8,48 20,0 32,0 20,48" fill="#E87A2A"/><polygon points="22,48 34,0 46,0 34,48" fill="#E87A2A"/><polygon points="36,48 48,0 60,0 48,48" fill="#E87A2A"/></g><text x="70" y="38" font-family="'Plus Jakarta Sans',sans-serif" font-size="26" font-weight="800" letter-spacing="2"><tspan fill="#6B7280">THIRD</tspan><tspan fill="#E87A2A">SLASH</tspan></text></svg>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-tab active" onclick="showTab('overview', this)">Overview</div>
+  <div class="nav-tab" onclick="showTab('rankings', this)">Rankings</div>
+  <div class="nav-tab" onclick="showTab('history', this)">GA History</div>
+  <div class="nav-tab" onclick="showTab('tasks', this)">SEO Tasks</div>
+  <div class="nav-tab" onclick="showTab('linkbuilding', this)">Link Building</div>
+  <div class="nav-tab" onclick="showTab('techaudit', this)">Tech Audit</div>
+</div>
+
+<!-- OVERVIEW TAB -->
+<div id="tab-overview" class="section active">
+    <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">SEO + AI Traffic</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">0</div>
+      <span class="delta neg">▼ 100.0% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 49</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Organic Sessions</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">0</div>
+      <span class="delta neg">▼ 100.0% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 49</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total Sessions</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">3</div>
+      <span class="delta neg">▼ 99.5% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 639</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total Pageviews</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">1</div>
+      <span class="delta neg">▼ 99.9% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 915</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Organic Engagement Rate</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">0.0%</div>
+      <span class="delta neg">▼ 100.0% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 53.1%</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Total Avg Duration (Sec)</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">2</div>
+      <span class="delta neg">▼ 96.7% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 61</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Direct Sessions</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">1</div>
+      <span class="delta neg">▼ 99.8% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 582</span></span>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Conversions</div>
+      <div class="period-label">Jul-2026 vs Jun-2026</div>
+      <div class="metric-value">0</div>
+      <span class="delta" style="color:#94A3B8;">No change <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 0</span></span>
+    </div>
+  </div>
+
+  <div class="no-data" style="margin-top:16px;"><p>The GA4 tracking snippet went missing from britishbabes.com at some point in July and was only reinstalled on 4th August 2026 &mdash; May (525 sessions) and June (639 sessions) show normal real traffic, then July collapsed to just 3 sessions site-wide. The steep drops above are a real tracking outage, not a genuine traffic collapse. See the GA History tab for the full May&ndash;Jul trend.</p></div>
+  <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-top:24px;">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:#fff;font-size:13px;font-weight:700;">Total Backlinks Report</span>
+    </div>
+
+    <!-- Current vs Previous summary -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:#F8FAFC;">
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">Source</th>
+            <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">Metric</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;border-right:1px solid #E2E8F0;">vs Last Month</th>
+            <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#5b39d9;text-transform:uppercase;letter-spacing:0.6px;border-bottom:2px solid #E2E8F0;">Jul-2026</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#5b39d9;white-space:nowrap;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">External Backlinks</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;"><span style="color:#94A3B8;font-size:11px;font-weight:600;">First month</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #E2E8F0;">429</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#5b39d9;white-space:nowrap;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Unique Referring Domains</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;"><span style="color:#94A3B8;font-size:11px;font-weight:600;">First month</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #E2E8F0;">408</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#5b39d9;white-space:nowrap;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Ahrefs</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Domain Rating (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;"><span style="color:#94A3B8;font-size:11px;font-weight:600;">First month</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #E2E8F0;">0</td>
+          </tr>
+          <tr>
+            <td style="padding:11px 16px;font-weight:600;color:#7C3AED;white-space:nowrap;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Moz</td>
+            <td style="padding:11px 16px;font-weight:500;color:#0F172A;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;">Domain Authority (Out of 100)</td>
+            <td style="padding:11px 16px;text-align:center;border-bottom:1px solid #E2E8F0;border-right:1px solid #E2E8F0;"><span style="color:#94A3B8;font-size:11px;font-weight:600;">First month</span></td>
+            <td style="padding:11px 16px;text-align:center;font-weight:700;font-size:15px;color:#0F172A;border-bottom:1px solid #E2E8F0;">5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- History (first month only) -->
+    <div style="border-top:2px solid #E2E8F0;overflow-x:auto;">
+      <div style="padding:10px 16px 6px;font-size:11px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:0.6px;background:#F8FAFC;">
+        History (first month tracked)
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <thead>
+          <tr style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);">
+            <th style="padding:9px 14px;text-align:left;font-size:11px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:0.5px;white-space:nowrap;">Metric</th>
+            <th style="padding:9px 14px;text-align:center;font-size:11px;font-weight:600;color:#fff;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.15);">Jul-2026</th>
+          </tr>
+        </thead>
+        <tbody style="background:#fff;"><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;border-bottom:1px solid #E2E8F0;">Ahrefs Backlinks</td><td style="padding:9px 14px;text-align:center;background:#f0edff;font-weight:700;color:#0F172A;border-left:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">429</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;border-bottom:1px solid #E2E8F0;">Ahrefs Referring Domains</td><td style="padding:9px 14px;text-align:center;background:#f0edff;font-weight:700;color:#0F172A;border-left:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">408</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;border-bottom:1px solid #E2E8F0;">Domain Rating (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#f0edff;font-weight:700;color:#0F172A;border-left:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">0</td></tr><tr><td style="padding:9px 14px;font-weight:500;color:#334155;white-space:nowrap;border-bottom:1px solid #E2E8F0;">Domain Authority (Out of 100)</td><td style="padding:9px 14px;text-align:center;background:#f0edff;font-weight:700;color:#0F172A;border-left:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0;">5</td></tr></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="no-data"><p>No rank tracking data yet.</p></div>
+</div>
+
+
+<!-- GMB TAB -->
+<script>
+  if(typeof initGmbChart === 'undefined') {
+    function initGmbChart() {
+      new Chart(document.getElementById('gmbChart'), {
+        type: 'bar',
+        data: { labels: ["Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026"], datasets: [
+          { label: 'Profile Views', data: [102, 106, 125, 151, 116, 118], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4 },
+          { label: 'Website Clicks', data: [1, 1, 0, 0, 0, 1], backgroundColor: 'rgba(6,182,212,0.7)', borderColor: '#06b6d4', borderWidth:1, borderRadius:4 },
+          { label: 'Phone Calls', data: [0, 0, 0, 0, 2, 0], backgroundColor: 'rgba(5,150,105,0.7)', borderColor: '#059669', borderWidth:1, borderRadius:4 }
+        ]},
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } },
+          scales: {
+            x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } },
+            y: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }
+          }
+        }
+      });
+    }
+    initGmbChart();
+  }
+  </script>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function generatePDF() {
+  var btn = document.getElementById('pdfBtn');
+  var origText = btn.innerHTML;
+  btn.innerHTML = '⏳ Generating...';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+
+  try {
+    var { jsPDF } = window.jspdf;
+    var pdf = new jsPDF('landscape', 'mm', 'a4');
+    var pageWidth = pdf.internal.pageSize.getWidth();
+    var pageHeight = pdf.internal.pageSize.getHeight();
+    var margin = 5;
+
+    var tabIds = ['overview','rankings','history','gmb','tasks','linkbuilding','techaudit','googleads','metaads'];
+    var sections = [];
+    tabIds.forEach(function(t) {
+      var el = document.getElementById('tab-' + t);
+      if (!el) return;
+      // Skip tabs that only contain a "coming soon"/no-data placeholder
+      // (e.g. GMB not applicable for this client) - nothing worth exporting.
+      var onlyPlaceholder = el.querySelector('.no-data') &&
+        el.textContent.trim() === el.querySelector('.no-data').textContent.trim();
+      if (onlyPlaceholder) return;
+      sections.push({ id: t, el: el });
+    });
+
+    var origStates = sections.map(function(s) {
+      return { el: s.el, display: s.el.style.display, cls: s.el.className };
+    });
+
+    var nav = document.querySelector('.nav');
+    var origNavDisplay = nav ? nav.style.display : '';
+    if (nav) nav.style.display = 'none';
+    btn.style.display = 'none';
+
+    var selects = document.querySelectorAll('.ta-select, .ta-chip, #ta-prio-filter, #ta-status-filter, #lbType, #lbStatus');
+    selects.forEach(function(s) { s.setAttribute('data-orig-display', s.style.display); s.style.display = 'none'; });
+
+    // Stores link annotation data to apply after all rendering is done
+    var deferredLinks = [];
+
+    var isFirst = true;
+    for (var i = 0; i < sections.length; i++) {
+      var s = sections[i];
+
+      sections.forEach(function(other) {
+        if (other.id === s.id) {
+          other.el.style.display = 'block';
+          other.el.classList.add('active');
+          other.el.style.padding = '16px 28px';
+        } else {
+          other.el.style.display = 'none';
+          other.el.classList.remove('active');
+        }
+      });
+
+      await new Promise(function(r) { setTimeout(r, 500); });
+
+      // GMB/Google Ads/Meta Ads charts are lazily created only when the
+      // user actually clicks that tab (via showTab's init calls) - since
+      // generatePDF() sets display directly and skips showTab(), those
+      // charts would otherwise never get created and export as blank.
+      if (s.id === 'gmb' && typeof _gmbDone !== 'undefined' && !_gmbDone && typeof initGmbChart === 'function') { initGmbChart(); _gmbDone = true; }
+      if (s.id === 'googleads' && typeof initGaCharts === 'function') { initGaCharts(); }
+      if (s.id === 'metaads' && typeof initMetaCharts === 'function') { initMetaCharts(); }
+
+      // Charts created while their tab was hidden (0x0 canvas) never
+      // auto-redraw just because the tab becomes visible later - force
+      // a resize/redraw on every chart in this section before capture.
+      if (window.Chart && Chart.instances) {
+        await new Promise(function(r) { setTimeout(r, 150); });
+        Object.values(Chart.instances).forEach(function(ch) {
+          if (s.el.contains(ch.canvas)) { ch.resize(); ch.update('none'); }
+        });
+        await new Promise(function(r) { requestAnimationFrame(function() { requestAnimationFrame(r); }); });
+      }
+
+      // Collect link positions (as fractions of section size) for tasks/linkbuilding
+      var sectionLinkData = null;
+      if (s.id === 'tasks' || s.id === 'linkbuilding') {
+        var sEl = s.el;
+        var sR = sEl.getBoundingClientRect();
+        var sW = sEl.scrollWidth;
+        var sH = sEl.scrollHeight;
+        var linkFracs = [];
+        sEl.querySelectorAll('a[href]').forEach(function(a) {
+          var href = a.getAttribute('href');
+          if (!href || href === '#' || href.startsWith('javascript')) return;
+          var r = a.getBoundingClientRect();
+          if (r.width < 1 || r.height < 1) return;
+          linkFracs.push({
+            href: href,
+            xF: (r.left - sR.left) / sW,
+            yF: (r.top - sR.top) / sH,
+            wF: Math.max(r.width, 20) / sW,
+            hF: Math.max(r.height, 5) / sH
+          });
+        });
+        sectionLinkData = { fracs: linkFracs };
+      }
+
+      var canvas = await html2canvas(s.el, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#eef1f8',
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        width: s.el.scrollWidth,
+        height: s.el.scrollHeight
+      });
+
+      var headerCanvas = null;
+      if (i === 0) {
+        var header = document.querySelector('.header');
+        if (header) {
+          headerCanvas = await html2canvas(header, {
+            scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff'
+          });
+        }
+      }
+
+      var imgData = canvas.toDataURL('image/jpeg', 0.92);
+      var contentWidth = pageWidth - (margin * 2);
+      var sectionStartPage, sectionYStart;
+
+      if (headerCanvas && i === 0) {
+        var hdrData = headerCanvas.toDataURL('image/jpeg', 0.95);
+        var hdrHeight = (headerCanvas.height * contentWidth) / headerCanvas.width;
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
+
+        if (!isFirst) pdf.addPage();
+        isFirst = false;
+        sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
+        pdf.addImage(hdrData, 'JPEG', margin, margin, contentWidth, hdrHeight);
+
+        var yPos = margin + hdrHeight + 2;
+        sectionYStart = yPos;
+
+        if (contentHeight <= pageHeight - yPos - margin) {
+          pdf.addImage(imgData, 'JPEG', margin, yPos, contentWidth, contentHeight);
+        } else {
+          var pxPerMm = canvas.width / contentWidth;
+          var availFirst = (pageHeight - yPos - margin) * pxPerMm;
+          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
+
+          var sliceCanvas = document.createElement('canvas');
+          sliceCanvas.width = canvas.width;
+          sliceCanvas.height = Math.min(availFirst, canvas.height);
+          sliceCanvas.getContext('2d').drawImage(canvas, 0, 0, canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
+          pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, yPos, contentWidth, sliceCanvas.height / pxPerMm);
+
+          var offset = availFirst;
+          while (offset < canvas.height) {
+            pdf.addPage();
+            var sh = Math.min(pageContentHeightPx, canvas.height - offset);
+            var sc2 = document.createElement('canvas');
+            sc2.width = canvas.width; sc2.height = sh;
+            sc2.getContext('2d').drawImage(canvas, 0, offset, canvas.width, sh, 0, 0, canvas.width, sh);
+            pdf.addImage(sc2.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sh / pxPerMm);
+            offset += pageContentHeightPx;
+          }
+        }
+
+        if (sectionLinkData) {
+          sectionLinkData.startPage = sectionStartPage;
+          sectionLinkData.yStart = sectionYStart;
+          sectionLinkData.contentWidth = contentWidth;
+          sectionLinkData.contentHeight = contentHeight;
+          deferredLinks.push(sectionLinkData);
+        }
+      } else {
+        var contentHeight = (canvas.height * contentWidth) / canvas.width;
+        sectionYStart = margin;
+
+        if (contentHeight <= pageHeight - margin * 2) {
+          if (!isFirst) pdf.addPage();
+          isFirst = false;
+          sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
+          pdf.addImage(imgData, 'JPEG', margin, margin, contentWidth, contentHeight);
+        } else {
+          var pxPerMm = canvas.width / contentWidth;
+          var pageContentHeightPx = (pageHeight - margin * 2) * pxPerMm;
+          var totalPages = Math.ceil(canvas.height / pageContentHeightPx);
+          sectionStartPage = null;
+
+          for (var p = 0; p < totalPages; p++) {
+            if (!isFirst) pdf.addPage();
+            isFirst = false;
+            if (sectionStartPage === null) {
+              sectionStartPage = pdf.internal.getCurrentPageInfo().pageNumber;
+            }
+            var sliceHeight = Math.min(pageContentHeightPx, canvas.height - p * pageContentHeightPx);
+            var sliceCanvas = document.createElement('canvas');
+            sliceCanvas.width = canvas.width;
+            sliceCanvas.height = sliceHeight;
+            sliceCanvas.getContext('2d').drawImage(canvas, 0, p * pageContentHeightPx, canvas.width, sliceHeight, 0, 0, canvas.width, sliceHeight);
+            pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentWidth, sliceHeight / pxPerMm);
+          }
+        }
+
+        if (sectionLinkData) {
+          sectionLinkData.startPage = sectionStartPage;
+          sectionLinkData.yStart = sectionYStart;
+          sectionLinkData.contentWidth = contentWidth;
+          sectionLinkData.contentHeight = contentHeight;
+          deferredLinks.push(sectionLinkData);
+        }
+      }
+    }
+
+    // Post-process: add all link annotations now that page structure is final
+    var finalPage = pdf.internal.getCurrentPageInfo().pageNumber;
+    var totalPdfPages = pdf.internal.getNumberOfPages();
+
+    deferredLinks.forEach(function(d) {
+      var firstPageAvail = pageHeight - d.yStart - margin;
+      var fullPageH = pageHeight - margin * 2;
+
+      d.fracs.forEach(function(lk) {
+        var pdfX = margin + lk.xF * d.contentWidth;
+        var pdfW = lk.wF * d.contentWidth;
+        var linkYmm = lk.yF * d.contentHeight;
+        var linkHmm = Math.max(lk.hF * d.contentHeight, 2);
+
+        var pageOffset, localY;
+        if (linkYmm <= firstPageAvail) {
+          pageOffset = 0;
+          localY = d.yStart + linkYmm;
+        } else {
+          var rem = linkYmm - firstPageAvail;
+          pageOffset = 1 + Math.floor(rem / fullPageH);
+          localY = margin + (rem % fullPageH);
+        }
+
+        var targetPage = d.startPage + pageOffset;
+        if (targetPage >= 1 && targetPage <= totalPdfPages) {
+          pdf.setPage(targetPage);
+          pdf.link(pdfX, localY, pdfW, linkHmm, { url: lk.href, newWindow: true });
+        }
+      });
+    });
+
+    pdf.setPage(finalPage);
+
+    origStates.forEach(function(s) {
+      s.el.style.display = s.display;
+      s.el.className = s.cls;
+    });
+    if (nav) nav.style.display = origNavDisplay;
+    btn.style.display = '';
+    selects.forEach(function(s) { s.style.display = s.getAttribute('data-orig-display') || ''; });
+
+    var activeTab = document.querySelector('.nav-tab.active');
+    if (activeTab) activeTab.click();
+
+    var clientName = document.querySelector('h1');
+    var periodEl = document.querySelector('.period-label');
+    var periodMatch = periodEl ? periodEl.textContent.match(/([A-Za-z]{3})-(\d{4})/) : null;
+    var monYY = periodMatch ? ('_' + periodMatch[1] + '_' + periodMatch[2].slice(-2)) : '';
+    var filename = (clientName ? clientName.textContent.trim().replace(/\s+/g, '_') : 'dashboard') + '_SEO_Report' + monYY + '.pdf';
+    pdf.save(filename);
+
+  } catch(e) {
+    console.error('PDF error:', e);
+    alert('PDF generation failed: ' + e.message);
+  }
+
+  btn.innerHTML = origText;
+  btn.disabled = false;
+  btn.style.opacity = '1';
+}
+
+</script>
+
+<script src="../assets/dashboard.js"></script>
+</body>
+</html>
+
+
+<div id="tab-tasks" class="section">
+  <div style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;padding:14px 20px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <span style="font-size:16px;font-weight:700;">SEO Work Done</span>
+    <span style="font-size:12px;opacity:0.85;font-weight:500;">Jul-2026</span>
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:16px;">Delivered by ThirdSlash Digital Marketing Agency</div>
+  <div style="display:flex;align-items:center;justify-content:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="background:#D1FAE5;color:#065F46;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#10003; 8 Completed</div>
+      <div style="background:#FEF3C7;color:#92400E;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#8635; 0 In Progress</div>
+      <div style="background:#F1F5F9;color:#64748B;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;">&#9675; 0 Pending</div>
+    </div>
+  </div>
+  <div class="rank-table-wrap"><div class="rank-table-header" style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;"><span>Monthly SEO Activities</span><span style="font-size:11px;opacity:0.8;font-weight:400;">ThirdSlash &mdash; Jul-2026</span></div><table class="rank-table" style="min-width:700px;"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th>Task Name</th><th style="text-align:center;width:120px">Assigned To</th><th style="text-align:center;width:130px">Status</th><th style="text-align:center;width:80px">Reference</th><th style="width:180px">Notes</th></tr></thead><tbody><tr><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Preparing SEO MetaData for all pages</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">4 Blog Post Topic Suggestion</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">4 Blog Post Content Writing</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">4 Blog Post Optimization & Publish</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Finding 10 Blog Commenting Websites</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Writing and Posting 10 Comments on Unique Blog Commenting Websites</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Found, wrote, and posted 10 experience-based Reddit comments.</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr><tr><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="font-weight:500;color:#0F172A;padding:12px 14px">Preparing SEO Monthly Report</td><td style="text-align:center;font-size:12px;color:#64748B">ThirdSlash</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#10003; Completed</span></td><td style="text-align:center">&mdash;</td><td style="font-size:11px;color:#64748B"></td></tr></tbody></table></div>
+</div>
+
+
+<!-- LINK BUILDING TAB -->
+<!-- LINK BUILDING TAB -->
+<div id="tab-linkbuilding" class="section">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+    <div>
+      <div style="font-size:16px;font-weight:700;color:var(--text);">Link Building &mdash; Jul-2026</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:3px;">Reddit, Blog Comments &amp; Directories by ThirdSlash</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <div style="background:#FFF7ED;border:1px solid #FED7AA;color:#C2410C;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Reddit: 10</div>
+      <div style="background:#f0edff;border:1px solid #BFDBFE;color:#1D4ED8;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Blog: 10</div>
+      <div style="background:#F0FDF4;border:1px solid #BBF7D0;color:#15803D;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:600;">Dirs: 0</div>
+    </div>
+  </div>
+  <div class="rank-table-wrap">
+    <div class="rank-table-header" style="background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;display:flex;justify-content:space-between;align-items:center;">
+      <span>All Link Building Activity &mdash; Jul-2026</span>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <select id="lbType" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
+          <option value="all">All Types</option>
+          <option value="Reddit">Reddit</option>
+          <option value="Blog Comment">Blog Comment</option>
+          <option value="Directory">Directories</option>
+        </select>
+        <select id="lbStatus" onchange="filterLB()" style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:3px 8px;font-size:12px;">
+          <option value="all">All Status</option>
+          <option value="Live">Live</option>
+          <option value="Approved">Approved</option>
+          <option value="Pending">Pending</option>
+          <option value="Not Approved">Not Approved</option>
+        </select>
+      </div>
+    </div>
+    <table class="rank-table" style="min-width:900px;">
+      <thead><tr style="background:#F8FAFC;">
+        <th style="text-align:center;width:40px">Sr.</th>
+        <th style="text-align:center;width:140px">Type</th>
+        <th>URL</th>
+        <th style="width:130px">Anchor Text</th>
+        <th style="width:160px">Linking To</th>
+        <th style="text-align:center;width:70px">Live Link</th>
+        <th style="text-align:center;width:120px">Status</th>
+        <th style="width:130px">Comment</th>
+      </tr></thead>
+      <tbody id="lbBody"><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">1</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/Christianmarriage/comments/1v91688/escorts_arent_cheating/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/Christianmarriage/comments/1v91688/escorts_arent_cheating/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">2</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/randomshit/comments/7tqnu3/random_shit_228_europes_best_escorts/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/randomshit/comments/7tqnu3/random_shit_228_europes_best_escorts/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">3</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/BoredPandaHQ/comments/1tvd0ka/31yearold_british_model_branded_most_beautiful/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/BoredPandaHQ/comments/1tvd0ka/31yearold_british_model_branded_most_beautiful/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">4</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/Scams/comments/1rn4szu/uk_escort_scam_next_steps/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/Scams/comments/1rn4szu/uk_escort_scam_next_steps/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">5</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/AskUK/comments/1pmahmj/what_are_those_shady_places_in_chinatown_london/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/AskUK/comments/1pmahmj/what_are_those_shady_places_in_chinatown_london/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">6</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/askgaybros/comments/193dvfn/thinking_of_becoming_an_escort_in_london/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/askgaybros/comments/193dvfn/thinking_of_becoming_an_escort_in_london/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">7</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/GuyCry/comments/1tlx5e2/22m_seeing_escorts_has_ruined_my_life/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/GuyCry/comments/1tlx5e2/22m_seeing_escorts_has_ruined_my_life/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">8</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/LavenderMarriageWorld/comments/1uu1li3/18f_london_uk/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/LavenderMarriageWorld/comments/1uu1li3/18f_london_uk/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">9</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/NoRules/comments/1t61aki/the_myth_of_high_class_escorts/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/NoRules/comments/1t61aki/the_myth_of_high_class_escorts/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Reddit" data-status="Live"><td style="text-align:center;color:#64748b;font-size:12px">10</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#FF4500;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Reddit</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.reddit.com/r/UkFriends/comments/1uiu68t/28f_south_east_london/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.reddit.com/r/UkFriends/comments/1uiu68t/28f_south_east_london/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#D1FAE5;color:#065F46;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#9679; Live</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">11</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://spicerack.market/blog/article/exploring-the-world-of-milking-tables-the-ultimate-guide-to-pleasure-and-relaxation" target="_blank" style="color:#5b39d9;font-weight:500">https://spicerack.market/blog/article/exploring-the-world-of-milking-tables-the-ultimate-guide-to-pleasure-and-relaxation</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">12</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://nomadicboys.com/athens-gay-travel-guide/" target="_blank" style="color:#5b39d9;font-weight:500">https://nomadicboys.com/athens-gay-travel-guide/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">13</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://rockitreports.com/blowjob-bars-around-the-world-where-they-are-how-they-work/#comment-282356" target="_blank" style="color:#5b39d9;font-weight:500">https://rockitreports.com/blowjob-bars-around-the-world-where-they-are-how-they-work/#comment-282356</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">14</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://escortjobsinmelbourne.com.au/melbournes-escort-and-dating-scene/#comment-1163" target="_blank" style="color:#5b39d9;font-weight:500">https://escortjobsinmelbourne.com.au/melbournes-escort-and-dating-scene/#comment-1163</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">15</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.poojakaur.com/how-to-fulfil-your-long-awaited-sexual-pleasure-with-fun/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.poojakaur.com/how-to-fulfil-your-long-awaited-sexual-pleasure-with-fun/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">16</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://afreentolani.in/what-makes-elegant-nights-memorable-aerocity-escorts/#comment-492" target="_blank" style="color:#5b39d9;font-weight:500">https://afreentolani.in/what-makes-elegant-nights-memorable-aerocity-escorts/#comment-492</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">17</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.raatkolelo.com/blog/modern-companionship-why-people-seek-escorts/?unapproved=81&moderation-hash=b2ec0cde9cd99aa7049e6dbafd422ce7#comment-81" target="_blank" style="color:#5b39d9;font-weight:500">https://www.raatkolelo.com/blog/modern-companionship-why-people-seek-escorts/?unapproved=81&moderation-hash=b2ec0cde9cd99aa7049e6dbafd422ce7#comment-81</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">18</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.girlonthenet.com/blog/couple-fantasies-sex-clubs/#comment-1118006" target="_blank" style="color:#5b39d9;font-weight:500">https://www.girlonthenet.com/blog/couple-fantasies-sex-clubs/#comment-1118006</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">19</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://brotheljobsinsydney.com.au/escort-jobs-in-auckland-why-be-an-escort/#comment-740" target="_blank" style="color:#5b39d9;font-weight:500">https://brotheljobsinsydney.com.au/escort-jobs-in-auckland-why-be-an-escort/#comment-740</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr><tr data-type="Blog Comment" data-status="Pending"><td style="text-align:center;color:#64748b;font-size:12px">20</td><td style="text-align:center;vertical-align:middle;padding:8px 6px"><span style="background:#5b39d9;color:#fff;padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;">Blog Comment</span></td><td style="padding:10px 14px;white-space:nowrap;font-size:12px"><a href="https://www.bradfordescorts.co.uk/blog/was-a-threesome-something-you-missed-out-on/" target="_blank" style="color:#5b39d9;font-weight:500">https://www.bradfordescorts.co.uk/blog/was-a-threesome-something-you-missed-out-on/</a></td><td style="font-size:12px;color:#0F172A">British Babes</td><td style="font-size:12px;color:#64748B;white-space:nowrap">https://britishbabes.com/</td><td style="text-align:center">&mdash;</td><td style="text-align:center"><span style="background:#FEF3C7;color:#92400E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;display:inline-block;">&#8635; Awaiting moderation</span></td><td style="font-size:11px;color:#94A3B8"></td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- TECH AUDIT TAB -->
+
+<div id="tab-techaudit" class="section">
+
+<style>
+/* ── Tech Audit Scoped Styles ── */
+.ta-wrap {
+  --navy:#1B2A4A; --orange:#F4812A; --orange-light:#FEF0E6; --bg:#F5F6F8; --card:#fff; --border:#E4E7ED;
+  --text:#1A1D23; --text-muted:#6B7280; --text-light:#9CA3AF;
+  --red:#DC2626; --red-bg:#FEF2F2; --red-border:#FECACA;
+  --amber:#D97706; --amber-bg:#FFFBEB; --amber-border:#FDE68A;
+  --green:#16A34A; --green-bg:#F0FDF4; --green-border:#BBF7D0;
+  --blue:#2563EB; --blue-bg:#EFF6FF; --blue-border:#BFDBFE;
+  --purple:#7C3AED; --purple-bg:#F5F3FF; --purple-border:#DDD6FE;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+}
+.ta-banner {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.ta-score-ring {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  flex-shrink: 0;
+}
+.ta-score-ring svg {
+  transform: rotate(-90deg);
+}
+.ta-score-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ta-score-num .ta-big {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+.ta-score-num .ta-of {
+  font-size: 13px;
+  opacity: .6;
+}
+.ta-banner-text h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.ta-banner-text p {
+  margin: 0;
+  opacity: .7;
+  font-size: 14px;
+}
+.ta-banner-text .ta-label {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ta-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.ta-metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.ta-metric-card .ta-mc-val {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.ta-metric-card .ta-mc-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
+.ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
+.ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+.ta-legend {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ta-legend span {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Filters */
+.ta-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.ta-chip {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.ta-chip.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.ta-chip:hover {
+  border-color: var(--navy);
+}
+.ta-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Issue table */
+.ta-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ta-table th {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.ta-table td {
+  padding: 12px 14px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ta-table tr:last-child td { border-bottom: none; }
+.ta-table tr.ta-row-issue { cursor: pointer; }
+.ta-table tr.ta-row-issue:hover { background: var(--bg); }
+
+/* Pills */
+.ta-pill {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.ta-pill-red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.ta-pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.ta-pill-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+.ta-pill-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+/* Priority badges */
+.ta-prio {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.ta-prio-high { background: var(--red-bg); color: var(--red); }
+.ta-prio-medium { background: var(--amber-bg); color: var(--amber); }
+.ta-prio-low { background: var(--blue-bg); color: var(--blue); }
+
+/* Source tag */
+.ta-src {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  background: var(--purple-bg);
+  color: var(--purple);
+  border: 1px solid var(--purple-border);
+  margin-left: 4px;
+}
+.ta-src-gsc {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
+
+/* Expandable URL panel */
+.ta-url-panel {
+  display: none;
+}
+.ta-url-panel.open {
+  display: table-row;
+}
+.ta-url-panel td {
+  background: var(--bg);
+  padding: 0;
+}
+.ta-url-inner {
+  padding: 12px 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.ta-url-inner .ta-url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.ta-url-inner .ta-url-item:last-child { border-bottom: none; }
+.ta-url-inner .ta-url-item a {
+  color: var(--blue);
+  text-decoration: none;
+  word-break: break-all;
+}
+.ta-url-inner .ta-url-item a:hover { text-decoration: underline; }
+.ta-copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.ta-copy-btn:hover { background: var(--border); }
+
+/* Owner / Status dropdowns in table */
+.ta-table select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+/* Expand arrow */
+.ta-arrow {
+  display: inline-block;
+  transition: transform .2s;
+  margin-right: 6px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.ta-arrow.open {
+  transform: rotate(90deg);
+}
+</style>
+
+<div class="ta-wrap">
+
+  <!-- Health Score Banner -->
+  <div class="ta-banner">
+    <div class="ta-score-ring">
+      <svg width="128" height="128" viewBox="0 0 128 128">
+        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
+        <circle cx="64" cy="64" r="54" fill="none" stroke="#16A34A" stroke-width="10"
+                stroke-dasharray="339.3" stroke-dashoffset="44.1"
+                stroke-linecap="round"/>
+      </svg>
+      <div class="ta-score-num">
+        <span class="ta-big">87</span>
+        <span class="ta-of">/ 100</span>
+      </div>
+    </div>
+    <div class="ta-banner-text">
+      <h2>Technical SEO Health</h2>
+      <p>British Babes &middot; britishbabes.com &middot; Screaming Frog Pro Crawl &middot; 04 Aug 2026 &middot; 16 pages scanned</p>
+      <span class="ta-label" style="background:#16A34A;color:#fff">Good</span>
+    </div>
+  </div>
+
+  <!-- Metric Cards -->
+  <div class="ta-metrics">
+    <div class="ta-metric-card"><div class="ta-mc-val">16</div><div class="ta-mc-label">Total HTML Pages</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">16</div><div class="ta-mc-label">200 OK</div></div>
+    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">16</div><div class="ta-mc-label">Indexable</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">404 Errors</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">1</div><div class="ta-mc-label">Redirects (3xx)</div></div>
+    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">Broken Resources</div></div>
+    
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">1</div><div class="ta-mc-label">Title Issues</div></div>
+    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">2</div><div class="ta-mc-label">Meta Issues</div></div>
+  </div>
+
+
+  <!-- Filters -->
+  <div class="ta-filters">
+    <button class="ta-chip active" data-cat="all" onclick="taFilter(this)">All Issues</button>
+    <button class="ta-chip" data-cat="errors" onclick="taFilter(this)">Errors</button>
+    <button class="ta-chip" data-cat="onpage" onclick="taFilter(this)">On-Page</button>
+    <button class="ta-chip" data-cat="content" onclick="taFilter(this)">Content</button>
+    <button class="ta-chip" data-cat="technical" onclick="taFilter(this)">Technical</button>
+    <button class="ta-chip" data-cat="sf" onclick="taFilter(this)">SF</button>
+    
+    <select class="ta-select" id="ta-prio-filter" onchange="taApplyFilters()">
+      <option value="all">All Priorities</option>
+      <option value="high">High</option>
+      <option value="medium">Medium</option>
+      <option value="low">Low</option>
+    </select>
+    <select class="ta-select" id="ta-status-filter" onchange="taApplyFilters()">
+      <option value="all">All Statuses</option>
+      <option value="Not Started">Not Started</option><option value="In Progress">In Progress</option><option value="Need Developer's Help">Need Developer's Help</option><option value="In Review">In Review</option><option value="Changes Done">Changes Done</option><option value="Not Possible">Not Possible</option>
+    </select>
+  </div>
+
+  <!-- Issue Log Table -->
+  <table class="ta-table" id="ta-issue-table">
+    <thead>
+      <tr>
+        <th style="width:28%">Issue</th>
+        <th style="width:60px">Count</th>
+        <th style="width:80px">Priority</th>
+        <th style="width:22%">What This Means</th>
+        <th style="width:22%">How to Fix It</th>
+        <th style="width:150px">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="ta-row-issue" data-id="i05" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>1 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">1</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
+        <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>1 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i01">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i01"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>11 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">11</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
+        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i02" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>1 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">1</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i02">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i02"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>1 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">1</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i03">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i03"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i04')">
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>1 pages with meta descriptions below 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">1</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short meta descriptions waste valuable SERP real estate and miss the chance to persuade users to click.</td>
+        <td>Expand meta descriptions to at least 70 characters with a compelling summary and call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i04">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function() {
+  var LS_KEY = "british-babes_techaudit_aug_2026";
+  var ALL_URLS = {"i01": ["https://wa.me/447398823838"], "i02": [{"url": "https://britishbabes.com/blog", "label": "23 chars: \u201cJournal | British Babes\u201d"}], "i03": ["https://britishbabes.com/"], "i04": ["https://britishbabes.com/blog"], "i05": ["https://britishbabes.com/"], "i06": ["https://britishbabes.com/escorts/manchester", "https://britishbabes.com/blog", "https://britishbabes.com/escorts/leeds", "https://britishbabes.com/escorts/newcastle", "https://britishbabes.com/escorts/glasgow", "https://britishbabes.com/escorts/london", "https://britishbabes.com/escorts/liverpool", "https://britishbabes.com/escorts/edinburgh", "https://britishbabes.com/escorts/birmingham", "https://britishbabes.com/escorts/bristol", "https://britishbabes.com/escorts/brighton"]};
+
+  // Restore saved state
+  function taLoadState() {
+    try {
+      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+        if (s[el.dataset.id] && s[el.dataset.id].stat) {
+          el.value = s[el.dataset.id].stat;
+          taUpdateStatColor(el);
+        }
+      });
+    } catch(e) {}
+  }
+
+  window.taSaveState = function() {
+    var s = {};
+    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
+      if (!s[el.dataset.id]) s[el.dataset.id] = {};
+      s[el.dataset.id].stat = el.value;
+    });
+    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  };
+
+  // Recolor the select to match the currently chosen status (same colors as the
+  // internal Google Sheet's Status dropdown/conditional formatting)
+  window.taUpdateStatColor = function(sel) {
+    var opt = sel.options[sel.selectedIndex];
+    sel.style.background = (opt && opt.dataset.color) || '';
+  };
+
+  // Toggle expandable URL panel
+  window.taToggle = function(iid) {
+    var panel = document.getElementById('ta-panel-' + iid);
+    var arrow = document.getElementById('ta-arrow-' + iid);
+    var isOpen = panel.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.ta-url-panel').forEach(function(p) { p.classList.remove('open'); });
+    document.querySelectorAll('.ta-arrow').forEach(function(a) { a.classList.remove('open'); });
+    if (!isOpen) {
+      panel.classList.add('open');
+      arrow.classList.add('open');
+      // Populate URLs
+      var container = document.getElementById('ta-urls-' + iid);
+      if (!container.dataset.loaded) {
+        var urls = ALL_URLS[iid] || [];
+        var html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><strong style="font-size:12px;color:#6B7280">' + urls.length + ' affected URLs</strong><button class="ta-copy-btn" onclick="event.stopPropagation();taCopyAll(\'' + iid + '\')">Copy All URLs</button></div>';
+        urls.forEach(function(u, idx) {
+          var isRich = (typeof u === 'object' && u !== null);
+          var url = isRich ? u.url : u;
+          html += '<div class="ta-url-item" style="flex-direction:column;align-items:flex-start;gap:2px;">'
+            + '<div style="display:flex;width:100%;align-items:center">'
+            + '<span style="min-width:36px;font-size:12px;font-weight:600;color:#94A3B8;font-family:monospace;">' + (idx+1) + '.</span>'
+            + '<a href="' + url + '" target="_blank" rel="noopener" style="flex:1">' + url + '</a>'
+            + '<button class="ta-copy-btn" onclick="event.stopPropagation();taCopyUrl(this,\'' + url.replace(/'/g, "\\'") + '\')">Copy</button>'
+            + '</div>'
+            + (isRich ? '<div style="margin-left:36px;font-size:11px;color:#9CA3AF">' + u.label + '</div>' : '')
+            + '</div>';
+        });
+        container.innerHTML = html;
+        container.dataset.loaded = '1';
+      }
+    }
+  };
+
+  window.taCopyUrl = function(btn, url) {
+    navigator.clipboard.writeText(url).then(function() {
+      btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+    });
+  };
+
+  window.taCopyAll = function(iid) {
+    var urls = ALL_URLS[iid] || [];
+    var text = urls.map(function(u) { return (typeof u === 'object' && u !== null) ? u.url : u; }).join('\n');
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.querySelector('#ta-urls-' + iid + ' .ta-copy-btn');
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy All URLs'; }, 1500); }
+    });
+  };
+
+  // Filter by category chip
+  var activeCat = 'all';
+  window.taFilter = function(btn) {
+    document.querySelectorAll('.ta-chip').forEach(function(c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    taApplyFilters();
+  };
+
+  window.taApplyFilters = function() {
+    var prio = document.getElementById('ta-prio-filter').value;
+    var stat = document.getElementById('ta-status-filter').value;
+    document.querySelectorAll('.ta-row-issue').forEach(function(row) {
+      var iid = row.dataset.id;
+      var show = true;
+      // SF spans every category (errors/onpage/content/technical), so it filters by
+      // source tag instead of category — GSC already has its own dedicated category.
+      if (activeCat === 'sf') {
+        if (row.dataset.src !== 'SF') show = false;
+      } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
+        show = false;
+      }
+      if (prio !== 'all' && row.dataset.prio !== prio) show = false;
+      if (stat !== 'all') {
+        var sel = row.querySelector('.ta-stat-sel');
+        if (sel && sel.value !== stat) show = false;
+      }
+      row.style.display = show ? '' : 'none';
+      var panel = document.getElementById('ta-panel-' + iid);
+      if (!show && panel) { panel.classList.remove('open'); }
+    });
+  };
+
+  taLoadState();
+})();
+</script>
+
+</div>
+
+
+<div id="tab-history" class="section">
+  <div class="history-wrap">
+    <p style="font-size:12px;color:var(--muted);padding:10px 20px;margin:0;border-bottom:1px solid var(--border);background:var(--card2);">GA4 Historical Data</p>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Month</th><th>Total Sessions</th><th>Organic</th><th>Direct</th>
+          <th>AI Traffic</th><th>Total Users</th><th>Total Pageviews</th><th>Organic Eng %</th>
+          <th>Conversions</th>
+        </tr>
+      </thead>
+      <tbody><tr><td>Jul-2026</td><td>3</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0.0%</td><td>0</td></tr><tr><td>Jun-2026</td><td>639</td><td>49</td><td>582</td><td>0</td><td>585</td><td>915</td><td>53.06%</td><td>0</td></tr><tr><td>May-2026</td><td>525</td><td>62</td><td>450</td><td>0</td><td>497</td><td>726</td><td>41.94%</td><td>0</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- RANKINGS TAB -->
+<div id="tab-rankings" class="section">
+  <div class="no-data"><p>No rank tracking data yet.</p></div>
+</div>
+
+
+<!-- GMB TAB -->
+
+
+<script>
+var sortDir = {};
+var taskSortDir = {};
+var lbSortDir = {};
+var _gmbDone = false;
+</script>
