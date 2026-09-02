@@ -270,8 +270,7 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Aug 26</th><th style="text-align:center">Jul 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">4</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">7</td><td style="text-align:center;color:#94a3b8">7</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">9</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">9</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">29</td><td style="text-align:center;color:#94a3b8">29</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Aug 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Jul 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Jun 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
-        <tr>
+<div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Aug 26</th><th style="text-align:center">Jul 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">4</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">7</td><td style="text-align:center;color:#94a3b8">7</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">9</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">9</td><td style="text-align:center;color:#94a3b8">9</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">29</td><td style="text-align:center;color:#94a3b8">29</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Aug 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Jul 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">Jun 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody"><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
           <td class="kw-cell" title="ovation square long beach">ovation square long beach</td>
           <td class="rank-cell rank-up" style="text-align:center">1</td>
@@ -280,19 +279,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">40</td>
           <td class="rank-cell" style="text-align:center">2</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="film location rentals long beach">film location rentals long beach</td>
-          <td class="rank-cell rank-down" style="text-align:center">10</td>
-          <td class="rank-cell" style="text-align:center">7</td>
-          <td class="move-cell down">&#9660; -3</td>
-          <td class="vol-cell">0</td>
-          <td class="rank-cell" style="text-align:center">3</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="bar mitzvah venues long beach">bar mitzvah venues long beach</td>
           <td class="rank-cell rank-down" style="text-align:center">4</td>
           <td class="rank-cell" style="text-align:center">3</td>
@@ -300,29 +288,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">4</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="underground vault space">underground vault space</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">10</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">0</td>
-          <td class="rank-cell" style="text-align:center">6</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="box lounge los angeles">box lounge los angeles</td>
-          <td class="rank-cell rank-up" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">22</td>
-          <td class="move-cell up">&#9650; +5</td>
-          <td class="vol-cell">0</td>
-          <td class="rank-cell" style="text-align:center">8</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="indian wedding venues in long beach">indian wedding venues in long beach</td>
           <td class="rank-cell rank-up" style="text-align:center">6</td>
           <td class="rank-cell" style="text-align:center">11</td>
@@ -330,9 +297,17 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">8</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="film location rentals long beach">film location rentals long beach</td>
+          <td class="rank-cell rank-down" style="text-align:center">10</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell down">&#9660; -3</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center">3</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
           <td class="kw-cell" title="product launch venue">product launch venue</td>
           <td class="rank-cell rank-flat" style="text-align:center">15</td>
           <td class="rank-cell" style="text-align:center">15</td>
@@ -340,8 +315,25 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center">13</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="quinceanera halls in long beach ca">quinceanera halls in long beach ca</td>
+          <td class="rank-cell rank-up" style="text-align:center">15</td>
+          <td class="rank-cell" style="text-align:center">16</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="box lounge los angeles">box lounge los angeles</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">22</td>
+          <td class="move-cell up">&#9650; +5</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center">8</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
           <td class="kw-cell" title="venue for branding events">venue for branding events</td>
           <td class="rank-cell rank-down" style="text-align:center">17</td>
@@ -350,8 +342,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">13</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
           <td class="kw-cell" title="holiday party venue long beach">holiday party venue long beach</td>
           <td class="rank-cell rank-down" style="text-align:center">17</td>
@@ -360,18 +351,16 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">14</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
-          <td class="kw-cell" title="quinceanera halls in long beach ca">quinceanera halls in long beach ca</td>
-          <td class="rank-cell rank-up" style="text-align:center">15</td>
-          <td class="rank-cell" style="text-align:center">16</td>
-          <td class="move-cell up">&#9650; +1</td>
-          <td class="vol-cell">0</td>
-          <td class="rank-cell" style="text-align:center">14</td>
+          <td class="kw-cell" title="bar mitzvah venues">bar mitzvah venues</td>
+          <td class="rank-cell rank-up" style="text-align:center">17</td>
+          <td class="rank-cell" style="text-align:center">20</td>
+          <td class="move-cell up">&#9650; +3</td>
+          <td class="vol-cell">210</td>
+          <td class="rank-cell" style="text-align:center">27</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
           <td class="kw-cell" title="birthday party venues long beach">birthday party venues long beach</td>
           <td class="rank-cell rank-down" style="text-align:center">19</td>
@@ -380,8 +369,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center">20</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
           <td class="kw-cell" title="social event venue long beach">social event venue long beach</td>
           <td class="rank-cell rank-up" style="text-align:center">26</td>
@@ -390,8 +378,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">24</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
           <td class="kw-cell" title="corporate event venue long beach">corporate event venue long beach</td>
           <td class="rank-cell rank-down" style="text-align:center">30</td>
@@ -400,39 +387,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">0</td>
           <td class="rank-cell" style="text-align:center">26</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
-          <td class="kw-cell" title="bar mitzvah venues">bar mitzvah venues</td>
-          <td class="rank-cell rank-up" style="text-align:center">17</td>
-          <td class="rank-cell" style="text-align:center">20</td>
-          <td class="move-cell up">&#9650; +3</td>
-          <td class="vol-cell">210</td>
-          <td class="rank-cell" style="text-align:center">27</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
-          <td class="kw-cell" title="long beach film locations">long beach film locations</td>
-          <td class="rank-cell rank-down" style="text-align:center">47</td>
-          <td class="rank-cell" style="text-align:center">45</td>
-          <td class="move-cell down">&#9660; -2</td>
-          <td class="vol-cell">10</td>
-          <td class="rank-cell" style="text-align:center">36</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
-          <td class="kw-cell" title="live music venues long beach">live music venues long beach</td>
-          <td class="rank-cell rank-up" style="text-align:center">40</td>
-          <td class="rank-cell" style="text-align:center">41</td>
-          <td class="move-cell up">&#9650; +1</td>
-          <td class="vol-cell">10</td>
-          <td class="rank-cell" style="text-align:center">37</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
           <td class="kw-cell" title="meeting space long beach">meeting space long beach</td>
           <td class="rank-cell rank-up" style="text-align:center">33</td>
           <td class="rank-cell" style="text-align:center">45</td>
@@ -440,19 +396,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center">37</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
-          <td class="kw-cell" title="long beach meeting space">long beach meeting space</td>
-          <td class="rank-cell rank-up" style="text-align:center">39</td>
-          <td class="rank-cell" style="text-align:center">46</td>
-          <td class="move-cell up">&#9650; +7</td>
-          <td class="vol-cell">10</td>
-          <td class="rank-cell" style="text-align:center">38</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
           <td class="kw-cell" title="wedding reception venue long beach">wedding reception venue long beach</td>
           <td class="rank-cell rank-up" style="text-align:center">34</td>
           <td class="rank-cell" style="text-align:center">46</td>
@@ -460,9 +405,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center">38</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
           <td class="kw-cell" title="concert venues in long beach">concert venues in long beach</td>
           <td class="rank-cell rank-down" style="text-align:center">37</td>
           <td class="rank-cell" style="text-align:center">32</td>
@@ -470,39 +414,35 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">50</td>
           <td class="rank-cell" style="text-align:center">42</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
-          <td class="kw-cell" title="venues in los angeles">venues in los angeles</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">720</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
+          <td class="kw-cell" title="long beach meeting space">long beach meeting space</td>
+          <td class="rank-cell rank-up" style="text-align:center">39</td>
+          <td class="rank-cell" style="text-align:center">46</td>
+          <td class="move-cell up">&#9650; +7</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center">38</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
-          <td class="kw-cell" title="event space los angeles">event space los angeles</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">590</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
+          <td class="kw-cell" title="live music venues long beach">live music venues long beach</td>
+          <td class="rank-cell rank-up" style="text-align:center">40</td>
+          <td class="rank-cell" style="text-align:center">41</td>
+          <td class="move-cell up">&#9650; +1</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center">37</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
-          <td class="kw-cell" title="event venue los angeles">event venue los angeles</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">260</td>
-          <td class="rank-cell" style="text-align:center">NR</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
+          <td class="kw-cell" title="long beach film locations">long beach film locations</td>
+          <td class="rank-cell rank-down" style="text-align:center">47</td>
+          <td class="rank-cell" style="text-align:center">45</td>
+          <td class="move-cell down">&#9660; -2</td>
+          <td class="vol-cell">10</td>
+          <td class="rank-cell" style="text-align:center">36</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">20</td>
           <td class="kw-cell" title="wedding venue long beach">wedding venue long beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">49</td>
           <td class="rank-cell" style="text-align:center">NR</td>
@@ -510,8 +450,43 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">140</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">21</td>
+          <td class="kw-cell" title="underground vault space">underground vault space</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">0</td>
+          <td class="rank-cell" style="text-align:center">6</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">22</td>
+          <td class="kw-cell" title="venues in los angeles">venues in los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">720</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">23</td>
+          <td class="kw-cell" title="event space los angeles">event space los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">590</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">24</td>
+          <td class="kw-cell" title="event venue los angeles">event venue los angeles</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">260</td>
+          <td class="rank-cell" style="text-align:center">NR</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">25</td>
           <td class="kw-cell" title="venue rental los angeles">venue rental los angeles</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -520,8 +495,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">110</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">26</td>
           <td class="kw-cell" title="event space rental los angeles">event space rental los angeles</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -530,8 +504,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">110</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">27</td>
           <td class="kw-cell" title="birthday party rental space">birthday party rental space</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -540,8 +513,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">40</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">28</td>
           <td class="kw-cell" title="private event space los angeles">private event space los angeles</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -550,8 +522,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">30</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">29</td>
           <td class="kw-cell" title="mezzanine los angeles">mezzanine los angeles</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>

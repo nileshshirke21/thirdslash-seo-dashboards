@@ -279,59 +279,8 @@ new Chart(document.getElementById('chChart'), {
 
 <!-- RANKINGS TAB -->
 <div id="tab-rankings" class="section">
-  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Aug 26</th><th style="text-align:center">Jul 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">2</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#f87171">-4</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">16</td><td style="text-align:center;color:#94a3b8">11</td><td style="text-align:center"><span style="color:#4ade80">+5</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">19</td><td style="text-align:center;color:#94a3b8">19</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Aug 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Jul 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">May 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody">
-        <tr>
+  <div class="rank-bucket-wrap"><table class="rank-bucket-table"><thead><tr><th>Position Bucket</th><th style="text-align:center">Aug 26</th><th style="text-align:center">Jul 26</th><th style="text-align:center">Change</th></tr></thead><tbody><tr><td>&#127947; Top 10</td><td style="text-align:center;color:#4ade80;font-weight:600">1</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#f87171">-1</span></td></tr><tr><td>&#129352; 11-20</td><td style="text-align:center;color:#facc15;font-weight:600">2</td><td style="text-align:center;color:#94a3b8">2</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#129353; 21-50</td><td style="text-align:center;color:#fb923c;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">4</td><td style="text-align:center"><span style="color:#f87171">-4</span></td></tr><tr><td>&#128200; 51-100</td><td style="text-align:center;color:#f87171;font-weight:600">0</td><td style="text-align:center;color:#94a3b8">0</td><td style="text-align:center"><span style="color:#94a3b8">&mdash;</span></td></tr><tr><td>&#10060; Not Ranking</td><td style="text-align:center;color:#94a3b8;font-weight:600">16</td><td style="text-align:center;color:#94a3b8">11</td><td style="text-align:center"><span style="color:#4ade80">+5</span></td></tr><tr><td><strong>Total Tracked</strong></td><td style="text-align:center;font-weight:700">19</td><td style="text-align:center;color:#94a3b8">19</td><td style="text-align:center;color:#94a3b8">&mdash;</td></tr></tbody></table></div><div class="rank-table-wrap"><div class="rank-table-header">Keyword Rankings</div><div class="rank-controls"><input type="text" id="kwSearch" placeholder="Search keyword..." oninput="filterTable()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);background:#F1F5F9;font-size:13px;width:260px;"></div><table class="rank-table" id="rankTable"><thead><tr><th style="text-align:center;width:40px">Sr.</th><th onclick="sortTable(1)" style="cursor:pointer">Keyword &#8645;</th><th onclick="sortTable(2)" style="cursor:pointer;text-align:center">Aug 26 &#8645;</th><th onclick="sortTable(3)" style="cursor:pointer;text-align:center">Jul 26 &#8645;</th><th>Movement</th><th onclick="sortTable(5)" style="cursor:pointer">Volume &#8645;</th><th style="text-align:center">May 26</th><th>Ranking URL</th></tr></thead><tbody id="rankTableBody"><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">1</td>
-          <td class="kw-cell" title="beach view resorts in goa calangute">beach view resorts in goa calangute</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">7</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">30</td>
-          <td class="rank-cell" style="text-align:center">12</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
-          <td class="kw-cell" title="beach resort near calangute beach goa">beach resort near calangute beach goa</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">9</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">3600</td>
-          <td class="rank-cell" style="text-align:center">10</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
-          <td class="kw-cell" title="fine dining in north goa">fine dining in north goa</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">11</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">40</td>
-          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
-          <td class="kw-cell" title="best fine dine restaurants in goa">best fine dine restaurants in goa</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">11</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">110</td>
-          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
-          <td class="kw-cell" title="fine dining in goa">fine dining in goa</td>
-          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
-          <td class="rank-cell" style="text-align:center">22</td>
-          <td class="move-cell flat">&mdash;</td>
-          <td class="vol-cell">480</td>
-          <td class="rank-cell" style="text-align:center">78</td>
-          <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
           <td class="kw-cell" title="beachfront resort in north goa">beachfront resort in north goa</td>
           <td class="rank-cell rank-up" style="text-align:center">3</td>
           <td class="rank-cell" style="text-align:center">38</td>
@@ -339,9 +288,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">12100</td>
           <td class="rank-cell" style="text-align:center">5</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">2</td>
           <td class="kw-cell" title="beach resort in north goa">beach resort in north goa</td>
           <td class="rank-cell rank-up" style="text-align:center">11</td>
           <td class="rank-cell" style="text-align:center">38</td>
@@ -349,9 +297,8 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">5400</td>
           <td class="rank-cell" style="text-align:center">37</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
-          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">3</td>
           <td class="kw-cell" title="luxury beach resorts goa">luxury beach resorts goa</td>
           <td class="rank-cell rank-up" style="text-align:center">19</td>
           <td class="rank-cell" style="text-align:center">41</td>
@@ -359,8 +306,52 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">880</td>
           <td class="rank-cell" style="text-align:center">39</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">4</td>
+          <td class="kw-cell" title="beach view resorts in goa calangute">beach view resorts in goa calangute</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">7</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">30</td>
+          <td class="rank-cell" style="text-align:center">12</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">5</td>
+          <td class="kw-cell" title="beach resort near calangute beach goa">beach resort near calangute beach goa</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">9</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">3600</td>
+          <td class="rank-cell" style="text-align:center">10</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">6</td>
+          <td class="kw-cell" title="fine dining in north goa">fine dining in north goa</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">40</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">7</td>
+          <td class="kw-cell" title="best fine dine restaurants in goa">best fine dine restaurants in goa</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">11</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">110</td>
+          <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
+          <td style="text-align:center;color:#64748b;font-size:12px;width:40px">8</td>
+          <td class="kw-cell" title="fine dining in goa">fine dining in goa</td>
+          <td class="rank-cell rank-flat" style="text-align:center">NR</td>
+          <td class="rank-cell" style="text-align:center">22</td>
+          <td class="move-cell flat">&mdash;</td>
+          <td class="vol-cell">480</td>
+          <td class="rank-cell" style="text-align:center">78</td>
+          <td class="url-cell">&mdash;</td>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">9</td>
           <td class="kw-cell" title="beach resort in goa">beach resort in goa</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -369,8 +360,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">27100</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">10</td>
           <td class="kw-cell" title="beach resorts in goa near baga beach">beach resorts in goa near baga beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -379,8 +369,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">6600</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">11</td>
           <td class="kw-cell" title="resorts near calangute beach">resorts near calangute beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -389,8 +378,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">4400</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">12</td>
           <td class="kw-cell" title="baga beach restaurant">baga beach restaurant</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -399,8 +387,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">1900</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">13</td>
           <td class="kw-cell" title="accommodation in goa">accommodation in goa</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -409,8 +396,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">1600</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">14</td>
           <td class="kw-cell" title="calangute beach restaurants">calangute beach restaurants</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -419,8 +405,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">480</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">15</td>
           <td class="kw-cell" title="accommodation in north goa">accommodation in north goa</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -429,8 +414,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">390</td>
           <td class="rank-cell" style="text-align:center">NR</td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">16</td>
           <td class="kw-cell" title="accommodation in calangute beach">accommodation in calangute beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -439,8 +423,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">110</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">17</td>
           <td class="kw-cell" title="accommodation at baga beach">accommodation at baga beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -449,8 +432,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">70</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">18</td>
           <td class="kw-cell" title="beach view accommodation">beach view accommodation</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
@@ -459,8 +441,7 @@ new Chart(document.getElementById('chChart'), {
           <td class="vol-cell">10</td>
           <td class="rank-cell" style="text-align:center"><span style="color:#cbd5e1">&mdash;</span></td>
           <td class="url-cell">&mdash;</td>
-        </tr>
-        <tr>
+        </tr><tr>
           <td style="text-align:center;color:#64748b;font-size:12px;width:40px">19</td>
           <td class="kw-cell" title="goa restaurants baga beach">goa restaurants baga beach</td>
           <td class="rank-cell rank-flat" style="text-align:center">NR</td>
