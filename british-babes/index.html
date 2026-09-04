@@ -662,6 +662,17 @@ async function generatePDF() {
   font-size: 13px;
   font-weight: 600;
 }
+.ta-banner-flat { align-items: flex-start; }
+.ta-banner-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.ta-banner-stat { flex: 0 0 auto; }
+.ta-banner-stat-val { font-size: 28px; font-weight: 800; }
+.ta-banner-stat-label { font-size: 12px; opacity: .65; margin: 2px 0 4px; }
 .ta-metrics {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -675,6 +686,10 @@ async function generatePDF() {
   padding: 16px;
   text-align: center;
 }
+.ta-metric-card .ta-delta { display: block; margin-top: 6px; font-size: 11px; }
+.ta-metric-card .ta-delta-pos { color: var(--green); }
+.ta-metric-card .ta-delta-neg { color: var(--red); }
+.ta-metric-card .ta-delta-neutral { color: var(--text-light); font-weight: 400; }
 .ta-metric-card .ta-mc-val {
   font-size: 28px;
   font-weight: 800;
@@ -688,6 +703,46 @@ async function generatePDF() {
 .ta-metric-card.ta-mc-red .ta-mc-val { color: var(--red); }
 .ta-metric-card.ta-mc-amber .ta-mc-val { color: var(--amber); }
 .ta-metric-card.ta-mc-green .ta-mc-val { color: var(--green); }
+
+/* High Priority Issues table */
+.ta-hp-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.ta-hp-header {
+  padding: 14px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  background: var(--red-bg);
+  border-bottom: 1px solid var(--border);
+}
+.ta-hp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ta-hp-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.ta-hp-table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.ta-hp-table tr:last-child td { border-bottom: none; }
+.ta-hp-section td {
+  background: var(--bg);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--navy);
+  padding: 8px 12px;
+}
+.ta-hp-section-count { font-weight: 400; text-transform: none; color: var(--text-muted); }
+.ta-hp-table .ta-delta-pos { color: var(--green); font-weight: 600; }
+.ta-hp-table .ta-delta-neg { color: var(--red); font-weight: 600; }
+.ta-hp-table .ta-delta-neutral { color: var(--text-light); }
 
 .ta-legend {
   background: var(--card);
@@ -741,6 +796,14 @@ async function generatePDF() {
   color: var(--text);
   background: var(--card);
   cursor: pointer;
+}
+.ta-stat-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text);
 }
 
 /* Issue table */
@@ -817,6 +880,17 @@ async function generatePDF() {
   color: var(--blue);
   border: 1px solid var(--blue-border);
 }
+.ta-src-both {
+  background: linear-gradient(90deg, var(--purple-bg) 50%, var(--blue-bg) 50%);
+  color: var(--navy);
+  border: 1px solid var(--border);
+}
+
+/* Month-over-month delta line (Tech Audit banner) */
+.ta-delta { font-size: 13px; font-weight: 600; }
+.ta-delta-pos { color: #86EFAC; }
+.ta-delta-neg { color: #FCA5A5; }
+.ta-delta-neutral { color: rgba(255,255,255,.6); font-weight: 400; }
 
 /* Expandable URL panel */
 .ta-url-panel {
@@ -887,39 +961,57 @@ async function generatePDF() {
 
 <div class="ta-wrap">
 
-  <!-- Health Score Banner -->
-  <div class="ta-banner">
-    <div class="ta-score-ring">
-      <svg width="128" height="128" viewBox="0 0 128 128">
-        <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="10"/>
-        <circle cx="64" cy="64" r="54" fill="none" stroke="#16A34A" stroke-width="10"
-                stroke-dasharray="339.3" stroke-dashoffset="44.1"
-                stroke-linecap="round"/>
-      </svg>
-      <div class="ta-score-num">
-        <span class="ta-big">87</span>
-        <span class="ta-of">/ 100</span>
+  <!-- Crawl Summary Banner (replaces the old 0-100 health score) -->
+  <div class="ta-banner ta-banner-flat">
+    <div class="ta-banner-text" style="width:100%">
+      <h2>Technical SEO Crawl Summary</h2>
+      <p>Screaming Frog Crawl &middot; Aug 2026 vs Sep 2026</p>
+      <div class="ta-banner-stats">
+        <div class="ta-banner-stat">
+          <div class="ta-banner-stat-val">20</div>
+          <div class="ta-banner-stat-label">Total Pages</div>
+          <div><span class="ta-delta ta-delta-pos">&#9650; 4 (+25%) vs 16</span></div>
+        </div>
+        <div class="ta-banner-stat">
+          <div class="ta-banner-stat-val">20</div>
+          <div class="ta-banner-stat-label">Indexable</div>
+          <div><span class="ta-delta ta-delta-pos">&#9650; 4 (+25%) vs 16</span></div>
+        </div>
+        <div class="ta-banner-stat">
+          <div class="ta-banner-stat-val">1</div>
+          <div class="ta-banner-stat-label">Total Errors (404/3xx/5xx)</div>
+          <div><span class="ta-delta ta-delta-neutral">No change (vs 1)</span></div>
+        </div>
       </div>
-    </div>
-    <div class="ta-banner-text">
-      <h2>Technical SEO Health</h2>
-      <p>British Babes &middot; britishbabes.com &middot; Screaming Frog Pro Crawl &middot; 04 Aug 2026 &middot; 16 pages scanned</p>
-      <span class="ta-label" style="background:#16A34A;color:#fff">Good</span>
     </div>
   </div>
 
-  <!-- Metric Cards -->
-  <div class="ta-metrics">
-    <div class="ta-metric-card"><div class="ta-mc-val">16</div><div class="ta-mc-label">Total HTML Pages</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">16</div><div class="ta-mc-label">200 OK</div></div>
-    <div class="ta-metric-card ta-mc-green"><div class="ta-mc-val">16</div><div class="ta-mc-label">Indexable</div></div>
-    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">404 Errors</div></div>
-    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">5xx Errors</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">1</div><div class="ta-mc-label">Redirects (3xx)</div></div>
-    <div class="ta-metric-card "><div class="ta-mc-val">0</div><div class="ta-mc-label">Broken Resources</div></div>
-    
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">1</div><div class="ta-mc-label">Title Issues</div></div>
-    <div class="ta-metric-card ta-mc-amber"><div class="ta-mc-val">2</div><div class="ta-mc-label">Meta Issues</div></div>
+  <!-- High Priority Issues — replaces the old fixed metric-card grid. HIGH
+       priority only (Medium/Low stay in the detailed issue list below, via
+       its own priority filter) — this table is deliberately the "fix this
+       first" view, not the full list. Overall site stats (pages/indexable)
+       live in the banner above, not here. -->
+  <div class="ta-hp-wrap">
+    <div class="ta-hp-header">High Priority Issues</div>
+    <table class="ta-hp-table">
+      <thead><tr>
+        <th>Issue</th><th style="text-align:center">Total Count</th><th style="text-align:center">Priority</th>
+        <th style="text-align:center">% Change</th><th style="text-align:center">Absolute Change</th>
+      </tr></thead>
+      <tbody>      <tr>
+        <td>1 pages with missing canonical tags <span class="ta-src ">SF</span></td>
+        <td style="text-align:center"><span class="ta-pill ta-pill-red">1</span></td>
+        <td style="text-align:center"><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td style="text-align:center"><span class="ta-delta-neutral">0%</span></td>
+        <td style="text-align:center"><span class="ta-delta-neutral">0</span></td>
+      </tr>      <tr>
+        <td>1 pages with 3xx redirects <span class="ta-src ">SF</span></td>
+        <td style="text-align:center"><span class="ta-pill ta-pill-red">1</span></td>
+        <td style="text-align:center"><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td style="text-align:center"><span class="ta-delta-neutral">0%</span></td>
+        <td style="text-align:center"><span class="ta-delta-neutral">0</span></td>
+      </tr></tbody>
+    </table>
   </div>
 
 
@@ -957,65 +1049,39 @@ async function generatePDF() {
       </tr>
     </thead>
     <tbody>
-      <tr class="ta-row-issue" data-id="i05" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i05')">
-        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>1 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i01')">
+        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>1 pages with missing canonical tags <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-red">1</span></td>
         <td><span class="ta-prio ta-prio-high">HIGH</span></td>
         <td>Without canonical tags, search engines may index duplicate versions of these pages, splitting ranking signals.</td>
         <td>Add a self-referencing canonical tag to each page. For duplicate content, point the canonical to the preferred version.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i05" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i05">
-        <td colspan="6">
-          <div class="ta-url-inner" id="ta-urls-i05"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i01" data-cat="technical" data-prio="medium" data-src="SF" onclick="taToggle('i01')">
-        <td><span class="ta-arrow" id="ta-arrow-i01">&#9654;</span>1 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
-        <td><span class="ta-pill ta-pill-amber">1</span></td>
-        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
-        <td>Redirect chains waste crawl budget and dilute link equity. Too many redirects slow down page discovery.</td>
-        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i01" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="missing_canonical" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="missing_canonical" style="background:rgb(255, 255, 255)">Not Started</span></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i01">
         <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i01"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i06" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i06')">
-        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>11 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
-        <td><span class="ta-pill ta-pill-amber">11</span></td>
-        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
-        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
-        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i06" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
-      </tr>
-      <tr class="ta-url-panel" id="ta-panel-i06">
-        <td colspan="6">
-          <div class="ta-url-inner" id="ta-urls-i06"></div>
-        </td>
-      </tr>
-      <tr class="ta-row-issue" data-id="i02" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i02')">
-        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>1 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
-        <td><span class="ta-pill ta-pill-blue">1</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
-        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i02" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      <tr class="ta-row-issue" data-id="i02" data-cat="technical" data-prio="high" data-src="SF" onclick="taToggle('i02')">
+        <td><span class="ta-arrow" id="ta-arrow-i02">&#9654;</span>1 pages with 3xx redirects <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-red">1</span></td>
+        <td><span class="ta-prio ta-prio-high">HIGH</span></td>
+        <td>Redirect chains waste crawl budget and dilute link equity — confirmed either by our own crawl, by Google Search Console, or both. Too many redirects slow down page discovery.</td>
+        <td>Update internal links to point directly to the final destination URL. Remove unnecessary redirect hops. Consolidate redirect chains to single 301s.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="3xx_redirects" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="3xx_redirects" style="background:rgb(255, 255, 255)">Not Started</span></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i02">
         <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i02"></div>
         </td>
       </tr>
-      <tr class="ta-row-issue" data-id="i03" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i03')">
-        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>1 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
-        <td><span class="ta-pill ta-pill-blue">1</span></td>
-        <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
-        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i03" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+      <tr class="ta-row-issue" data-id="i03" data-cat="content" data-prio="medium" data-src="SF" onclick="taToggle('i03')">
+        <td><span class="ta-arrow" id="ta-arrow-i03">&#9654;</span>1 pages with thin / low content <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-amber">1</span></td>
+        <td><span class="ta-prio ta-prio-medium">MEDIUM</span></td>
+        <td>Pages with very little content provide minimal value to users and are unlikely to rank. Google may flag these as low-quality.</td>
+        <td>Expand content to at least 300 words with useful, unique information. If the page serves no purpose, consider consolidating or removing it.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="thin_content" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="thin_content" style="background:rgb(255, 255, 255)">Not Started</span></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i03">
         <td colspan="6">
@@ -1023,16 +1089,42 @@ async function generatePDF() {
         </td>
       </tr>
       <tr class="ta-row-issue" data-id="i04" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i04')">
-        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>1 pages with meta descriptions below 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-arrow" id="ta-arrow-i04">&#9654;</span>1 pages with titles below 30 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
         <td><span class="ta-pill ta-pill-blue">1</span></td>
         <td><span class="ta-prio ta-prio-low">LOW</span></td>
-        <td>Very short meta descriptions waste valuable SERP real estate and miss the chance to persuade users to click.</td>
-        <td>Expand meta descriptions to at least 70 characters with a compelling summary and call to action.</td>
-        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel" data-id="i04" style="background:rgb(255, 255, 255)" onchange="taSaveState();taUpdateStatColor(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select></td>
+        <td>Very short titles miss the opportunity to include relevant keywords and may not clearly describe the page content.</td>
+        <td>Expand titles to include the primary keyword, a modifier, and the brand name where appropriate.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="title_short" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="title_short" style="background:rgb(255, 255, 255)">Not Started</span></td>
       </tr>
       <tr class="ta-url-panel" id="ta-panel-i04">
         <td colspan="6">
           <div class="ta-url-inner" id="ta-urls-i04"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i05" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i05')">
+        <td><span class="ta-arrow" id="ta-arrow-i05">&#9654;</span>2 pages with meta descriptions over 155 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">2</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Meta descriptions over 155 characters get truncated in search results, cutting off your message mid-sentence.</td>
+        <td>Trim meta descriptions to 155 characters or fewer. Front-load the most important information and CTA.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="meta_long" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="meta_long" style="background:rgb(255, 255, 255)">Not Started</span></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i05">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i05"></div>
+        </td>
+      </tr>
+      <tr class="ta-row-issue" data-id="i06" data-cat="onpage" data-prio="low" data-src="SF" onclick="taToggle('i06')">
+        <td><span class="ta-arrow" id="ta-arrow-i06">&#9654;</span>1 pages with meta descriptions below 70 characters <span class="ta-src" title="Source: Screaming Frog">SF</span></td>
+        <td><span class="ta-pill ta-pill-blue">1</span></td>
+        <td><span class="ta-prio ta-prio-low">LOW</span></td>
+        <td>Very short meta descriptions waste valuable SERP real estate and miss the chance to persuade users to click.</td>
+        <td>Expand meta descriptions to at least 70 characters with a compelling summary and call to action.</td>
+        <td onclick="event.stopPropagation()"><select class="ta-select ta-stat-sel ta-admin-only" data-key="meta_short" style="background:rgb(255, 255, 255);display:none" onchange="taSaveStatus(this)"><option value="Not Started" data-color="rgb(255, 255, 255)" selected>Not Started</option><option value="In Progress" data-color="rgb(252, 201, 138)">In Progress</option><option value="Need Developer's Help" data-color="rgb(252, 212, 212)">Need Developer's Help</option><option value="In Review" data-color="rgb(255, 242, 166)">In Review</option><option value="Changes Done" data-color="rgb(201, 238, 201)">Changes Done</option><option value="Not Possible" data-color="rgb(217, 217, 217)">Not Possible</option></select><span class="ta-stat-badge" data-key="meta_short" style="background:rgb(255, 255, 255)">Not Started</span></td>
+      </tr>
+      <tr class="ta-url-panel" id="ta-panel-i06">
+        <td colspan="6">
+          <div class="ta-url-inner" id="ta-urls-i06"></div>
         </td>
       </tr>
     </tbody>
@@ -1041,37 +1133,56 @@ async function generatePDF() {
 
 <script>
 (function() {
-  var LS_KEY = "british-babes_techaudit_aug_2026";
-  var ALL_URLS = {"i01": ["https://wa.me/447398823838"], "i02": [{"url": "https://britishbabes.com/blog", "label": "23 chars: \u201cJournal | British Babes\u201d"}], "i03": ["https://britishbabes.com/"], "i04": ["https://britishbabes.com/blog"], "i05": ["https://britishbabes.com/"], "i06": ["https://britishbabes.com/escorts/manchester", "https://britishbabes.com/blog", "https://britishbabes.com/escorts/leeds", "https://britishbabes.com/escorts/newcastle", "https://britishbabes.com/escorts/glasgow", "https://britishbabes.com/escorts/london", "https://britishbabes.com/escorts/liverpool", "https://britishbabes.com/escorts/edinburgh", "https://britishbabes.com/escorts/birmingham", "https://britishbabes.com/escorts/bristol", "https://britishbabes.com/escorts/brighton"]};
+  var ALL_URLS = {"i01": ["https://britishbabes.com/"], "i02": ["https://wa.me/447398823838"], "i03": ["https://britishbabes.com/blog"], "i04": [{"url": "https://britishbabes.com/blog", "label": "23 chars: \u201cJournal | British Babes\u201d"}], "i05": ["https://britishbabes.com/", "https://britishbabes.com/blog/how-to-choose-british-escorts-for-exclusive-dining"], "i06": ["https://britishbabes.com/blog"]};
 
-  // Restore saved state
-  function taLoadState() {
-    try {
-      var s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
-      document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-        if (s[el.dataset.id] && s[el.dataset.id].stat) {
-          el.value = s[el.dataset.id].stat;
-          taUpdateStatColor(el);
-        }
-      });
-    } catch(e) {}
+  // Status persistence — real, shared, server-side (Cloudflare KV via the
+  // reports-auth Worker's /api/tech-audit-status endpoint), replacing the
+  // old localStorage approach that only ever saved to one browser on one
+  // device and never appeared in a PDF generated anywhere else. Only the
+  // master admin login can write (enforced server-side, not just hidden in
+  // the UI); everyone else — including the client's own login — gets a
+  // read-only badge instead of a dropdown.
+  var isAdmin = window.__IS_ADMIN__ === true;
+
+  function taApplyStatus(key, status) {
+    var sel = document.querySelector('.ta-stat-sel[data-key="' + key + '"]');
+    var badge = document.querySelector('.ta-stat-badge[data-key="' + key + '"]');
+    if (sel) {
+      sel.value = status;
+      var opt = sel.options[sel.selectedIndex];
+      sel.style.background = (opt && opt.dataset.color) || '';
+    }
+    if (badge) {
+      badge.textContent = status;
+      if (sel) badge.style.background = sel.style.background;
+    }
   }
 
-  window.taSaveState = function() {
-    var s = {};
-    document.querySelectorAll('.ta-stat-sel').forEach(function(el) {
-      if (!s[el.dataset.id]) s[el.dataset.id] = {};
-      s[el.dataset.id].stat = el.value;
-    });
-    localStorage.setItem(LS_KEY, JSON.stringify(s));
+  function taLoadStatuses() {
+    fetch('api/tech-audit-status').then(function(r) { return r.json(); }).then(function(data) {
+      Object.keys(data).forEach(function(key) { taApplyStatus(key, data[key]); });
+    }).catch(function() {});
+  }
+
+  window.taSaveStatus = function(sel) {
+    var key = sel.dataset.key, status = sel.value;
+    taApplyStatus(key, status);
+    fetch('api/tech-audit-status', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ issueKey: key, status: status }),
+    }).catch(function() {});
   };
 
-  // Recolor the select to match the currently chosen status (same colors as the
-  // internal Google Sheet's Status dropdown/conditional formatting)
-  window.taUpdateStatColor = function(sel) {
-    var opt = sel.options[sel.selectedIndex];
-    sel.style.background = (opt && opt.dataset.color) || '';
-  };
+  // Show the editable dropdown only for the admin login; everyone else sees
+  // the plain read-only badge instead (both are always rendered in HTML,
+  // this just toggles which one is visible).
+  document.querySelectorAll('.ta-admin-only').forEach(function(el) {
+    el.style.display = isAdmin ? '' : 'none';
+  });
+  document.querySelectorAll('.ta-stat-badge').forEach(function(el) {
+    el.style.display = isAdmin ? 'none' : '';
+  });
 
   // Toggle expandable URL panel
   window.taToggle = function(iid) {
@@ -1140,8 +1251,13 @@ async function generatePDF() {
       var show = true;
       // SF spans every category (errors/onpage/content/technical), so it filters by
       // source tag instead of category — GSC already has its own dedicated category.
+      // A merged row's data-src can be "GSC + SF", so both chips substring-match
+      // rather than requiring an exact "SF" / row.dataset.cat === "gsc" — a row
+      // confirmed by both sources should show up under either chip, not neither.
       if (activeCat === 'sf') {
-        if (row.dataset.src !== 'SF') show = false;
+        if (row.dataset.src.indexOf('SF') === -1) show = false;
+      } else if (activeCat === 'gsc') {
+        if (row.dataset.cat !== 'gsc' && row.dataset.src.indexOf('GSC') === -1) show = false;
       } else if (activeCat !== 'all' && row.dataset.cat !== activeCat) {
         show = false;
       }
@@ -1156,7 +1272,7 @@ async function generatePDF() {
     });
   };
 
-  taLoadState();
+  taLoadStatuses();
 })();
 </script>
 
