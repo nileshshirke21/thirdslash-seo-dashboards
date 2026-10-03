@@ -25,7 +25,7 @@ function toggleMonthPanel(id, headerEl) {
   <div class="header-left">
     <h1>Ovation Square</h1>
     <span class="domain-pill">ovationsquare.com</span>
-    <span class="date-badge">Updated: 2nd October 2026</span>
+    <span class="date-badge">Updated: 3rd October 2026</span>
   </div>
   <div class="header-right" style="display:flex;align-items:center;gap:16px;">
     <button id="pdfBtn" onclick="generatePDF()" style="padding:7px 18px;background:#5b39d9;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;">
@@ -285,7 +285,7 @@ new Chart(document.getElementById('chChart'), {
       </div>
       <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
         <div class="metric-label" style="text-align:center;">Website Clicks</div>
-        <div class="metric-value" style="text-align:center;color:#06b6d4;">105</div><div style="text-align:center;margin-top:4px;"><span style="color:#059669;font-size:11px;font-weight:600;">&#9650; 26 vs Aug</span></div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">111</div><div style="text-align:center;margin-top:4px;"><span style="color:#059669;font-size:11px;font-weight:600;">&#9650; 32 vs Aug</span></div>
       </div>
       <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
         <div class="metric-label" style="text-align:center;">New Reviews</div>
@@ -299,15 +299,15 @@ new Chart(document.getElementById('chChart'), {
     <div class="metrics-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px;">
       <div class="metric-card" style="text-align:center;border-top:3px solid #5b39d9;">
         <div class="metric-label" style="text-align:center;">Profile Views</div>
-        <div class="metric-value" style="text-align:center;color:#5b39d9;">3764</div><div style="text-align:center;margin-top:4px;"><span style="color:#EF4444;font-size:11px;font-weight:600;">&#9660; 723 vs Aug</span></div>
+        <div class="metric-value" style="text-align:center;color:#5b39d9;">4058</div><div style="text-align:center;margin-top:4px;"><span style="color:#EF4444;font-size:11px;font-weight:600;">&#9660; 429 vs Aug</span></div>
       </div>
       <div class="metric-card" style="text-align:center;border-top:3px solid #06b6d4;">
         <div class="metric-label" style="text-align:center;">Search Views</div>
-        <div class="metric-value" style="text-align:center;color:#06b6d4;">3147</div><div style="text-align:center;margin-top:4px;"><span style="color:#EF4444;font-size:11px;font-weight:600;">&#9660; 693 vs Aug</span></div>
+        <div class="metric-value" style="text-align:center;color:#06b6d4;">3401</div><div style="text-align:center;margin-top:4px;"><span style="color:#EF4444;font-size:11px;font-weight:600;">&#9660; 439 vs Aug</span></div>
       </div>
       <div class="metric-card" style="text-align:center;border-top:3px solid #059669;">
         <div class="metric-label" style="text-align:center;">Map Views</div>
-        <div class="metric-value" style="text-align:center;color:#059669;">617</div><div style="text-align:center;margin-top:4px;"><span style="color:#EF4444;font-size:11px;font-weight:600;">&#9660; 30 vs Aug</span></div>
+        <div class="metric-value" style="text-align:center;color:#059669;">657</div><div style="text-align:center;margin-top:4px;"><span style="color:#059669;font-size:11px;font-weight:600;">&#9650; 10 vs Aug</span></div>
       </div>
       <div class="metric-card" style="text-align:center;border-top:3px solid #8b5cf6;">
         <div class="metric-label" style="text-align:center;">Total Reviews</div>
@@ -323,8 +323,8 @@ new Chart(document.getElementById('chChart'), {
   (function() {
     var ctx = document.getElementById('gmbTrendChart');
     if(ctx) { new Chart(ctx, { type: 'bar', data: { labels: ["Apr-2026", "May-2026", "Jun-2026", "Jul-2026", "Aug-2026", "Sep-2026"], datasets: [
-      { label: 'Profile Views', data: [5441, 4322, 2764, 3836, 4487, 3764], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
-      { label: 'Website Clicks', data: [240, 155, 63, 91, 79, 105], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
+      { label: 'Profile Views', data: [5441, 4322, 2764, 3836, 4487, 4058], backgroundColor: 'rgba(91,57,217,0.7)', borderColor: '#5b39d9', borderWidth:1, borderRadius:4, yAxisID: 'y', order: 2 },
+      { label: 'Website Clicks', data: [240, 155, 63, 91, 79, 111], type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#06b6d4', tension: 0.3, fill: false, yAxisID: 'y1', order: 1 },
       { label: 'Phone Calls', data: [19, 15, 2, 10, 1, 13], type: 'line', borderColor: '#059669', backgroundColor: 'rgba(5,150,105,0.1)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#059669', tension: 0.3, fill: false, yAxisID: 'y1', order: 0 }
     ]}, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { display: false } }, y: { position: 'left', title: { display: true, text: 'Profile Views', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.04)' } }, y1: { position: 'right', title: { display: true, text: 'Clicks / Calls', color: '#9ca3af', font: { size: 10 } }, ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { drawOnChartArea: false } } } } }); }
   })();
