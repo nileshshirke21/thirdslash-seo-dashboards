@@ -96,14 +96,14 @@ function toggleMonthPanel(id, headerEl) {
     <div class="metric-card">
       <div class="metric-label">Purchases</div>
       <div class="period-label">Oct-2026 vs Sep-2026</div>
-      <div class="metric-value">0</div>
-      <span class="delta pos">▲ 0.0% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 0</span></span>
+      <div class="metric-value">13</div>
+      <span class="delta pos">▲ New <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 0</span></span>
     </div>
     <div class="metric-card">
       <div class="metric-label">Organic Revenue</div>
       <div class="period-label">Oct-2026 vs Sep-2026</div>
-      <div class="metric-value">&#3647;0</div>
-      <span class="delta pos">▲ 0.0% <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs 0</span></span>
+      <div class="metric-value">&#3647;10,561</div>
+      <span class="delta pos">▲ New <span style="font-size:11px;color:var(--text-mid);font-weight:600">vs &#3647;0</span></span>
     </div>
   </div>
 
@@ -234,7 +234,7 @@ function toggleMonthPanel(id, headerEl) {
 const months   = ["Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026", "Jul-2026", "Aug-2026", "Sep-2026", "Oct-2026"];
 const sessData = [26923, 9564, 10126, 14324, 15382, 12988, 14324, 26208, 23656, 11489, 7323, 9784];
 const orgData  = [1965, 2131, 2536, 2376, 2316, 1999, 2063, 2041, 2424, 2509, 2697, 2257];
-const formData = [6, 13, 14, 8, 18, 11, 17, 11, 8, 2, 0, 0];
+const formData = [6, 13, 14, 8, 18, 11, 17, 11, 8, 2, 0, 13];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [2257, 6061, 286, 139, 0, 1106];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
@@ -1825,7 +1825,7 @@ function sortGaTable(tbodyId,col){
           <th>Purchases</th><th>Revenue</th>
         </tr>
       </thead>
-      <tbody><tr><td>Oct-2026</td><td>9,784</td><td>2,257</td><td>6,061</td><td>119</td><td>9,042</td><td>12,335</td><td>52.4%</td><td>0</td></tr><tr><td>Sep-2026</td><td>7,323</td><td>2,697</td><td>3,097</td><td>160</td><td>5,925</td><td>10,492</td><td>51.2%</td><td>0</td></tr><tr><td>Aug-2026</td><td>11,489</td><td>2,509</td><td>6,059</td><td>131</td><td>9,949</td><td>15,822</td><td>51.8%</td><td>2</td></tr><tr><td>Jul-2026</td><td>23,656</td><td>2,424</td><td>12,120</td><td>89</td><td>21,198</td><td>32,489</td><td>50.2%</td><td>8</td></tr><tr><td>Jun-2026</td><td>26,208</td><td>2,041</td><td>12,333</td><td>152</td><td>24,829</td><td>32,689</td><td>46.9%</td><td>11</td><td>&#3647;16,109</td></tr><tr><td>May-2026</td><td>14,324</td><td>2,063</td><td>3,625</td><td>164</td><td>12,430</td><td>19,682</td><td>47.7%</td><td>17</td><td>&#3647;19,011</td></tr><tr><td>Apr-2026</td><td>12,988</td><td>1,999</td><td>2,780</td><td>214</td><td>11,055</td><td>18,349</td><td>49.8%</td><td>11</td><td>&#3647;12,183</td></tr><tr><td>Mar-2026</td><td>15,382</td><td>2,316</td><td>2,474</td><td>173</td><td>11,104</td><td>21,581</td><td>51.7%</td><td>18</td><td>&#3647;32,031</td></tr><tr><td>Feb-2026</td><td>14,324</td><td>2,376</td><td>2,320</td><td>209</td><td>10,827</td><td>21,719</td><td>56.5%</td><td>8</td><td>&#3647;19,093</td></tr><tr><td>Jan-2026</td><td>10,126</td><td>2,536</td><td>2,419</td><td>211</td><td>7,881</td><td>15,650</td><td>55.0%</td><td>14</td><td>&#3647;0</td></tr><tr><td>Dec-2025</td><td>9,564</td><td>2,131</td><td>4,516</td><td>217</td><td>8,042</td><td>13,603</td><td>54.7%</td><td>13</td><td>&#3647;0</td></tr><tr><td>Nov-2025</td><td>26,923</td><td>1,965</td><td>23,263</td><td>258</td><td>24,911</td><td>28,914</td><td>51.6%</td><td>6</td><td>&#3647;0</td></tr><tr><td>Oct-2025</td><td>14,865</td><td>1,692</td><td>11,505</td><td>153</td><td>13,915</td><td>19,024</td><td>52.1%</td><td>8</td><td>&#3647;0</td></tr></tbody>
+      <tbody><tr><td>Oct-2026</td><td>9,784</td><td>2,257</td><td>6,061</td><td>119</td><td>9,042</td><td>12,335</td><td>52.4%</td><td>13</td><td>&#3647;10,561</td></tr><tr><td>Sep-2026</td><td>7,323</td><td>2,697</td><td>3,097</td><td>160</td><td>5,925</td><td>10,492</td><td>51.2%</td><td>0</td></tr><tr><td>Aug-2026</td><td>11,489</td><td>2,509</td><td>6,059</td><td>131</td><td>9,949</td><td>15,822</td><td>51.8%</td><td>2</td></tr><tr><td>Jul-2026</td><td>23,656</td><td>2,424</td><td>12,120</td><td>89</td><td>21,198</td><td>32,489</td><td>50.2%</td><td>8</td></tr><tr><td>Jun-2026</td><td>26,208</td><td>2,041</td><td>12,333</td><td>152</td><td>24,829</td><td>32,689</td><td>46.9%</td><td>11</td><td>&#3647;16,109</td></tr><tr><td>May-2026</td><td>14,324</td><td>2,063</td><td>3,625</td><td>164</td><td>12,430</td><td>19,682</td><td>47.7%</td><td>17</td><td>&#3647;19,011</td></tr><tr><td>Apr-2026</td><td>12,988</td><td>1,999</td><td>2,780</td><td>214</td><td>11,055</td><td>18,349</td><td>49.8%</td><td>11</td><td>&#3647;12,183</td></tr><tr><td>Mar-2026</td><td>15,382</td><td>2,316</td><td>2,474</td><td>173</td><td>11,104</td><td>21,581</td><td>51.7%</td><td>18</td><td>&#3647;32,031</td></tr><tr><td>Feb-2026</td><td>14,324</td><td>2,376</td><td>2,320</td><td>209</td><td>10,827</td><td>21,719</td><td>56.5%</td><td>8</td><td>&#3647;19,093</td></tr><tr><td>Jan-2026</td><td>10,126</td><td>2,536</td><td>2,419</td><td>211</td><td>7,881</td><td>15,650</td><td>55.0%</td><td>14</td><td>&#3647;0</td></tr><tr><td>Dec-2025</td><td>9,564</td><td>2,131</td><td>4,516</td><td>217</td><td>8,042</td><td>13,603</td><td>54.7%</td><td>13</td><td>&#3647;0</td></tr><tr><td>Nov-2025</td><td>26,923</td><td>1,965</td><td>23,263</td><td>258</td><td>24,911</td><td>28,914</td><td>51.6%</td><td>6</td><td>&#3647;0</td></tr><tr><td>Oct-2025</td><td>14,865</td><td>1,692</td><td>11,505</td><td>153</td><td>13,915</td><td>19,024</td><td>52.1%</td><td>8</td><td>&#3647;0</td></tr></tbody>
     </table>
   </div>
 
@@ -1854,7 +1854,7 @@ function sortGaTable(tbodyId,col){
 const months   = ["Nov-2025", "Dec-2025", "Jan-2026", "Feb-2026", "Mar-2026", "Apr-2026", "May-2026", "Jun-2026", "Jul-2026", "Aug-2026", "Sep-2026", "Oct-2026"];
 const sessData = [26923, 9564, 10126, 14324, 15382, 12988, 14324, 26208, 23656, 11489, 7323, 9784];
 const orgData  = [1965, 2131, 2536, 2376, 2316, 1999, 2063, 2041, 2424, 2509, 2697, 2257];
-const formData = [6, 13, 14, 8, 18, 11, 17, 11, 8, 2, 0, 0];
+const formData = [6, 13, 14, 8, 18, 11, 17, 11, 8, 2, 0, 13];
 const chLabels = ["Organic", "Direct", "Referral", "Social", "Email", "Paid"];
 const chVals   = [2257, 6061, 286, 139, 0, 1106];
 const chColors = ["#4CAF50", "#2196F3", "#FF9800", "#E91E63", "#9C27B0", "#00BCD4"];
