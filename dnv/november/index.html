@@ -41,6 +41,7 @@
   .empty-note{padding:16px 20px;font-size:12px;color:var(--muted)}
 .period-switch label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   .period-switch select{font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;border:1px solid #c9bdf7;background:#f0edff;color:var(--accent);cursor:pointer}
+@media print{.header-right,.period-switch,.filter-bar,.fchip{display:none!important}.country-sec,.rank-table-wrap,.chart-card,.metric-card,.warn,.note{break-inside:avoid}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{padding:8px 0!important}}
 </style>
 </head>
 <body>
@@ -180,6 +181,12 @@ async function generatePDF() {
   var btn = document.getElementById('pdfBtn'), orig = btn.innerHTML;
   btn.innerHTML = '⏳ Generating...'; btn.disabled = true; btn.style.opacity = '0.6';
   var sec = document.getElementById('tab-googleads'), filterBar = document.getElementById('statusFilter'), banner = null;
+  if (!window.jspdf || !window.html2canvas) {      // PDF libraries blocked (company network/CDN) -> fall back to the browser's own Print > Save as PDF
+    btn.innerHTML = orig; btn.disabled = false; btn.style.opacity = '1';
+    document.querySelector('#countryFilter .fchip[data-c="all"]').click(); document.querySelector('#statusGroup .fchip[data-f="all"]').click();
+    alert('The PDF tool could not load on this network. Your browser\'s print dialog will open instead - choose "Save as PDF" as the destination.');
+    window.print(); return;
+  }
   try {
     var jsPDF = window.jspdf.jsPDF, pdf = new jsPDF('landscape','mm','a4');
     var pw = pdf.internal.pageSize.getWidth(), ph = pdf.internal.pageSize.getHeight(), m = 5, cw = pw - 2*m;
@@ -191,6 +198,8 @@ async function generatePDF() {
     await new Promise(function(r){ setTimeout(r, 500); });
     var hdr = await html2canvas(document.querySelector('.header'), {scale:2, useCORS:true, backgroundColor:'#ffffff'});
     var hh = hdr.height*cw/hdr.width, y = m;
+    var paint = function(){ pdf.setFillColor(238,241,248); pdf.rect(0,0,pw,ph,'F'); };   // same page colour as the dashboard (no tinted patches)
+    paint();
     var pxmm = function(cv){ return cv.width/cw; };
     async function place(el) {
       var cv = await html2canvas(el, {scale:2, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
@@ -198,14 +207,20 @@ async function generatePDF() {
       if (bh > ph - 2*m) {                       // taller than a page: slice (rare)
         var off = 0, pm = pxmm(cv);
         while (off < cv.height) {
-          if (y > ph - m - 20) { pdf.addPage(); y = m; }
+          if (y > ph - m - 20) { pdf.addPage(); paint(); y = m; }
           var sh = Math.min((ph - m - y)*pm, cv.height - off), s = document.createElement('canvas'); s.width = cv.width; s.height = sh;
           s.getContext('2d').drawImage(cv, 0, off, cv.width, sh, 0, 0, cv.width, sh);
           pdf.addImage(s.toDataURL('image/jpeg',0.92),'JPEG',m,y,cw,sh/pm); y += sh/pm + 2; off += sh;
         }
         return;
       }
-      if (y + bh > ph - m) { pdf.addPage(); y = m; }
+      if (y + bh > ph - m) {
+        var room = ph - m - y, k = room / bh;
+        if (el.classList.contains('charts-grid') && k >= 0.62) {       // shrink the charts a little so they stay on this page
+          var w2 = cw * k; pdf.addImage(cv.toDataURL('image/jpeg',0.92),'JPEG',m + (cw - w2)/2,y,w2,room); y += room + 3; return;
+        }
+        pdf.addPage(); paint(); y = m;
+      }
       pdf.addImage(cv.toDataURL('image/jpeg',0.92),'JPEG',m,y,cw,bh); y += bh + 3;
     }
     var passes = [['all','All countries','India, Singapore and Australia combined'], ['IN','India','India campaigns, keywords and cities'],
@@ -213,7 +228,7 @@ async function generatePDF() {
     for (var p = 0; p < passes.length; p++) {
       var code = passes[p][0];
       document.querySelector('#countryFilter .fchip[data-c="' + code + '"]').click();
-      if (p > 0) { pdf.addPage(); }
+      if (p > 0) { pdf.addPage(); paint(); }
       pdf.addImage(hdr.toDataURL('image/jpeg',0.95),'JPEG',m,m,cw,hh); y = m + hh + 3;
       banner = document.createElement('div');
       banner.style.cssText = 'background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;border-radius:12px;padding:14px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;font-family:inherit';
@@ -233,7 +248,7 @@ async function generatePDF() {
           var cvh = await html2canvas(pending, {scale:2, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
           var cvn = await html2canvas(el, {scale:1, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
           var need = cvh.height*cw/cvh.width + 2 + Math.min(cvn.height*cw/cvn.width, ph - 2*m);
-          if (y + need > ph - m) { pdf.addPage(); y = m; }
+          if (y + need > ph - m) { pdf.addPage(); paint(); y = m; }
           pdf.addImage(cvh.toDataURL('image/jpeg',0.92),'JPEG',m,y,cw,cvh.height*cw/cvh.width); y += cvh.height*cw/cvh.width + 2; pending = null;
         }
         await place(el);
