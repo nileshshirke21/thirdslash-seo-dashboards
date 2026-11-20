@@ -42,6 +42,9 @@
 .period-switch label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   .period-switch select{font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px;border:1px solid #c9bdf7;background:#f0edff;color:var(--accent);cursor:pointer}
 @media print{.header-right,.period-switch,.filter-bar,.fchip{display:none!important}.country-sec,.rank-table-wrap,.chart-card,.metric-card,.warn,.note{break-inside:avoid}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{padding:8px 0!important}}
+@media (max-width:1024px){#pdfBtn{display:flex!important}}
+  @media (max-width:480px){.header-right{display:flex!important}.header{height:auto;flex-wrap:wrap;gap:8px;padding:8px 14px}.header-right svg{display:none}}
+  html,body,button,select,input{font-family:'Plus Jakarta Sans','Segoe UI',Arial,Helvetica,sans-serif}
 </style>
 </head>
 <body>
@@ -177,35 +180,41 @@ applyFilters();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 async function generatePDF() {
-  // PDF layout (user rule 2026-11-19): page 1+ = ALL countries, then India, then Australia, then Singapore - each on its own pages
-  var btn = document.getElementById('pdfBtn'), orig = btn.innerHTML;
-  btn.innerHTML = '⏳ Generating...'; btn.disabled = true; btn.style.opacity = '0.6';
-  var sec = document.getElementById('tab-googleads'), filterBar = document.getElementById('statusFilter'), banner = null;
-  if (!window.jspdf || !window.html2canvas) {      // PDF libraries blocked (company network/CDN) -> fall back to the browser's own Print > Save as PDF
-    btn.innerHTML = orig; btn.disabled = false; btn.style.opacity = '1';
-    document.querySelector('#countryFilter .fchip[data-c="all"]').click(); document.querySelector('#statusGroup .fchip[data-f="all"]').click();
+  // The PDF is always built from a hidden 1400px-wide desktop copy of this page, so the result is identical whatever the
+  // visitor's window size / browser zoom / display scaling (a narrow window used to produce a 51-page, zoomed-in PDF).
+  // Order: All countries first, then India, Australia, Singapore - each on its own pages.
+  var btn = document.getElementById('pdfBtn'), orig = btn.innerHTML, frame = null;
+  if (!window.jspdf || !window.html2canvas) {      // PDF libraries blocked (company network/CDN) -> browser Print > Save as PDF
+    var allC = document.querySelector('#countryFilter .fchip[data-c="all"]'); if (allC) allC.click();
     alert('The PDF tool could not load on this network. Your browser\'s print dialog will open instead - choose "Save as PDF" as the destination.');
     window.print(); return;
   }
+  btn.innerHTML = '⏳ Generating...'; btn.disabled = true; btn.style.opacity = '0.6';
   try {
+    frame = document.createElement('iframe');
+    frame.style.cssText = 'position:fixed;left:-20000px;top:0;width:1400px;height:1000px;border:0;opacity:0;pointer-events:none';
+    frame.src = location.pathname + '?pdfframe=1';
+    document.body.appendChild(frame);
+    await new Promise(function(res, rej){ frame.onload = res; setTimeout(function(){ rej(new Error('page copy did not load')); }, 40000); });
+    await new Promise(function(r){ setTimeout(r, 2200); });          // let charts draw at full width
+    var doc = frame.contentDocument, win = frame.contentWindow;
+    var sec = doc.getElementById('tab-googleads'), filterBar = doc.getElementById('statusFilter'), banner = null;
+    var H2C = {scale:2, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:0, windowWidth:1400, windowHeight:1000};
     var jsPDF = window.jspdf.jsPDF, pdf = new jsPDF('landscape','mm','a4');
     var pw = pdf.internal.pageSize.getWidth(), ph = pdf.internal.pageSize.getHeight(), m = 5, cw = pw - 2*m;
-    var prevC = (document.querySelector('#countryFilter .fchip.on') || {}).dataset ? document.querySelector('#countryFilter .fchip.on').getAttribute('data-c') : 'all';
-    var prevS = document.querySelector('#statusGroup .fchip.on') ? document.querySelector('#statusGroup .fchip.on').getAttribute('data-f') : 'all';
-    document.querySelector('#statusGroup .fchip[data-f="all"]').click();
-    filterBar.style.display = 'none'; btn.style.display = 'none'; sec.style.padding = '16px 28px';
-    Object.values(Chart.instances).forEach(function(c){ c.resize(); c.update('none'); });
-    await new Promise(function(r){ setTimeout(r, 500); });
-    var hdr = await html2canvas(document.querySelector('.header'), {scale:2, useCORS:true, backgroundColor:'#ffffff'});
+    doc.querySelector('#statusGroup .fchip[data-f="all"]').click();
+    filterBar.style.display = 'none'; doc.getElementById('pdfBtn').style.visibility = 'hidden'; sec.style.padding = '16px 28px';
+    Object.values(win.Chart.instances).forEach(function(c){ c.resize(); c.update('none'); });
+    await new Promise(function(r){ setTimeout(r, 600); });
+    var hdr = await window.html2canvas(doc.querySelector('.header'), Object.assign({}, H2C, {backgroundColor:'#ffffff'}));
     var hh = hdr.height*cw/hdr.width, y = m;
-    var paint = function(){ pdf.setFillColor(238,241,248); pdf.rect(0,0,pw,ph,'F'); };   // same page colour as the dashboard (no tinted patches)
+    var paint = function(){ pdf.setFillColor(238,241,248); pdf.rect(0,0,pw,ph,'F'); };   // same page colour as the dashboard
     paint();
-    var pxmm = function(cv){ return cv.width/cw; };
     async function place(el) {
-      var cv = await html2canvas(el, {scale:2, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
+      var cv = await window.html2canvas(el, H2C);
       var bh = cv.height*cw/cv.width;
       if (bh > ph - 2*m) {                       // taller than a page: slice (rare)
-        var off = 0, pm = pxmm(cv);
+        var off = 0, pm = cv.width/cw;
         while (off < cv.height) {
           if (y > ph - m - 20) { pdf.addPage(); paint(); y = m; }
           var sh = Math.min((ph - m - y)*pm, cv.height - off), s = document.createElement('canvas'); s.width = cv.width; s.height = sh;
@@ -227,10 +236,10 @@ async function generatePDF() {
                   ['AU','Australia','Australia campaigns, keywords and cities'], ['SG','Singapore','Singapore campaigns, keywords and cities']];
     for (var p = 0; p < passes.length; p++) {
       var code = passes[p][0];
-      document.querySelector('#countryFilter .fchip[data-c="' + code + '"]').click();
+      doc.querySelector('#countryFilter .fchip[data-c="' + code + '"]').click();
       if (p > 0) { pdf.addPage(); paint(); }
       pdf.addImage(hdr.toDataURL('image/jpeg',0.95),'JPEG',m,m,cw,hh); y = m + hh + 3;
-      banner = document.createElement('div');
+      banner = doc.createElement('div');
       banner.style.cssText = 'background:linear-gradient(135deg,#5b39d9 0%,#06b6d4 100%);color:#fff;border-radius:12px;padding:14px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;font-family:inherit';
       banner.innerHTML = '<div style="font-size:20px;font-weight:800">' + passes[p][1] + '</div><div style="font-size:12px;opacity:.9">' + passes[p][2] + ' &middot; Oct 2026</div>';
       sec.insertBefore(banner, sec.firstChild);
@@ -238,15 +247,15 @@ async function generatePDF() {
       if (code === 'all') {
         blocks = Array.from(sec.children).filter(function(el){ return el.id !== 'statusFilter' && !el.classList.contains('period-switch'); });
       } else {
-        blocks = [banner, sec.querySelector('.warn'), document.getElementById('country-' + code), document.getElementById('kwWrap'), document.getElementById('cityWrap')];
+        blocks = [banner, sec.querySelector('.warn'), doc.getElementById('country-' + code), doc.getElementById('kwWrap'), doc.getElementById('cityWrap')];
       }
       var pending = null;
       for (var i = 0; i < blocks.length; i++) {
         var el = blocks[i]; if (!el) continue;
         if (el.classList.contains('sec-title')) { pending = el; continue; }        // keep this heading with the block after it
-        if (pending) {                                                                    // approximate: reserve room for heading + next block
-          var cvh = await html2canvas(pending, {scale:2, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
-          var cvn = await html2canvas(el, {scale:1, useCORS:true, backgroundColor:'#eef1f8', scrollX:0, scrollY:-window.scrollY});
+        if (pending) {
+          var cvh = await window.html2canvas(pending, H2C);
+          var cvn = await window.html2canvas(el, Object.assign({}, H2C, {scale:1}));
           var need = cvh.height*cw/cvh.width + 2 + Math.min(cvn.height*cw/cvn.width, ph - 2*m);
           if (y + need > ph - m) { pdf.addPage(); paint(); y = m; }
           pdf.addImage(cvh.toDataURL('image/jpeg',0.92),'JPEG',m,y,cw,cvh.height*cw/cvh.width); y += cvh.height*cw/cvh.width + 2; pending = null;
@@ -255,12 +264,10 @@ async function generatePDF() {
       }
       sec.removeChild(banner); banner = null;
     }
-    document.querySelector('#countryFilter .fchip[data-c="' + prevC + '"]').click(); document.querySelector('#statusGroup .fchip[data-f="' + prevS + '"]').click();
     pdf.save('DNV_Google_Ads_Report_Oct_2026.pdf');
-  } catch(e) { console.error('PDF error:', e); alert('PDF generation failed: ' + e.message); }
-  if (banner && banner.parentNode) banner.parentNode.removeChild(banner);
-  filterBar.style.display = ''; sec.style.padding = '';
-  btn.style.display = ''; btn.innerHTML = orig; btn.disabled = false; btn.style.opacity = '1';
+  } catch(e) { console.error('PDF error:', e); alert('PDF generation failed: ' + e.message + '\nTip: use your browser\'s Print > Save as PDF instead.'); }
+  if (frame && frame.parentNode) frame.parentNode.removeChild(frame);
+  btn.innerHTML = orig; btn.disabled = false; btn.style.opacity = '1';
 }
 </script>
 </body>
